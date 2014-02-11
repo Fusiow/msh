@@ -6,13 +6,13 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/19 19:13:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2013/12/30 15:35:07 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/11 16:10:35 by aardjoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <string.h>
-#include "includes/libft.h"
+#include "../../includes/msh.h"
 
 static int	ft_nb_substrings(char const *s, char c)
 {

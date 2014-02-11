@@ -6,11 +6,11 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/22 11:03:59 by lsolofri          #+#    #+#             */
-/*   Updated: 2013/12/27 11:39:57 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/11 16:16:05 by aardjoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_putchar(char c);
+#include "../../includes/msh.h"
 
 void	ft_putnbr(int nb)
 {

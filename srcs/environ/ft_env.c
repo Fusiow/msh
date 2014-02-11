@@ -6,11 +6,11 @@
 /*   By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 13:49:25 by aardjoun          #+#    #+#             */
-/*   Updated: 2014/02/11 16:01:22 by aardjoun         ###   ########.fr       */
+/*   Updated: 2014/02/11 16:21:29 by aardjoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../..0/includes/msh.h"
+#include "../../includes/msh.h"
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -49,8 +49,11 @@ int			main(__attribute__ ((unused)) int ac, char **av, char **environ)
 
 	i = 0;
 	s = 0;
-	if (ft_strcmp("setenv", av[1]) == 0 && ac > 3)
-		s = 1;
+	if (ac > 3)
+	{
+		if (ft_strcmp("setenv", av[1]) == 0)
+			s = 1;
+	}
 	g_env = ft_get_env(environ, s, av);
 	while (g_env[i])
 	{

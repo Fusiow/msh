@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/11 15:39:32 by aardjoun         ###   ########.fr       */
+/*   Updated: 2014/02/11 16:17:08 by aardjoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,12 @@ char	*init_buffer(char *buffer);
 /*
 ** FUNCTIONS
 */
+int		ft_putchar(char c);
+char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strsub(char const *s, unsigned int start, size_t len);
 int		ft_strlen(char *s);
+char	**ft_new_tab(int i);
+char	*ft_strdup(const char *s1);
+int		ft_strcmp(const char *s1, const char *s2);
+
 #endif /* MSH_H */
