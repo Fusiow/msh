@@ -6,12 +6,11 @@
 /*   By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 13:49:25 by aardjoun          #+#    #+#             */
-/*   Updated: 2014/02/11 15:40:43 by aardjoun         ###   ########.fr       */
+/*   Updated: 2014/02/11 16:01:22 by aardjoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "msh/includes/msh.h"
-#include "fts.h"
+#include "../..0/includes/msh.h"
 #include <stdlib.h>
 #include <stdio.h>
 
