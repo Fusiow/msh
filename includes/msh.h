@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/11 15:16:29 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/11 15:30:25 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	show_error_exit(char *str);
 */
 char	*read_cmd(void);
 void	init_flag(struct termios *term);
+void	re_flag(struct termios *term);
+char	*init_buffer(char *buffer);
 
 /*
 ** FUNCTIONS
