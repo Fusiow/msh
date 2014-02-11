@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/11 16:26:08 by aardjoun         ###   ########.fr       */
+/*   Updated: 2014/02/11 16:59:35 by aardjoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int		ft_strlen(char *s);
 char	**ft_new_tab(int i);
 char	*ft_strdup(const char *s1);
 int		ft_strcmp(const char *s1, const char *s2);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		ft_isprint(int c);
 void	ft_putendl(char const *s);
 void	ft_putnbr(int nb);
@@ -61,5 +62,14 @@ char	*ft_strjoin(char const *s1, char const *s2);
 int		ft_strlen(char *s);
 char	**ft_strsplit(char const *s, char c);
 char	*ft_strsub(char const *s, unsigned int start, size_t len);
+
+/*
+** ENVIRON FT_ENV.C
+*/
+
+void	ft_get_env(char **environ);
+void	ft_print_env(void);
+void	ft_setenv(void);
+void	ft_unsetenv(void);
 
 #endif /* MSH_H */
