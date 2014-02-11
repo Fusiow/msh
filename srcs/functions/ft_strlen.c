@@ -1,46 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   msh.h                                              :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/11 15:16:29 by lsolofri         ###   ########.fr       */
+/*   Created: 2014/02/11 15:14:35 by lsolofri          #+#    #+#             */
+/*   Updated: 2014/02/11 15:15:59 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MSH_H
-# define MSH_H
+int		ft_strlen(char *s)
+{
+	int		i;
 
-/*
-** GLOBAL VARIABLE
-*/
-
-char	**g_env;
-
-/*
-** INCLUDE OF LIBS
-*/
-# include <unistd.h>
-# include <stdlib.h.h>
-# include <termios.h>
-# include <termcap.h>
-
-/*
-** ERRORS
-*/
-void	show_error(char *str);
-void	show_error_exit(char *str);
-
-/*
-** READ
-*/
-char	*read_cmd(void);
-void	init_flag(struct termios *term);
-
-/*
-** FUNCTIONS
-*/
-int		ft_strlen(char *s);
-#endif /* MSH_H */
+	 i = 0;
+	 while (s[i])
+		 ++i;
+	 return (i);
+}
