@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/11 15:30:25 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/11 15:39:32 by aardjoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	**g_env;
 ** INCLUDE OF LIBS
 */
 # include <unistd.h>
-# include <stdlib.h.h>
+# include <stdlib.h>
 # include <termios.h>
 # include <termcap.h>
 
