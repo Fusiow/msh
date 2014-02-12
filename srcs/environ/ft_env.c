@@ -6,7 +6,7 @@
 /*   By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 13:49:25 by aardjoun          #+#    #+#             */
-/*   Updated: 2014/02/12 18:33:48 by aardjoun         ###   ########.fr       */
+/*   Updated: 2014/02/12 19:08:29 by aardjoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,26 @@ void		ft_setenv(char **av)
 		g_env[k] = ft_strdup(ft_strjoin(av[2], ft_strjoin("=", av[3])));
 }
 
-/*void		ft_unsetenv(void)
+void		ft_unsetenv(char **av)
 {
+	int		k;
 
+
+	k = ((ft_tabncmp(g_env, av) > -1) ? ft_tabncmp(g_env, av) : -1 );
+	if (k > -1)
+	{
+		while (g_env[k])
+		{
+			if (g_env[k] && g_env[k + 1])
+				g_env[k] = ft_strdup(g_env[k + 1]);
+			else
+				g_env[k] = NULL;
+			k++;
+		}
+		g_env[k] = NULL;
+	}
 }
-*/
+
 void		ft_print_env(void)
 {
 	int		i;
@@ -77,12 +92,7 @@ int			main(int ac, char **av, char **environ)
 	if (ac > 2)
 	{
 		if (ft_strcmp("unsetenv", av[1]) == 0)
-		{
-			while (ft_strncmp(g_env[i], av[2], ft_strlen(av[2])) != 0)
-				i++;
-			free(g_env[i]);
-			i = 0;
-		}
+			ft_unsetenv(av);
 		if (ac > 3)
 		{
 			if (ft_strcmp("setenv", av[1]) == 0)
