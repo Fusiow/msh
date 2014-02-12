@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "../../includes/msh.h"
-#include <stdio.h>
 
 void		ft_setenv(void)
 {
@@ -57,10 +56,7 @@ void		ft_get_env(char **environ)
 	while (environ[i])
 		i++;
 	if (i == 0)
-	{
-		printf("42sh: Could not set up terminal\n");
-		exit(0);
-	}
+		show_error_exit("Could not set environnement");
 	g_env = ft_new_tab(i);
 	i = 0;
 	while (environ[i])
@@ -94,7 +90,7 @@ int			main(int ac, char **av, char **environ)
 			if (ft_strcmp("setenv", av[1]) == 0)
 				s = 1;
 		}
-	g_env = ft_get_env(environ, s, av);
+		g_env = ft_get_env(environ, s, av);
 	}
 	return (0);
 }
