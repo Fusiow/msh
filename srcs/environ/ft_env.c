@@ -6,40 +6,47 @@
 /*   By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 13:49:25 by aardjoun          #+#    #+#             */
-/*   Updated: 2014/02/11 17:31:28 by aardjoun         ###   ########.fr       */
+/*   Updated: 2014/02/12 16:00:45 by aardjoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/msh.h"
 #include <stdio.h>
 
-void		ft_setenv(void)
+void		ft_setenv(char **av)
 {
 	char	**tmp;
 	int		i;
 
 	i = 0;
-	while (env[i])
+	while (g_env[i])
 		i++;
 	tmp = ft_new_tab(i + 1);
-	while (g_env[++i])
+	i = 0;
+	while (g_env[i])
+	{
 		tmp[i] = ft_strdup(g_env[i]);
-	tmp[i + 1] = ft_strdup(ft_strjoin(av[2], ft_strjoin("=", av[3])));
+		i++;
+	}
+	tmp[i] = ft_strdup(ft_strjoin(av[2], ft_strjoin("=", av[3])));
 	i = 0;
 	while (tmp[i])
 		i++;
 	g_env = ft_new_tab(i);
-	i = -1;
-	while (tmp[++i])
+	i = 0;
+	while (tmp[i])
+	{
 		g_env[i] = ft_strdup(tmp[i]);
-	tmp = ft_free_tab(tmp);
+		i++;
+	}
+	ft_free_tab(tmp);
 }
 
-void		ft_unsetenv(void)
+/*void		ft_unsetenv(void)
 {
 
 }
-
+*/
 void		ft_print_env(void)
 {
 	int		i;
@@ -71,15 +78,12 @@ void		ft_get_env(char **environ)
 
 }
 
-
-
 int			main(int ac, char **av, char **environ)
 {
 	int i;
-	int s;
 
 	i = 0;
-	s = 0;
+	ft_get_env(environ);
 	if (ac > 2)
 	{
 		if (ft_strcmp("unsetenv", av[1]) == 0)
@@ -92,9 +96,9 @@ int			main(int ac, char **av, char **environ)
 		if (ac > 3)
 		{
 			if (ft_strcmp("setenv", av[1]) == 0)
-				s = 1;
+				ft_setenv(av);
 		}
-	g_env = ft_get_env(environ, s, av);
 	}
+	ft_print_env();
 	return (0);
 }

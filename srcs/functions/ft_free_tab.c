@@ -6,7 +6,7 @@
 /*   By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 17:01:09 by aardjoun          #+#    #+#             */
-/*   Updated: 2014/02/11 17:07:24 by aardjoun         ###   ########.fr       */
+/*   Updated: 2014/02/12 16:02:18 by aardjoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,12 @@ void	ft_free_tab(char **tab)
 {
 	int		i;
 
-	i = -1;
-	while (tab[++i])
+	i = 0;
+	while (tab[i])
 	{
 		free(tab[i]);
-		tab = NULL;
+		tab[i] = NULL;
+		i++;
 	}
 	free(tab);
 }
