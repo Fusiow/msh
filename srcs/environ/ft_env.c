@@ -6,7 +6,7 @@
 /*   By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 13:49:25 by aardjoun          #+#    #+#             */
-/*   Updated: 2014/02/12 16:00:45 by aardjoun         ###   ########.fr       */
+/*   Updated: 2014/02/12 16:53:55 by aardjoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@ void		ft_setenv(char **av)
 	char	**tmp;
 	int		i;
 
-	i = 0;
-	while (g_env[i])
-		i++;
+	i = ft_tablen(g_env);;
 	tmp = ft_new_tab(i + 1);
 	i = 0;
 	while (g_env[i])
@@ -28,9 +26,8 @@ void		ft_setenv(char **av)
 		i++;
 	}
 	tmp[i] = ft_strdup(ft_strjoin(av[2], ft_strjoin("=", av[3])));
-	i = 0;
-	while (tmp[i])
-		i++;
+	i = ft_tablen(tmp);
+	ft_free_tab(g_env);
 	g_env = ft_new_tab(i);
 	i = 0;
 	while (tmp[i])
@@ -94,10 +91,6 @@ int			main(int ac, char **av, char **environ)
 			if (ft_strcmp("setenv", av[1]) == 0)
 				ft_setenv(av);
 		}
-<<<<<<< HEAD
-=======
-		g_env = ft_get_env(environ, s, av);
->>>>>>> 51f5b4283f4f561e7e94f43783d7d8e32890a1c0
 	}
 	ft_print_env();
 	return (0);
