@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/12 15:18:32 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/12 15:46:03 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/12 17:32:40 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ char	*history(int choice, char *str)
 {
 	static char		*s_history[500];
 	static int		i = 0;
+	int				v;
 
 	if (choice == 0)
 	{
@@ -34,12 +35,17 @@ char	*history(int choice, char *str)
 		if (s_history[i + 1])
 			return (s_history[i++]);
 	}
-	if (choice == 0)
+	else if (choice == 3)
 	{
-		int v = 0;
+		v = 0;
+		while (s_history[v + 5])
+			++v;
 		while (s_history[v])
+		{
+			ft_putnbr(v);
+			ft_putchar('\t');
 			ft_putendl(s_history[v++]);
-		ft_putnbr(i);
+		}
 	}
 	return (s_history[i]);
 }

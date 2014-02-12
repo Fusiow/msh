@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 17:24:20 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/12 16:08:33 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/12 17:18:11 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,17 @@ int		arrow(int i, char key, int len, char **result)
 	{
 		clear_line(i + 1, ft_strlen(*result));
 		*result = history(1, NULL);
-		i = ft_strlen(*result) + 1;
-		ft_putstr(*result);	
+		i = ft_strlen(*result);
+		ft_putstr(*result);
+		ft_putstr(tgetstr("le", NULL));
 	}
 	else if (key == 66)
 	{
 		clear_line(i + 1, ft_strlen(*result));
 		*result = history(2, NULL);	
-		i = ft_strlen(*result) + 1;
+		i = ft_strlen(*result);
 		ft_putstr(*result);	
+		ft_putstr(tgetstr("le", NULL));
 	}
 	else if (key == 67)
 		i = a_right(i, len);
