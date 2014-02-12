@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/11 17:32:02 by aardjoun         ###   ########.fr       */
+/*   Updated: 2014/02/12 11:33:22 by aardjoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ char	*ft_strsub(char const *s, unsigned int start, size_t len);
 
 void	ft_get_env(char **environ);
 void	ft_print_env(void);
-void	ft_setenv(void);
+void	ft_setenv(char **av);
 void	ft_unsetenv(void);
 
 #endif /* MSH_H */
