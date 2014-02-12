@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/20 09:49:25 by lsolofri          #+#    #+#             */
-/*   Updated: 2013/12/27 11:43:10 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/12 16:56:41 by aardjoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@ char	*ft_strdup(const char *s)
 		result[i] = s[i];
 		++i;
 	}
+	result[i] = '\0';
 	return (result);
 }
