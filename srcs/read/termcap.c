@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 15:00:24 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/11 15:34:18 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/12 13:47:16 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,44 +14,52 @@
 
 void	init_flag(struct termios *term)
 {
-	char	*term;
+	char	*name_term;
 
-	term = getenv("TERM");
-	if (!term)
+	name_term = getenv("TERM");
+	if (!name_term)
 		show_error_exit("No Environnement TERM variables");
-	if (!tgetent(NULL, term))
+	if (!tgetent(NULL, name_term))
 		show_error_exit("System call: tgetent fail");
-	if (!tcgetattr(0, term))
-		show_error_exit("System call: tcgetattr fail");
+	tcgetattr(0, term);
 	term->c_lflag &= ~(ICANON);
 	term->c_lflag &= ~(ECHO);
-	term->c_cc[VMIN] = 258;
+	term->c_cc[VMIN] = 1;
 	term->c_cc[VTIME] = 0;
-	if (!tcsetattr(0, 0, term))
-		show_error_exit("System call: tcsetattr fail");
+	tcsetattr(0, 0, term);
 }
 
 void	re_flag(struct termios *term)
 {
-	char	*term;
+	char	*name_term;
 
-	name = getenv("TERM");
-	if (!term)
+	name_term = getenv("TERM");
+	if (!name_term)
 		show_error_exit("No Environnement TERM variables");
-	if (!tgetent(NULL, term))
+	if (!tgetent(NULL, name_term))
 		show_error_exit("System call: tgetent fail");
-	if (!tcgetattr(0, term))
-		show_error_exit("System call: tcgetattr fail");
+	tcgetattr(0, term);
 	term->c_lflag |= ICANON;
 	term->c_lflag |= ECHO;
-	if (!tcsetattr(0, 0, term))
-		show_error_exit("System call: tcsetattr fail");
+	tcsetattr(0, 0, term);
 }
 
 char	*init_buffer(char *buffer)
 {
-	buffer[0] = '\0';
-	buffer[1] = '\0';
-	buffer[2] = '\0';
-	buffer[3] = '\0';
+	int		i;
+
+	i = 0;
+	while (buffer[i])
+		buffer[i++] = 0;
+	return (buffer);
+}
+
+char	*char_to_string(char c)
+{
+	char	*result;
+
+	result = (char *)malloc(sizeof(char) * 1);
+	result[0] = c;
+	result[1] = '\0';
+	return (result);
 }
