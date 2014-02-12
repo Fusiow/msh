@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/12 16:52:49 by aardjoun         ###   ########.fr       */
+/*   Updated: 2014/02/12 18:33:22 by aardjoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int		ft_strlen(char *s);
 char	**ft_new_tab(int i);
 void	ft_free_tab(char **tab);
 int		ft_tablen(char **tab);
+int		ft_tabncmp(char **env, char **av);
 char	*ft_strdup(const char *s1);
 int		ft_strcmp(const char *s1, const char *s2);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);

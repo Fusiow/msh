@@ -6,7 +6,7 @@
 /*   By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 13:49:25 by aardjoun          #+#    #+#             */
-/*   Updated: 2014/02/12 17:17:18 by aardjoun         ###   ########.fr       */
+/*   Updated: 2014/02/12 18:33:48 by aardjoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,23 @@ void		ft_setenv(char **av)
 {
 	char	**tmp;
 	int		i;
+	int		k;
 
-	i = (((tmp = ft_new_tab(ft_tablen(g_env) + 1)) != NULL) ? -1 : -1 );
-	while (g_env[++i])
-		tmp[i] = ft_strdup(g_env[i]);
-	tmp[i] = ft_strdup(ft_strjoin(av[2], ft_strjoin("=", av[3])));
-	ft_free_tab(g_env);
-	i = (((g_env = ft_new_tab(ft_tablen(tmp))) != NULL) ? -1 : -1 );
-	while (tmp[++i])
-		g_env[i] = ft_strdup(tmp[i]);
-	ft_free_tab(tmp);
+	k = 0;
+	if ((k = (ft_tabncmp(g_env, av))) == 0)
+	{
+		i = (((tmp = ft_new_tab(ft_tablen(g_env) + 1)) != NULL) ? -1 : -1 );
+		while (g_env[++i])
+			tmp[i] = ft_strdup(g_env[i]);
+		tmp[i] = ft_strdup(ft_strjoin(av[2], ft_strjoin("=", av[3])));
+		ft_free_tab(g_env);
+		i = (((g_env = ft_new_tab(ft_tablen(tmp))) != NULL) ? -1 : -1 );
+		while (tmp[++i])
+			g_env[i] = ft_strdup(tmp[i]);
+		ft_free_tab(tmp);
+	}
+	else
+		g_env[k] = ft_strdup(ft_strjoin(av[2], ft_strjoin("=", av[3])));
 }
 
 /*void		ft_unsetenv(void)
