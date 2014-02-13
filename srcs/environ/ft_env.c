@@ -6,7 +6,7 @@
 /*   By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 13:49:25 by aardjoun          #+#    #+#             */
-/*   Updated: 2014/02/12 19:08:29 by aardjoun         ###   ########.fr       */
+/*   Updated: 2014/02/13 13:48:48 by aardjoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void		ft_setenv(char **av)
 	int		k;
 
 	k = 0;
-	if ((k = (ft_tabncmp(g_env, av))) == 0)
+	if ((k = (ft_tabncmp(g_env, av))) == -1)
 	{
 		i = (((tmp = ft_new_tab(ft_tablen(g_env) + 1)) != NULL) ? -1 : -1 );
 		while (g_env[++i])
