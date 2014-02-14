@@ -6,12 +6,11 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 14:15:21 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/14 18:22:18 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/14 19:33:15 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/msh.h"
-t_option	*return_options(char *cmd);
 
 
 void	show_complete(char *str, char *cmd)
@@ -54,4 +53,38 @@ void	show_rest(char *str, char *cmd)
 	}
 	else
 		ft_putstr(str);
+}
+
+void	show_options_in_line(char *cmd)
+{
+	char        **path;
+	char        *man_path;
+	char        man[] = "man1/";
+
+	path = ft_strsplit(get_man_path(), ':');
+	while (*path)
+	{
+		man[3] = '1';
+		while (man[3] != '9')
+		{
+			man_path = ft_strjoin(*path, ft_strjoin("/", ft_strjoin(man,
+							ft_strjoin(cmd, ft_strjoin(".",
+									char_to_string(man[3]))))));
+			if (access(man_path, F_OK) != -1)
+			{
+				if (get_options(open(man_path, O_RDONLY)))
+				{
+					ft_putstr(tgetstr("sc", NULL));
+					ft_putstr(GRAY);
+					ft_putstr(" -");
+					ft_putstr(get_options(open(man_path, O_RDONLY)));
+					ft_putstr(DEF);
+					ft_putstr(tgetstr("rc", NULL));	
+				}
+			}
+			man[3]++;
+		}
+		path++;
+	}
+	return (NULL);
 }

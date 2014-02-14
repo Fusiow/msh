@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 10:04:42 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/14 15:50:00 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/14 19:31:39 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,8 @@ void	show_cmd(char *str)
 		ft_putstr(DEF);
 		if ((ft_strlen(str) - i) != 0)
 			rest = ft_strsub(str, i, ft_strlen(str) - 1);
+		if (list && !rest)
+			show_options_in_line(cmd);
 		if (!list && name && !rest)
 			show_complete(name, cmd);
 		if (rest)
