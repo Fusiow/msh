@@ -6,7 +6,7 @@
 /*   By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 13:49:25 by aardjoun          #+#    #+#             */
-/*   Updated: 2014/02/13 13:48:48 by aardjoun         ###   ########.fr       */
+/*   Updated: 2014/02/14 17:00:23 by aardjoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,24 +81,4 @@ void		ft_get_env(char **environ)
 		i++;
 	}
 
-}
-
-int			main(int ac, char **av, char **environ)
-{
-	int i;
-
-	i = 0;
-	ft_get_env(environ);
-	if (ac > 2)
-	{
-		if (ft_strcmp("unsetenv", av[1]) == 0)
-			ft_unsetenv(av);
-		if (ac > 3)
-		{
-			if (ft_strcmp("setenv", av[1]) == 0)
-				ft_setenv(av);
-		}
-	}
-	ft_print_env();
-	return (0);
 }
