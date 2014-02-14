@@ -34,6 +34,8 @@ char	*history(int choice, char *str)
 	{
 		if (s_history[i + 1])
 			return (s_history[i++]);
+		else
+			return (NULL);
 	}
 	else if (choice == 3)
 	{

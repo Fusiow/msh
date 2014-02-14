@@ -57,16 +57,22 @@ int		arrow(int i, char key, int len, char **result)
 	{
 		clear_line(i + 1, ft_strlen(*result));
 		*result = history(1, NULL);
-		i = ft_strlen(*result);
-		ft_putstr(*result);
+		if (*result)
+		{
+			i = ft_strlen(*result);
+			ft_putstr(*result);
+		}
 		ft_putstr(tgetstr("le", NULL));
 	}
 	else if (key == 66)
 	{
 		clear_line(i + 1, ft_strlen(*result));
 		*result = history(2, NULL);	
-		i = ft_strlen(*result);
-		ft_putstr(*result);	
+		if (*result)
+		{
+			i = ft_strlen(*result);
+			ft_putstr(*result);	
+		}
 		ft_putstr(tgetstr("le", NULL));
 	}
 	else if (key == 67)

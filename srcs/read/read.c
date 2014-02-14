@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../../includes/msh.h"
+void	show_cmd(char *str);
 
 char	*change_cmd(int i, char *result, char letter)
 {
@@ -81,7 +82,7 @@ char	*take_cmd(void)
 		if (v == 0)
 		{
 			clear_line(i, ft_strlen(result));
-			ft_putstr(result);
+			show_cmd(result);
 			replace_cursor(i, ft_strlen(result));
 		}
 	}
@@ -94,6 +95,7 @@ char	*take_cmd(void)
 
 int		main(void)
 {
-	while (1)
-		take_cmd();
+char 	*tmp;
+	while (ft_strcmp("exit", tmp))
+		tmp = take_cmd();
 }
