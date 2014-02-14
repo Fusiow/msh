@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 17:24:20 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/12 17:18:11 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/14 17:22:51 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int		a_right(int i, int len)
 
 int		a_left(int i, int len)
 {
+	(void)len;
 	if (i > 0)
 	{
 		ft_putstr(tgetstr("le", NULL));
@@ -34,6 +35,7 @@ int		a_left(int i, int len)
 
 void	clear_line(int i, int v)
 {
+	(void)v;
 	while (i > 1)
 	{
 		ft_putstr(tgetstr("le", NULL));
@@ -57,11 +59,8 @@ int		arrow(int i, char key, int len, char **result)
 	{
 		clear_line(i + 1, ft_strlen(*result));
 		*result = history(1, NULL);
-		if (*result)
-		{
-			i = ft_strlen(*result);
-			ft_putstr(*result);
-		}
+		i = ft_strlen(*result);
+		ft_putstr(*result);
 		ft_putstr(tgetstr("le", NULL));
 	}
 	else if (key == 66)
@@ -72,8 +71,8 @@ int		arrow(int i, char key, int len, char **result)
 		{
 			i = ft_strlen(*result);
 			ft_putstr(*result);	
+			ft_putstr(tgetstr("le", NULL));
 		}
-		ft_putstr(tgetstr("le", NULL));
 	}
 	else if (key == 67)
 		i = a_right(i, len);

@@ -6,22 +6,11 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 11:05:41 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/14 11:13:25 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/14 17:24:09 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/msh.h"
-
-int		eol_get_next_line(int fd, int *i, int *nbread, char *buff)
-{
-	while (buff[*i] && buff[*i] != '\n')
-	{
-		(*i)++;
-		if (read_get_next_line(fd, i, nbread, buff))
-			return (1);
-	}
-	return (0);
-}
 
 int		read_get_next_line(int fd, int *i, int *nbread, char *buff)
 {
@@ -29,6 +18,17 @@ int		read_get_next_line(int fd, int *i, int *nbread, char *buff)
 	{
 		*i = 0;
 		if (!(*nbread = read(fd, buff, GNL_LEN)))
+			return (1);
+	}
+	return (0);
+}
+
+int		eol_get_next_line(int fd, int *i, int *nbread, char *buff)
+{
+	while (buff[*i] && buff[*i] != '\n')
+	{
+		(*i)++;
+		if (read_get_next_line(fd, i, nbread, buff))
 			return (1);
 	}
 	return (0);

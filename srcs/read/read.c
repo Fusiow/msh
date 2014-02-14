@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:52:57 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/12 17:34:15 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/14 17:23:33 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ char	*take_cmd(void)
 			i = distrib_buttons(i, &result, buffer, &v);
 		if (i == -2)
 			break;
-		if (v == 0)
+		if (v == 0 && result)
 		{
 			clear_line(i, ft_strlen(result));
 			show_cmd(result);
@@ -91,11 +91,4 @@ char	*take_cmd(void)
 	history(0, result);
 	re_flag(&term);
 	return (result);
-}
-
-int		main(void)
-{
-char 	*tmp;
-	while (ft_strcmp("exit", tmp))
-		tmp = take_cmd();
 }

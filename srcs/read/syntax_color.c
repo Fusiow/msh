@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   syntax_color.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2014/02/14 10:04:42 by lsolofri          #+#    #+#             */
+/*   Updated: 2014/02/14 15:50:00 by lsolofri         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/msh.h"
 
 t_list	*add_type(t_list *list, char *str, char *type)
@@ -7,8 +19,8 @@ t_list	*add_type(t_list *list, char *str, char *type)
 
 	temp = list;
 	tmp = malloc(sizeof(t_list));
-	tmp->name = strdup(str);
-	tmp->type = strdup(type);
+	tmp->name = ft_strdup(str);
+	tmp->type = ft_strdup(type);
 	tmp->next = NULL;
 	if (list == NULL)
 		return (tmp);
@@ -43,31 +55,44 @@ t_list	*recup_prog(char *str, char **tab, t_list *list)
 
 void	show_cmd(char *str)
 {
-	int	i;
+	int		i;
 	char	*cmd;
 	t_list	*list;
+	char	*name;
+	char	*rest;
 
 	i = 0;
 	list = NULL;
+	name = NULL;
 	while (str[i] != ' ' && str[i])	
 		++i;
-	cmd = ft_strsub(str, 0, i);
-	list = recup_prog(cmd, ft_strsplit(getenv("PATH"), ':'), list);
-	while (list)
+	if (i != 0)
 	{
-		if (ft_strcmp(cmd, list->name) == 0)
+		cmd = ft_strsub(str, 0, i);
+		list = recup_prog(cmd, ft_strsplit(getenv("PATH"), ':'), list);
+		if (list)
+			name = list->name;
+		while (list)
 		{
-			ft_putstr(BLUE);
-			break ;
+			if (ft_strcmp(cmd, list->name) == 0)
+			{
+				ft_putstr(BLUE);
+				break ;
+			}
+			list = list->next;
 		}
-		list = list->next;
+		if (!list)
+			ft_putstr(RED);
+		ft_putstr(cmd);
+		ft_putstr(DEF);
+		if ((ft_strlen(str) - i) != 0)
+			rest = ft_strsub(str, i, ft_strlen(str) - 1);
+		if (!list && name && !rest)
+			show_complete(name, cmd);
+		if (rest)
+			show_rest(rest, cmd);
+		free(list);
+		free(cmd);
+		free(name);
 	}
-	if (!list)
-		ft_putstr(RED);
-	ft_putstr(cmd);
-	ft_putstr(DEF);
-	if ((ft_strlen(str) - i) != 0)
-		ft_putstr(ft_strsub(str, i, ft_strlen(str) - i));
-//	free(list);
-//	free(cmd);
 }
