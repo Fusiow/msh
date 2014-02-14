@@ -6,33 +6,27 @@
 /*   By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 15:59:27 by aardjoun          #+#    #+#             */
-/*   Updated: 2014/02/14 16:30:03 by aardjoun         ###   ########.fr       */
+/*   Updated: 2014/02/14 18:00:37 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/msh.h"
 
-void		ft_mishell(char *line)
+void	exec_cmd(char **tab)
 {
-	pid_t	father;
-	char	**path;
-	char	**tab;
+	char	**exec;
 	int		i;
+	char	*result;
 
 	i = 0;
-	if (line)
+	exec = ft_strsplit(find_value_envir("PATH"), ':');
+	while (exec[i])
 	{
-		tab = ft_strsplit(line, ' ');
-		path = ft_get_path(g_env, tab[0]);
-		father = fork();
-		if (father)
-		{
-			wait(0);
-			return ;
-		}
-		else
-			while(path[i])
-				execve(path[i++], tab, g_env);
-		write(1, "command not found:", 18);
+		exec[i] = ft_strjoin(exec[i], "/");
+		result = ft_strjoin(exec[i++], tab[0]);
+		execve(result, tab, g_env);
 	}
+	execve(tab[0], tab, g_env);
+	ft_putendl("Not found");
+	exit(0);
 }

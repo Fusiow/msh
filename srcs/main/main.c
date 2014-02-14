@@ -6,7 +6,7 @@
 /*   By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 15:53:46 by aardjoun          #+#    #+#             */
-/*   Updated: 2014/02/14 17:20:18 by aardjoun         ###   ########.fr       */
+/*   Updated: 2014/02/14 18:20:03 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,21 @@
 int			main(int ac, char **av, char **environ)
 {
 	char	*tmp;
+	pid_t	child;
 
+	tmp = (char *)malloc(sizeof(char) * 150);
+	ft_get_env(environ);
 	if (ac != 1 && av)
 		return (-1);
-	while (42)
+	while (1)
 	{
-		ft_get_env(environ);
+		ft_putstr("Supah prompt $>");
 		tmp = take_cmd();
-		if (tmp)
-			ft_mishell(tmp);
+		child = fork();
+		if (child)
+			wait(0);
+		else
+			exec_cmd(ft_strsplit(tmp, ' '));
 	}
 	return (0);
 }

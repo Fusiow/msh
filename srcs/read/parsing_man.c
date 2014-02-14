@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 10:43:09 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/14 17:23:19 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/14 18:22:13 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ t_option	*return_options(char *cmd)
 	char		man[] = "man1/";
 
 	path = ft_strsplit(get_man_path(), ':');
-	while (*path)
+	while (*path)	
 	{
 		man[3] = '1';
 		while (man[3] != '9')

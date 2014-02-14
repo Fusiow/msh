@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:52:57 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/14 17:23:33 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/14 18:15:55 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ char	*take_cmd(void)
 
 	i = 0;
 	init_flag(&term);
-	ft_putstr("Supah Prompt $> ");
 	buffer = (char *)malloc(sizeof(char) * 3);
 	result = (char *)malloc(sizeof(char) * 2058);
 	while (1)

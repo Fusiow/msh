@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/14 17:24:32 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/14 18:05:26 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ char	**g_env;
 # include <termios.h>
 # include <termcap.h>
 # include <sys/types.h>
+# include <sys/wait.h>
 # include <dirent.h>
 # include <fcntl.h>
 
@@ -127,5 +128,12 @@ void	ft_get_env(char **environ);
 void	ft_print_env(void);
 void	ft_setenv(char **av);
 void	ft_unsetenv(char **av);
+char	*find_value_envir(char *name);
 
+/*
+** MAIN
+*/
+void	ft_mishell(char *line);
+char	**ft_get_path(char **env, char *line);
+void	exec_cmd(char **tab);
 #endif /* MSH_H */

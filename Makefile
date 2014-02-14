@@ -6,7 +6,7 @@
 #    By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/14 17:00:44 by aardjoun          #+#    #+#              #
-#    Updated: 2014/02/14 17:31:32 by aardjoun         ###   ########.fr        #
+#    Updated: 2014/02/14 18:21:15 by lsolofri         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -48,16 +48,18 @@ SRCS	=	srcs/main/main.c\
 
 HDRS	=	includes/msh.h
 
-GCC		=	gcc -Wall -Werror -Wextra -O3
+#CFLAGS = -Wall -Wextra -Werror 
 
-LIBS	=	-L /usr/lib/ -ltermcap
+CC		=	gcc
+
+LIBS	=	-L/usr/lib/ -ltermcap
 
 OBJS	=	$(SRCS:.c=.o)
 
 all		:	$(NAME)
 
 $(NAME)	:	$(OBJS)
-	$(GCC) -o $(NAME) $(OBJS) $(LIBS)
+	$(CC) $(CFLAGS) $(LIBS) $(OBJS) -o $(NAME)
 
 clean	:
 	rm -rf $(OBJS)
