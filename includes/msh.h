@@ -20,12 +20,32 @@
 char	**g_env;
 
 /*
+** DEFINES
+*/
+# define BLUE "\033[1;34m"
+# define RED "\033[1;31m"
+# define DEF "\033[0m"
+
+
+/*
 ** INCLUDE OF LIBS
 */
 # include <unistd.h>
 # include <stdlib.h>
 # include <termios.h>
 # include <termcap.h>
+# include <sys/types.h>
+# include <dirent.h>
+
+/*
+** LIST FOR AUTOCOMP
+*/
+typedef struct		s_struct
+{
+	char		*name;
+	char		*type;
+	struct s_struct	*next;
+	}		t_list;
 
 /*
 ** ERRORS
