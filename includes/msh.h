@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/12 18:40:10 by aardjoun         ###   ########.fr       */
+/*   Updated: 2014/02/14 17:24:32 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@ char	**g_env;
 */
 # define BLUE "\033[1;34m"
 # define RED "\033[1;31m"
+# define GRAY "\033[1;30m"
 # define DEF "\033[0m"
-
+# define GNL_LEN 4096
 
 /*
 ** INCLUDE OF LIBS
@@ -36,16 +37,24 @@ char	**g_env;
 # include <termcap.h>
 # include <sys/types.h>
 # include <dirent.h>
+# include <fcntl.h>
 
 /*
 ** LIST FOR AUTOCOMP
 */
 typedef struct		s_struct
 {
-	char		*name;
-	char		*type;
+	char			*name;
+	char			*type;
 	struct s_struct	*next;
-	}		t_list;
+}					t_list;
+
+typedef struct		s_option
+{
+	char			option;
+	char			*description;
+	struct s_option	*next;
+}					t_option;
 
 /*
 ** ERRORS
@@ -63,6 +72,25 @@ char	*init_buffer(char *buffer);
 char	*history(int choice, char *str);
 char	*char_to_string(char c);
 char	*del_c(char *result, int *i);
+void	show_complete(char *str, char *cmd);
+void	show_options(char c);
+void	show_rest(char *str, char *cmd);
+int		a_right(int i, int len);
+int		a_left(int i, int len);
+void	clear_line(int i, int v);
+void	replace_cursor(int i, int v);
+int		arrow(int i, char key, int len, char **result);
+char	*get_options(int fd);
+char	*read_description(int fd, char *c);
+t_option	*get_description(char *options, char *path);
+t_option	*return_options(char *cmd);
+char		*change_cmd(int i, char *result, char letter);
+int			distrib_buttons(int i, char **result, char *buffer, int *v);
+char		*take_cmd(void);
+t_list		*add_type(t_list *list, char *str, char *type);
+t_list		*recup_prog(char *str, char **tab, t_list *list);
+void		show_cmd(char *str);
+t_option	*add_option(t_option *list, char option, char *description);
 
 /*
 ** FUNCTIONS
@@ -88,6 +116,8 @@ char	*ft_strjoin(char const *s1, char const *s2);
 int		ft_strlen(char *s);
 char	**ft_strsplit(char const *s, char c);
 char	*ft_strsub(char const *s, unsigned int start, size_t len);
+char	*get_next_line(int fd);
+char	*get_man_path(void);
 
 /*
 ** ENVIRON FT_ENV.C
