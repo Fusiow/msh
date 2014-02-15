@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 10:04:42 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/14 19:31:39 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/15 15:48:46 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ t_list	*add_type(t_list *list, char *str, char *type)
 	temp = list;
 	tmp = malloc(sizeof(t_list));
 	tmp->name = ft_strdup(str);
-	tmp->type = ft_strdup(type);
+	if (type)
+		tmp->type = ft_strdup(type);
+	else
+		tmp->type = NULL;
 	tmp->next = NULL;
 	if (list == NULL)
 		return (tmp);

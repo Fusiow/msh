@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 14:15:21 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/14 19:33:15 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/15 15:51:49 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ void	show_rest(char *str, char *cmd)
 	(void)cmd;
 
 	i = 1;
+	if (!str)
+		return ;
 	if (str[i] == '-')
 	{
 		if (!str[i + 1])

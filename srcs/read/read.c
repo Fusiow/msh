@@ -6,12 +6,11 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:52:57 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/14 18:15:55 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/15 19:44:03 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/msh.h"
-void	show_cmd(char *str);
 
 char	*change_cmd(int i, char *result, char letter)
 {
@@ -42,6 +41,8 @@ char	*change_cmd(int i, char *result, char letter)
 
 int		distrib_buttons(int i, char **result, char *buffer, int *v)
 {
+	char	*tmp;
+
 	if (buffer[0] == 10)
 		return (-2);
 	else if (buffer[0] == 27 && buffer[1] == 91)
@@ -52,6 +53,19 @@ int		distrib_buttons(int i, char **result, char *buffer, int *v)
 	}
 	else if (buffer[0] == 127)
 		*result = del_c(*result, &i);
+	else if (buffer[0] == 9)
+	{
+		tmp = ft_strdup(*result);
+		*result = show_autocomplete(*result);
+		if (ft_strcmp(*result, tmp))
+			i = ft_strlen(*result);
+		else
+		{
+			*result = tmp;
+			ft_putstr(tgetstr("le", NULL));
+			i = ft_strlen(tmp);
+		}
+	}
 	return (i);
 }
 

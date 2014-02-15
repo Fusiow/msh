@@ -6,11 +6,44 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 10:43:09 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/14 18:22:13 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/15 14:32:42 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/msh.h"
+
+char	*get_cmd_description(char *cmd)
+{
+	char        **path;
+	char        *man_path;
+	char        man[] = "man1/";
+	char		*str;
+	int			fd;
+
+	path = ft_strsplit(get_man_path(), ':');
+	while (*path)
+	{
+		man[3] = '1';
+		while (man[3] != '9')
+		{
+			man_path = ft_strjoin(*path, ft_strjoin("/", ft_strjoin(man,
+							ft_strjoin(cmd, ft_strjoin(".",
+									char_to_string(man[3]))))));
+			if (access(man_path, F_OK) != -1)
+			{
+				fd = open(man_path, O_RDONLY);
+				while ((str = get_next_line(fd)))
+				{
+					if (ft_strncmp(str, ".Nd", 3) == 0)
+						return (ft_strsub(str, 4, ft_strlen(str)));
+				}
+			}
+			man[3]++;
+		}
+		path++;
+	}
+	return (NULL);
+}
 
 char	*get_options(int fd)
 {

@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/14 18:05:26 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/15 19:49:51 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,9 @@ t_list		*add_type(t_list *list, char *str, char *type);
 t_list		*recup_prog(char *str, char **tab, t_list *list);
 void		show_cmd(char *str);
 t_option	*add_option(t_option *list, char option, char *description);
+char		*get_cmd_description(char *cmd);
+char		*show_autocomplete(char *str);
+void		show_options_in_line(char *cmd);
 
 /*
 ** FUNCTIONS
