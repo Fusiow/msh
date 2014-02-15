@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/15 14:47:45 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/15 19:49:02 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/15 20:46:09 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char	*show_tab(char *cmd)
 			{
 				aff_cmd(list->name, cmd);
 				ft_putstr(GRAY);
-				ft_putstr("\t\t\t(");
+				ft_putstr("\t\t\t\t\t(");
 				ft_putstr(list->type);
 				ft_putstr(")\n");
 				ft_putstr(DEF);
@@ -77,29 +77,45 @@ char	*show_autocomplete(char *str)
 	while (str[i] != ' ' && str[i])
 		++i;
 	if (!str[i])
+	{
 		tmp = show_tab(ft_strsub(str, 0, i));
-	if (tmp && ft_strcmp(tmp, "ok"))
-	{
-		i = ft_strlen(tmp) - 1;
-		while (i > ft_strlen(str))
+		if (tmp && ft_strcmp(tmp, "ok"))
 		{
-			ft_putstr(tgetstr("nd", NULL));
-			--i;
+			i = ft_strlen(tmp) - 1;
+			while (i > ft_strlen(str))
+			{
+				ft_putstr(tgetstr("nd", NULL));
+				--i;
+			}
+			str = tmp;
 		}
-		str = tmp;
+		else if (tmp && ft_strcmp("ok", tmp) == 0)
+		{
+			ft_putstr("Supah prompt $>  ");
+			if (i == 1)
+				ft_putstr(tgetstr("le", NULL));
+			else if (i == 3)
+				ft_putstr(tgetstr("nd", NULL));
+			else if (i > 3)
+			{
+				ft_putstr(tgetstr("nd", NULL));
+				ft_putstr(tgetstr("nd", NULL));
+			}
+		}
 	}
-	else if (tmp && ft_strcmp("ok", tmp) == 0)
+	else if (str[i + 1] == '-' && !str[i + 2])
 	{
-		ft_putstr("Supah prompt $>  ");
+		show_diff_option(ft_strsub(str, 0, i));
+		ft_putstr("Supah prompt $>    ");
 		if (i == 1)
-			ft_putstr(tgetstr("le", NULL));
-	 	else if (i == 3)
-			ft_putstr(tgetstr("nd", NULL));
-		else if (i > 3)
-		{
-			ft_putstr(tgetstr("nd", NULL));
-			ft_putstr(tgetstr("nd", NULL));
-		}
+				ft_putstr(tgetstr("le", NULL));
+			else if (i == 3)
+				ft_putstr(tgetstr("nd", NULL));
+			else if (i > 3)
+			{
+				ft_putstr(tgetstr("nd", NULL));
+				ft_putstr(tgetstr("nd", NULL));
+			}
 	}
 	return (str);
 }

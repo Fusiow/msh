@@ -6,7 +6,7 @@
 #    By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/14 17:00:44 by aardjoun          #+#    #+#              #
-#    Updated: 2014/02/15 15:49:55 by lsolofri         ###   ########.fr        #
+#    Updated: 2014/02/15 20:29:20 by lsolofri         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -45,6 +45,7 @@ SRCS	=	srcs/main/main.c\
 			srcs/read/autocomplete.c\
 			srcs/read/t_options.c\
 			srcs/read/show_autocomplete.c\
+			srcs/read/show_option.c\
 			srcs/read/parsing_man.c
 
 HDRS	=	includes/msh.h

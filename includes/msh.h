@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/15 19:49:51 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/15 20:31:27 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ t_option	*add_option(t_option *list, char option, char *description);
 char		*get_cmd_description(char *cmd);
 char		*show_autocomplete(char *str);
 void		show_options_in_line(char *cmd);
+void		show_diff_option(char *str);
 
 /*
 ** FUNCTIONS
