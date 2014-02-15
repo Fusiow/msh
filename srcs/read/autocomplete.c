@@ -86,5 +86,5 @@ void	show_options_in_line(char *cmd)
 		}
 		path++;
 	}
-	return (NULL);
+	//	return (NULL);
 }
