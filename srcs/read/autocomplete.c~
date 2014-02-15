@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 14:15:21 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/14 19:37:58 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/14 19:33:15 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,5 @@ void	show_options_in_line(char *cmd)
 		}
 		path++;
 	}
-	//	return (NULL);
+	return (NULL);
 }
