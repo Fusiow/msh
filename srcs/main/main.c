@@ -6,7 +6,7 @@
 /*   By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 15:53:46 by aardjoun          #+#    #+#             */
-/*   Updated: 2014/02/14 18:20:03 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/18 12:33:52 by aardjoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int			main(int ac, char **av, char **environ)
 	{
 		ft_putstr("Supah prompt $>");
 		tmp = take_cmd();
+		if (ft_strncmp(tmp, "exit", 5) == 0)
+			ft_exit();
 		child = fork();
 		if (child)
 			wait(0);

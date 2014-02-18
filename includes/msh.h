@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/17 14:30:30 by aardjoun         ###   ########.fr       */
+/*   Updated: 2014/02/18 12:29:13 by aardjoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,7 @@ char		*find_value_envir(char *name);
 */
 
 void		ft_echo(char **tab);
+void		ft_exit(void);
 
 /*
 ** MAIN
