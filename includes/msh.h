@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/18 14:35:55 by aardjoun         ###   ########.fr       */
+/*   Updated: 2014/02/18 15:51:53 by aardjoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ typedef struct		s_option
 
 void		show_error(char *str);
 void		show_error_exit(char *str);
+void		exit_error(char **tab);
 
 /*
 ** READ
@@ -147,7 +148,7 @@ char		*find_value_envir(char *name);
 */
 
 void		ft_echo(char **tab);
-int			ft_exit(char *str, int *rt);
+int			ft_exit(char **tab, int *rt);
 
 /*
 ** MAIN
