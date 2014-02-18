@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:52:57 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/15 19:44:03 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/18 17:51:54 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ char	*change_cmd(int i, char *result, char letter)
 
 	c = char_to_string(letter);
 	if (!result)
+	{
+		ft_putstr(c);
 		return (c);
+	}
 	if (i == ft_strlen(result))
 		return (ft_strjoin(result, c));
 	else if (i == 0)

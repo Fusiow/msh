@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/15 14:47:45 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/15 20:46:09 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/18 18:23:19 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,10 @@ char	*show_tab(char *cmd)
 				aff_cmd(list->name, cmd);
 				ft_putstr(GRAY);
 				ft_putstr("\t\t\t\t\t(");
-				ft_putstr(list->type);
+				if (list->type)
+					ft_putstr(list->type);
+				else
+					ft_putstr("No Description");
 				ft_putstr(")\n");
 				ft_putstr(DEF);
 				list = list->next;

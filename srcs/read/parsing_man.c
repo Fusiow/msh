@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 10:43:09 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/15 14:32:42 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/18 17:44:58 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ char	*get_cmd_description(char *cmd)
 					if (ft_strncmp(str, ".Nd", 3) == 0)
 						return (ft_strsub(str, 4, ft_strlen(str)));
 				}
+				close(fd);
 			}
 			man[3]++;
 		}
@@ -54,6 +55,7 @@ char	*get_options(int fd)
 		if (ft_strncmp(str, ".Op Fl", 6) == 0)
 			return (ft_strsub(str, 7, ft_strlen(str)));
 	}
+	close(fd);
 	return (NULL);
 }
 
@@ -63,7 +65,11 @@ char	*read_description(int fd, char *c)
 	while ((str = get_next_line(fd)))
 	{
 		if (ft_strcmp(str, ft_strjoin(".It Fl ", c)) == 0)
-			return (get_next_line(fd));
+		{
+			str = get_next_line(fd);
+			close(fd);
+			return (str);
+		}
 	}
 	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/15 20:20:16 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/15 20:32:43 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/18 18:36:24 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,23 @@ void	show_diff_option(char *str)
 
 	ft_putstr("\n");
 	list = return_options(str);
-	while (list)
+	if (list)
 	{
-		ft_putchar('-');
-		ft_putchar(list->option);
-		ft_putstr(GRAY);
-		ft_putstr("\t\t(");
-		ft_putstr(list->description);
-		ft_putstr(")");
-		ft_putendl(DEF);
-		list = list->next;
+		while (list)
+		{
+			ft_putchar('-');
+			ft_putchar(list->option);
+			ft_putstr(GRAY);
+			ft_putstr("\t\t(");
+			if (list->description)
+				ft_putstr(list->description);
+			else
+				ft_putstr("No Description");
+			ft_putstr(")");
+				ft_putendl(DEF);
+			list = list->next;
+		}
 	}
+	else
+		ft_putstr("No Options!\n");
 }
