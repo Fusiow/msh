@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/18 12:29:13 by aardjoun         ###   ########.fr       */
+/*   Updated: 2014/02/18 14:35:55 by aardjoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,8 @@ char		**ft_strsplit(char const *s, char c);
 char		*ft_strsub(char const *s, unsigned int start, size_t len);
 char		*get_next_line(int fd);
 char		*get_man_path(void);
+int			ft_isdigit(char c);
+int			ft_atoi(const char *str);
 
 /*
 ** ENVIRON FT_ENV.C
@@ -145,7 +147,7 @@ char		*find_value_envir(char *name);
 */
 
 void		ft_echo(char **tab);
-void		ft_exit(void);
+int			ft_exit(char *str, int *rt);
 
 /*
 ** MAIN
@@ -154,4 +156,5 @@ void		ft_exit(void);
 void		ft_mishell(char *line);
 char		**ft_get_path(char **env, char *line);
 void		exec_cmd(char **tab);
+
 #endif /* MSH_H */
