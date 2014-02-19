@@ -6,7 +6,7 @@
 /*   By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 15:59:27 by aardjoun          #+#    #+#             */
-/*   Updated: 2014/02/18 15:58:09 by aardjoun         ###   ########.fr       */
+/*   Updated: 2014/02/19 15:07:30 by aardjoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,6 @@ void	exec_cmd(char **tab)
 			execve(result, tab, g_env);
 		}
 		execve(tab[0], tab, g_env);
-		ft_putendl("Not found");
+		unknow_cmd(tab[0]);
 	}
 }

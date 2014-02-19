@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/18 15:51:53 by aardjoun         ###   ########.fr       */
+/*   Updated: 2014/02/19 15:08:03 by aardjoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef struct		s_option
 void		show_error(char *str);
 void		show_error_exit(char *str);
 void		exit_error(char **tab);
+void		unknow_cmd(char *str);
 
 /*
 ** READ

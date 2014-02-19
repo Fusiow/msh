@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 15:02:39 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/18 15:46:53 by aardjoun         ###   ########.fr       */
+/*   Updated: 2014/02/19 15:08:25 by aardjoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,11 @@ void	exit_error(char **tab)
 	ft_putstr(": Argument '");
 	ft_putstr(tab[1]);
 	ft_putendl("' must be an integer");
+}
+
+void	unknow_cmd(char *str)
+{
+	ft_putstr("MiShell: Unknow command '");
+	ft_putstr(str);
+	ft_putendl("'");
 }
