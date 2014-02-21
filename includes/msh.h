@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/19 15:08:03 by aardjoun         ###   ########.fr       */
+/*   Updated: 2014/02/21 14:15:04 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ char	**g_env;
 # define BLUE "\033[1;34m"
 # define RED "\033[1;31m"
 # define GRAY "\033[1;30m"
+# define YEL "\033[1;33m"
 # define DEF "\033[0m"
 # define GNL_LEN 4096
 
@@ -103,6 +104,7 @@ char		*get_cmd_description(char *cmd);
 char		*show_autocomplete(char *str);
 void		show_options_in_line(char *cmd);
 void		show_diff_option(char *str);
+void		syntax_color_rest(char *str);
 
 /*
 ** FUNCTIONS

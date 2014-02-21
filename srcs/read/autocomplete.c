@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 14:15:21 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/15 15:51:49 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/21 13:58:11 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	show_rest(char *str, char *cmd)
 {
 	int		i;
 	t_option	*list;
-	(void)cmd;
 
 	i = 1;
 	if (!str)
@@ -51,10 +50,10 @@ void	show_rest(char *str, char *cmd)
 				show_options(list->option);
 		}
 		else
-			ft_putstr(str);
+			syntax_color_rest(str);
 	}
 	else
-		ft_putstr(str);
+		syntax_color_rest(str);
 }
 
 void	show_options_in_line(char *cmd)
