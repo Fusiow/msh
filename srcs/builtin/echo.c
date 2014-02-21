@@ -6,7 +6,7 @@
 /*   By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/17 12:02:30 by aardjoun          #+#    #+#             */
-/*   Updated: 2014/02/17 16:56:14 by aardjoun         ###   ########.fr       */
+/*   Updated: 2014/02/21 19:03:00 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,4 @@ void			ft_echo(char **tab)
 	if (opt == 2 || opt == 3)
 		return ;
 	ft_putchar('\n');
-}
-
-int			main(int ac, char **av)
-{
-	ft_echo(av);
-	if (ac < 2)
-		ft_putchar('\n');
-	return (0);
 }

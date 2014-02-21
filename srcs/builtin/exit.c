@@ -6,7 +6,7 @@
 /*   By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/18 12:24:55 by aardjoun          #+#    #+#             */
-/*   Updated: 2014/02/18 16:47:05 by aardjoun         ###   ########.fr       */
+/*   Updated: 2014/02/21 19:19:24 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,26 +17,19 @@ int				ft_exit(char **tab, int *rt)
 	int			i;
 
 	i = -1;
-	if (tab[0] != NULL)
+	while (tab[1] && tab[1][++i] != '\0')
 	{
-		if (ft_strcmp(tab[0], "exit") == 0)
+		if (ft_isdigit(tab[1][i]))
+			*rt = ft_atoi(tab[1]);
+		else
 		{
-			while (tab[1] && tab[1][++i] != '\0')
+			if (tab[1][i] != '\0')
 			{
-				if (ft_isdigit(tab[1][i]))
-					*rt = ft_atoi(tab[1]);
-				else
-				{
-					if (tab[1][i] != '\0')
-					{
-						exit_error(tab);
-						*rt = 0;
-						return (-1);
-					}
-				}
+				exit_error(tab);
+				*rt = 0;
+				return (-1);
 			}
-			return (1);
 		}
 	}
-	return (0);
+	return (1);
 }

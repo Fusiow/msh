@@ -6,7 +6,7 @@
 /*   By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 13:49:25 by aardjoun          #+#    #+#             */
-/*   Updated: 2014/02/14 17:00:23 by aardjoun         ###   ########.fr       */
+/*   Updated: 2014/02/21 19:06:33 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void		ft_setenv(char **av)
 		i = (((tmp = ft_new_tab(ft_tablen(g_env) + 1)) != NULL) ? -1 : -1 );
 		while (g_env[++i])
 			tmp[i] = ft_strdup(g_env[i]);
-		tmp[i] = ft_strdup(ft_strjoin(av[2], ft_strjoin("=", av[3])));
+		tmp[i] = ft_strdup(ft_strjoin(av[1], ft_strjoin("=", av[2])));
 		ft_free_tab(g_env);
 		i = (((g_env = ft_new_tab(ft_tablen(tmp))) != NULL) ? -1 : -1 );
 		while (tmp[++i])
@@ -32,7 +32,7 @@ void		ft_setenv(char **av)
 		ft_free_tab(tmp);
 	}
 	else
-		g_env[k] = ft_strdup(ft_strjoin(av[2], ft_strjoin("=", av[3])));
+		g_env[k] = ft_strdup(ft_strjoin(av[1], ft_strjoin("=", av[2])));
 }
 
 void		ft_unsetenv(char **av)
