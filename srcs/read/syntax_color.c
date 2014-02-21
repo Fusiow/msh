@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 10:04:42 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/18 18:47:09 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/21 15:09:13 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,16 @@ t_list	*recup_prog(char *str, char **tab, t_list *list)
 	struct dirent	*show;
 
 	i = 0;
+	if (ft_strncmp(str, "exit", ft_strlen(str)) == 0)
+				list = add_type(list, "exit", "Builtin");
+	else if (ft_strncmp(str, "setenv", ft_strlen(str)) == 0)
+				list = add_type(list, "setenv", "Builtin");
+	else if (ft_strncmp(str, "unsetenv", ft_strlen(str)) == 0)
+				list = add_type(list, "unsetenv", "Builtin");
+	else if (ft_strncmp(str, "cd", ft_strlen(str)) == 0)
+				list = add_type(list, "cd", "Builtin");
+	else if (ft_strncmp(str, "env", ft_strlen(str)) == 0)
+				list = add_type(list, "env", "Builtin");
 	while (tab[i])
 	{
 		rep = opendir(tab[i++]);
