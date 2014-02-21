@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/21 14:15:04 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/21 18:10:06 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,15 @@ char	**g_env;
 ** DEFINES
 */
 
-# define BLUE "\033[1;34m"
-# define RED "\033[1;31m"
 # define GRAY "\033[1;30m"
+# define RED "\033[1;31m"
+# define GRE "\033[1;32m"
 # define YEL "\033[1;33m"
+# define BLUE "\033[1;34m"
+# define MAG "\033[1;35m"
+# define SBLUE "\033[1;36m"
 # define DEF "\033[0m"
+
 # define GNL_LEN 4096
 
 /*
@@ -160,5 +164,12 @@ int			ft_exit(char **tab, int *rt);
 void		ft_mishell(char *line);
 char		**ft_get_path(char **env, char *line);
 void		exec_cmd(char **tab);
+
+/*
+** PROMPT
+*/
+void	basic_prompt(void);
+void	prompt(void);
+void	prompt_interpreter(char *str);
 
 #endif /* MSH_H */

@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/15 14:47:45 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/18 18:23:19 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/21 16:11:14 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,11 +94,14 @@ char	*show_autocomplete(char *str)
 		}
 		else if (tmp && ft_strcmp("ok", tmp) == 0)
 		{
-			ft_putstr("Supah prompt $>  ");
-			if (i == 1)
-				ft_putstr(tgetstr("le", NULL));
-			else if (i == 3)
+			prompt();
+			ft_putstr(" ");
+			if (i != 1)
 				ft_putstr(tgetstr("nd", NULL));
+			if (i == 3)
+			{
+				ft_putstr(tgetstr("nd", NULL));
+			}
 			else if (i > 3)
 			{
 				ft_putstr(tgetstr("nd", NULL));
@@ -109,7 +112,8 @@ char	*show_autocomplete(char *str)
 	else if (str[i + 1] == '-' && !str[i + 2])
 	{
 		show_diff_option(ft_strsub(str, 0, i));
-		ft_putstr("Supah prompt $>    ");
+		prompt();
+		ft_putstr("    ");
 		if (i == 1)
 				ft_putstr(tgetstr("le", NULL));
 			else if (i == 3)

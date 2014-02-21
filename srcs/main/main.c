@@ -6,7 +6,7 @@
 /*   By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 15:53:46 by aardjoun          #+#    #+#             */
-/*   Updated: 2014/02/18 16:47:52 by aardjoun         ###   ########.fr       */
+/*   Updated: 2014/02/21 16:01:53 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int			main(int ac, char **av, char **environ)
 		return (-1);
 	while (1)
 	{
-		ft_putstr("Supah prompt $>");
+		prompt();
 		tmp = take_cmd();
 		if (tmp && ft_exit(ft_strsplit(tmp, ' '), &rt) == -1)
 			continue ;

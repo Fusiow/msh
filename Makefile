@@ -6,7 +6,7 @@
 #    By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/14 17:00:44 by aardjoun          #+#    #+#              #
-#    Updated: 2014/02/21 13:59:51 by lsolofri         ###   ########.fr        #
+#    Updated: 2014/02/21 16:50:47 by lsolofri         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -50,7 +50,9 @@ SRCS	=	srcs/main/main.c\
 			srcs/read/syntax_color_rest.c\
 			srcs/read/show_option.c\
 			srcs/read/parsing_man.c\
-			srcs/builtin/exit.c
+			srcs/builtin/exit.c\
+			srcs/prompt/prompt_interpreter.c\
+			srcs/prompt/prompt.c
 
 HDRS	=	includes/msh.h
 
