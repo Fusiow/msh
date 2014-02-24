@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/21 19:04:09 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/24 17:06:29 by aardjoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,7 @@ char		*find_value_envir(char *name);
 
 void		ft_echo(char **tab);
 int			ft_exit(char **tab, int *rt);
+int			ft_cd(char **tab);
 
 /*
 ** MAIN
@@ -164,7 +165,7 @@ int			ft_exit(char **tab, int *rt);
 void		ft_mishell(char *line);
 char		**ft_get_path(char **env, char *line);
 void		exec_cmd(char **tab);
-int			detect_built(int *rt, char **tab);
+int			detect_built(int *rt, char **tab, int *bc);
 
 /*
 ** PROMPT

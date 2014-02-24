@@ -6,7 +6,7 @@
 #    By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/14 17:00:44 by aardjoun          #+#    #+#              #
-#    Updated: 2014/02/21 19:03:14 by lsolofri         ###   ########.fr        #
+#    Updated: 2014/02/24 16:41:08 by aardjoun         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -53,6 +53,7 @@ SRCS	=	srcs/main/main.c\
 			srcs/read/parsing_man.c\
 			srcs/builtin/exit.c\
 			srcs/builtin/echo.c\
+			srcs/builtin/cd.c\
 			srcs/prompt/prompt_interpreter.c\
 			srcs/prompt/prompt.c
 
