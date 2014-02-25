@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/25 03:51:57 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/25 04:32:15 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,18 @@ typedef struct		s_option
 	struct s_option	*next;
 }					t_option;
 
+/*
+** ALIASES
+*/
+
+typedef struct		s_alias
+{
+	char			*alias;
+	char			*value;
+	struct s_alias	*next;
+}					t_alias;
+
+t_alias	*g_alias;
 /*
 ** ERRORS
 */
@@ -167,6 +179,8 @@ void		ft_echo(char **tab);
 int			ft_exit(char **tab, int *rt);
 int			ft_cd(char **tab);
 void		load_conf_file(void);
+char		*is_alias(t_alias *list, char *alias);
+void		ft_alias(char **tab);
 
 /*
 ** MAIN

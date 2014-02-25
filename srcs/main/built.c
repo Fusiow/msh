@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/21 18:56:49 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/25 03:06:25 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/25 04:20:32 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,7 @@ int		detect_built(int *rt, char **tab, int *bc)
 		g_env = ft_unsetenv(g_env, tab[1]);
 	else if (!(ret = ft_strcmp("echo", tab[0])))
 		ft_echo(tab);
+	else if (!(ret = ft_strcmp("alias", tab[0])))
+		ft_alias(tab);
 	return (ret);
 }
