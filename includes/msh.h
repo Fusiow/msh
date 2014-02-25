@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/25 11:47:06 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/25 14:21:54 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -225,5 +225,9 @@ void	check_redirection(char **tab);
 void	infile(char *str);
 char	**re_tab(char **tab, int i);
 void	outfile(char *str);
+void	spe_outfile(char *str);
+void	go_pipe(char	**tab);
+t_command *split_pipe(t_command *list);
+char	**join_tab(char **tab);
 
 #endif /* MSH_H */

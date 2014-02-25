@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 11:34:13 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/25 11:46:06 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/25 12:30:04 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,15 @@ void	outfile(char *str)
 	int		fd;
 
 	fd = open(str, O_TRUNC | O_WRONLY | O_CREAT, 0777);
+	dup2(fd, 1);
+	close(fd);
+}
+
+void	spe_outfile(char *str)
+{
+	int		fd;
+
+	fd = open(str, O_APPEND | O_WRONLY | O_CREAT, 0777);
 	dup2(fd, 1);
 	close(fd);
 }

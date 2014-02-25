@@ -1,21 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   pipe_function.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/19 11:04:51 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/25 13:01:37 by lsolofri         ###   ########.fr       */
+/*   Created: 2014/02/25 13:46:37 by lsolofri          #+#    #+#             */
+/*   Updated: 2014/02/25 14:20:27 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_strcmp(const char *s1, const char *s2)
+#include "../../includes/msh.h"
+
+char	**join_tab(char **tab)
 {
-	while (*s1 == *s2 && *s1 != '\0' && *s2 != '\0')
+	char	*result;
+	int		i;
+
+	i = 0;
+	while (tab[i])
 	{
-		++s1;
-		++s2;
+		if (i == 0)
+			result = ft_strdup(tab[i]);
+		else
+			result = ft_strjoin(result, tab[i]);
+		result = ft_strjoin(result, " ");
+		++i;
 	}
-	return (*s1 - *s2);
+	return (ft_strsplit(result, '|'));
 }

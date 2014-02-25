@@ -1,57 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_redirection.c                                :+:      :+:    :+:   */
+/*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/02/25 11:32:03 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/25 14:22:22 by lsolofri         ###   ########.fr       */
+/*   Created: 2014/02/25 13:54:10 by lsolofri          #+#    #+#             */
+/*   Updated: 2014/02/25 14:28:58 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/msh.h"
 
-void	check_redirection(char **tab)
+void	go_pipe(char **tab)
 {
+	int		fd_pipe[2];
+	int		fd_in;
 	int		i;
+	t_command	*list;
 
+	tab = join_tab(tab);
 	i = 0;
 	while (tab[i])
 	{
-		if (!ft_strcmp(tab[i], "<"))
+		pipe(fd_pipe);
+		if (!fork())
 		{
-			infile(tab[i + 1]);
-			re_tab(tab, i);
+			dup2(fd_in, 0);
+			if (tab[i + 1])
+				dup2(fd_pipe[1], 1);
+			close(fd_pipe[0]);
+			list = quick_parse(tab[i]);
+			exec_cmd(list->cmd);
 		}
 		else
-			++i;
-	}
-	i = 0;
-	while (tab[i])
-	{
-		if (!ft_strcmp(tab[i], ">"))
 		{
-			outfile(tab[i + 1]);
-			re_tab(tab, i);
-		}
-		else
+			wait(0);
+			close(fd_pipe[1]);
+			fd_in = fd_pipe[0];
 			++i;
-	}
-	i = 0;
-	while (tab[i])
-	{
-		if (!ft_strcmp(tab[i], ">>"))
-		{
-			spe_outfile(tab[i + 1]);
-			re_tab(tab, i);
 		}
-		else
-			++i;
 	}
-	i = 0;
-	while (tab[i] && ft_strcmp(tab[i], "|"))
-		++i;
-	if (tab[i])
-		go_pipe(tab);
+	_exit(0);
 }
