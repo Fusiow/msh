@@ -6,11 +6,31 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 04:12:42 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/25 04:32:34 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/25 04:58:03 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/msh.h"
+
+t_alias	*del_alias(t_alias *list, char *name)
+{
+	t_alias	*tmp;
+
+	if (!list)
+		return (NULL);
+	if (!ft_strcmp(list->alias, name))
+	{
+		tmp = list->next;
+		free(list);
+		tmp = del_alias(tmp, name);
+		return (tmp);
+	}
+	else
+	{
+		list->next = del_alias(list->next, name);
+		return (list);
+	}
+}
 
 t_alias	*add_alias(t_alias *list, char *alias, char *value)
 {
@@ -58,6 +78,8 @@ void	ft_alias(char **tab)
 	if (tab[1])
 	{
 		tmp = ft_strsplit(tab[1], '=');
+		if (is_alias(g_alias, tmp[0]))
+			g_alias = del_alias(g_alias, tmp[0]);
 		g_alias = add_alias(g_alias, tmp[0], tmp[1]);
 	}
 	else

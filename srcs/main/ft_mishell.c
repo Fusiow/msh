@@ -6,7 +6,7 @@
 /*   By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 15:59:27 by aardjoun          #+#    #+#             */
-/*   Updated: 2014/02/25 04:30:51 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/25 05:02:48 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	exec_cmd(char **tab)
 	}
 	execve(tab[0], tab, env);
 	unknow_cmd(tab[0]);
+	_exit(0);
 }
 
 void	pre_exec(char **tmp, int *rt, int *ret)
@@ -47,7 +48,8 @@ void	pre_exec(char **tmp, int *rt, int *ret)
 				result = is_alias(g_alias, tmp[0]);
 				if (result)
 					exec_cmd(ft_strsplit(result, ' '));
-				exec_cmd(tmp);
+				else
+					exec_cmd(tmp);
 			}
 		}
 	}
