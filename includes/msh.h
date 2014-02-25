@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/25 10:15:42 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/25 11:47:06 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,5 +217,13 @@ void		pre_exec(char *str, int *rt, int *ret);
 void	basic_prompt(void);
 void	prompt(void);
 void	prompt_interpreter(char *str);
+
+/*
+** PIPE
+*/
+void	check_redirection(char **tab);
+void	infile(char *str);
+char	**re_tab(char **tab, int i);
+void	outfile(char *str);
 
 #endif /* MSH_H */
