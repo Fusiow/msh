@@ -33,8 +33,9 @@ t_env	*add_env(t_env *env, char *name, char *value)
 void	new_env(char **env)
 {
 	char	**tmp;
-	int		i;
+	int	i;
 
+	i = 0;
 	while (env[i])
 		++i;
 	if (i == 0)
