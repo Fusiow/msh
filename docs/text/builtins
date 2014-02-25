@@ -1,0 +1,68 @@
+
+MMMMMMMM               MMMMMMMM   SSSSSSSSSSSSSSS HHHHHHHHH     HHHHHHHHH
+M:::::::M             M:::::::M SS:::::::::::::::SH:::::::H     H:::::::H
+M::::::::M           M::::::::MS:::::SSSSSS::::::SH:::::::H     H:::::::H
+M:::::::::M         M:::::::::MS:::::S     SSSSSSSHH::::::H     H::::::HH
+M::::::::::M       M::::::::::MS:::::S              H:::::H     H:::::H
+M:::::::::::M     M:::::::::::MS:::::S              H:::::H     H:::::H
+M:::::::M::::M   M::::M:::::::M S::::SSSS           H::::::HHHHH::::::H
+M::::::M M::::M M::::M M::::::M  SS::::::SSSSS      H:::::::::::::::::H
+M::::::M  M::::M::::M  M::::::M    SSS::::::::SS    H:::::::::::::::::H
+M::::::M   M:::::::M   M::::::M       SSSSSS::::S   H::::::HHHHH::::::H
+M::::::M    M:::::M    M::::::M            S:::::S  H:::::H     H:::::H
+M::::::M     MMMMM     M::::::M            S:::::S  H:::::H     H:::::H
+M::::::M               M::::::MSSSSSSS     S:::::SHH::::::H     H::::::HH
+M::::::M               M::::::MS::::::SSSSSS:::::SH:::::::H     H:::::::H
+M::::::M               M::::::MS:::::::::::::::SS H:::::::H     H:::::::H
+MMMMMMMM               MMMMMMMM SSSSSSSSSSSSSSS   HHHHHHHHH     HHHHHHHHH
+
+    * Index
+    * Builtins
+    * Scripting
+    * Git
+
+****** Prompt ******
+Synopsis
+setenv PROMPT "myprompt$>"
+
+Variable of prompt
+
+%n -> $USER
+%p -> $PWD
+%h -> Home pwd
+%g -> $GROUP
+Style of prompt
+%u -> underline
+%s -> surline
+
+
+Color
+%c{NAME_OF_COLOR}
+
+Disponibilty:
+    * GRAY
+    * RED
+    * GRE -> green
+    * YEL -> yellow
+    * BLUE
+    * MAG -> Magenta
+    * SBLUE -> blue sky
+    * DEF -> default
+
+
+Example:
+setenv PROMPT "%c{RED}(%n)%c{BLUE}%u[%h]%e%c{DEF}$> "
+
+
+****** Alias ******
+
+synopsis
+alias my_cmd value
+
+Example
+alias ll "ls -la"
+
+
+****** Configuration file ******
+
+Path = ~/.mshrc

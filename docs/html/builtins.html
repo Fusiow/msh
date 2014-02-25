@@ -1,0 +1,74 @@
+
+<html>
+<pre>                                                                              
+MMMMMMMM               MMMMMMMM   SSSSSSSSSSSSSSS HHHHHHHHH     HHHHHHHHH     
+M:::::::M             M:::::::M SS:::::::::::::::SH:::::::H     H:::::::H     
+M::::::::M           M::::::::MS:::::SSSSSS::::::SH:::::::H     H:::::::H     
+M:::::::::M         M:::::::::MS:::::S     SSSSSSSHH::::::H     H::::::HH     
+M::::::::::M       M::::::::::MS:::::S              H:::::H     H:::::H       
+M:::::::::::M     M:::::::::::MS:::::S              H:::::H     H:::::H       
+M:::::::M::::M   M::::M:::::::M S::::SSSS           H::::::HHHHH::::::H       
+M::::::M M::::M M::::M M::::::M  SS::::::SSSSS      H:::::::::::::::::H       
+M::::::M  M::::M::::M  M::::::M    SSS::::::::SS    H:::::::::::::::::H       
+M::::::M   M:::::::M   M::::::M       SSSSSS::::S   H::::::HHHHH::::::H       
+M::::::M    M:::::M    M::::::M            S:::::S  H:::::H     H:::::H       
+M::::::M     MMMMM     M::::::M            S:::::S  H:::::H     H:::::H       
+M::::::M               M::::::MSSSSSSS     S:::::SHH::::::H     H::::::HH     
+M::::::M               M::::::MS::::::SSSSSS:::::SH:::::::H     H:::::::H     
+M::::::M               M::::::MS:::::::::::::::SS H:::::::H     H:::::::H     
+MMMMMMMM               MMMMMMMM SSSSSSSSSSSSSSS   HHHHHHHHH     HHHHHHHHH</pre>
+
+<br />
+<ul>
+	<li><a href="index.html">Index</a></li>
+	<li><a href="builtins.html">Builtins</a></li>
+	<li><a href="#">Scripting</a></li>
+	<li><a href="https://github.com/Ne02ptzero/msh.git">Git</a></li>
+</ul>
+<br />
+<h1>Prompt</h1>
+<strong>Synopsis</strong><br />
+setenv PROMPT "myprompt$>"<br />
+<br />
+<strong>Variable of prompt</strong>
+<p>
+%n -> $USER<br />
+%p -> $PWD<br />
+%h -> Home pwd<br />
+%g -> $GROUP<br /></p>
+
+<p></p>
+<strong>Style of prompt</strong>
+<p>%u -> underline<br />
+%s -> surline <br /></p>
+
+<p></p>
+<strong>Color</strong>
+<p>
+	%c{NAME_OF_COLOR}<br />
+	Disponibilty:
+	<ul>	
+		<li>GRAY</li>
+		<li>RED</li>
+		<li>GRE -> green</li>
+		<li>YEL -> yellow</li>
+		<li>BLUE</li>
+		<li>MAG -> Magenta</li>
+		<li>SBLUE -> blue sky</li>
+		<li>DEF -> default</li>
+	</ul>
+<strong>Example:</strong>
+<br />setenv PROMPT "%c{RED}(%n)%c{BLUE}%u[%h]%e%c{DEF}$> "
+</p>
+<h1>Alias</h1>
+<strong>synopsis</strong><br />
+alias my_cmd value
+<br />
+<br />
+<strong>Example</strong><br />
+alias ll "ls -la"
+<br />
+<br />
+<h1>Configuration file</h1>
+Path = ~/.mshrc
+</html>
