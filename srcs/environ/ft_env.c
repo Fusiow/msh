@@ -6,7 +6,11 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 00:46:22 by lsolofri          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2014/02/25 12:58:08 by lsolofri         ###   ########.fr       */
+=======
+/*   Updated: 2014/02/25 13:47:12 by aardjoun         ###   ########.fr       */
+>>>>>>> 1f1b722f305a744b9dfc5330045420a99dc0afb4
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +59,10 @@ void	print_list(t_env *env)
 	{
 		ft_putstr(env->name);
 		ft_putstr("=");
-		ft_putendl(env->value);
+		if (env->value)
+			ft_putendl(env->value);
+		else
+			ft_putchar('\n');
 		env = env->next;
 	}
 }
