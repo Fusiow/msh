@@ -13,27 +13,6 @@
 
 #include "../../includes/msh.h"
 
-char		*simplify_pwd(char *tmp, char *tab, int *w)
-{
-/*
-** non fini
-*/
-	int		i;
-	int		k;
-
-	k = 0;
-	while (ft_strncmp("..", tab,2) == 0)
-	{
-		i = ft_strlen(tmp);
-		while (tmp[i] != '/')
-			i--;
-		tmp[i] = '\0';
-		tab = ((tab[3] == '/') ? &tab[3] : '\0');
-		*w = 1;
-	}
-	return (tmp);
-}
-
 void		change_pwd(int home)
 {
 	char	*tmp;
