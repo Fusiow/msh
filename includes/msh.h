@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/25 14:21:54 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/25 15:06:18 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define MSH_H
 
 /*
-** GLOBAL LIST
-*/
+ ** GLOBAL LIST
+ */
 
 typedef struct		s_env
 {
@@ -26,8 +26,8 @@ typedef struct		s_env
 
 t_env	*g_env;
 /*
-** DEFINES
-*/
+ ** DEFINES
+ */
 
 # define GRAY "\033[1;30m"
 # define RED "\033[1;31m"
@@ -41,8 +41,8 @@ t_env	*g_env;
 # define GNL_LEN 1024
 
 /*
-** INCLUDE OF LIBS
-*/
+ ** INCLUDE OF LIBS
+ */
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -54,8 +54,8 @@ t_env	*g_env;
 # include <fcntl.h>
 
 /*
-** LIST FOR AUTOCOMP
-*/
+ ** LIST FOR AUTOCOMP
+ */
 
 typedef struct		s_struct
 {
@@ -72,8 +72,8 @@ typedef struct		s_option
 }					t_option;
 
 /*
-** ALIASES
-*/
+ ** ALIASES
+ */
 
 typedef struct		s_alias
 {
@@ -85,8 +85,8 @@ typedef struct		s_alias
 t_alias	*g_alias;
 
 /*
-** PARSER
-*/
+ ** PARSER
+ */
 
 typedef struct		s_parse
 {
@@ -103,8 +103,8 @@ typedef struct			s_command
 t_command	*quick_parse(char *str);
 
 /*
-** ERRORS
-*/
+ ** ERRORS
+ */
 
 void		show_error(char *str);
 void		show_error_exit(char *str);
@@ -113,8 +113,8 @@ void		unknow_cmd(char *str);
 int			cd_error(char *str);
 
 /*
-** READ
-*/
+ ** READ
+ */
 
 char		*read_cmd(void);
 void		init_flag(struct termios *term);
@@ -149,8 +149,8 @@ void		show_diff_option(char *str);
 void		syntax_color_rest(char *str);
 
 /*
-** FUNCTIONS
-*/
+ ** FUNCTIONS
+ */
 
 int			ft_putchar(char c);
 char		*ft_strjoin(char const *s1, char const *s2);
@@ -180,8 +180,8 @@ int			ft_atoi(const char *str);
 char		*result_cmd(char **tab);
 
 /*
-** ENVIRON
-*/
+ ** ENVIRON
+ */
 t_env	*add_env(t_env *env, char *name, char *value);
 void	new_env(char **env);
 void	print_list(t_env *env);
@@ -191,8 +191,8 @@ t_env	*ft_setenv(t_env *env, char *name, char *value);
 char	**make_env_tab(t_env *env);
 
 /*
-** BUILTIN
-*/
+ ** BUILTIN
+ */
 
 void		ft_echo(char **tab);
 int			ft_exit(char **tab, int *rt);
@@ -202,8 +202,8 @@ char		*is_alias(t_alias *list, char *alias);
 void		ft_alias(char **tab);
 
 /*
-** MAIN
-*/
+ ** MAIN
+ */
 
 void		ft_mishell(char *line);
 char		**ft_get_path(char **env, char *line);
@@ -212,16 +212,16 @@ int			detect_built(int *rt, char **tab, int *bc);
 void		pre_exec(char *str, int *rt, int *ret);
 
 /*
-** PROMPT
-*/
+ ** PROMPT
+ */
 void	basic_prompt(void);
 void	prompt(void);
 void	prompt_interpreter(char *str);
 
 /*
-** PIPE
-*/
-void	check_redirection(char **tab);
+ ** PIPE
+ */
+int	check_redirection(char **tab);
 void	infile(char *str);
 char	**re_tab(char **tab, int i);
 void	outfile(char *str);
