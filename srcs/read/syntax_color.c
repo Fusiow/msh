@@ -77,6 +77,7 @@ void	show_cmd(char *str)
 	i = 0;
 	list = NULL;
 	name = NULL;
+	rest = NULL;
 	while (str[i] != ' ' && str[i])	
 		++i;
 	if (i != 0)
