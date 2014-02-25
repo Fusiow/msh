@@ -6,7 +6,7 @@
 /*   By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 15:53:46 by aardjoun          #+#    #+#             */
-/*   Updated: 2014/02/25 05:00:50 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/25 10:50:18 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int			main(int ac, char **av, char **environ)
 {
-	char	**tmp;
-	int		rt;
-	int		ret;
+	char		*str;
+	int			rt;
+	int			ret;
 
 	ret = 0;
 	rt = 0;
@@ -27,8 +27,8 @@ int			main(int ac, char **av, char **environ)
 	while (1)
 	{
 		prompt();
-		tmp = ft_strsplit(take_cmd(), ' ');
-		pre_exec(tmp, &rt, &ret);
+		str = take_cmd();
+		pre_exec(str, &rt, &ret);
 		if (ret == 1)
 			break ;
 	}

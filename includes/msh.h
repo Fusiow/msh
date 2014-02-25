@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/25 04:32:15 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/25 10:15:42 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,25 @@ typedef struct		s_alias
 }					t_alias;
 
 t_alias	*g_alias;
+
+/*
+** PARSER
+*/
+
+typedef struct		s_parse
+{
+	char			*str;
+	struct s_parse	*next;
+}					t_parse;
+
+typedef struct			s_command
+{
+	char				**cmd;
+	struct s_command	*next;
+}						t_command;
+
+t_command	*quick_parse(char *str);
+
 /*
 ** ERRORS
 */
@@ -190,7 +209,7 @@ void		ft_mishell(char *line);
 char		**ft_get_path(char **env, char *line);
 void		exec_cmd(char **tab);
 int			detect_built(int *rt, char **tab, int *bc);
-void		pre_exec(char **tmp, int *rt, int *ret);
+void		pre_exec(char *str, int *rt, int *ret);
 
 /*
 ** PROMPT

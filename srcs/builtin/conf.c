@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 02:38:17 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/25 02:57:44 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/25 10:52:19 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,5 @@ void	load_conf_file(void)
 	}
 	free(tmp);
 	while ((tmp = get_next_line(fd)))
-	{
-		pre_exec(ft_strsplit(tmp, ' '), &not, &not);
-	}
+		pre_exec(tmp, &not, &not);
 }
