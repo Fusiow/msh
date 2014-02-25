@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 11:05:41 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/14 17:24:09 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/25 02:53:10 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ char	*get_next_line(int fd)
 	if (read_get_next_line(fd, &i, &nbread, buff))
 		return (0);
 	str = malloc(sizeof(char) * GNL_LEN);
+	str[GNL_LEN] = '\0';
 	while (buff[i] && buff[i] != '\n' && n < GNL_LEN)
 	{
 		str[n++] = buff[i++];

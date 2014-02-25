@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/25 01:48:23 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/25 02:54:17 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_env	*g_env;
 # define SBLUE "\033[1;36m"
 # define DEF "\033[0m"
 
-# define GNL_LEN 4096
+# define GNL_LEN 1024
 
 /*
 ** INCLUDE OF LIBS
@@ -155,6 +155,7 @@ void	print_list(t_env *env);
 char	*find_value_envir(t_env *env, char *str);
 t_env	*ft_unsetenv(t_env *env, char *str);
 t_env	*ft_setenv(t_env *env, char *name, char *value);
+char	**make_env_tab(t_env *env);
 
 /*
 ** BUILTIN
@@ -163,6 +164,7 @@ t_env	*ft_setenv(t_env *env, char *name, char *value);
 void		ft_echo(char **tab);
 int			ft_exit(char **tab, int *rt);
 int			ft_cd(char **tab);
+void		load_conf_file(void);
 
 /*
 ** MAIN
@@ -172,6 +174,7 @@ void		ft_mishell(char *line);
 char		**ft_get_path(char **env, char *line);
 void		exec_cmd(char **tab);
 int			detect_built(int *rt, char **tab, int *bc);
+void		pre_exec(char **tmp, int *rt, int *ret);
 
 /*
 ** PROMPT

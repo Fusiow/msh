@@ -1,0 +1,2 @@
+ls
+setenv PROMPT %c{BLUE}(%n)%c{RED}[%h]%c{DEF}->

@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 00:46:22 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/25 02:08:49 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/25 02:58:55 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ t_env	*add_env(t_env *env, char *name, char *value)
 
 	tmp2 = env;
 	tmp = (t_env *)malloc(sizeof(t_env));
-	tmp->name = ft_strdup(name);
-	tmp->value = ft_strdup(value);
+	tmp->name = name;
+	tmp->value = value;
 	tmp->next = NULL;
 	if (env == NULL)
 		return (tmp);
@@ -93,4 +93,34 @@ t_env	*ft_setenv(t_env *env, char *name, char *value)
 	env = ft_unsetenv(env, name);
 	env = add_env(env, name, value);
 	return (env);
+}
+
+int		list_len(t_env *env)
+{
+	int		i;
+
+	i = 0;
+	while (env)
+	{
+		++i;
+		env = env->next;
+	}
+	return (i);
+}
+
+char	**make_env_tab(t_env *env)
+{
+	int		i;
+	char	**result;
+
+	i = list_len(env);
+	result = (char **)malloc(sizeof(char *) * i + 1);
+	i = 0;
+	while (env)
+	{
+		result[i++] = ft_strjoin(env->name, ft_strjoin("=", env->value));
+		env = env->next;
+	}
+	result[i] = NULL;
+	return (result);
 }
