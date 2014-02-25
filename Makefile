@@ -6,7 +6,7 @@
 #    By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/14 17:00:44 by aardjoun          #+#    #+#              #
-#    Updated: 2014/02/25 02:42:47 by lsolofri         ###   ########.fr        #
+#    Updated: 2014/02/25 03:52:09 by lsolofri         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -18,6 +18,7 @@ SRCS	=	srcs/main/main.c\
 			srcs/environ/ft_env.c\
 			srcs/environ/get_man_path.c\
 			srcs/errors/error.c\
+			srcs/errors/cd_error.c\
 			srcs/functions/ft_isdigit.c\
 			srcs/functions/ft_free_tab.c\
 			srcs/functions/ft_get_path.c\
@@ -38,6 +39,7 @@ SRCS	=	srcs/main/main.c\
 			srcs/functions/ft_tabncmp.c\
 			srcs/functions/get_next_line.c\
 			srcs/functions/ft_atoi.c\
+			srcs/functions/ft_cmd_result.c\
 			srcs/read/actions.c\
 			srcs/read/buttons.c\
 			srcs/read/history.c\
@@ -52,6 +54,7 @@ SRCS	=	srcs/main/main.c\
 			srcs/read/parsing_man.c\
 			srcs/builtin/exit.c\
 			srcs/builtin/echo.c\
+			srcs/builtin/cd.c\
 			srcs/builtin/conf.c\
 			srcs/prompt/prompt_interpreter.c\
 			srcs/prompt/prompt.c

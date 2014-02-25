@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/25 02:54:17 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/25 03:51:57 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void		show_error(char *str);
 void		show_error_exit(char *str);
 void		exit_error(char **tab);
 void		unknow_cmd(char *str);
+int			cd_error(char *str);
 
 /*
 ** READ
@@ -145,6 +146,7 @@ char		*get_next_line(int fd);
 char		*get_man_path(void);
 int			ft_isdigit(char c);
 int			ft_atoi(const char *str);
+char		*result_cmd(char **tab);
 
 /*
 ** ENVIRON

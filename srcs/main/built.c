@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/21 18:56:49 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/25 01:54:46 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/25 03:06:25 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ int		detect_built(int *rt, char **tab, int *bc)
 
 	if (!(ret = ft_strcmp("exit", tab[0])))
 		*bc = ft_exit(tab, rt);
-//	else if (!(ret = ft_strcmp("cd", tab[0])))
-//		ft_cd(tab);
+	else if (!(ret = ft_strcmp("cd", tab[0])))
+		ft_cd(tab);
 	else if (!(ret = ft_strcmp("env", tab[0])))
 		print_list(g_env);
 	else if (!(ret = ft_strcmp("setenv", tab[0])))
