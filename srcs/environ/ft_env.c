@@ -6,11 +6,8 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 00:46:22 by lsolofri          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2014/02/25 12:58:08 by lsolofri         ###   ########.fr       */
-=======
+/*   Updated: 2014/02/25 14:40:13 by lsolofri         ###   ########.fr       */
 /*   Updated: 2014/02/25 13:47:12 by aardjoun         ###   ########.fr       */
->>>>>>> 1f1b722f305a744b9dfc5330045420a99dc0afb4
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +43,8 @@ void	new_env(char **env)
 	while (*env)
 	{
 		tmp = ft_strsplit(*env, '=');
-		if (ft_strcmp(tmp[0], "HOME") == 0 || ft_strcmp(tmp[0], "PWD") == 0)
-			tmp[1] = ft_strjoin("/Volumes/DATA", tmp[1]);
+		if (tmp[1] && (ft_strcmp(tmp[0], "HOME") == 0 || ft_strcmp(tmp[0], "PWD") == 0)) 
+				tmp[1] = ft_strjoin("/Volumes/DATA", tmp[1]);
 		g_env = add_env(g_env, tmp[0], tmp[1]);
 		env++;
 	}
