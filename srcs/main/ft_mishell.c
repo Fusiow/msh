@@ -6,7 +6,7 @@
 /*   By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 15:59:27 by aardjoun          #+#    #+#             */
-/*   Updated: 2014/02/25 15:05:35 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/25 15:27:15 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,7 @@ void	pre_exec(char *str, int *rt, int *ret)
 				if (fork())
 					wait(0);
 				else
-				{
 					exec_cmd(tmp->cmd);
-				}
 			}
 		}
 		tmp = tmp->next;

@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/15 14:47:45 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/21 16:11:14 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/25 15:33:09 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ char	*show_tab(char *cmd)
 {
 	t_list	*list;
 	int		i;
+	char	*description;
 
 	i = 0;
 	list = NULL;
@@ -50,8 +51,9 @@ char	*show_tab(char *cmd)
 				aff_cmd(list->name, cmd);
 				ft_putstr(GRAY);
 				ft_putstr("\t\t\t\t\t(");
-				if (list->type)
-					ft_putstr(list->type);
+				description = get_cmd_description(list->name);
+				if (description)
+					ft_putstr(description);
 				else
 					ft_putstr("No Description");
 				ft_putstr(")\n");
