@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/24 17:06:29 by aardjoun         ###   ########.fr       */
+/*   Updated: 2014/02/25 01:48:23 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,17 @@
 # define MSH_H
 
 /*
-** GLOBAL VARIABLE
+** GLOBAL LIST
 */
 
-char	**g_env;
+typedef struct		s_env
+{
+	char			*name;
+	char			*value;
+	struct s_env	*next;
+}					t_env;
 
+t_env	*g_env;
 /*
 ** DEFINES
 */
@@ -141,14 +147,14 @@ int			ft_isdigit(char c);
 int			ft_atoi(const char *str);
 
 /*
-** ENVIRON FT_ENV.C
+** ENVIRON
 */
-
-void		ft_get_env(char **environ);
-void		ft_print_env(void);
-void		ft_setenv(char **av);
-void		ft_unsetenv(char **av);
-char		*find_value_envir(char *name);
+t_env	*add_env(t_env *env, char *name, char *value);
+void	new_env(char **env);
+void	print_list(t_env *env);
+char	*find_value_envir(t_env *env, char *str);
+t_env	*ft_unsetenv(t_env *env, char *str);
+t_env	*ft_setenv(t_env *env, char *name, char *value);
 
 /*
 ** BUILTIN

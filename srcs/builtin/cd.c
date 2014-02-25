@@ -37,14 +37,14 @@ char		*simplify_pwd(char *tmp, char *tab, int *w)
 
 void		change_pwd(char *tab, int home)
 {
-	char	*tmp;
+/*	char	*tmp;
 	int		i;
 
 	if (home == 0)
 	{
 		i= ft_strlen(tab);
 		tab[i - 1] = ((tab[i - 1] == '/') ? '\0' : tab[i - 1]);
-		tmp = find_value_envir("PWD");
+		tmp = find_value_envir(g_env, "PWD");
 		tmp = simplify_pwd(tmp, tab, &i);
 		tmp = ((i == 1) ? tmp : ft_strjoin(ft_strjoin(tmp, "/"), tab));
 		tmp = ft_strjoin("setenv ", ft_strjoin("PWD ", tmp));
@@ -53,13 +53,13 @@ void		change_pwd(char *tab, int home)
 	else
 	{
 		tmp = ft_strjoin("setenv ", "PWD ");
-		tmp = ft_strjoin(tmp, find_value_envir("HOME"));
+		tmp = ft_strjoin(tmp, find_value_envir(g_env, "HOME"));
 	}
 /*
-** bug a cause du setenv
-*/
+** bug a cause du setenv, Ouais je vois sa!
+
 	ft_setenv(ft_strsplit(tmp, ' '));
-	free(tmp);
+	free(tmp);*/
 }
 
 int			ft_cd(char **tab)

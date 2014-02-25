@@ -6,7 +6,7 @@
 #    By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/14 17:00:44 by aardjoun          #+#    #+#              #
-#    Updated: 2014/02/24 16:41:08 by aardjoun         ###   ########.fr        #
+#    Updated: 2014/02/25 01:54:23 by lsolofri         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -15,7 +15,6 @@ NAME	=	MiShell
 SRCS	=	srcs/main/main.c\
 			srcs/main/ft_mishell.c\
 			srcs/main/built.c\
-			srcs/environ/find_value_envir.c\
 			srcs/environ/ft_env.c\
 			srcs/environ/get_man_path.c\
 			srcs/errors/error.c\
@@ -53,7 +52,6 @@ SRCS	=	srcs/main/main.c\
 			srcs/read/parsing_man.c\
 			srcs/builtin/exit.c\
 			srcs/builtin/echo.c\
-			srcs/builtin/cd.c\
 			srcs/prompt/prompt_interpreter.c\
 			srcs/prompt/prompt.c
 

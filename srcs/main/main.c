@@ -6,7 +6,7 @@
 /*   By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 15:53:46 by aardjoun          #+#    #+#             */
-/*   Updated: 2014/02/24 17:08:01 by aardjoun         ###   ########.fr       */
+/*   Updated: 2014/02/25 01:58:26 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ int			main(int ac, char **av, char **environ)
 
 	ret = 0;
 	rt = 0;
-	ft_get_env(environ);
+	new_env(environ);
 	if (ac != 1 && av)
 		return (-1);
 	while (1)
 	{
 		prompt();
 		tmp = ft_strsplit(take_cmd(), ' ');
-		if (tmp)
+		if (tmp[0])
 		{
 			if (detect_built(&rt, tmp, &ret))
 			{

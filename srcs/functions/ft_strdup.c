@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/20 09:49:25 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/12 16:56:41 by aardjoun         ###   ########.fr       */
+/*   Updated: 2014/02/25 00:10:55 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_strdup(const char *s)
 	int		i;
 
 	i = 0;
-	result = (char *)malloc(ft_strlen(s));
+	result = (char *)malloc(ft_strlen(s) + 1);
 	if (!result)
 		return (0);
 	while (s[i] != '\0')

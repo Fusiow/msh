@@ -1,85 +1,96 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_env.c                                           :+:      :+:    :+:   */
+/*   ft_env2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/02/11 13:49:25 by aardjoun          #+#    #+#             */
-/*   Updated: 2014/02/24 20:28:52 by aardjoun         ###   ########.fr       */
+/*   Created: 2014/02/25 00:46:22 by lsolofri          #+#    #+#             */
+/*   Updated: 2014/02/25 02:08:49 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/msh.h"
 
-void		ft_setenv(char **av)
+t_env	*add_env(t_env *env, char *name, char *value)
+{
+	t_env	*tmp;
+	t_env	*tmp2;
+
+	tmp2 = env;
+	tmp = (t_env *)malloc(sizeof(t_env));
+	tmp->name = ft_strdup(name);
+	tmp->value = ft_strdup(value);
+	tmp->next = NULL;
+	if (env == NULL)
+		return (tmp);
+	while (tmp2->next != NULL)
+		tmp2 = tmp2->next;
+	tmp2->next = tmp;
+	return (env);
+}
+
+void	new_env(char **env)
 {
 	char	**tmp;
 	int		i;
-	int		k;
 
-	k = 0;
-	if ((k = (ft_tabncmp(g_env, av))) == -1 && av[2])
-	{
-		i = (((tmp = ft_new_tab(ft_tablen(g_env) + 1)) != NULL) ? -1 : -1 );
-		while (g_env[++i])
-			tmp[i] = ft_strdup(g_env[i]);
-		tmp[i] = ft_strdup(ft_strjoin(av[1], ft_strjoin("=", av[2])));
-		ft_free_tab(g_env);
-		i = (((g_env = ft_new_tab(ft_tablen(tmp))) != NULL) ? -1 : -1 );
-		while (tmp[++i])
-			g_env[i] = ft_strdup(tmp[i]);
-		ft_free_tab(tmp);
-	}
-	else
-		if (av[2])
-			g_env[k] = ft_strdup(ft_strjoin(av[1], ft_strjoin("=", av[2])));
-}
-
-void		ft_unsetenv(char **av)
-{
-	int		k;
-
-
-	k = ((ft_tabncmp(g_env, av) > -1) ? ft_tabncmp(g_env, av) : -1 );
-	if (k > -1)
-	{
-		while (g_env[k])
-		{
-			if (g_env[k] && g_env[k + 1])
-				g_env[k] = ft_strdup(g_env[k + 1]);
-			else
-				g_env[k] = NULL;
-			k++;
-		}
-		g_env[k] = NULL;
-	}
-}
-
-void		ft_print_env(void)
-{
-	int		i;
-
-	i = -1;
-	while (g_env[++i])
-		ft_putendl(g_env[i]);
-}
-
-void		ft_get_env(char **environ)
-{
-	int		i;
-
-	i = 0;
-	while (environ[i])
-		i++;
+	while (env[i])
+		++i;
 	if (i == 0)
 		show_error_exit("Could not set environnement");
-	g_env = ft_new_tab(i);
-	i = 0;
-	while (environ[i])
+	while (*env)
 	{
-		g_env[i] = ft_strdup(environ[i]);
-		i++;
+		tmp = ft_strsplit(*env, '=');
+		g_env = add_env(g_env, tmp[0], tmp[1]);
+		env++;
 	}
+}
 
+void	print_list(t_env *env)
+{
+	while (env)
+	{
+		ft_putstr(env->name);
+		ft_putstr("=");
+		ft_putendl(env->value);
+		env = env->next;
+	}
+}
+
+char	*find_value_envir(t_env *env, char *str)
+{
+	while (env != NULL && (ft_strcmp(env->name, str) != 0))
+		env = env->next;
+	if (env)
+		return (env->value);
+	else
+		return (NULL);
+}
+
+t_env	*ft_unsetenv(t_env *env, char *str)
+{
+	t_env	*tmp;
+
+	if (!env)
+		return (NULL);
+	if (!ft_strcmp(env->name, str))
+	{
+		tmp = env->next;
+		free(env);
+		tmp = ft_unsetenv(tmp, str);
+		return (tmp);
+	}
+	else
+	{
+		env->next = ft_unsetenv(env->next, str);
+		return (env);
+	}
+}
+
+t_env	*ft_setenv(t_env *env, char *name, char *value)
+{
+	env = ft_unsetenv(env, name);
+	env = add_env(env, name, value);
+	return (env);
 }

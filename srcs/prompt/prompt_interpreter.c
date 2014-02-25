@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/21 16:30:44 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/21 18:12:43 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/25 01:55:36 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	show_value_envir(char *str)
 {
-	if (find_value_envir(str))
-		ft_putstr(find_value_envir(str));
+	if (find_value_envir(g_env, str))
+		ft_putstr(find_value_envir(g_env, str));
 }
 
 void	home_pwd(void)
@@ -23,8 +23,8 @@ void	home_pwd(void)
 	char	*home;
 	char	*pwd;
 
-	home = find_value_envir("HOME");
-	pwd = find_value_envir("PWD");
+	home = find_value_envir(g_env, "HOME");
+	pwd = find_value_envir(g_env, "PWD");
 	if (home && pwd)
 	{
 		if (ft_strncmp(home, pwd, ft_strlen(home)) == 0)
