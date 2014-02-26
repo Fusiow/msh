@@ -6,7 +6,7 @@
 #    By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/14 17:00:44 by aardjoun          #+#    #+#              #
-#    Updated: 2014/02/25 14:14:47 by lsolofri         ###   ########.fr        #
+#    Updated: 2014/02/26 11:04:29 by aardjoun         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -75,16 +75,37 @@ LIBS	=	-L/usr/lib/ -ltermcap
 
 OBJS	=	$(SRCS:.c=.o)
 
-all		:	$(NAME)
+all		:	msh $(NAME)
+
+msh		:
+	@echo "MMMMMMMM               MMMMMMMM   SSSSSSSSSSSSSSS HHHHHHHHH     HHHHHHHHH"
+	@echo "M:::::::M             M:::::::M SS:::::::::::::::SH:::::::H     H:::::::H"
+	@echo "M::::::::M           M::::::::MS:::::SSSSSS::::::SH:::::::H     H:::::::H"
+	@echo "M:::::::::M         M:::::::::MS:::::S     SSSSSSSHH::::::H     H::::::HH"
+	@echo "M::::::::::M       M::::::::::MS:::::S              H:::::H     H:::::H"
+	@echo "M:::::::::::M     M:::::::::::MS:::::S              H:::::H     H:::::H"
+	@echo "M:::::::M::::M   M::::M:::::::M S::::SSSS           H::::::HHHHH::::::H"
+	@echo "M::::::M M::::M M::::M M::::::M  SS::::::SSSSS      H:::::::::::::::::H"
+	@echo "M::::::M  M::::M::::M  M::::::M   SSS::::::::SS     H:::::::::::::::::H"
+	@echo "M::::::M   M:::::::M   M::::::M      SSSSSS::::S    H::::::HHHHH::::::H"
+	@echo "M::::::M    M:::::M    M::::::M            S:::::S  H:::::H     H:::::H"
+	@echo "M::::::M     MMMMM     M::::::M            S:::::S  H:::::H     H:::::H"
+	@echo "M::::::M               M::::::MSSSSSSS     S:::::SHH::::::H     H::::::HH"
+	@echo "M::::::M               M::::::MS::::::SSSSSS:::::SH:::::::H     H:::::::H"
+	@echo "M::::::M               M::::::MS:::::::::::::::SS H:::::::H     H:::::::H"
+	@echo "MMMMMMMM               MMMMMMMM SSSSSSSSSSSSSSS   HHHHHHHHH     HHHHHHHHH"
 
 $(NAME)	:	$(OBJS)
-	$(CC) $(CFLAGS) $(LIBS) $(OBJS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(LIBS) $(OBJS) -o $(NAME)
+	@echo "done"
 
 clean	:
-	rm -rf $(OBJS)
+	@rm -rf $(OBJS)
+	@echo "clean done"
 
 fclean	:	clean
-	rm -rf $(NAME)
+	@rm -rf $(NAME)
+	@echo "fclean done"
 
 re		:	fclean all
 
