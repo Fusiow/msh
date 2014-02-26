@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 10:04:42 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/21 15:09:13 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/26 18:07:10 by rkharif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,9 @@ void	show_cmd(char *str)
 	list = NULL;
 	name = NULL;
 	rest = NULL;
-	while (str[i] != ' ' && str[i])	
+	while (str[i] == ' ' && str[i])
+		++i;
+	while (str[i] != ' ' && str[i])
 		++i;
 	if (i != 0)
 	{
