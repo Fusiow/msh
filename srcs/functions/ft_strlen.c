@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 15:14:35 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/12 18:52:23 by aardjoun         ###   ########.fr       */
+/*   Updated: 2014/02/26 23:40:16 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@ int		ft_strlen(char *s)
 {
 	int		i;
 
-	 i = 0;
-	 while (s[i])
-		 ++i;
-	 return (i);
+	i = 0;
+	if (!s)
+		return (i);
+	while (s[i] != '\0')
+		++i;
+	return (i);
 }

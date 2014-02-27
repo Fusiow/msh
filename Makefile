@@ -6,7 +6,7 @@
 #    By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/14 17:00:44 by aardjoun          #+#    #+#              #
-#    Updated: 2014/02/26 11:04:29 by aardjoun         ###   ########.fr        #
+#    Updated: 2014/02/27 08:36:44 by lsolofri         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -51,6 +51,7 @@ SRCS	=	srcs/main/main.c\
 			srcs/read/show_autocomplete.c\
 			srcs/read/syntax_color_rest.c\
 			srcs/read/show_option.c\
+			srcs/read/parser_color.c\
 			srcs/read/parsing_man.c\
 			srcs/builtin/exit.c\
 			srcs/builtin/echo.c\

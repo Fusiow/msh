@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 10:04:42 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/26 18:07:10 by rkharif          ###   ########.fr       */
+/*   Updated: 2014/02/27 09:47:16 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,38 @@ t_list	*add_type(t_list *list, char *str, char *type)
 		temp->next = tmp;
 	}
 	return (list);
+}
+
+int		check_prog(char *str)
+{
+	int		i;
+	DIR		*rep;
+	struct dirent	*show;
+	char	**tab;
+
+	tab = ft_strsplit(find_value_envir(g_env, "PATH"), ':');
+	i = 0;
+	if (ft_strcmp(str, "exit") == 0)
+		return (1);
+	else if (ft_strcmp(str, "setenv") == 0)
+		return (1);
+	else if (ft_strcmp(str, "unsetenv") == 0)
+		return (1);
+	else if (ft_strcmp(str, "cd") == 0)
+		return (1);
+	else if (ft_strcmp(str, "env") == 0)
+		return (1);
+	while (tab[i])
+	{
+		rep = opendir(tab[i++]);
+		while ((show = readdir(rep)))
+		{
+			if (ft_strcmp(str, show->d_name) == 0)
+				return (1);
+		}
+		closedir(rep);
+	}
+	return (0);
 }
 
 t_list	*recup_prog(char *str, char **tab, t_list *list)
@@ -76,10 +108,8 @@ void	show_cmd(char *str)
 
 	i = 0;
 	list = NULL;
-	name = NULL;
-	rest = NULL;
-	while (str[i] == ' ' && str[i])
-		++i;
+//	while (str[i] == ' ' && str[i])
+//		++i;
 	while (str[i] != ' ' && str[i])
 		++i;
 	if (i != 0)
@@ -108,9 +138,8 @@ void	show_cmd(char *str)
 		if (!list && name && !rest)
 			show_complete(name, cmd);
 		if (rest)
-			show_rest(rest, cmd);
-		free(list);
-		free(cmd);
-		free(name);
+			ft_putstr(rest);
+//		free(list);
+//		free(cmd);
 	}
 }

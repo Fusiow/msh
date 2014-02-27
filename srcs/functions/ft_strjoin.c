@@ -3,36 +3,56 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: spuyet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/21 17:07:41 by lsolofri          #+#    #+#             */
-/*   Updated: 2013/12/30 14:47:04 by lsolofri         ###   ########.fr       */
+/*   Created: 2013/11/26 18:41:13 by spuyet            #+#    #+#             */
+/*   Updated: 2014/02/27 00:55:15 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <string.h>
+size_t		ft_strlen(const char *s);
 
-size_t	ft_strlen(char const *s);
-
-char	*ft_strjoin(char const *s1, char const *s2)
+static char	*fill_string(char *str1, char *str2, char *str3)
 {
-	char	*ptr;
-	int		i;
-	int		v;
+	size_t	i;
 
 	i = 0;
-	v = 0;
-	if (!s1 || !s2)
-		return (0);
-	ptr = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
-	if (ptr == NULL)
-		return (NULL);
-	while (s1[i])
-		ptr[v++] = s1[i++];
-	i = 0;
-	while (s2[i])
-		ptr[v++] = s2[i++];
-	ptr[v] = '\0';
-	return (ptr);
+	if (str3)
+	{
+		while (*str1)
+		{
+			str3[i] = *str1;
+			str1++;
+			i++;
+		}
+		while (*str2)
+		{
+			str3[i] = *str2;
+			str2++;
+			i++;
+		}
+		str3[i] = '\0';
+		return (str3);
+	}
+	return (NULL);
+}
+
+char		*ft_strjoin(char const *s1, char const *s2)
+{
+	char		*str1;
+	char		*str2;
+	char		*str3;
+	size_t		len;
+
+	str1 = (char *) s1;
+	str2 = (char *) s2;
+	if (str1 && str2)
+	{
+		len = ft_strlen(str1) + ft_strlen(str2) + 1;
+		str3 = (char *) malloc(len * sizeof(char));
+		return (fill_string(str1, str2, str3));
+	}
+	return (NULL);
 }

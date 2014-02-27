@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/25 15:06:18 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/27 09:45:06 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,9 @@ t_env	*g_env;
 # include <sys/wait.h>
 # include <dirent.h>
 # include <fcntl.h>
+
+// !!!!!!!!!!!!!!!!!!!!!
+# include <string.h>
 
 /*
  ** LIST FOR AUTOCOMP
@@ -147,6 +150,8 @@ char		*show_autocomplete(char *str);
 void		show_options_in_line(char *cmd);
 void		show_diff_option(char *str);
 void		syntax_color_rest(char *str);
+void		write_cmd(char *str, int i, int command);
+int			check_prog(char *str);
 
 /*
  ** FUNCTIONS

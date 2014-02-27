@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 15:00:24 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/14 17:19:06 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/27 00:04:13 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ char	*char_to_string(char c)
 {
 	char	*result;
 
-	result = (char *)malloc(sizeof(char) * 1);
+	result = (char *)malloc(sizeof(char) * 0);
 	result[0] = c;
 	result[1] = '\0';
 	return (result);

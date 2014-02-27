@@ -6,7 +6,7 @@
 /*   By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 15:59:27 by aardjoun          #+#    #+#             */
-/*   Updated: 2014/02/25 16:06:04 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/27 09:08:28 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	exec_cmd(char **tab)
 	}
 	execve(tab[0], tab, env);
 	unknow_cmd(tab[0]);
+	free(env);
+	free(result);
 	_exit(0);
 }
 
@@ -56,4 +58,6 @@ void	pre_exec(char *str, int *rt, int *ret)
 		}
 		tmp = tmp->next;
 	}
+	free(tmp);
+	free(result);
 }

@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:52:57 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/25 15:09:36 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/27 08:36:27 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,25 +23,28 @@ char	*change_cmd(int i, char *result, char letter)
 	if (!result)
 	{
 		ft_putstr(c);
+		free(c);
 		return (c);
 	}
 	if (i == ft_strlen(result))
 		return (ft_strjoin(result, c));
 	else if (i == 0)
 		return (ft_strjoin(c, result));
-	save = ft_strlen(result);
-	tmp = ft_strsub(result, 0, i);
-	tmp[i] = '\0';
-	end = ft_strsub(result, i, save - i);
-	tmp = ft_strjoin(tmp, c);
-	result = ft_strjoin(tmp, end);
-	free(end);
-	free(tmp);
-	free(c);
-	result[save + 1] = '\0';
+	else
+	{
+		save = ft_strlen(result);
+		tmp = ft_strsub(result, 0, i);
+		tmp[i] = '\0';
+		end = ft_strsub(result, i, save - i);
+		tmp = ft_strjoin(tmp, c);
+		result = ft_strjoin(tmp, end);
+		free(end);
+		free(tmp);
+		free(c);
+		result[save + 1] = '\0';
+	}
 	return (result);
 }
-
 int		distrib_buttons(int i, char **result, char *buffer, int *v)
 {
 	char	*tmp;
@@ -50,13 +53,16 @@ int		distrib_buttons(int i, char **result, char *buffer, int *v)
 		return (-2);
 	else if (buffer[0] == 27 && buffer[1] == 91)
 	{
-		i = arrow(i, buffer[2], ft_strlen(*result), result);
+		if (*result)
+			i = arrow(i, buffer[2], ft_strlen(*result), result);
+		else
+			i = arrow(i, buffer[2], 0, result);
 		if (buffer[2] != 65 && buffer[2] != 66)
 			*v = 1;
 	}
 	else if (buffer[0] == 127)
 		*result = del_c(*result, &i);
-	else if (buffer[0] == 9)
+	else if (buffer[0] == 9 && ft_strcmp(*result, ""))
 	{
 		tmp = ft_strdup(*result);
 		*result = show_autocomplete(*result);
@@ -90,7 +96,10 @@ char	*take_cmd(void)
 		buffer = init_buffer(buffer);
 		read(0, buffer, 3);
 		if (ft_isprint(buffer[0]))
-			result = change_cmd(i++, result, buffer[0]);
+		{
+			result = change_cmd(i, result, buffer[0]);
+			i = i + 1;
+		}	
 		else
 			i = distrib_buttons(i, &result, buffer, &v);
 		if (i == -2)
@@ -98,7 +107,7 @@ char	*take_cmd(void)
 		if (v == 0 && result)
 		{
 			clear_line(i, ft_strlen(result));
-			show_cmd(result);
+			write_cmd(result, 0, 0);
 			replace_cursor(i, ft_strlen(result));
 		}
 	}

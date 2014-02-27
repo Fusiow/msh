@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/12 15:18:32 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/12 17:32:40 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/26 22:11:50 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ char	*history(int choice, char *str)
 	{
 		if (s_history[i + 1])
 			return (s_history[i++]);
-		else
-			return (NULL);
 	}
 	else if (choice == 3)
 	{

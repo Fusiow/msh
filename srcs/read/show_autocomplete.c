@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/15 14:47:45 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/25 15:33:09 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/26 23:18:09 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ char	*show_tab(char *cmd)
 			return (ft_strjoin(cmd, ft_strsub(list->name, i, ft_strlen(list->name))));
 		}
 	}
+	free(list);
+	free(description);
 	return (NULL);
 }
 
