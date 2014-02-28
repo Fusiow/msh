@@ -6,7 +6,7 @@
 /*   By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 15:59:27 by aardjoun          #+#    #+#             */
-/*   Updated: 2014/02/28 17:47:33 by aardjoun         ###   ########.fr       */
+/*   Updated: 2014/02/28 23:44:02 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ void	exec_cmd(char **tab)
 	}
 	execve(tab[0], tab, env);
 	unknow_cmd(tab[0]);
-	free(env);
-	free(result);
 	_exit(0);
 }
 
@@ -39,13 +37,20 @@ void	pre_exec(char *str, int *rt, int *ret)
 {
 	char	*result;
 	t_command	*tmp;
+	t_command	*beg;
 
 	tmp = quick_parse(str);
+	beg = tmp;
 	while (tmp)
 	{
 		result = is_alias(g_alias, tmp->cmd[0]);
 		if (result)
+		{
+			tmp = beg;
+			ft_free_cmd_list(tmp);
 			tmp = quick_parse(result);
+			beg = tmp;
+		}
 		if (detect_built(rt, tmp->cmd, ret))
 		{
 			if (fork())
@@ -61,6 +66,8 @@ void	pre_exec(char *str, int *rt, int *ret)
 		}
 		tmp = tmp->next;
 	}
-	free(tmp);
-	free(result);
+	tmp = beg;
+	if (tmp)
+		ft_free_cmd_list(tmp);
+	tmp = NULL;
 }

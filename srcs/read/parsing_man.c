@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 10:43:09 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/28 13:34:38 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/28 15:42:22 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,13 @@ char	*get_cmd_description(char *cmd)
 {
 	char        **path;
 	char        *man_path;
-	char        man[] = "man1/";
+	char        *man;
 	char		*str;
 	int			fd;
 	int			i;
 
 	i = 0;
+	man = ft_strdup("man1/");
 	path = ft_strsplit(get_man_path(), ':');
 	if (path)
 	{
@@ -40,10 +41,13 @@ char	*get_cmd_description(char *cmd)
 					{
 						if (ft_strncmp(str, ".Nd", 3) == 0)
 						{
-							free(path);
+							ft_free_tab(path);
+							free(man_path);
 							close(fd);
+							free(man);
 							return (ft_strsub(str, 4, ft_strlen(str)));
 						}
+						free(str);
 					}
 					close(fd);
 				}
@@ -63,6 +67,7 @@ char	*get_options(int fd)
 	{
 		if (ft_strncmp(str, ".Op Fl", 6) == 0)
 			return (ft_strsub(str, 7, ft_strlen(str)));
+		free(str);
 	}
 	close(fd);
 	return (NULL);
@@ -77,8 +82,10 @@ char	*read_description(int fd, char *c)
 		{
 			str = get_next_line(fd);
 			close(fd);
+			free(c);
 			return (str);
 		}
+		free(str);
 	}
 	return (NULL);
 }
@@ -96,6 +103,8 @@ t_option	*get_description(char *options, char *path)
 						char_to_string(*options)));
 			options++;
 		}
+		free(options);
+		free(path);
 		return (list);
 	}
 	return (NULL);
@@ -117,8 +126,12 @@ t_option	*return_options(char *cmd)
 							ft_strjoin(cmd, ft_strjoin(".",
 									char_to_string(man[3]))))));
 			if (access(man_path, F_OK) != -1)
+			{
+				ft_free_tab(path);
+				free(man);
 				return (get_description(get_options(open(man_path, O_RDONLY)),
 							man_path));
+			}
 			man[3]++;
 		}
 		path++;

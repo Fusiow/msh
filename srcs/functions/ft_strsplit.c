@@ -6,7 +6,7 @@
 /*   By: rkharif <rkharif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/28 13:17:53 by rkharif           #+#    #+#             */
-/*   Updated: 2014/02/28 13:52:28 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/28 17:39:42 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	countchar(char const *s, char c)
 	int		i;
 
 	i = 0;
-	while (s[i] != c && s[i])
+	while (s[i] != c && s[i] != '\0')
 		i++;
 	return (i);
 }
@@ -65,12 +65,13 @@ char		**ft_strsplit(char const *s, char c)
 			if (nbchr)
 			{
 				ret[nbword] = ft_strsub(s, i, nbchr);
+				ret[nbword][nbchr] = '\0';
 				nbword++;
 				i += nbchr;
 			}
 			else
 				i++;
 	}
-	ret[nbword] = '\0';
+	ret[nbword] = NULL;
 	return (ret);
 }

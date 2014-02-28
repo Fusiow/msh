@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 06:57:02 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/27 09:07:44 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/28 23:27:25 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,7 @@ t_command	*add_tab(t_command *result, char **tab)
 t_command	*quick_parse(char *str)
 {
 	t_parse 	*list;
+	t_parse 	*beg;
 	int			i;
 	char		**tab;
 	t_command	*result;
@@ -147,6 +148,7 @@ t_command	*quick_parse(char *str)
 	list = NULL;
 	result = NULL;
 	parser(str, 0, &list);
+	beg = list;
 	while (list)
 	{
 		i = list_len_cmd(list);
@@ -154,7 +156,7 @@ t_command	*quick_parse(char *str)
 		i = 0;
 		while (list != NULL && (ft_strcmp(list->str, ";")))
 		{
-			tab[i] = list->str;
+			tab[i] = ft_strdup(list->str);
 			++i;
 			list = list->next;
 		}
@@ -163,5 +165,7 @@ t_command	*quick_parse(char *str)
 		if (list)
 			list = list->next;
 	}
+	list = beg;
+	ft_free_parse_list(list);
 	return (result);
 }

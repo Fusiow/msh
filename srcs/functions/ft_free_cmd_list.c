@@ -1,38 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   conf.c                                             :+:      :+:    :+:   */
+/*   ft_free_cmd_list.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/02/25 02:38:17 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/28 23:23:22 by lsolofri         ###   ########.fr       */
+/*   Created: 2014/02/28 15:28:36 by lsolofri          #+#    #+#             */
+/*   Updated: 2014/02/28 23:30:40 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/msh.h"
 
-void	load_conf_file(void)
+void	ft_free_cmd_list(t_command *list)
 {
-	int		fd;
-	char	*tmp;
-	int		not;
+	t_command	*node;
+	t_command	*temp;
+	int			i;
 
-	tmp = ft_strjoin(find_value_envir(g_env, "HOME"), "/.mshrc");
-	fd = open(tmp, O_RDONLY);
-	if (fd == -1)
+	node = list;
+	while (node)
 	{
-		ft_putendl("Conf file error");
-		return ;
+		i = 0;
+		temp = node;
+		node = node->next;
+		ft_free_tab(temp->cmd);
+		free(temp);
+		temp = NULL;
 	}
-	free(tmp);
-	tmp = NULL;
-	while ((tmp = get_next_line(fd)))
-	{
-		pre_exec(tmp, &not, &not);
-		free(tmp);
-		tmp = NULL;
-	}
-	close(fd);
-	free(tmp);
+	free(node);
+	node = NULL;
 }

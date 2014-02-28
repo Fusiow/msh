@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:52:57 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/27 08:36:27 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/01 00:23:12 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,25 +18,42 @@ char	*change_cmd(int i, char *result, char letter)
 	char	*end;
 	char	*c;
 	int		save;
+	char	*new;
 
 	c = char_to_string(letter);
 	if (!result)
 	{
 		ft_putstr(c);
+		new = ft_strdup(c);
 		free(c);
-		return (c);
+		return (new);
 	}
 	if (i == ft_strlen(result))
-		return (ft_strjoin(result, c));
+	{
+		new = ft_strjoin(result, c);
+		free(result);
+		free(c);
+		return (new);
+	}
 	else if (i == 0)
-		return (ft_strjoin(c, result));
+	{
+		new = ft_strjoin(c, result);
+		free(result);
+		free(c);
+		return (new);
+	}
 	else
 	{
 		save = ft_strlen(result);
 		tmp = ft_strsub(result, 0, i);
 		tmp[i] = '\0';
 		end = ft_strsub(result, i, save - i);
-		tmp = ft_strjoin(tmp, c);
+		new = ft_strdup(tmp);
+		free(tmp);
+		tmp = NULL;
+		tmp = ft_strjoin(new, c);
+		free(new);
+		free(result);
 		result = ft_strjoin(tmp, end);
 		free(end);
 		free(tmp);
@@ -108,6 +125,7 @@ char	*take_cmd(void)
 		{
 			clear_line(i, ft_strlen(result));
 			write_cmd(result, 0, 0);
+//			ft_putstr(result);
 			replace_cursor(i, ft_strlen(result));
 		}
 	}

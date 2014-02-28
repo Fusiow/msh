@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/28 17:38:10 by aardjoun         ###   ########.fr       */
+/*   Updated: 2014/02/28 19:47:10 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ t_env	*g_env;
 # include <sys/wait.h>
 # include <dirent.h>
 # include <fcntl.h>
+
+#include <string.h>
 
 /*
 ** LIST FOR VARIABLES
@@ -207,6 +209,8 @@ char		*get_man_path(void);
 int			ft_isdigit(char c);
 int			ft_atoi(const char *str);
 char		*result_cmd(char **tab);
+void		ft_free_cmd_list(t_command *list);
+void		ft_free_parse_list(t_parse *list);
 
 /*
  ** ENVIRON

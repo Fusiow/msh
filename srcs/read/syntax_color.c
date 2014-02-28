@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 10:04:42 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/28 14:05:42 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/28 15:51:27 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,9 @@ int		check_prog(char *str)
 			{
 				if (ft_strcmp(str, show->d_name) == 0)
 				{
-					free(tab);
+					ft_free_tab(tab);
+					free(str);
+					closedir(rep);
 					return (1);
 				}
 			}
@@ -116,52 +118,6 @@ t_list	*recup_prog(char *str, char **tab, t_list *list)
 			closedir(rep);
 		}
 	}
-	free(tab);
+	ft_free_tab(tab);
 	return (list);
-}
-
-void	show_cmd(char *str)
-{
-	int		i;
-	char	*cmd;
-	t_list	*list;
-	char	*name;
-	char	*rest;
-
-	i = 0;
-	list = NULL;
-//	while (str[i] == ' ' && str[i])
-//		++i;
-	while (str[i] != ' ' && str[i])
-		++i;
-	if (i != 0)
-	{
-		cmd = ft_strsub(str, 0, i);
-		list = recup_prog(cmd, ft_strsplit(getenv("PATH"), ':'), list);
-		if (list)
-			name = list->name;
-		while (list)
-		{
-			if (ft_strcmp(cmd, list->name) == 0)
-			{
-				ft_putstr(BLUE);
-				break ;
-			}
-			list = list->next;
-		}
-		if (!list)
-			ft_putstr(RED);
-		ft_putstr(cmd);
-		ft_putstr(DEF);
-		if ((ft_strlen(str) - i) != 0)
-			rest = ft_strsub(str, i, ft_strlen(str) - 1);
-		if (list && !rest)
-			show_options_in_line(cmd);
-		if (!list && name && !rest)
-			show_complete(name, cmd);
-		if (rest)
-			ft_putstr(rest);
-//		free(list);
-//		free(cmd);
-	}
 }

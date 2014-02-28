@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 04:12:42 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/27 10:28:22 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/28 23:31:56 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ t_alias	*add_alias(t_alias *list, char *alias, char *value)
 
 	tmp2 = list;
 	tmp = (t_alias *)malloc(sizeof(t_alias));
-	tmp->alias = alias;
-	tmp->value = value;
+	tmp->alias = ft_strdup(alias);
+	tmp->value = ft_strdup(value);
 	tmp->next = NULL;
 	if (list == NULL)
 		return (tmp);

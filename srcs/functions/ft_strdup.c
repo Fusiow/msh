@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/20 09:49:25 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/25 00:10:55 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/28 17:51:11 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,18 @@ char	*ft_strdup(const char *s)
 	int		i;
 
 	i = 0;
-	result = (char *)malloc(ft_strlen(s) + 1);
-	if (!result)
-		return (0);
-	while (s[i] != '\0')
+	result = NULL;
+	if (s)
 	{
-		result[i] = s[i];
-		++i;
+		result = (char *)malloc(ft_strlen(s) + 1);
+		if (!result)
+			return (0);
+		while (s[i] != '\0')
+		{
+			result[i] = s[i];
+			++i;
+		}
+		result[i] = '\0';
 	}
-	result[i] = '\0';
 	return (result);
 }

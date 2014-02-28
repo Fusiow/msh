@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 11:05:41 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/25 03:01:48 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/28 23:25:31 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ char	*get_next_line(int fd)
 	while (buff[i] && buff[i] != '\n' && n < GNL_LEN)
 	{
 		str[n++] = buff[i++];
+		str[n] = '\0';
 		if (read_get_next_line(fd, &i, &nbread, buff))
 			return (str);
 	}

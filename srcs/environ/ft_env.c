@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 00:46:22 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/28 13:05:30 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/28 23:47:23 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ t_env	*add_env(t_env *env, char *name, char *value)
 
 	tmp2 = env;
 	tmp = (t_env *)malloc(sizeof(t_env));
-	tmp->name = name;
-	tmp->value = value;
+	tmp->name = ft_strdup(name);
+	tmp->value = ft_strdup(value);
 	tmp->next = NULL;
 	if (env == NULL)
 		return (tmp);
@@ -33,20 +33,21 @@ t_env	*add_env(t_env *env, char *name, char *value)
 void	new_env(char **env)
 {
 	char	**tmp;
-	int	i;
+	int		i;
 
 	i = 0;
 	while (env[i])
 		++i;
 	if (i == 0)
 		show_error_exit("Could not set environnement");
-	while (*env)
+	i = 0;
+	while (env[i])
 	{
-		tmp = ft_strsplit(*env, '=');
-		if (tmp[1] && (ft_strcmp(tmp[0], "HOME") == 0 || ft_strcmp(tmp[0], "PWD") == 0)) 
-			tmp[1] = ft_strjoin("/Volumes/DATA", tmp[1]);
+		tmp = ft_strsplit(env[i], '=');
 		g_env = add_env(g_env, tmp[0], tmp[1]);
-		env++;
+		ft_free_tab(tmp);
+		tmp = NULL;
+		i++;
 	}
 }
 
@@ -118,13 +119,17 @@ char	**make_env_tab(t_env *env)
 {
 	int		i;
 	char	**result;
+	char	*tmp;
 
 	i = list_len(env);
 	result = (char **)malloc(sizeof(char *) * i + 1);
 	i = 0;
 	while (env)
 	{
-		result[i++] = ft_strjoin(env->name, ft_strjoin("=", env->value));
+		tmp = ft_strjoin("=", env->value);
+		result[i++] = ft_strjoin(env->name, tmp);
+		free(tmp);
+		tmp = NULL;
 		env = env->next;
 	}
 	result[i] = NULL;
