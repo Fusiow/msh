@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 10:43:09 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/27 00:50:04 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/28 13:34:38 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,29 +19,38 @@ char	*get_cmd_description(char *cmd)
 	char        man[] = "man1/";
 	char		*str;
 	int			fd;
+	int			i;
 
+	i = 0;
 	path = ft_strsplit(get_man_path(), ':');
-	while (*path)
+	if (path)
 	{
-		man[3] = '1';
-		while (man[3] != '9')
+		while (path[i])
 		{
-			man_path = ft_strjoin(*path, ft_strjoin("/", ft_strjoin(man,
-							ft_strjoin(cmd, ft_strjoin(".",
-									char_to_string(man[3]))))));
-			if (access(man_path, F_OK) != -1)
+			man[3] = '1';
+			while (man[3] != '9')
 			{
-				fd = open(man_path, O_RDONLY);
-				while ((str = get_next_line(fd)))
+				man_path = ft_strjoin(path[i], ft_strjoin("/", ft_strjoin(man,
+								ft_strjoin(cmd, ft_strjoin(".",
+										char_to_string(man[3]))))));
+				if (access(man_path, F_OK) != -1)
 				{
-					if (ft_strncmp(str, ".Nd", 3) == 0)
-						return (ft_strsub(str, 4, ft_strlen(str)));
+					fd = open(man_path, O_RDONLY);
+					while ((str = get_next_line(fd)))
+					{
+						if (ft_strncmp(str, ".Nd", 3) == 0)
+						{
+							free(path);
+							close(fd);
+							return (ft_strsub(str, 4, ft_strlen(str)));
+						}
+					}
+					close(fd);
 				}
-				close(fd);
+				man[3]++;
 			}
-			man[3]++;
+			i++;
 		}
-		path++;
 	}
 	return (NULL);
 }

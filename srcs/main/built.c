@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/21 18:56:49 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/25 04:20:32 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/28 13:09:04 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,11 @@ int		detect_built(int *rt, char **tab, int *bc)
 		ft_echo(tab);
 	else if (!(ret = ft_strcmp("alias", tab[0])))
 		ft_alias(tab);
+	else if (!(ret = ft_strcmp("set", tab[0])))
+		ft_set(tab);
+	else if (!(ret = ft_strcmp("unset", tab[0])))
+		unset_var(tab[1]);
+	else if (!(ret = ft_strcmp("export", tab[0])))
+		export_var(g_var, tab[1]);
 	return (ret);
 }

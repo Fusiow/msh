@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/27 09:45:06 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/28 13:20:55 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define MSH_H
 
 /*
- ** GLOBAL LIST
- */
+** GLOBAL LIST
+*/
 
 typedef struct		s_env
 {
@@ -27,7 +27,7 @@ typedef struct		s_env
 t_env	*g_env;
 /*
  ** DEFINES
- */
+*/
 
 # define GRAY "\033[1;30m"
 # define RED "\033[1;31m"
@@ -42,7 +42,7 @@ t_env	*g_env;
 
 /*
  ** INCLUDE OF LIBS
- */
+*/
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -53,8 +53,18 @@ t_env	*g_env;
 # include <dirent.h>
 # include <fcntl.h>
 
-// !!!!!!!!!!!!!!!!!!!!!
-# include <string.h>
+/*
+** LIST FOR VARIABLES
+*/
+
+typedef struct		s_var
+{
+	char			*name;
+	char			*value;
+	struct s_var	*next;
+}					t_var;
+
+t_var	*g_var;
 
 /*
  ** LIST FOR AUTOCOMP
@@ -205,6 +215,11 @@ int			ft_cd(char **tab);
 void		load_conf_file(void);
 char		*is_alias(t_alias *list, char *alias);
 void		ft_alias(char **tab);
+void		show_var(t_var *list);
+void		set_var(char *name, char *value);
+void		unset_var(char *name);
+void		ft_set(char **tab);
+void		export_var(t_var *list, char *name);
 
 /*
  ** MAIN

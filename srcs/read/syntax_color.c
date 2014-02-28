@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 10:04:42 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/27 09:47:16 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/28 14:05:42 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,15 +55,27 @@ int		check_prog(char *str)
 		return (1);
 	else if (ft_strcmp(str, "env") == 0)
 		return (1);
+	else if (ft_strcmp(str, "set") == 0)
+		return (1);
+	else if (ft_strcmp(str, "unset") == 0)
+		return (1);
+	else if (ft_strcmp(str, "export") == 0)
+		return (1);
 	while (tab[i])
 	{
 		rep = opendir(tab[i++]);
-		while ((show = readdir(rep)))
+		if (rep)
 		{
-			if (ft_strcmp(str, show->d_name) == 0)
-				return (1);
+			while ((show = readdir(rep)))
+			{
+				if (ft_strcmp(str, show->d_name) == 0)
+				{
+					free(tab);
+					return (1);
+				}
+			}
+			closedir(rep);
 		}
-		closedir(rep);
 	}
 	return (0);
 }
@@ -85,16 +97,26 @@ t_list	*recup_prog(char *str, char **tab, t_list *list)
 				list = add_type(list, "cd", "Builtin");
 	else if (ft_strncmp(str, "env", ft_strlen(str)) == 0)
 				list = add_type(list, "env", "Builtin");
+	else if (ft_strncmp(str, "set", ft_strlen(str)) == 0)
+				list = add_type(list, "set", "Builtin");
+	else if (ft_strncmp(str, "unset", ft_strlen(str)) == 0)
+				list = add_type(list, "unset", "Builtin");
+	else if (ft_strncmp(str, "export", ft_strlen(str)) == 0)
+				list = add_type(list, "export", "Builtin");
 	while (tab[i])
 	{
 		rep = opendir(tab[i++]);
-		while ((show = readdir(rep)))
+		if (rep)
 		{
-			if (ft_strncmp(str, show->d_name, ft_strlen(str)) == 0)
-				list = add_type(list, show->d_name, "Executable");
+			while ((show = readdir(rep)))
+			{
+				if (ft_strncmp(str, show->d_name, ft_strlen(str)) == 0)
+					list = add_type(list, show->d_name, "Executable");
+			}
+			closedir(rep);
 		}
-		closedir(rep);
 	}
+	free(tab);
 	return (list);
 }
 

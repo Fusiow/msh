@@ -3,69 +3,74 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rkharif <rkharif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/12/19 19:13:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/11 16:10:35 by aardjoun         ###   ########.fr       */
+/*   Created: 2013/11/28 13:17:53 by rkharif           #+#    #+#             */
+/*   Updated: 2014/02/28 13:52:28 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <string.h>
 #include "../../includes/msh.h"
 
-static int	ft_nb_substrings(char const *s, char c)
+static int	countchar(char const *s, char c)
 {
-	int				i;
-	int				ret;
+	int		i;
 
 	i = 0;
-	ret = 0;
-	while (s[i] != '\0')
-	{
-		if (s[i] != c && (s[i + 1] == c || s[i + 1] == '\0'))
-			ret++;
+	while (s[i] != c && s[i])
 		i++;
-	}
-	return (ret);
+	return (i);
 }
 
-static char	**ft_tab_fill(char const *s, char c, char **tab, int nb_str)
+static int	countword(char const *s, char c)
 {
-	size_t			i;
-	size_t			sub_len;
-	int				j;
+	unsigned int	nb;
+	unsigned int	len;
+	unsigned int	i;
 
 	i = 0;
-	j = 0;
-	while (j < nb_str)
+	nb = 0;
+	if (s == 0)
+		return (0);
+	while (s[i])
 	{
-		sub_len = 0;
-		while (s[i] == c && s[i])
-			i++;
-		while (s[i] != c && s[i])
+		len = countchar(s + i, c);
+		if (len)
 		{
-			i++;
-			sub_len++;
+			nb++;
+			i += len;
 		}
-		tab[j] = ft_strsub(s, i - sub_len, sub_len);
-		j++;
+		else
+			i++;
 	}
-	tab[j] = '\0';
-	return (tab);
+	return (nb);
 }
 
 char		**ft_strsplit(char const *s, char c)
 {
-	char			**tab;
-	int				nb_str;
+	char				**ret;
+	unsigned int		i;
+	unsigned int		nbword;
+	unsigned int		nbchr;
 
-	if (!s)
-		return (NULL);
-	nb_str = ft_nb_substrings(s, c);
-	tab = (char**)malloc(sizeof(char *) * nb_str + 1);
-	tab[nb_str] = NULL;
-	if (tab)
-		tab = ft_tab_fill(s, c, tab, nb_str);
-	return (tab);
+	i = 0;
+	nbword = 0;
+	if (!(ret = (char **)malloc(sizeof(char *) * (countword(s, c) + 1))))
+	ret[countword(s, c)] = NULL;
+	if (s == 0)
+		return (0);
+	while (s[i])
+	{
+		nbchr = countchar(s + i, c);
+			if (nbchr)
+			{
+				ret[nbword] = ft_strsub(s, i, nbchr);
+				nbword++;
+				i += nbchr;
+			}
+			else
+				i++;
+	}
+	ret[nbword] = '\0';
+	return (ret);
 }

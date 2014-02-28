@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 10:04:37 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/21 20:02:59 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/28 14:15:15 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,7 @@ char	*get_man_path(void)
 		if ((ret = read(fd[0], result, 1500)) != 0)
 			result[ret - 1] = '\0';
 	}
+	close(fd[0]);
+	close(fd[1]);
 	return (result);
 }
