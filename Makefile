@@ -6,7 +6,7 @@
 #    By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/14 17:00:44 by aardjoun          #+#    #+#              #
-#    Updated: 2014/02/28 13:09:20 by lsolofri         ###   ########.fr        #
+#    Updated: 2014/02/28 16:50:39 by aardjoun         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -65,7 +65,8 @@ SRCS	=	srcs/main/main.c\
 			srcs/pipe/check_redirection.c\
 			srcs/pipe/pipe.c\
 			srcs/pipe/pipe_function.c\
-			srcs/pipe/redirection.c
+			srcs/pipe/redirection.c\
+			srcs/signal/signal.c
 
 HDRS	=	includes/msh.h
 

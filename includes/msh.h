@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/28 13:20:55 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/28 17:38:10 by aardjoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct		s_env
 }					t_env;
 
 t_env	*g_env;
+
 /*
  ** DEFINES
 */
@@ -65,6 +66,19 @@ typedef struct		s_var
 }					t_var;
 
 t_var	*g_var;
+
+/*
+** LIST FOR JOBS CONTROL
+*/
+
+typedef struct		s_jobs
+{
+	char			*name;
+	int				job;
+	int				pid;
+	int				status;
+	struct s_jobs	*next;
+}					t_jobs;
 
 /*
  ** LIST FOR AUTOCOMP
@@ -249,5 +263,12 @@ void	spe_outfile(char *str);
 void	go_pipe(char	**tab);
 t_command *split_pipe(t_command *list);
 char	**join_tab(char **tab);
+
+/*
+** SIGNALS
+*/
+
+void	interrupt_process(int s);
+void	interrupt_cmd(int s);
 
 #endif /* MSH_H */

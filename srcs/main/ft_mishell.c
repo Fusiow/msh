@@ -6,7 +6,7 @@
 /*   By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 15:59:27 by aardjoun          #+#    #+#             */
-/*   Updated: 2014/02/27 10:28:24 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/02/28 17:47:33 by aardjoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,10 @@ void	pre_exec(char *str, int *rt, int *ret)
 		if (detect_built(rt, tmp->cmd, ret))
 		{
 			if (fork())
+			{
+				signal(SIGINT, interrupt_process);
 				wait(0);
+			}
 			else
 			{
 				check_redirection(tmp->cmd);
