@@ -6,7 +6,7 @@
 /*   By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 15:59:27 by aardjoun          #+#    #+#             */
-/*   Updated: 2014/02/28 17:47:33 by aardjoun         ###   ########.fr       */
+/*   Updated: 2014/03/02 19:30:45 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	pre_exec(char *str, int *rt, int *ret)
 		result = is_alias(g_alias, tmp->cmd[0]);
 		if (result)
 			tmp = quick_parse(result);
-		if (detect_built(rt, tmp->cmd, ret))
+		if (tmp->cmd[0] && detect_built(rt, tmp->cmd, ret))
 		{
 			if (fork())
 			{

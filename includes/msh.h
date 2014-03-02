@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/28 17:38:10 by aardjoun         ###   ########.fr       */
+/*   Updated: 2014/03/02 20:00:23 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -234,6 +234,7 @@ void		set_var(char *name, char *value);
 void		unset_var(char *name);
 void		ft_set(char **tab);
 void		export_var(t_var *list, char *name);
+void		no_conf(void);
 
 /*
  ** MAIN
