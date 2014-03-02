@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_env.c                                      :+:      :+:    :+:   */
+/*   ft_tabdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/02/28 16:54:46 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/02 19:06:32 by lsolofri         ###   ########.fr       */
+/*   Created: 2014/03/02 18:01:09 by lsolofri          #+#    #+#             */
+/*   Updated: 2014/03/02 18:03:16 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/msh.h"
 
-void	ft_free_env(void)
+char	**ft_tabdup(char **src)
 {
-	t_env	*node;
-	t_env	*temp;
+	int		i;
+	char	**result;
 
-	node = g_env;
-	while (node)
+	i = ft_tablen(src);
+	result = (char **)malloc(sizeof(char *) * i);
+	i = 0;
+	while (src[i])
 	{
-		temp = node;
-		node = node->next;
-		if (temp->name)
-			free(temp->name);
-		if (temp->value)
-			free(temp->value);
-		free(temp);
-		temp = NULL;
+		result[i] = ft_strdup(src[i]);
+		++i;
 	}
-	free(node);
-	node = NULL;
+	result[i] = NULL;
+	return (result);
 }

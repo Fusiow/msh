@@ -6,7 +6,7 @@
 /*   By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 15:59:27 by aardjoun          #+#    #+#             */
-/*   Updated: 2014/02/28 23:44:02 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/02 19:03:37 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	pre_exec(char *str, int *rt, int *ret)
 			else
 			{
 				check_redirection(tmp->cmd);
-				exec_cmd(tmp->cmd);
+				exec_cmd(ft_tabdup(tmp->cmd));
 			}
 		}
 		tmp = tmp->next;

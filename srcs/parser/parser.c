@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 06:57:02 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/28 23:27:25 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/02 18:58:31 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ t_command	*add_tab(t_command *result, char **tab)
 
 	tmp2 = result;
 	tmp = (t_command *)malloc(sizeof(t_command));
-	tmp->cmd = tab;
+	tmp->cmd = ft_tabdup(tab);
 	tmp->next = NULL;
 	if (result == NULL)
 		return (tmp);
@@ -162,6 +162,7 @@ t_command	*quick_parse(char *str)
 		}
 		tab[i] = NULL;
 		result = add_tab(result, tab);
+		ft_free_tab(tab);
 		if (list)
 			list = list->next;
 	}

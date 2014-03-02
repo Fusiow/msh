@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/28 19:47:10 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/02 18:04:14 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,6 +211,7 @@ int			ft_atoi(const char *str);
 char		*result_cmd(char **tab);
 void		ft_free_cmd_list(t_command *list);
 void		ft_free_parse_list(t_parse *list);
+char		**ft_tabdup(char **src);
 
 /*
  ** ENVIRON

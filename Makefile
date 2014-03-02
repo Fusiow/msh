@@ -6,7 +6,7 @@
 #    By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/14 17:00:44 by aardjoun          #+#    #+#              #
-#    Updated: 2014/02/28 23:35:10 by lsolofri         ###   ########.fr        #
+#    Updated: 2014/03/02 18:03:45 by lsolofri         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -24,6 +24,7 @@ SRCS	=	srcs/main/main.c\
 			srcs/functions/ft_get_path.c\
 			srcs/functions/ft_isprint.c\
 			srcs/functions/ft_new_tab.c\
+			srcs/functions/ft_tabdup.c\
 			srcs/functions/ft_putchar.c\
 			srcs/functions/ft_putendl.c\
 			srcs/functions/ft_putnbr.c\

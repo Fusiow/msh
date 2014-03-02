@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 00:46:22 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/28 23:47:23 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/02 19:05:39 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,16 @@ t_env	*add_env(t_env *env, char *name, char *value)
 	tmp->value = ft_strdup(value);
 	tmp->next = NULL;
 	if (env == NULL)
+	{
+		free(name);
+		free(value);
 		return (tmp);
+	}
 	while (tmp2->next != NULL)
 		tmp2 = tmp2->next;
 	tmp2->next = tmp;
+	free(name);
+	free(value);
 	return (env);
 }
 
@@ -41,11 +47,17 @@ void	new_env(char **env)
 	if (i == 0)
 		show_error_exit("Could not set environnement");
 	i = 0;
-	while (env[i])
+	while (env[i] != NULL)
 	{
 		tmp = ft_strsplit(env[i], '=');
-		g_env = add_env(g_env, tmp[0], tmp[1]);
-		ft_free_tab(tmp);
+		if (tmp[0])
+		{
+			if (tmp[1])
+				g_env = add_env(g_env, tmp[0], tmp[1]);
+			else
+				g_env = add_env(g_env, tmp[0], NULL);
+		}
+		free(tmp);
 		tmp = NULL;
 		i++;
 	}
@@ -98,7 +110,7 @@ t_env	*ft_unsetenv(t_env *env, char *str)
 t_env	*ft_setenv(t_env *env, char *name, char *value)
 {
 	env = ft_unsetenv(env, name);
-	env = add_env(env, name, value);
+	env = add_env(env, ft_strdup(name), ft_strdup(value));
 	return (env);
 }
 
