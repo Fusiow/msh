@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:52:57 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/27 08:36:27 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/03 13:35:39 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int		distrib_buttons(int i, char **result, char *buffer, int *v)
 	return (i);
 }
 
-char	*take_cmd(void)
+char	*take_cmd(int choice)
 {
 	char			*result;
 	char			*buffer;
@@ -107,7 +107,10 @@ char	*take_cmd(void)
 		if (v == 0 && result)
 		{
 			clear_line(i, ft_strlen(result));
-			write_cmd(result, 0, 0);
+			if (choice == 0)
+				write_cmd(result, 0, 0);
+			else
+				ft_putstr(result);
 			replace_cursor(i, ft_strlen(result));
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 11:32:03 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/25 15:05:13 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/03 13:24:15 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 int		check_redirection(char **tab)
 {
 	int		i;
+	int		v;
 
 	i = 0;
+	v = -1;
 	while (tab[i])
 	{
 		if (!ft_strcmp(tab[i], "<"))
@@ -26,6 +28,25 @@ int		check_redirection(char **tab)
 		}
 		else
 			++i;
+	}
+	i = 0;
+	while (tab[i])
+	{
+		if (!ft_strcmp(tab[i], "<<"))
+		{
+			if (v != -1)
+			{
+				re_tab(tab, v);
+				i -= 2;
+			}
+			v = i;
+		}
+		++i;
+	}
+	if (v != -1)
+	{
+		spe_infile(tab[v + 1]);
+		re_tab(tab, v);
 	}
 	i = 0;
 	while (tab[i])

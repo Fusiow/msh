@@ -6,7 +6,7 @@
 /*   By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 15:53:46 by aardjoun          #+#    #+#             */
-/*   Updated: 2014/02/28 17:05:02 by aardjoun         ###   ########.fr       */
+/*   Updated: 2014/03/03 13:36:06 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int			main(int ac, char **av, char **environ)
 	{
 		prompt();
 		signal(SIGINT, interrupt_cmd);
-		str = take_cmd();
+		str = take_cmd(0);
 		pre_exec(str, &rt, &ret);
 		if (ret == 1)
 			break ;

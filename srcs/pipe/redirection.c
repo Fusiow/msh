@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 11:34:13 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/02 19:47:04 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/03 13:35:57 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,41 @@ void	infile(char *str)
 	else
 		dup2(fd, 0);
 	close(fd);
+}
+
+void	spe_infile(char *str)
+{
+	char	*buffer;
+	int		fd_pipe[2];
+	char	*result;
+	int		i;
+
+	i = 0;
+	if (pipe(fd_pipe))
+		return ;
+	buffer = NULL;
+	while (1)
+	{
+		ft_putstr("manual_entry>");
+		buffer = take_cmd(1);
+		if (ft_strcmp(buffer, str))
+		{
+			if (i == 0)
+				result = ft_strdup(buffer);
+			else
+				result = ft_strjoin(ft_strjoin(result, "\n"), buffer);
+			write(fd_pipe[1], buffer, ft_strlen(buffer));
+			write(fd_pipe[1], "\n", 1);
+		}
+		else
+			break ;
+		free(buffer);
+		buffer = NULL;
+		++i;
+	}
+	close(fd_pipe[1]);
+	dup2(fd_pipe[0], 0);
+	close(fd_pipe[0]);
 }
 
 void	outfile(char *str)

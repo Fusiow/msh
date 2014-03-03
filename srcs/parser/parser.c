@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 06:57:02 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/27 09:07:44 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/03 13:15:05 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	parser(char *cmd, int i, t_parse **list)
 		*list = add_word(*list, ">");
 		*list = add_word(*list, ft_strsub(cmd, v, (i - v)));
 	}
-	else if (cmd[i] == '<')
+	else if (cmd[i] == '<' && cmd[i + 1] != '<')
 	{
 		++i;
 		if (cmd[i] == ' ')
@@ -81,6 +81,17 @@ void	parser(char *cmd, int i, t_parse **list)
 		*list = add_word(*list, "<");
 		*list = add_word(*list, ft_strsub(cmd, v, (i - v)));
 
+	}
+	else if (cmd[i] == '<' && cmd[i + 1] == '<')
+	{
+		i += 2;
+		while (cmd[i] == ' ' && cmd[i])
+			++i;
+		v = i;
+		while (cmd[i] != ' ' && cmd[i] != ';' && cmd[i] != '|' && cmd[i])
+			++i;
+		*list = add_word(*list, "<<");
+		*list = add_word(*list, ft_strsub(cmd, v, (i - v)));
 	}
 	else if (cmd[i] == '|')
 	{

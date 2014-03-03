@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/02 20:00:23 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/03 13:37:12 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,7 +164,7 @@ t_option	*get_description(char *options, char *path);
 t_option	*return_options(char *cmd);
 char		*change_cmd(int i, char *result, char letter);
 int			distrib_buttons(int i, char **result, char *buffer, int *v);
-char		*take_cmd(void);
+char		*take_cmd(int choice);
 t_list		*add_type(t_list *list, char *str, char *type);
 t_list		*recup_prog(char *str, char **tab, t_list *list);
 void		show_cmd(char *str);
@@ -264,6 +264,7 @@ void	spe_outfile(char *str);
 void	go_pipe(char	**tab);
 t_command *split_pipe(t_command *list);
 char	**join_tab(char **tab);
+void	spe_infile(char *str);
 
 /*
 ** SIGNALS
