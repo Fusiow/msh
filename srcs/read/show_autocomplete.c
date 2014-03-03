@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/15 14:47:45 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/26 23:18:09 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/03 14:31:47 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,11 @@ char	*show_tab(char *cmd)
 			++i;
 			list = list->next;
 		}
+		if (i > 15)
+			i = auto_comp_choice(i);
 		list = NULL;
 		list = recup_prog(cmd, ft_strsplit(getenv("PATH"), ':'), list);
-		if (i != 1)
+		if (i != 1 && i != 0)
 		{
 			ft_putstr("\n");
 			while (list)
@@ -62,7 +64,7 @@ char	*show_tab(char *cmd)
 			}
 			return ("ok");
 		}
-		else
+		else if (i != 0)
 		{
 			i = 0;
 			while (list->name[i] == cmd[i] && list->name[i] && cmd[i])

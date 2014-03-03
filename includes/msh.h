@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/03 13:37:12 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/03 14:29:49 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,6 +176,7 @@ void		show_diff_option(char *str);
 void		syntax_color_rest(char *str);
 void		write_cmd(char *str, int i, int command);
 int			check_prog(char *str);
+int			auto_comp_choice(int i);
 
 /*
  ** FUNCTIONS
