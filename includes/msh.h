@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/03 14:29:49 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/03 16:24:12 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,13 +170,14 @@ t_list		*recup_prog(char *str, char **tab, t_list *list);
 void		show_cmd(char *str);
 t_option	*add_option(t_option *list, char option, char *description);
 char		*get_cmd_description(char *cmd);
-char		*show_autocomplete(char *str);
+char		*show_autocomplete(char *str, int v);
 void		show_options_in_line(char *cmd);
 void		show_diff_option(char *str);
 void		syntax_color_rest(char *str);
 void		write_cmd(char *str, int i, int command);
 int			check_prog(char *str);
 int			auto_comp_choice(int i);
+char		*spe_autocomp(char *cmd, int len);
 
 /*
  ** FUNCTIONS
@@ -208,6 +209,7 @@ char		*get_man_path(void);
 int			ft_isdigit(char c);
 int			ft_atoi(const char *str);
 char		*result_cmd(char **tab);
+void		welcome(void);
 
 /*
  ** ENVIRON

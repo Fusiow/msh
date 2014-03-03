@@ -6,7 +6,7 @@
 /*   By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 15:53:46 by aardjoun          #+#    #+#             */
-/*   Updated: 2014/03/03 13:36:06 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/03 16:24:46 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int			main(int ac, char **av, char **environ)
 	rt = 0;
 	(void)ac;
 	(void)av;
+	welcome();
 	new_env(environ);
 	load_conf_file();
 	while (1)

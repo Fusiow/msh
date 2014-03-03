@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/15 14:47:45 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/03 14:31:47 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/03 16:06:36 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,15 +77,21 @@ char	*show_tab(char *cmd)
 	return (NULL);
 }
 
-char	*show_autocomplete(char *str)
+char	*show_autocomplete(char *str, int v)
 {
-	int		i;
-	char	*tmp;
+	int				i;
+	char			*tmp;
+	static int		status;
 
 	i = 0;
+	if (v == 0)
+	{
+		status = 0;
+		return (0);
+	}
 	while (str[i] != ' ' && str[i])
 		++i;
-	if (!str[i])
+	if (!str[i] && status == 0)
 	{
 		tmp = show_tab(ft_strsub(str, 0, i));
 		if (tmp && ft_strcmp(tmp, "ok"))
@@ -114,7 +120,10 @@ char	*show_autocomplete(char *str)
 				ft_putstr(tgetstr("nd", NULL));
 			}
 		}
+		status = 1;
 	}
+	else if (status == 1)
+		str = spe_autocomp(str, ft_strlen(str));
 	else if (str[i + 1] == '-' && !str[i + 2])
 	{
 		show_diff_option(ft_strsub(str, 0, i));
@@ -129,6 +138,7 @@ char	*show_autocomplete(char *str)
 				ft_putstr(tgetstr("nd", NULL));
 				ft_putstr(tgetstr("nd", NULL));
 			}
+		status = 2;
 	}
 	return (str);
 }

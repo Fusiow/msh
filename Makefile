@@ -6,7 +6,7 @@
 #    By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/14 17:00:44 by aardjoun          #+#    #+#              #
-#    Updated: 2014/03/03 14:30:10 by lsolofri         ###   ########.fr        #
+#    Updated: 2014/03/03 16:24:26 by lsolofri         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -40,6 +40,7 @@ SRCS	=	srcs/main/main.c\
 			srcs/functions/get_next_line.c\
 			srcs/functions/ft_atoi.c\
 			srcs/functions/ft_cmd_result.c\
+			srcs/functions/welcome.c\
 			srcs/read/actions.c\
 			srcs/read/buttons.c\
 			srcs/read/history.c\
@@ -53,6 +54,7 @@ SRCS	=	srcs/main/main.c\
 			srcs/read/show_option.c\
 			srcs/read/parser_color.c\
 			srcs/read/parsing_man.c\
+			srcs/read/spe_autocomp.c\
 			srcs/read/autocomplete_too_long.c\
 			srcs/builtin/exit.c\
 			srcs/builtin/echo.c\

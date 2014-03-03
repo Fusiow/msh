@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:52:57 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/03 13:35:39 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/03 16:06:24 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int		distrib_buttons(int i, char **result, char *buffer, int *v)
 	else if (buffer[0] == 9 && ft_strcmp(*result, ""))
 	{
 		tmp = ft_strdup(*result);
-		*result = show_autocomplete(*result);
+		*result = show_autocomplete(*result, 1);
 		if (ft_strcmp(*result, tmp))
 			i = ft_strlen(*result);
 		else
@@ -116,6 +116,7 @@ char	*take_cmd(int choice)
 	}
 	ft_putstr("\n");
 	free(buffer);
+	show_autocomplete(NULL, 0);
 	history(0, result);
 	re_flag(&term);
 	return (result);
