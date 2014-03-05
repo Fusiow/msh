@@ -6,7 +6,7 @@
 #    By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/14 17:00:44 by aardjoun          #+#    #+#              #
-#    Updated: 2014/03/03 16:24:26 by lsolofri         ###   ########.fr        #
+#    Updated: 2014/03/05 04:21:11 by lsolofri         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -72,9 +72,10 @@ SRCS	=	srcs/main/main.c\
 			srcs/pipe/redirection.c\
 			srcs/signal/signal.c
 
+
 HDRS	=	includes/msh.h
 
-CFLAGS = -g -Wall -Wextra -Werror
+#CFLAGS = -g -Wall -Wextra -Werror
 
 CC		=	gcc
 

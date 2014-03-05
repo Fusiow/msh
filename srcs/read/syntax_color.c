@@ -5,8 +5,20 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2014/03/05 05:45:09 by lsolofri          #+#    #+#             */
+/*   Updated: 2014/03/05 05:47:15 by lsolofri         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   syntax_color.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 10:04:42 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/28 14:05:42 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/05 05:44:31 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +54,9 @@ int		check_prog(char *str)
 	DIR		*rep;
 	struct dirent	*show;
 	char	**tab;
+	int		result;
 
+	result = 0;
 	tab = ft_strsplit(find_value_envir(g_env, "PATH"), ':');
 	i = 0;
 	if (ft_strcmp(str, "exit") == 0)
@@ -69,15 +83,13 @@ int		check_prog(char *str)
 			while ((show = readdir(rep)))
 			{
 				if (ft_strcmp(str, show->d_name) == 0)
-				{
-					free(tab);
-					return (1);
-				}
+					result = 1;
 			}
-			closedir(rep);
 		}
+		closedir(rep);
 	}
-	return (0);
+	ft_free_tab(tab);
+	return (result);
 }
 
 t_list	*recup_prog(char *str, char **tab, t_list *list)

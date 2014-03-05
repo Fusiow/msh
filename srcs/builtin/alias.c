@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 04:12:42 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/27 10:28:22 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/03 17:09:45 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char	*is_alias(t_alias *list, char *alias)
 	while (list && ft_strcmp(list->alias, alias))
 		list = list->next;
 	if (list)
-		return (list->value);
+		return (ft_strdup(list->value));
 	return (NULL);
 }
 

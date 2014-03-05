@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/27 08:31:33 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/02 19:51:15 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/05 05:49:56 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 
 void	write_cmd(char *cmd, int i, int command)
 {
-	int		v;
-	char	*tmp;
+	int			v;
+	char		*tmp;
 
-	while (cmd[i] == ' ' && cmd[i])
+	tmp = NULL;
+	while (cmd[i] && cmd[i] == ' ')
 		ft_putchar(cmd[i++]);
 	if (!cmd[i])
 		return ;
@@ -109,14 +110,16 @@ void	write_cmd(char *cmd, int i, int command)
 				ft_putstr(RED);
 			i = v;
 		}
-		else if (cmd[i] == '-')
+		else
 			ft_putstr(SBLUE);
 		while (cmd[i] != ' ' && cmd[i])
 			ft_putchar(cmd[i++]);
 		if (tmp)
 		{
-			if (check_prog(tmp) && !cmd[i])
+			if (!cmd[i] && check_prog(tmp))
 				show_options_in_line(tmp);
+			free(tmp);
+			tmp = NULL;
 		}
 		ft_putstr(DEF);
 	}

@@ -3,56 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spuyet <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: rkharif <rkharif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/26 18:41:13 by spuyet            #+#    #+#             */
-/*   Updated: 2014/02/27 00:55:15 by lsolofri         ###   ########.fr       */
+/*   Created: 2013/11/24 22:40:27 by rkharif           #+#    #+#             */
+/*   Updated: 2014/03/03 18:32:00 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <string.h>
-size_t		ft_strlen(const char *s);
+size_t	ft_strlen(const char *s1);
 
-static char	*fill_string(char *str1, char *str2, char *str3)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t	i;
+	char	*str;
+	int		i;
+	int		v;
 
 	i = 0;
-	if (str3)
+	v = 0;
+	if (!s1 || !s2)
+		return (NULL);
+	str = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (str)
 	{
-		while (*str1)
-		{
-			str3[i] = *str1;
-			str1++;
-			i++;
-		}
-		while (*str2)
-		{
-			str3[i] = *str2;
-			str2++;
-			i++;
-		}
-		str3[i] = '\0';
-		return (str3);
+		while (s1[i])
+			str[v++] = s1[i++];
+		i = 0;
+		while (s2[i])
+			str[v++] = s2[i++];
+		str[v] = '\0';
+		return (str);
 	}
-	return (NULL);
-}
-
-char		*ft_strjoin(char const *s1, char const *s2)
-{
-	char		*str1;
-	char		*str2;
-	char		*str3;
-	size_t		len;
-
-	str1 = (char *) s1;
-	str2 = (char *) s2;
-	if (str1 && str2)
-	{
-		len = ft_strlen(str1) + ft_strlen(str2) + 1;
-		str3 = (char *) malloc(len * sizeof(char));
-		return (fill_string(str1, str2, str3));
-	}
-	return (NULL);
+	return (0);
 }

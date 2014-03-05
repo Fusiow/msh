@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:52:57 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/03 16:06:24 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/05 04:34:53 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ char	*change_cmd(int i, char *result, char letter)
 	char	*tmp;
 	char	*end;
 	char	*c;
-	int		save;
 
 	c = char_to_string(letter);
 	if (!result)
@@ -32,16 +31,13 @@ char	*change_cmd(int i, char *result, char letter)
 		return (ft_strjoin(c, result));
 	else
 	{
-		save = ft_strlen(result);
 		tmp = ft_strsub(result, 0, i);
-		tmp[i] = '\0';
-		end = ft_strsub(result, i, save - i);
+		end = ft_strsub(result, i, ft_strlen(result));
 		tmp = ft_strjoin(tmp, c);
 		result = ft_strjoin(tmp, end);
 		free(end);
 		free(tmp);
 		free(c);
-		result[save + 1] = '\0';
 	}
 	return (result);
 }
@@ -87,6 +83,7 @@ char	*take_cmd(int choice)
 	int				v;
 
 	i = 0;
+	(void)choice;
 	init_flag(&term);
 	buffer = (char *)malloc(sizeof(char) * 3);
 	result = (char *)malloc(sizeof(char) * 2058);
@@ -97,8 +94,7 @@ char	*take_cmd(int choice)
 		read(0, buffer, 3);
 		if (ft_isprint(buffer[0]))
 		{
-			result = change_cmd(i, result, buffer[0]);
-			i = i + 1;
+			result = change_cmd(i++, result, buffer[0]);
 		}	
 		else
 			i = distrib_buttons(i, &result, buffer, &v);
