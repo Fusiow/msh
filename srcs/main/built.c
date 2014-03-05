@@ -17,7 +17,7 @@ int		detect_built(int *rt, char **tab, int *bc)
 	int		ret;
 
 	if (!(ret = ft_strcmp("exit", tab[0])))
-		*bc = ft_exit(tab, rt);
+		ft_exit(tab);
 	else if (!(ret = ft_strcmp("cd", tab[0])))
 		ft_cd(tab);
 	else if (!(ret = ft_strcmp("env", tab[0])))

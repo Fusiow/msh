@@ -12,21 +12,22 @@
 
 #include "../../includes/msh.h"
 
-int				ft_exit(char **tab, int *rt)
+int				ft_exit(char **tab)
 {
 	int			i;
+	int			rt;
 
 	i = -1;
+	rt = 0;
 	while (tab[1] && tab[1][++i] != '\0')
 	{
 		if (ft_isdigit(tab[1][i]))
-			*rt = ft_atoi(tab[1]);
+			rt = ft_atoi(tab[1]);
 		else
 		{
 			exit_error(tab);
-			*rt = 0;
-			return (-1);
+			_exit(-1);
 		}
 	}
-	return (1);
+	_exit(rt);
 }

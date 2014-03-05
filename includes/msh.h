@@ -227,7 +227,7 @@ char	**make_env_tab(t_env *env);
  */
 
 void		ft_echo(char **tab);
-int			ft_exit(char **tab, int *rt);
+int			ft_exit(char **tab);
 int			ft_cd(char **tab);
 void		load_conf_file(void);
 char		*is_alias(t_alias *list, char *alias);
