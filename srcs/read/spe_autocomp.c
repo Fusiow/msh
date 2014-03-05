@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/03 15:11:46 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/03 16:21:02 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/05 10:10:30 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 char	*spe_autocomp(char *cmd, int len)
 {
 	static t_list	*list; 
+	static t_list	*beg; 
 	static int		v;
 	static char		*str;
 	int				i;
@@ -25,7 +26,10 @@ char	*spe_autocomp(char *cmd, int len)
 	{
 		str = ft_strdup(cmd);
 		list = recup_prog(cmd, ft_strsplit(getenv("PATH"), ':'), list);
+		beg = list;
 	}
+	if (!list)
+		list = beg;
 	if (list)
 	{
 		while (list->name[i] == cmd[i] && list->name[i] && cmd[i])

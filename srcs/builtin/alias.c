@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 04:12:42 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/03 17:09:45 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/05 14:18:33 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,30 @@ t_alias	*add_alias(t_alias *list, char *alias, char *value)
 	return (list);
 }
 
-char	*is_alias(t_alias *list, char *alias)
+char	**is_alias(t_alias *list, char **tab)
 {
-	while (list && ft_strcmp(list->alias, alias))
-		list = list->next;
-	if (list)
-		return (ft_strdup(list->value));
-	return (NULL);
+	int			i;
+	int			v;
+	t_alias		*tmp;
+	t_command	*result;
+
+	tmp = list;
+	i = 0;
+	while (tab[i])
+	{
+		while (list)
+		{
+			if (ft_strcmp(tab[i], list->alias))
+			{
+				result = quick_parse(list->value);
+				
+			}
+			list = list->next;
+		}
+		list = tmp;
+		++i;
+	}
+	return (tab);
 }
 
 void	show_alias(t_alias *list)
@@ -75,8 +92,7 @@ void	ft_alias(char **tab)
 {
 	if (tab[1] && tab[2])
 	{
-		if (is_alias(g_alias, tab[1]))
-			g_alias = del_alias(g_alias, tab[1]);
+		g_alias = del_alias(g_alias, tab[1]);
 		g_alias = add_alias(g_alias, tab[1], tab[2]);
 	}
 	else

@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/05 04:19:48 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/05 14:18:42 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,7 @@ void		show_error_exit(char *str);
 void		exit_error(char **tab);
 void		unknow_cmd(char *str);
 int			cd_error(char *str);
+void		err_no_file(char *str);
 
 /*
  ** READ
@@ -230,7 +231,7 @@ void		ft_echo(char **tab);
 int			ft_exit(char **tab, int *rt);
 int			ft_cd(char **tab);
 void		load_conf_file(void);
-char		*is_alias(t_alias *list, char *alias);
+char		**is_alias(t_alias *list, char **tab);
 void		ft_alias(char **tab);
 void		show_var(t_var *list);
 void		set_var(char *name, char *value);

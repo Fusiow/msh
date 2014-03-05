@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 11:32:03 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/03 13:24:15 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/05 10:44:38 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,11 @@ int		check_redirection(char **tab)
 			++i;
 	}
 	i = 0;
+	if (!tab[i])
+	{
+		pre_exec("cat", &i, &i);
+		_exit(0);
+	}
 	while (tab[i])
 	{
 		if (!ft_strcmp(tab[i], "<<"))

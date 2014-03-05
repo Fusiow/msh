@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 11:34:13 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/03 13:35:57 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/05 10:39:59 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	infile(char *str)
 	fd = open(str, O_RDONLY);
 	if (fd == -1)
 	{
-		show_error("File error.");
+		err_no_file(str);
 		_exit(0);
 	}
 	else
