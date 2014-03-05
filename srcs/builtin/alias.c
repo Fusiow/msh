@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 04:12:42 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/05 14:18:33 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/05 14:46:28 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,14 @@ char	**is_alias(t_alias *list, char **tab)
 
 	tmp = list;
 	i = 0;
-	while (tab[i])
+	while (tab[i] != NULL)
 	{
 		while (list)
 		{
-			if (ft_strcmp(tab[i], list->alias))
+			if (ft_strcmp(tab[i], list->alias) == 0)
 			{
 				result = quick_parse(list->value);
-				
+				tab = ft_insert_tab(tab, result->cmd, i);
 			}
 			list = list->next;
 		}

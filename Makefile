@@ -6,7 +6,7 @@
 #    By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/14 17:00:44 by aardjoun          #+#    #+#              #
-#    Updated: 2014/03/05 05:57:09 by lsolofri         ###   ########.fr        #
+#    Updated: 2014/03/05 14:34:33 by lsolofri         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -41,6 +41,7 @@ SRCS	=	srcs/main/main.c\
 			srcs/functions/ft_atoi.c\
 			srcs/functions/ft_cmd_result.c\
 			srcs/functions/welcome.c\
+			srcs/functions/ft_insert_tab.c\
 			srcs/read/actions.c\
 			srcs/read/buttons.c\
 			srcs/read/history.c\
@@ -75,7 +76,7 @@ SRCS	=	srcs/main/main.c\
 
 HDRS	=	includes/msh.h
 
-CFLAGS = -g -Wall -Wextra -Werror
+CFLAGS = -g #-Wall -Wextra -Werror
 
 CC		=	gcc
 

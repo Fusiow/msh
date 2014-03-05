@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/05 14:18:42 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/05 14:28:07 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,6 +211,7 @@ int			ft_isdigit(char c);
 int			ft_atoi(const char *str);
 char		*result_cmd(char **tab);
 void		welcome(void);
+char		**ft_insert_tab(char **src, char **tab, int i);
 
 /*
  ** ENVIRON
