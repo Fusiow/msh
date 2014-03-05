@@ -104,6 +104,7 @@ msh		:
 	@echo "MMMMMMMM               MMMMMMMM SSSSSSSSSSSSSSS   HHHHHHHHH     HHHHHHHHH"
 
 $(NAME)	:	$(OBJS)
+	touch ~/.mshrc
 	@$(CC) $(CFLAGS) $(LIBS) $(OBJS) -o $(NAME)
 	@echo "done"
 
