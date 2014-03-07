@@ -6,7 +6,7 @@
 #    By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/14 17:00:44 by aardjoun          #+#    #+#              #
-#    Updated: 2014/03/05 14:34:33 by lsolofri         ###   ########.fr        #
+#    Updated: 2014/03/07 17:28:32 by lsolofri         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -105,7 +105,6 @@ msh		:
 	@echo "MMMMMMMM               MMMMMMMM SSSSSSSSSSSSSSS   HHHHHHHHH     HHHHHHHHH"
 
 $(NAME)	:	$(OBJS)
-	touch ~/.mshrc
 	@$(CC) $(CFLAGS) $(LIBS) $(OBJS) -o $(NAME)
 	@echo "done"
 
