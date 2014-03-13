@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 06:57:02 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/03 13:15:05 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/13 14:05:57 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_parse		*add_word(t_parse *list, char *str)
 	t_parse		*tmp2;
 
 	tmp2 = list;
-	tmp = (t_parse *)malloc(sizeof(t_parse));
+	tmp = (t_parse *)ft_memalloc(sizeof(t_parse));
 	tmp->str = str;
 	tmp->next = NULL;
 	if (list == NULL)
@@ -93,6 +93,11 @@ void	parser(char *cmd, int i, t_parse **list)
 		*list = add_word(*list, "<<");
 		*list = add_word(*list, ft_strsub(cmd, v, (i - v)));
 	}
+	else if (cmd[i] == '|' && cmd[i + 1] == '|')
+	{
+		*list = add_word(*list, "||");
+		i += 2;
+	}
 	else if (cmd[i] == '|')
 	{
 		*list = add_word(*list, "|");
@@ -136,7 +141,7 @@ t_command	*add_tab(t_command *result, char **tab)
 	t_command	*tmp2;
 
 	tmp2 = result;
-	tmp = (t_command *)malloc(sizeof(t_command));
+	tmp = (t_command *)ft_memalloc(sizeof(t_command));
 	tmp->cmd = tab;
 	tmp->next = NULL;
 	if (result == NULL)
@@ -149,7 +154,7 @@ t_command	*add_tab(t_command *result, char **tab)
 
 t_command	*quick_parse(char *str)
 {
-	t_parse 	*list;
+	t_parse		*list;
 	int			i;
 	char		**tab;
 	t_command	*result;
@@ -161,7 +166,7 @@ t_command	*quick_parse(char *str)
 	while (list)
 	{
 		i = list_len_cmd(list);
-		tab = (char **)malloc(sizeof(char *) * i + 1);
+		tab = (char **)ft_memalloc(sizeof(char *) * i + 1);
 		i = 0;
 		while (list != NULL && (ft_strcmp(list->str, ";")))
 		{

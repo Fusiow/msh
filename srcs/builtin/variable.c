@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 12:47:27 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/28 14:47:46 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/13 08:51:59 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_var	*add_var(t_var *list, char *name, char *value)
 	t_var	*tmp2;
 
 	tmp2 = list;
-	tmp = (t_var *)malloc(sizeof(t_alias));
+	tmp = (t_var *)ft_memalloc(sizeof(t_alias));
 	tmp->name = name;
 	tmp->value = value;
 	tmp->next = NULL;

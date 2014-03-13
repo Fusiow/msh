@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/02 19:54:06 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/02 20:30:41 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/13 08:51:34 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	no_conf(void)
 	int				fd;
 
 	init_flag(&term);
-	buffer = (char *)malloc(sizeof(char) * 3);
+	buffer = (char *)ft_memalloc(sizeof(char) * 3);
 	ft_putstr(tgetstr("cl", NULL));
 	ft_putendl("Welcome in MSH!\nYou have no configuration file for the moment, please, make a choice! :");
 	ft_putendl("[0] Create an empty configuration file");

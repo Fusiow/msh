@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 00:46:22 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/05 05:39:00 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/13 09:10:57 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ char	**make_env_tab(t_env *env)
 	char	**result;
 
 	i = list_len(env);
-	result = (char **)malloc(sizeof(char *) * i + 1);
+	result = (char **)ft_memalloc(sizeof(char *) * i + 1);
 	i = 0;
 	while (env)
 	{

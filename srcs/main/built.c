@@ -6,13 +6,13 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/21 18:56:49 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/28 13:09:04 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/13 12:27:41 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/msh.h"
 
-int		detect_built(int *rt, char **tab, int *bc)
+int		detect_built(char **tab)
 {
 	int		ret;
 

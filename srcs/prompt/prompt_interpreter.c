@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/21 16:30:44 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/25 03:42:30 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/13 09:10:15 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ int		show_color(char *str, int i)
 	}
 	c = ft_strsub(str, v, j - 1);
 	interprate_color(c);
-	free(c);
 	return (i);
 }
 

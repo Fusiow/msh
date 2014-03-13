@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:52:57 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/05 04:34:53 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/13 16:24:25 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,24 +17,39 @@ char	*change_cmd(int i, char *result, char letter)
 	char	*tmp;
 	char	*end;
 	char	*c;
+	char	*new;
 
 	c = char_to_string(letter);
 	if (!result)
-	{
-		ft_putstr(c);
-		free(c);
 		return (c);
-	}
 	if (i == ft_strlen(result))
-		return (ft_strjoin(result, c));
+	{
+		new = ft_spe_strjoin(result, c);
+		free(result);
+		free(c);
+		result = NULL;
+		c = NULL;
+		return (new);
+	}
 	else if (i == 0)
-		return (ft_strjoin(c, result));
+	{
+		new = ft_spe_strjoin(c, result);
+		free(c);
+		free(result);
+		result = NULL;
+		return (new);
+	}
 	else
 	{
-		tmp = ft_strsub(result, 0, i);
-		end = ft_strsub(result, i, ft_strlen(result));
-		tmp = ft_strjoin(tmp, c);
-		result = ft_strjoin(tmp, end);
+		tmp = ft_spe_strsub(result, 0, i);
+		end = ft_spe_strsub(result, i, ft_strlen(result));
+		new = ft_strdup(tmp);
+		free(tmp);
+		tmp = NULL;
+		tmp = ft_spe_strjoin(new, c);
+		free(result);
+		result = NULL;
+		result = ft_spe_strjoin(tmp, end);
 		free(end);
 		free(tmp);
 		free(c);
@@ -86,7 +101,7 @@ char	*take_cmd(int choice)
 	(void)choice;
 	init_flag(&term);
 	buffer = (char *)malloc(sizeof(char) * 3);
-	result = (char *)malloc(sizeof(char) * 2058);
+	result = NULL;
 	while (1)
 	{
 		v = 0;

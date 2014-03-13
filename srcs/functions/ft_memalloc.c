@@ -1,36 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsub.c                                        :+:      :+:    :+:   */
+/*   ft_memalloc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/21 17:02:08 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/13 09:01:35 by lsolofri         ###   ########.fr       */
+/*   Created: 2014/03/13 08:33:33 by lsolofri          #+#    #+#             */
+/*   Updated: 2014/03/13 08:43:07 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "../../includes/msh.h"
 
-char	*ft_strsub(char const *s, unsigned int start, size_t len)
+void	*ft_memalloc(size_t size)
 {
-	char	*ptr;
-	size_t	i;
+	void	*new;
 
-	i = 0;
-	if (len == 0 || !s)
-		return (0);
-	ptr = (char *)ft_memalloc((sizeof(char)) * len);
-	if (ptr != NULL)
-	{
-		while (i < len)
-		{
-			ptr[i] = s[start];
-			++start;
-			++i;
-		}
-		ptr[i] = '\0';
-		return (ptr);
-	}
-	return (NULL);
+	if ((new = malloc(size)) == NULL)
+		return (NULL);
+	ft_bzero(new, size);
+	ft_gc(new, E_GCADD);
+	return (new);
 }

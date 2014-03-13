@@ -6,7 +6,7 @@
 /*   By: rkharif <rkharif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/28 13:17:53 by rkharif           #+#    #+#             */
-/*   Updated: 2014/03/13 09:01:02 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/13 15:33:09 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static int	countword(char const *s, char c)
 	return (nb);
 }
 
-char		**ft_strsplit(char const *s, char c)
+char		**ft_spe_strsplit(char const *s, char c)
 {
 	char				**ret;
 	unsigned int		i;
@@ -55,7 +55,7 @@ char		**ft_strsplit(char const *s, char c)
 
 	i = 0;
 	nbword = 0;
-	if (!(ret = (char **)ft_memalloc(sizeof(char *) * (countword(s, c) + 1))))
+	if (!(ret = (char **)malloc(sizeof(char *) * (countword(s, c) + 1))))
 	ret[countword(s, c)] = NULL;
 	if (s == 0)
 		return (0);
@@ -64,7 +64,7 @@ char		**ft_strsplit(char const *s, char c)
 		nbchr = countchar(s + i, c);
 			if (nbchr)
 			{
-				ret[nbword] = ft_strsub(s, i, nbchr);
+				ret[nbword] = ft_spe_strsub(s, i, nbchr);
 				nbword++;
 				i += nbchr;
 			}

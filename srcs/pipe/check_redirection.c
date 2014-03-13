@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 11:32:03 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/05 10:44:38 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/13 12:29:42 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int		check_redirection(char **tab)
 	i = 0;
 	if (!tab[i])
 	{
-		pre_exec("cat", &i, &i);
+		pre_exec("cat");
 		_exit(0);
 	}
 	while (tab[i])

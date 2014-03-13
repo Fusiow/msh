@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 14:15:21 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/03 14:17:22 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/13 15:47:29 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	show_options_in_line(char *cmd)
 		{
 			man_path = ft_strjoin(*path, ft_strjoin("/", ft_strjoin(man,
 							ft_strjoin(cmd, ft_strjoin(".",
-									char_to_string(man[3]))))));
+									char_to_string2(man[3]))))));
 			if (access(man_path, F_OK) != -1)
 			{
 				if (get_options(open(man_path, O_RDONLY)))

@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/05 14:28:07 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/13 15:45:16 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define MSH_H
 
 /*
-** GLOBAL LIST
-*/
+ ** GLOBAL LIST
+ */
 
 typedef struct		s_env
 {
@@ -28,8 +28,9 @@ t_env	*g_env;
 
 /*
  ** DEFINES
-*/
+ */
 
+# define GC_NBSTART 100
 # define GRAY "\033[1;30m"
 # define RED "\033[1;31m"
 # define GRE "\033[1;32m"
@@ -43,7 +44,7 @@ t_env	*g_env;
 
 /*
  ** INCLUDE OF LIBS
-*/
+ */
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -55,8 +56,8 @@ t_env	*g_env;
 # include <fcntl.h>
 
 /*
-** LIST FOR VARIABLES
-*/
+ ** LIST FOR VARIABLES
+ */
 
 typedef struct		s_var
 {
@@ -68,8 +69,8 @@ typedef struct		s_var
 t_var	*g_var;
 
 /*
-** LIST FOR JOBS CONTROL
-*/
+ ** LIST FOR JOBS CONTROL
+ */
 
 typedef struct		s_jobs
 {
@@ -130,6 +131,35 @@ typedef struct			s_command
 t_command	*quick_parse(char *str);
 
 /*
+ ** LEAKS
+ */
+
+typedef struct s_gc		t_gc;
+typedef struct s_gcinfo	t_gcinfo;
+
+struct  s_gcinfo
+{
+	int     nb;
+	int     size;
+	t_gc    *first_avail;
+	t_gc    *first;
+};
+
+typedef enum	e_gcop
+{
+	E_GCADD,
+	E_GCFREE,
+	E_GCFREEALL,
+	E_GCFREEGC
+}				t_gcop;
+
+struct	s_gc
+{
+	void	*p;
+	t_gc	*next;
+};
+
+/*
  ** ERRORS
  */
 
@@ -150,6 +180,7 @@ void		re_flag(struct termios *term);
 char		*init_buffer(char *buffer);
 char		*history(int choice, char *str);
 char		*char_to_string(char c);
+char		*char_to_string2(char c);
 char		*del_c(char *result, int *i);
 void		show_complete(char *str, char *cmd);
 void		show_options(char c);
@@ -186,7 +217,9 @@ char		*spe_autocomp(char *cmd, int len);
 
 int			ft_putchar(char c);
 char		*ft_strjoin(char const *s1, char const *s2);
+char		*ft_spe_strjoin(char const *s1, char const *s2);
 char		*ft_strsub(char const *s, unsigned int start, size_t len);
+char		*ft_spe_strsub(char const *s, unsigned int start, size_t len);
 int			ft_strlen(char *s);
 char		**ft_new_tab(int i);
 void		ft_free_tab(char **tab);
@@ -204,6 +237,7 @@ char		*ft_strdup(const char *s);
 char		*ft_strjoin(char const *s1, char const *s2);
 int			ft_strlen(char *s);
 char		**ft_strsplit(char const *s, char c);
+char		**ft_spe_strsplit(char const *s, char c);
 char		*ft_strsub(char const *s, unsigned int start, size_t len);
 char		*get_next_line(int fd);
 char		*get_man_path(void);
@@ -212,6 +246,11 @@ int			ft_atoi(const char *str);
 char		*result_cmd(char **tab);
 void		welcome(void);
 char		**ft_insert_tab(char **src, char **tab, int i);
+void		*ft_memalloc(size_t size);
+void		ft_gc(void *p, t_gcop op);
+void		ft_bzero(void *s, size_t n);
+void		ft_gcrealloc(t_gc **ring, t_gcinfo **info, int init_size);
+void		ft_gcinit(t_gc **ring, int init_size, t_gcinfo **info);
 
 /*
  ** ENVIRON
@@ -248,8 +287,8 @@ void		no_conf(void);
 void		ft_mishell(char *line);
 char		**ft_get_path(char **env, char *line);
 void		exec_cmd(char **tab);
-int			detect_built(int *rt, char **tab, int *bc);
-void		pre_exec(char *str, int *rt, int *ret);
+int			detect_built(char **tab);
+int			pre_exec(char *str);
 
 /*
  ** PROMPT
@@ -272,10 +311,16 @@ char	**join_tab(char **tab);
 void	spe_infile(char *str);
 
 /*
-** SIGNALS
-*/
+ ** SIGNALS
+ */
 
 void	interrupt_process(int s);
 void	interrupt_cmd(int s);
+
+/*
+** OPERATORS
+*/
+
+void	check_operators(char **tab);
 
 #endif /* MSH_H */

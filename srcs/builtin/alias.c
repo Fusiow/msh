@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 04:12:42 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/05 14:46:28 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/13 13:11:01 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ t_alias	*add_alias(t_alias *list, char *alias, char *value)
 char	**is_alias(t_alias *list, char **tab)
 {
 	int			i;
-	int			v;
 	t_alias		*tmp;
 	t_command	*result;
 

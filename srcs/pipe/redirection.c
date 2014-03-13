@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 11:34:13 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/05 10:39:59 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/13 09:06:46 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void	spe_infile(char *str)
 		}
 		else
 			break ;
-		free(buffer);
 		buffer = NULL;
 		++i;
 	}

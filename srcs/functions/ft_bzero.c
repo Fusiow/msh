@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_new_tab.c                                       :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aardjoun <aardjoun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfaye <mfaye@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/12/27 15:01:34 by aardjoun          #+#    #+#             */
-/*   Updated: 2014/03/13 08:58:42 by lsolofri         ###   ########.fr       */
+/*   Created: 2013/11/21 11:45:45 by mfaye             #+#    #+#             */
+/*   Updated: 2014/03/13 08:43:12 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include <string.h>
 
-#include "../../includes/msh.h"
-
-char	**ft_new_tab(int i)
+void	ft_bzero(void *s, size_t n)
 {
-	char	**tab;
-	int		n;
+	char	*dest;
+	int		i;
 
-	n = 0;
-	tab = (char **)ft_memalloc((i + 1) * sizeof(char *));
-	while (n <= i)
-		tab[n++] = NULL;
-	return (tab);
+	dest = (char *) s;
+	i = 0;
+	while (n != 0)
+	{
+		dest[i] = 0;
+		i++;
+		n--;
+	}
 }

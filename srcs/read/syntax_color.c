@@ -5,20 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/03/05 05:45:09 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/05 05:59:02 by lsolofri         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   syntax_color.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 10:04:42 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/05 05:44:31 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/13 15:32:45 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +18,7 @@ t_list	*add_type(t_list *list, char *str, char *type)
 	t_list	*temp;
 
 	temp = list;
-	tmp = malloc(sizeof(t_list));
+	tmp = ft_memalloc(sizeof(t_list));
 	tmp->name = ft_strdup(str);
 	if (type)
 		tmp->type = ft_strdup(type);
@@ -57,7 +45,7 @@ int		check_prog(char *str)
 	int		result;
 
 	result = 0;
-	tab = ft_strsplit(find_value_envir(g_env, "PATH"), ':');
+	tab = ft_spe_strsplit(find_value_envir(g_env, "PATH"), ':');
 	i = 0;
 	if (ft_strcmp(str, "exit") == 0)
 		return (1);
@@ -128,7 +116,6 @@ t_list	*recup_prog(char *str, char **tab, t_list *list)
 			closedir(rep);
 		}
 	}
-	ft_free_tab(tab);
 	return (list);
 }
 
@@ -173,7 +160,5 @@ void	show_cmd(char *str)
 			show_complete(name, cmd);
 		if (rest)
 			ft_putstr(rest);
-//		free(list);
-//		free(cmd);
 	}
 }

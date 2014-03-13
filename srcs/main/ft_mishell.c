@@ -6,7 +6,7 @@
 /*   By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 15:59:27 by aardjoun          #+#    #+#             */
-/*   Updated: 2014/03/05 14:35:54 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/13 13:10:28 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,10 @@ void	exec_cmd(char **tab)
 	}
 	execve(tab[0], tab, env);
 	unknow_cmd(tab[0]);
-	free(env);
-	free(result);
-	_exit(0);
+	_exit(1);
 }
 
-void	pre_exec(char *str, int *rt, int *ret)
+int		pre_exec(char *str)
 {
 	t_command	*tmp;
 	pid_t		pid;
@@ -46,21 +44,22 @@ void	pre_exec(char *str, int *rt, int *ret)
 		if (tmp->cmd[0])
 		{
 			tmp->cmd = is_alias(g_alias, tmp->cmd);
-			if (detect_built(rt, tmp->cmd, ret))
+			if (detect_built(tmp->cmd))
 			{
-				if ((pid = fork()))
+				if (!(pid = fork()))
 				{
-					signal(SIGINT, interrupt_process);
-					wait(&pid);
+					check_operators(tmp->cmd);
+					check_redirection(tmp->cmd);
+					exec_cmd(tmp->cmd);
 				}
 				else
 				{
-					check_redirection(tmp->cmd);
-					exec_cmd(tmp->cmd);
+					signal(SIGINT, interrupt_process);
+					wait(&pid);
 				}
 			}
 		}
 		tmp = tmp->next;
 	}
-	free(tmp);
+	return (pid);
 }

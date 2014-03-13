@@ -6,7 +6,7 @@
 /*   By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 15:53:46 by aardjoun          #+#    #+#             */
-/*   Updated: 2014/03/03 16:24:46 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/13 16:26:08 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,7 @@
 int			main(int ac, char **av, char **environ)
 {
 	char		*str;
-	int			rt;
-	int			ret;
 
-	ret = 0;
-	rt = 0;
 	(void)ac;
 	(void)av;
 	welcome();
@@ -30,10 +26,9 @@ int			main(int ac, char **av, char **environ)
 		prompt();
 		signal(SIGINT, interrupt_cmd);
 		str = take_cmd(0);
-		pre_exec(str, &rt, &ret);
-		if (ret == 1)
-			break ;
+		pre_exec(str);
+		free(str);
+		str = NULL;
 	}
-	ft_putendl("Goodbye !");
-	return (rt);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 10:04:37 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/28 14:15:15 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/13 08:52:51 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*get_man_path(void)
 
 	if (pipe(fd) == -1)
 		return (NULL);
-	result = (char *)malloc(sizeof(char) * 1500);
+	result = (char *)ft_memalloc(sizeof(char) * 1500);
 	if (!result)
 		return (NULL);
 	if (fork() == 0)

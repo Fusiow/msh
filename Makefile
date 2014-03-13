@@ -6,7 +6,7 @@
 #    By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/14 17:00:44 by aardjoun          #+#    #+#              #
-#    Updated: 2014/03/07 17:28:32 by lsolofri         ###   ########.fr        #
+#    Updated: 2014/03/13 15:27:37 by lsolofri         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -31,10 +31,13 @@ SRCS	=	srcs/main/main.c\
 			srcs/functions/ft_strcmp.c\
 			srcs/functions/ft_strdup.c\
 			srcs/functions/ft_strjoin.c\
+			srcs/functions/ft_spe_strjoin.c\
 			srcs/functions/ft_strlen.c\
 			srcs/functions/ft_strncmp.c\
 			srcs/functions/ft_strsplit.c\
+			srcs/functions/ft_spe_strsplit.c\
 			srcs/functions/ft_strsub.c\
+			srcs/functions/ft_spe_strsub.c\
 			srcs/functions/ft_tablen.c\
 			srcs/functions/ft_tabncmp.c\
 			srcs/functions/get_next_line.c\
@@ -42,6 +45,10 @@ SRCS	=	srcs/main/main.c\
 			srcs/functions/ft_cmd_result.c\
 			srcs/functions/welcome.c\
 			srcs/functions/ft_insert_tab.c\
+			srcs/functions/ft_memalloc.c\
+			srcs/functions/ft_gc.c\
+			srcs/functions/ft_gchelper.c\
+			srcs/functions/ft_bzero.c\
 			srcs/read/actions.c\
 			srcs/read/buttons.c\
 			srcs/read/history.c\
@@ -71,12 +78,13 @@ SRCS	=	srcs/main/main.c\
 			srcs/pipe/pipe.c\
 			srcs/pipe/pipe_function.c\
 			srcs/pipe/redirection.c\
-			srcs/signal/signal.c
+			srcs/signal/signal.c\
+			srcs/operators/operator.c
 
 
 HDRS	=	includes/msh.h
 
-CFLAGS = -g #-Wall -Wextra -Werror
+CFLAGS = -g -Wall -Wextra -Werror
 
 CC		=	gcc
 
