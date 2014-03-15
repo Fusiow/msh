@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/27 08:31:33 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/13 15:46:44 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/15 16:21:02 by aardjoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	write_cmd(char *cmd, int i, int command)
 		write(1, &cmd[v], (i - v));
 		ft_putstr(DEF);
 	}
-	else if (cmd[i] == '|' || cmd[i] == ';')
+	else if (cmd[i] == '|' || cmd[i] == ';' || cmd[i] == '&')
 	{
 		ft_putstr(MAG);
 		ft_putchar(cmd[i++]);
