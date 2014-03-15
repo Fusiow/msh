@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 00:46:22 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/13 09:10:57 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/15 18:12:59 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,6 @@ void	new_env(char **env)
 	while (*env)
 	{
 		tmp = ft_strsplit(*env, '=');
-		if (tmp[1] && (ft_strcmp(tmp[0], "HOME") == 0 || ft_strcmp(tmp[0], "PWD") == 0)) 
-			tmp[1] = ft_strjoin("/Volumes/DATA", tmp[1]);
 		g_env = add_env(g_env, tmp[0], tmp[1]);
 		env++;
 	}

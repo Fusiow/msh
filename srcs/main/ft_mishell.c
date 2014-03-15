@@ -6,7 +6,7 @@
 /*   By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 15:59:27 by aardjoun          #+#    #+#             */
-/*   Updated: 2014/03/13 13:10:28 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/15 18:59:11 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ int		pre_exec(char *str)
 	t_command	*tmp;
 	pid_t		pid;
 
-	tmp = quick_parse(str);
+	if (str)
+		tmp = quick_parse(str);
 	while (tmp)
 	{
 		if (tmp->cmd[0])
@@ -56,7 +57,31 @@ int		pre_exec(char *str)
 				{
 					signal(SIGINT, interrupt_process);
 					wait(&pid);
+					g_pid = pid;
 				}
+			}
+		}
+		tmp = tmp->next;
+	}
+	return (pid);
+}
+
+int		pre_exec_nofork(char *str)
+{
+	t_command	*tmp;
+	pid_t		pid;
+
+	tmp = quick_parse(str);
+	while (tmp)
+	{
+		if (tmp->cmd[0])
+		{
+			tmp->cmd = is_alias(g_alias, tmp->cmd);
+			if (detect_built(tmp->cmd))
+			{
+				check_operators(tmp->cmd);
+				check_redirection(tmp->cmd);
+				exec_cmd(tmp->cmd);
 			}
 		}
 		tmp = tmp->next;

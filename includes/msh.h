@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/13 15:45:16 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/15 17:16:42 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ typedef struct		s_jobs
 	int				status;
 	struct s_jobs	*next;
 }					t_jobs;
+
+int		g_pid;
 
 /*
  ** LIST FOR AUTOCOMP
@@ -243,7 +245,7 @@ char		*get_next_line(int fd);
 char		*get_man_path(void);
 int			ft_isdigit(char c);
 int			ft_atoi(const char *str);
-char		*result_cmd(char **tab);
+char		*result_cmd(char *tab);
 void		welcome(void);
 char		**ft_insert_tab(char **src, char **tab, int i);
 void		*ft_memalloc(size_t size);
@@ -289,6 +291,7 @@ char		**ft_get_path(char **env, char *line);
 void		exec_cmd(char **tab);
 int			detect_built(char **tab);
 int			pre_exec(char *str);
+int			pre_exec_nofork(char *str);
 
 /*
  ** PROMPT

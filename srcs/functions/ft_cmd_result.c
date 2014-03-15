@@ -6,21 +6,25 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 03:27:59 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/25 03:40:01 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/15 18:25:42 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/msh.h"
 
-char	*result_cmd(char **cmd)
+char	*result_cmd(char *cmd)
 {
 	char    *result;
 	int     fd[2];
 	int     ret;
+	char	*buffer;
+	int		i;
 
+	i = 0;
+	buffer = NULL;
 	if (pipe(fd) == -1)
 		return (NULL);
-	result = (char *)malloc(sizeof(char) * 1500);
+	result = (char *)malloc(sizeof(char) * 1024);
 	if (!result)
 		return (NULL);
 	if (fork() == 0)
@@ -29,9 +33,10 @@ char	*result_cmd(char **cmd)
 			return (NULL);
 		if (dup2(fd[1], 1) == -1)
 			return (NULL);
+		dup2(fd[1], 2);
 		if (close(fd[1]) == -1)
 			return (NULL);
-		if (execve(cmd[0], cmd, make_env_tab(g_env)) == -1)
+		if (pre_exec_nofork(cmd))
 			return (NULL);
 	}
 	else
@@ -39,8 +44,14 @@ char	*result_cmd(char **cmd)
 		wait(0);
 		if (close(fd[1]) == -1)
 			return (NULL);
-		if ((ret = read(fd[0], result, 1500)) != 0)
-			result[ret - 1] = '\0';
+		while ((ret = read(fd[0], result, 1024)) != 0)
+		{
+			result[ret] = '\0';
+			if (i++ == 0)
+				buffer = ft_strdup(result);
+			else
+				buffer = ft_strjoin(buffer, result);
+		}
 	}
-	return (result);
+	return (buffer);
 }
