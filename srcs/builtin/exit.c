@@ -6,7 +6,7 @@
 /*   By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/18 12:24:55 by aardjoun          #+#    #+#             */
-/*   Updated: 2014/03/13 14:06:53 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/16 17:08:43 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int				ft_exit(char **tab)
 	}
 	if (!result)
 	{
-		ft_gc(NULL, E_GCFREEGC);
+//		ft_gc(NULL, E_GCFREEGC);
 		while (g_alias)
 		{
 			free(g_alias);

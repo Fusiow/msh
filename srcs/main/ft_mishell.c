@@ -6,7 +6,7 @@
 /*   By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 15:59:27 by aardjoun          #+#    #+#             */
-/*   Updated: 2014/03/16 15:00:22 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/16 18:29:21 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int		pre_exec(char *str)
 				if (!(pid = fork()))
 				{
 					signal(SIGTSTP, SIG_DFL);
+					signal(SIGQUIT, SIG_DFL);
 					check_operators(tmp->cmd);
 					check_redirection(tmp->cmd);
 					exec_cmd(tmp->cmd);
@@ -66,7 +67,7 @@ int		pre_exec(char *str)
 		}
 		tmp = tmp->next;
 	}
-	return (pid);
+	return (ret);
 }
 
 int		pre_exec_nofork(char *str)

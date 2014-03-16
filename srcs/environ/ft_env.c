@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 00:46:22 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/16 14:50:41 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/16 17:16:39 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ void	new_env(char **env)
 	while (*env)
 	{
 		tmp = ft_strsplit(*env, '=');
-		g_env = add_env(g_env, tmp[0], tmp[1]);
+		if (tmp[0] && tmp[1])
+			g_env = add_env(g_env, tmp[0], tmp[1]);
 		env++;
 	}
 }

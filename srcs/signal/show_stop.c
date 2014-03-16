@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/16 15:50:30 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/16 16:17:34 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/16 18:16:32 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	show_stop(int sig)
 {
 	if (sig == 4)
 		ft_putstr("Illegal instruction");
+	else if (sig == 3)
+		ft_putstr("Quit");
 	else if (sig == 6)
 		ft_putstr("Abort.");
 	else if (sig == 8)
