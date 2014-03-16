@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/21 18:56:49 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/13 12:27:41 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/16 14:48:40 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,7 @@ int		detect_built(char **tab)
 		unset_var(tab[1]);
 	else if (!(ret = ft_strcmp("export", tab[0])))
 		export_var(g_var, tab[1]);
+	else if (!(ret = ft_strcmp("jobs", tab[0])))
+		show_jobs(g_jobs);
 	return (ret);
 }

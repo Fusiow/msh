@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/15 17:16:42 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/16 16:06:15 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ t_env	*g_env;
 # include <sys/wait.h>
 # include <dirent.h>
 # include <fcntl.h>
+# include <signal.h>
 
 /*
  ** LIST FOR VARIABLES
@@ -81,8 +82,7 @@ typedef struct		s_jobs
 	struct s_jobs	*next;
 }					t_jobs;
 
-int		g_pid;
-
+t_jobs	*g_jobs;
 /*
  ** LIST FOR AUTOCOMP
  */
@@ -319,6 +319,17 @@ void	spe_infile(char *str);
 
 void	interrupt_process(int s);
 void	interrupt_cmd(int s);
+
+/*
+** JOBS
+*/
+
+t_jobs		*add_job(t_jobs *list, char *name, int pid);
+t_jobs		*remove_jobs(t_jobs *jobs, int pid);
+void		show_jobs(t_jobs *jobs);
+void		check_return(int ret, int pid);
+void		show_stop(int sig);
+char		*find_prog(t_jobs *jobs, int pid);
 
 /*
 ** OPERATORS

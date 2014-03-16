@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/21 16:30:44 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/15 18:58:05 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/16 14:15:37 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,36 @@ void	show_time(void)
 		write(1, &result[11], 5);
 }
 
+void	spe_pwd(char *str)
+{
+	int		i;
+	int		v;
+
+	i = 0;
+	ft_putstr(GRE);
+	while (str[i])
+	{
+		if (str[i] == '/')
+		{
+			ft_putchar(str[i]);
+			ft_putchar(str[++i]);
+			v = i;
+			while (str[i] != '/' && str[i])
+				++i;
+			if (!str[i])
+			{
+				v++;
+				while (str[v])
+					ft_putchar(str[v++]);
+			}
+			else
+				i = v;
+		}
+		++i;
+	}
+	ft_putstr(DEF);
+}
+
 void	prompt_interpreter(char *str)
 {
 	int		i;
@@ -154,6 +184,8 @@ void	prompt_interpreter(char *str)
 				prompt_git();
 			else if (str[i] == 't')
 				show_time();
+			else if (str[i] == 'P')
+				spe_pwd(find_value_envir(g_env, "PWD"));
 			++i;
 		}
 		if (str[i] != '%')

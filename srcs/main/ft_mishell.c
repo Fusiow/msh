@@ -6,7 +6,7 @@
 /*   By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 15:59:27 by aardjoun          #+#    #+#             */
-/*   Updated: 2014/03/15 18:59:11 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/16 15:00:22 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int		pre_exec(char *str)
 {
 	t_command	*tmp;
 	pid_t		pid;
+	int			ret;
 
 	if (str)
 		tmp = quick_parse(str);
@@ -49,6 +50,7 @@ int		pre_exec(char *str)
 			{
 				if (!(pid = fork()))
 				{
+					signal(SIGTSTP, SIG_DFL);
 					check_operators(tmp->cmd);
 					check_redirection(tmp->cmd);
 					exec_cmd(tmp->cmd);
@@ -56,8 +58,9 @@ int		pre_exec(char *str)
 				else
 				{
 					signal(SIGINT, interrupt_process);
-					wait(&pid);
-					g_pid = pid;
+					g_jobs = add_job(g_jobs, tmp->cmd[0], pid);
+					waitpid(pid, &ret, WUNTRACED);
+					check_return(ret, pid);
 				}
 			}
 		}
