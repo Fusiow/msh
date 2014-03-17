@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/16 16:06:15 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/17 16:20:31 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -292,6 +292,7 @@ void		exec_cmd(char **tab);
 int			detect_built(char **tab);
 int			pre_exec(char *str);
 int			pre_exec_nofork(char *str);
+int			pre_exec_nowait(char *str);
 
 /*
  ** PROMPT

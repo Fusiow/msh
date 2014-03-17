@@ -6,7 +6,7 @@
 /*   By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 15:59:27 by aardjoun          #+#    #+#             */
-/*   Updated: 2014/03/16 18:29:21 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/17 16:45:18 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,4 +91,32 @@ int		pre_exec_nofork(char *str)
 		tmp = tmp->next;
 	}
 	return (pid);
+}
+int		pre_exec_nowait(char *str)
+{
+	t_command	*tmp;
+	pid_t		pid;
+	int			ret;
+
+	if (str)
+		tmp = quick_parse(str);
+	while (tmp)
+	{
+		if (tmp->cmd[0])
+		{
+			tmp->cmd = is_alias(g_alias, tmp->cmd);
+			if (detect_built(tmp->cmd))
+			{
+				if (!(pid = fork()))
+				{
+					check_operators(tmp->cmd);
+					check_redirection(tmp->cmd);
+					exec_cmd(tmp->cmd);
+				}
+			}
+		}
+		tmp = tmp->next;
+	}
+	wait(0);
+	return (ret);
 }

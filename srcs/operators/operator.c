@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/13 11:59:40 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/15 15:57:46 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/17 16:46:45 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,11 @@ void	check_operators(char **tab)
 			{
 				if (pre_exec(split_tab(tab, i)))
 					_exit(0);
+			}
+			else if (!ft_strcmp(tab[i], "&"))
+			{
+				pre_exec_nowait(split_tab(tab, i));
+				check_operators(tab);
 			}
 			else if (!(ft_strcmp(tab[i], "||")))
 			{
