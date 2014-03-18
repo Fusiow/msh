@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/16 14:18:25 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/16 16:04:40 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/18 17:01:34 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,21 @@ t_jobs		*add_job(t_jobs *list, char *name, int pid)
 
 void		show_jobs(t_jobs *jobs)
 {
+	int		i;
+
+	i = 0;
 	while (jobs)
 	{
 		ft_putstr("[");
+		ft_putnbr(i);
+		ft_putstr("] ");
+		ft_putstr("[");
 		ft_putnbr(jobs->pid);
 		ft_putstr("]\t");
-		ft_putstr("-");
+		ft_putstr("-\t");
 		ft_putendl(jobs->name);
 		jobs = jobs->next;
+		++i;
 	}
 }
 

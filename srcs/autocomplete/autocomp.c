@@ -6,23 +6,33 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/16 18:13:32 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/16 18:35:30 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/18 16:41:01 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/msh.h"
 
-char	detect_word(char *str, int i)
+char	*argument_completion(char *str)
 {
-	int		v;
+	int		i;
+	char	*word;
+	glob_t	list;
 
-	while (str[i] && str[i] != ' ')
-		++i;
-	v = i;
-	while ()
-}
-
-char	autocomp(char *str, int i)
-{
-	
+	if (str)
+	{
+		i = ft_strlen(str);
+		while (str[i] != ' ' && i > 0)
+			--i;
+		word = ft_strsub(str, i + 1, ft_strlen(str) - i);
+		glob(ft_strjoin(word, "*"), GLOB_NOCHECK, 0, &list);
+		i = 0;
+		ft_putstr("\n");
+		if (list.gl_pathc == 0)
+			return (NULL);
+		while (list.gl_pathv[i])
+			ft_putendl(list.gl_pathv[i++]);
+		prompt();
+		ft_putstr("     ");
+	}
+	return (NULL);
 }

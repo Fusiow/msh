@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/16 15:50:30 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/16 18:35:32 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/17 20:05:37 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,4 @@ void	show_stop(int sig)
 		ft_putstr("Broken pipe");
 	else if (sig == 10 || sig == 7)
 		ft_putstr("Bus error");
-	else
-		ft_putstr("Quit");
 }

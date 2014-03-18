@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 06:57:02 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/13 18:02:09 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/18 17:29:17 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,16 @@ void	parser(char *cmd, int i, t_parse **list)
 	else if (cmd[i] == ';')
 	{
 		*list = add_word(*list, ";");
+		++i;
+	}
+	else if (cmd[i] == '(')
+	{
+		*list = add_word(*list, "(");
+		++i;
+	}
+	else if (cmd[i] == ')')
+	{
+		*list = add_word(*list, ")");
 		++i;
 	}
 	else

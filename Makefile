@@ -6,7 +6,7 @@
 #    By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/14 17:00:44 by aardjoun          #+#    #+#              #
-#    Updated: 2014/03/16 16:01:47 by lsolofri         ###   ########.fr        #
+#    Updated: 2014/03/17 20:03:01 by lsolofri         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -81,7 +81,8 @@ SRCS	=	srcs/main/main.c\
 			srcs/signal/signal.c\
 			srcs/signal/show_stop.c\
 			srcs/signal/function_list.c\
-			srcs/operators/operator.c
+			srcs/operators/operator.c \
+			srcs/autocomplete/autocomp.c
 
 
 HDRS	=	includes/msh.h

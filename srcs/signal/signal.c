@@ -6,7 +6,7 @@
 /*   By: aardjoun <aardjoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 16:47:41 by aardjoun          #+#    #+#             */
-/*   Updated: 2014/03/16 18:11:30 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/17 20:07:55 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,9 @@ void	check_return(int ret, int pid)
 		g_jobs = remove_jobs(g_jobs, pid);
 	else if (WIFSIGNALED(ret))
 	{
-		show_signal(pid, sig);
+		if (sig == 4 || sig == 3 || sig == 6 || sig == 8 || sig == 9 || 
+				sig == 15 || sig == 11 || sig == 13 || sig == 10 || sig == 7)
+			show_signal(pid, sig);
 		g_jobs = remove_jobs(g_jobs, pid);
 	}
 	else if (WIFSTOPPED(ret))

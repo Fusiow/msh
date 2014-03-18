@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/17 16:20:31 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/18 17:27:24 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ t_env	*g_env;
 # include <dirent.h>
 # include <fcntl.h>
 # include <signal.h>
+# include <glob.h>
 
 /*
  ** LIST FOR VARIABLES
@@ -212,6 +213,7 @@ void		write_cmd(char *str, int i, int command);
 int			check_prog(char *str);
 int			auto_comp_choice(int i);
 char		*spe_autocomp(char *cmd, int len);
+char		*argument_completion(char *str);
 
 /*
  ** FUNCTIONS
@@ -253,6 +255,8 @@ void		ft_gc(void *p, t_gcop op);
 void		ft_bzero(void *s, size_t n);
 void		ft_gcrealloc(t_gc **ring, t_gcinfo **info, int init_size);
 void		ft_gcinit(t_gc **ring, int init_size, t_gcinfo **info);
+char		*ft_itoa(int n);
+char		*join_spe_tab(char **tab, int beg, int end);
 
 /*
  ** ENVIRON

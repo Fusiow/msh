@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/13 11:59:40 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/17 16:46:45 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/18 17:36:27 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,16 @@ void	check_operators(char **tab)
 		i = 0;
 		while (tab[i])
 		{
+			if (!ft_strcmp(tab[i], "("))
+			{
+				v = i;
+				while (ft_strcmp(tab[i], ")") && tab[i])
+					++i;
+				if (!fork())
+					pre_exec(join_spe_tab(tab, v + 1, i));
+				wait(0);
+				_exit(0);
+			}
 			if (!(ft_strcmp(tab[i], "&&")))
 			{
 				if (pre_exec(split_tab(tab, i)))
