@@ -6,7 +6,11 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/15 14:47:45 by lsolofri          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2014/03/17 20:11:33 by lsolofri         ###   ########.fr       */
+=======
+/*   Updated: 2014/03/17 16:35:37 by aardjoun         ###   ########.fr       */
+>>>>>>> be3618efd40499c6c425a71ba2b407b1e1e4cd26
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +144,12 @@ char	*show_autocomplete(char *str, int v)
 			}
 		status = 2;
 	}
+<<<<<<< HEAD
 	else
 		argument_completion(str);
+=======
+//	else
+//		ft_putstr("C'est un mot");
+>>>>>>> be3618efd40499c6c425a71ba2b407b1e1e4cd26
 	return (str);
 }

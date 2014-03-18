@@ -6,7 +6,11 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2014/03/18 17:27:24 by lsolofri         ###   ########.fr       */
+=======
+/*   Updated: 2014/03/18 17:14:47 by aardjoun         ###   ########.fr       */
+>>>>>>> be3618efd40499c6c425a71ba2b407b1e1e4cd26
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +88,7 @@ typedef struct		s_jobs
 }					t_jobs;
 
 t_jobs	*g_jobs;
+
 /*
  ** LIST FOR AUTOCOMP
  */
@@ -335,6 +340,8 @@ void		show_jobs(t_jobs *jobs);
 void		check_return(int ret, int pid);
 void		show_stop(int sig);
 char		*find_prog(t_jobs *jobs, int pid);
+void		fg_bg(t_jobs *jobs, char **tab, int k);
+int			search_job(t_jobs *jobs, char *tab, int rt);
 
 /*
 ** OPERATORS

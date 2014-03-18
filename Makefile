@@ -6,7 +6,11 @@
 #    By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/14 17:00:44 by aardjoun          #+#    #+#              #
+<<<<<<< HEAD
 #    Updated: 2014/03/17 20:03:01 by lsolofri         ###   ########.fr        #
+=======
+#    Updated: 2014/03/18 17:11:37 by aardjoun         ###   ########.fr        #
+>>>>>>> be3618efd40499c6c425a71ba2b407b1e1e4cd26
 #                                                                              #
 #******************************************************************************#
 
@@ -71,6 +75,7 @@ SRCS	=	srcs/main/main.c\
 			srcs/builtin/conf.c\
 			srcs/builtin/no_conf.c\
 			srcs/builtin/alias.c\
+			srcs/builtin/jobs.c\
 			srcs/prompt/prompt_interpreter.c\
 			srcs/prompt/prompt.c\
 			srcs/parser/parser.c\
