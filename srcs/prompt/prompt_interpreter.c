@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/21 16:30:44 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/16 14:15:37 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/18 19:28:40 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,6 @@ void	spe_pwd(char *str)
 	int		v;
 
 	i = 0;
-	ft_putstr(GRE);
 	while (str[i])
 	{
 		if (str[i] == '/')
@@ -151,7 +150,6 @@ void	spe_pwd(char *str)
 		}
 		++i;
 	}
-	ft_putstr(DEF);
 }
 
 void	prompt_interpreter(char *str)

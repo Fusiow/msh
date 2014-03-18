@@ -6,7 +6,7 @@
 /*   By: aardjoun <aardjoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 15:18:15 by aardjoun          #+#    #+#             */
-/*   Updated: 2014/03/18 17:17:07 by aardjoun         ###   ########.fr       */
+/*   Updated: 2014/03/18 17:45:26 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void		fg_bg(t_jobs *jobs, char ** tab, int k)
 		while (jobs->next != NULL)
 			jobs = jobs->next;
 		kill(jobs->pid, SIGCONT);
+		wait(&jobs->pid);
 	}
 }
 
@@ -72,5 +73,6 @@ int			search_job(t_jobs *jobs, char *tab, int rt)
 		jobs = jobs->next;
 	kill(jobs->pid, SIGCONT);
 	wait(&jobs->pid);
+	g_jobs = remove_jobs(g_jobs, jobs->pid);
 	return (0);
 }
