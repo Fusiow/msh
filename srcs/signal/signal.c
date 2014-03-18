@@ -6,7 +6,7 @@
 /*   By: aardjoun <aardjoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 16:47:41 by aardjoun          #+#    #+#             */
-/*   Updated: 2014/03/16 18:11:30 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/17 15:25:11 by aardjoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,8 @@ void	check_return(int ret, int pid)
 	}
 }
 
+
 // kill(pid, SIGCONT);
+//  if (fg)
+//  	wait(&pid);
+//

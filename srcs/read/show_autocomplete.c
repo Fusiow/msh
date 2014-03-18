@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/15 14:47:45 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/16 18:11:20 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/17 16:35:37 by aardjoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,7 @@ char	*show_autocomplete(char *str, int v)
 			}
 		status = 2;
 	}
-	else
-		ft_putstr("C'est un mot");
+//	else
+//		ft_putstr("C'est un mot");
 	return (str);
 }

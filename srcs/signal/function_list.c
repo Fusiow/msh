@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/16 14:18:25 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/16 16:04:40 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/17 15:36:01 by aardjoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ t_jobs		*add_job(t_jobs *list, char *name, int pid)
 	tmp = (t_jobs *)malloc(sizeof(t_jobs));
 	tmp->name = ft_strdup(name);
 	tmp->pid = pid;
+	tmp->job = 0;
+	tmp->status = 0;
 	tmp->next = NULL;
 	if (list == NULL)
 		return (tmp);
