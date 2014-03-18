@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/18 17:39:18 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/18 21:33:57 by rkharif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef struct		s_var
 }					t_var;
 
 t_var	*g_var;
+char	*search_var(t_var *list, char *name);
 
 /*
  ** LIST FOR JOBS CONTROL
@@ -133,6 +134,8 @@ typedef struct			s_command
 }						t_command;
 
 t_command	*quick_parse(char *str);
+t_parse		*add_word(t_parse *list, char *str);
+t_parse		*tokenize(char *str);
 
 /*
  ** LEAKS

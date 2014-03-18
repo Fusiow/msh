@@ -6,11 +6,12 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 06:57:02 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/18 17:29:17 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/18 21:46:17 by rkharif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/msh.h"
+#include <stdio.h>
 
 t_parse		*add_word(t_parse *list, char *str)
 {
@@ -18,7 +19,7 @@ t_parse		*add_word(t_parse *list, char *str)
 	t_parse		*tmp2;
 
 	tmp2 = list;
-	tmp = (t_parse *)ft_memalloc(sizeof(t_parse));
+	tmp = (t_parse *)malloc(sizeof(t_parse));
 	tmp->str = str;
 	tmp->next = NULL;
 	if (list == NULL)
@@ -29,115 +30,12 @@ t_parse		*add_word(t_parse *list, char *str)
 	return (list);
 }
 
-void	parser(char *cmd, int i, t_parse **list)
-{
-	int		v;
-
-	while (cmd[i] == ' ' && cmd[i])
-		++i;
-	if (!cmd[i])
-		return ;
-	else if (cmd[i] == '"')
-	{
-		++i;
-		v = i;
-		while (cmd[i] != '"' && cmd[i])
-			++i;
-		*list = add_word(*list, ft_strsub(cmd, v, (i - v)));
-	}
-	else if (cmd[i] == '\'')
-	{
-		++i;
-		v = i;
-		while (cmd[i] != '\'' && cmd[i])
-			++i;
-		*list = add_word(*list, ft_strsub(cmd, v, (i - v)));
-	}
-	else if (cmd[i] == '>' && cmd[i + 1] != '>')
-	{
-		++i;
-		if (cmd[i] == ' ')
-		{
-			while (cmd[i] == ' ' && cmd[i])
-				++i;
-		}
-		v = i;
-		while (cmd[i] != ' ' && cmd[i] != ';' && cmd[i] != '|' && cmd[i])
-			++i;
-		*list = add_word(*list, ">");
-		*list = add_word(*list, ft_strsub(cmd, v, (i - v)));
-	}
-	else if (cmd[i] == '<' && cmd[i + 1] != '<')
-	{
-		++i;
-		if (cmd[i] == ' ')
-		{
-			while (cmd[i] == ' ' && cmd[i])
-				++i;
-		}
-		v = i;
-		while (cmd[i] != ' ' && cmd[i] != ';' && cmd[i] != '|' && cmd[i])
-			++i;
-		*list = add_word(*list, "<");
-		*list = add_word(*list, ft_strsub(cmd, v, (i - v)));
-
-	}
-	else if (cmd[i] == '<' && cmd[i + 1] == '<')
-	{
-		i += 2;
-		while (cmd[i] == ' ' && cmd[i])
-			++i;
-		v = i;
-		while (cmd[i] != ' ' && cmd[i] != ';' && cmd[i] != '|' && cmd[i])
-			++i;
-		*list = add_word(*list, "<<");
-		*list = add_word(*list, ft_strsub(cmd, v, (i - v)));
-	}
-	else if (cmd[i] == '|' && cmd[i + 1] == '|')
-	{
-		*list = add_word(*list, "||");
-		i += 2;
-	}
-	else if (cmd[i] == '|')
-	{
-		*list = add_word(*list, "|");
-		++i;
-	}
-	else if (cmd[i] == ';')
-	{
-		*list = add_word(*list, ";");
-		++i;
-	}
-	else if (cmd[i] == '(')
-	{
-		*list = add_word(*list, "(");
-		++i;
-	}
-	else if (cmd[i] == ')')
-	{
-		*list = add_word(*list, ")");
-		++i;
-	}
-	else
-	{
-		v = i;
-		while (cmd[i] != ' ' && cmd[i] != ';' && cmd[i] != '|' && cmd[i])
-			++i;
-		*list = add_word(*list, ft_strsub(cmd, v, (i - v)));
-	}
-	if (!cmd[i])
-		return ;
-	if (cmd[i] != ';' && cmd[i] != '|' && cmd[i - 1] != ';' && cmd[i - 1] != '|')
-		++i;
-	parser(cmd, i, list);
-}
-
 int		list_len_cmd(t_parse *list)
 {
 	int		i;
 
 	i = 0;
-	while (list != NULL && (ft_strcmp(list->str, ";")))
+	while (list && (ft_strcmp(list->str, ";")))
 	{
 		list = list->next;
 		++i;
@@ -151,7 +49,7 @@ t_command	*add_tab(t_command *result, char **tab)
 	t_command	*tmp2;
 
 	tmp2 = result;
-	tmp = (t_command *)ft_memalloc(sizeof(t_command));
+	tmp = (t_command *)malloc(sizeof(t_command));
 	tmp->cmd = tab;
 	tmp->next = NULL;
 	if (result == NULL)
@@ -162,21 +60,30 @@ t_command	*add_tab(t_command *result, char **tab)
 	return (result);
 }
 
+void	show_me_the_truth_bitch_get_outta_my_way(t_parse *list)
+{
+	while (list)
+	{
+		printf("%s\n", list->str);
+		list = list->next;
+	}
+}
+
 t_command	*quick_parse(char *str)
 {
-	t_parse		*list;
+	t_parse 	*list;
 	int			i;
 	char		**tab;
 	t_command	*result;
 
 	i = 0;
-	list = NULL;
+	list = tokenize(str);
+//	show_me_the_truth_bitch_get_outta_my_way(list);
 	result = NULL;
-	parser(str, 0, &list);
 	while (list)
 	{
 		i = list_len_cmd(list);
-		tab = (char **)ft_memalloc(sizeof(char *) * i + 1);
+		tab = (char **)malloc(sizeof(char *) * i + 1);
 		i = 0;
 		while (list != NULL && (ft_strcmp(list->str, ";")))
 		{

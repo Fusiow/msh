@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 12:47:27 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/13 08:51:59 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/18 21:31:03 by rkharif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,21 @@ void	show_var(t_var *list)
 		ft_putendl(list->value);
 		list = list->next;
 	}
+}
+
+char	*search_var(t_var *list, char *name)
+{
+	char	*result;
+
+	result = find_value_envir(g_env, name);
+	if (!result)
+	{
+		while (list && ft_strcmp(list->name, name))
+			list = list->next;
+		if (list)
+			result = ft_strdup(list->value);
+	}
+	return (result);
 }
 
 void	export_var(t_var *list, char *name)
