@@ -6,7 +6,11 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2014/03/17 15:35:26 by aardjoun         ###   ########.fr       */
+=======
+/*   Updated: 2014/03/17 16:20:31 by lsolofri         ###   ########.fr       */
+>>>>>>> 268ae60a014a9c001045c0fe7e150fed6168c9dd
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -292,6 +296,7 @@ void		exec_cmd(char **tab);
 int			detect_built(char **tab);
 int			pre_exec(char *str);
 int			pre_exec_nofork(char *str);
+int			pre_exec_nowait(char *str);
 
 /*
  ** PROMPT
