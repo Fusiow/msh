@@ -29,7 +29,7 @@ char	*show_tab(char *cmd)
 {
 	t_list	*list;
 	int		i;
-	char	*description;
+	char	*description = NULL;
 
 	i = 0;
 	list = NULL;

@@ -125,7 +125,7 @@ void	show_cmd(char *str)
 	char	*cmd;
 	t_list	*list;
 	char	*name;
-	char	*rest;
+	char	*rest = NULL;
 
 	i = 0;
 	list = NULL;

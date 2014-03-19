@@ -35,9 +35,9 @@ void	exec_cmd(char **tab)
 
 int		pre_exec(char *str)
 {
-	t_command	*tmp;
-	pid_t		pid;
-	int			ret;
+	t_command	*tmp = NULL;
+	pid_t		pid = 0;
+	int			ret = 0;
 
 	if (str)
 		tmp = quick_parse(str);
@@ -72,8 +72,8 @@ int		pre_exec(char *str)
 
 int		pre_exec_nofork(char *str)
 {
-	t_command	*tmp;
-	pid_t		pid;
+	t_command	*tmp = NULL;
+	pid_t		pid = 0;
 
 	tmp = quick_parse(str);
 	while (tmp)
@@ -94,9 +94,9 @@ int		pre_exec_nofork(char *str)
 }
 int		pre_exec_nowait(char *str)
 {
-	t_command	*tmp;
-	pid_t		pid;
-	int			ret;
+	t_command	*tmp = NULL;
+	pid_t		pid = 0;
+	int			ret = 0;
 
 	if (str)
 		tmp = quick_parse(str);
