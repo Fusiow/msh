@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 15:02:39 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/19 15:08:25 by aardjoun         ###   ########.fr       */
+/*   Updated: 2014/03/21 12:02:13 by aardjoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,14 @@ void	show_error(char *str)
 {
 	write(2, "Error: ", 8);
 	write(2, str, ft_strlen(str));
-	write(2, "\n", 2);
+	write(2, "\n", 1);
+}
+
+void	err_no_file(char *str)
+{
+	write(2, "msh: No such file or directory ", 32);
+	write(2, str, ft_strlen(str));
+	write(2, "\n", 1);
 }
 
 void	exit_error(char **tab)
@@ -37,7 +44,23 @@ void	exit_error(char **tab)
 
 void	unknow_cmd(char *str)
 {
-	ft_putstr("MiShell: Unknow command '");
+	ft_putstr("msh: Unknown command '");
 	ft_putstr(str);
 	ft_putendl("'");
+}
+
+void	pid_error(char *tab)
+{
+	ft_putstr("msh: '");
+	ft_putstr(tab);
+	ft_putendl("' is not a valid pid");
+}
+
+void	job_error(int k)
+{
+	if (k == 1)
+		ft_putstr("fg");
+	else
+		ft_putstr("bg");
+	ft_putendl(": no current job");
 }

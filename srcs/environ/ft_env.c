@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 00:46:22 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/02 19:05:39 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/16 17:16:39 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,47 +19,33 @@ t_env	*add_env(t_env *env, char *name, char *value)
 
 	tmp2 = env;
 	tmp = (t_env *)malloc(sizeof(t_env));
-	tmp->name = ft_strdup(name);
-	tmp->value = ft_strdup(value);
+	tmp->name = name;
+	tmp->value = value;
 	tmp->next = NULL;
 	if (env == NULL)
-	{
-		free(name);
-		free(value);
 		return (tmp);
-	}
 	while (tmp2->next != NULL)
 		tmp2 = tmp2->next;
 	tmp2->next = tmp;
-	free(name);
-	free(value);
 	return (env);
 }
 
 void	new_env(char **env)
 {
 	char	**tmp;
-	int		i;
+	int	i;
 
 	i = 0;
 	while (env[i])
 		++i;
 	if (i == 0)
 		show_error_exit("Could not set environnement");
-	i = 0;
-	while (env[i] != NULL)
+	while (*env)
 	{
-		tmp = ft_strsplit(env[i], '=');
-		if (tmp[0])
-		{
-			if (tmp[1])
-				g_env = add_env(g_env, tmp[0], tmp[1]);
-			else
-				g_env = add_env(g_env, tmp[0], NULL);
-		}
-		free(tmp);
-		tmp = NULL;
-		i++;
+		tmp = ft_strsplit(*env, '=');
+		if (tmp[0] && tmp[1])
+			g_env = add_env(g_env, tmp[0], tmp[1]);
+		env++;
 	}
 }
 
@@ -110,7 +96,7 @@ t_env	*ft_unsetenv(t_env *env, char *str)
 t_env	*ft_setenv(t_env *env, char *name, char *value)
 {
 	env = ft_unsetenv(env, name);
-	env = add_env(env, ft_strdup(name), ft_strdup(value));
+	env = add_env(env, name, value);
 	return (env);
 }
 
@@ -131,17 +117,13 @@ char	**make_env_tab(t_env *env)
 {
 	int		i;
 	char	**result;
-	char	*tmp;
 
 	i = list_len(env);
-	result = (char **)malloc(sizeof(char *) * i + 1);
+	result = (char **)ft_memalloc(sizeof(char *) * i + 1);
 	i = 0;
 	while (env)
 	{
-		tmp = ft_strjoin("=", env->value);
-		result[i++] = ft_strjoin(env->name, tmp);
-		free(tmp);
-		tmp = NULL;
+		result[i++] = ft_strjoin(env->name, ft_strjoin("=", env->value));
 		env = env->next;
 	}
 	result[i] = NULL;

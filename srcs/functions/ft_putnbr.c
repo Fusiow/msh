@@ -3,36 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rkharif <rkharif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/22 11:03:59 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/11 16:16:05 by aardjoun         ###   ########.fr       */
+/*   Created: 2013/11/26 20:18:48 by rkharif           #+#    #+#             */
+/*   Updated: 2014/03/13 13:09:39 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/msh.h"
 
-void	ft_putnbr(int nb)
+void	ft_putnbr(int n)
 {
-	int		reverse_nb;
+	int			sign;
 
-	reverse_nb = 0;
-	if (nb == 0)
-		ft_putchar('0');
-	if (nb < 0)
+	sign = -1;
+	if (n < 0)
 	{
 		ft_putchar('-');
-		nb = -nb;
+		n = n * sign;
 	}
-	while (nb > 0)
+	if (n >= 10)
 	{
-		reverse_nb *= 10;
-		reverse_nb += nb % 10;
-		nb /= 10;
+		ft_putnbr(n / 10);
+		ft_putnbr(n % 10);
 	}
-	while (reverse_nb > 0)
-	{
-		ft_putchar('0' + (reverse_nb % 10));
-		reverse_nb /= 10;
-	}
+	else
+		ft_putchar(48 + n);
 }

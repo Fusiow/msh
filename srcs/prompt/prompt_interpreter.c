@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/21 16:30:44 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/25 03:42:30 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/18 19:28:40 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void	home_pwd(void)
 	pwd = find_value_envir(g_env, "PWD");
 	if (home && pwd)
 	{
+		if (ft_strncmp(pwd, "/nfs", 4))
+			home = ft_strjoin("/Volumes/DATA", home);
 		if (ft_strncmp(home, pwd, ft_strlen(home)) == 0)
 		{
 			ft_putchar('~');
@@ -83,8 +85,71 @@ int		show_color(char *str, int i)
 	}
 	c = ft_strsub(str, v, j - 1);
 	interprate_color(c);
-	free(c);
 	return (i);
+}
+
+void	prompt_git(void)
+{
+	char	*result;
+	int		i;
+	int		v;
+
+	i = 0;
+	result = result_cmd("git branch");
+	if (result)
+	{
+		if (ft_strncmp("fatal", result, 5))
+		{
+			while (result[i] && result[i] != '*')
+				++i;
+			v = i + 2;
+			while (result[i] != '\n' && result[i])
+				++i;
+			ft_putstr(YEL);
+			ft_putstr("(");
+			write(1, &result[v], (i - v));
+			ft_putstr(")");
+			ft_putstr(DEF);
+		}
+		free(result);
+	}
+}
+
+void	show_time(void)
+{
+	char	*result;
+
+	result = result_cmd("date");
+	if (result)
+		write(1, &result[11], 5);
+}
+
+void	spe_pwd(char *str)
+{
+	int		i;
+	int		v;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '/')
+		{
+			ft_putchar(str[i]);
+			ft_putchar(str[++i]);
+			v = i;
+			while (str[i] != '/' && str[i])
+				++i;
+			if (!str[i])
+			{
+				v++;
+				while (str[v])
+					ft_putchar(str[v++]);
+			}
+			else
+				i = v;
+		}
+		++i;
+	}
 }
 
 void	prompt_interpreter(char *str)
@@ -113,6 +178,12 @@ void	prompt_interpreter(char *str)
 				prompt_termcaps("me");
 			else if (str[i] == 'c')
 				i = show_color(str, i + 1);
+			else if (str[i] == 'G')
+				prompt_git();
+			else if (str[i] == 't')
+				show_time();
+			else if (str[i] == 'P')
+				spe_pwd(find_value_envir(g_env, "PWD"));
 			++i;
 		}
 		if (str[i] != '%')

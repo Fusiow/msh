@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/27 08:31:33 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/27 10:11:33 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/15 16:21:02 by aardjoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 
 void	write_cmd(char *cmd, int i, int command)
 {
-	int		v;
-	char	*tmp;
+	int			v;
+	char		*tmp;
 
-	while (cmd[i] == ' ' && cmd[i])
+	tmp = NULL;
+	while (cmd[i] && cmd[i] == ' ')
 		ft_putchar(cmd[i++]);
 	if (!cmd[i])
 		return ;
@@ -87,7 +88,7 @@ void	write_cmd(char *cmd, int i, int command)
 		write(1, &cmd[v], (i - v));
 		ft_putstr(DEF);
 	}
-	else if (cmd[i] == '|' || cmd[i] == ';')
+	else if (cmd[i] == '|' || cmd[i] == ';' || cmd[i] == '&')
 	{
 		ft_putstr(MAG);
 		ft_putchar(cmd[i++]);
@@ -100,21 +101,25 @@ void	write_cmd(char *cmd, int i, int command)
 		{
 			command = 1;
 			v = i;
-			while (cmd[i] != ' ' && cmd[i])
+			while (cmd[i] != ' ' && cmd[i] != ';' && cmd[i] != '|' && cmd[i])
 				++i;
-			tmp = ft_strsub(cmd, v, (i - v));
+			tmp = ft_spe_strsub(cmd, v, (i - v));
 			if (check_prog(tmp))
 				ft_putstr(BLUE);
 			else
 				ft_putstr(RED);
 			i = v;
 		}
-		while (cmd[i] != ' ' && cmd[i])
+		else
+			ft_putstr(SBLUE);
+		while (cmd[i] != ' ' && cmd[i] != ';' && cmd[i] != '|' && cmd[i])
 			ft_putchar(cmd[i++]);
 		if (tmp)
 		{
-			if (check_prog(tmp) && !cmd[i])
+			if (!cmd[i] && check_prog(tmp))
 				show_options_in_line(tmp);
+			free(tmp);
+			tmp = NULL;
 		}
 		ft_putstr(DEF);
 	}

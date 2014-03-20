@@ -6,7 +6,7 @@
 /*   By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 15:59:27 by aardjoun          #+#    #+#             */
-/*   Updated: 2014/03/02 19:03:37 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/21 10:58:37 by aardjoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,44 +30,93 @@ void	exec_cmd(char **tab)
 	}
 	execve(tab[0], tab, env);
 	unknow_cmd(tab[0]);
-	_exit(0);
+	_exit(1);
 }
 
-void	pre_exec(char *str, int *rt, int *ret)
+int		pre_exec(char *str)
 {
-	char	*result;
-	t_command	*tmp;
-	t_command	*beg;
+	t_command	*tmp = NULL;
+	pid_t		pid = 0;
+	int			ret = 0;
 
-	tmp = quick_parse(str);
-	beg = tmp;
+	if (str)
+		tmp = quick_parse(str);
 	while (tmp)
 	{
-		result = is_alias(g_alias, tmp->cmd[0]);
-		if (result)
+		if (tmp->cmd[0])
 		{
-			tmp = beg;
-			ft_free_cmd_list(tmp);
-			tmp = quick_parse(result);
-			beg = tmp;
-		}
-		if (detect_built(rt, tmp->cmd, ret))
-		{
-			if (fork())
+			tmp->cmd = is_alias(g_alias, tmp->cmd);
+			if (detect_built(tmp->cmd))
 			{
-				signal(SIGINT, interrupt_process);
-				wait(0);
-			}
-			else
-			{
-				check_redirection(tmp->cmd);
-				exec_cmd(ft_tabdup(tmp->cmd));
+				if (!(pid = fork()))
+				{
+					signal(SIGTSTP, SIG_DFL);
+					signal(SIGQUIT, SIG_DFL);
+					check_operators(tmp->cmd);
+					check_redirection(tmp->cmd);
+					exec_cmd(tmp->cmd);
+				}
+				else
+				{
+					signal(SIGINT, interrupt_process);
+					g_jobs = add_job(g_jobs, tmp->cmd[0], pid);
+					waitpid(pid, &ret, WUNTRACED);
+					check_return(ret, pid);
+				}
 			}
 		}
 		tmp = tmp->next;
 	}
-	tmp = beg;
-	if (tmp)
-		ft_free_cmd_list(tmp);
-	tmp = NULL;
+	return (ret);
+}
+
+int		pre_exec_nofork(char *str)
+{
+	t_command	*tmp = NULL;
+	pid_t		pid = 0;
+
+	tmp = quick_parse(str);
+	while (tmp)
+	{
+		if (tmp->cmd[0])
+		{
+			tmp->cmd = is_alias(g_alias, tmp->cmd);
+			if (detect_built(tmp->cmd))
+			{
+				check_operators(tmp->cmd);
+				check_redirection(tmp->cmd);
+				exec_cmd(tmp->cmd);
+			}
+		}
+		tmp = tmp->next;
+	}
+	return (pid);
+}
+int		pre_exec_nowait(char *str)
+{
+	t_command	*tmp = NULL;
+	pid_t		pid = 0;
+	int			ret = 0;
+
+	if (str)
+		tmp = quick_parse(str);
+	while (tmp)
+	{
+		if (tmp->cmd[0])
+		{
+			tmp->cmd = is_alias(g_alias, tmp->cmd);
+			if (detect_built(tmp->cmd))
+			{
+				if (!(pid = fork()))
+				{
+					check_operators(tmp->cmd);
+					check_redirection(tmp->cmd);
+					exec_cmd(tmp->cmd);
+				}
+			}
+		}
+		tmp = tmp->next;
+	}
+	wait(0);
+	return (ret);
 }

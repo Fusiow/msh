@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 04:12:42 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/28 23:31:56 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/13 13:11:01 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ t_alias	*add_alias(t_alias *list, char *alias, char *value)
 
 	tmp2 = list;
 	tmp = (t_alias *)malloc(sizeof(t_alias));
-	tmp->alias = ft_strdup(alias);
-	tmp->value = ft_strdup(value);
+	tmp->alias = alias;
+	tmp->value = value;
 	tmp->next = NULL;
 	if (list == NULL)
 		return (tmp);
@@ -50,13 +50,29 @@ t_alias	*add_alias(t_alias *list, char *alias, char *value)
 	return (list);
 }
 
-char	*is_alias(t_alias *list, char *alias)
+char	**is_alias(t_alias *list, char **tab)
 {
-	while (list && ft_strcmp(list->alias, alias))
-		list = list->next;
-	if (list)
-		return (list->value);
-	return (NULL);
+	int			i;
+	t_alias		*tmp;
+	t_command	*result;
+
+	tmp = list;
+	i = 0;
+	while (tab[i] != NULL)
+	{
+		while (list)
+		{
+			if (ft_strcmp(tab[i], list->alias) == 0)
+			{
+				result = quick_parse(list->value);
+				tab = ft_insert_tab(tab, result->cmd, i);
+			}
+			list = list->next;
+		}
+		list = tmp;
+		++i;
+	}
+	return (tab);
 }
 
 void	show_alias(t_alias *list)
@@ -75,8 +91,7 @@ void	ft_alias(char **tab)
 {
 	if (tab[1] && tab[2])
 	{
-		if (is_alias(g_alias, tab[1]))
-			g_alias = del_alias(g_alias, tab[1]);
+		g_alias = del_alias(g_alias, tab[1]);
 		g_alias = add_alias(g_alias, tab[1], tab[2]);
 	}
 	else

@@ -1,34 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_env.c                                      :+:      :+:    :+:   */
+/*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/02/28 16:54:46 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/02 19:06:32 by lsolofri         ###   ########.fr       */
+/*   Created: 2013/11/21 17:02:08 by lsolofri          #+#    #+#             */
+/*   Updated: 2014/03/13 15:19:57 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/msh.h"
 
-void	ft_free_env(void)
+char	*ft_spe_strsub(char const *s, unsigned int start, size_t len)
 {
-	t_env	*node;
-	t_env	*temp;
+	char	*ptr;
+	size_t	i;
 
-	node = g_env;
-	while (node)
+	i = 0;
+	if (len == 0 || !s)
+		return (0);
+	ptr = (char *)malloc((sizeof(char)) * len);
+	if (ptr != NULL)
 	{
-		temp = node;
-		node = node->next;
-		if (temp->name)
-			free(temp->name);
-		if (temp->value)
-			free(temp->value);
-		free(temp);
-		temp = NULL;
+		while (i < len)
+		{
+			ptr[i] = s[start];
+			++start;
+			++i;
+		}
+		ptr[i] = '\0';
+		return (ptr);
 	}
-	free(node);
-	node = NULL;
+	return (NULL);
 }

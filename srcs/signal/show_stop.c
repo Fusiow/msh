@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tabdup.c                                        :+:      :+:    :+:   */
+/*   show_stop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/03/02 18:01:09 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/02 18:03:16 by lsolofri         ###   ########.fr       */
+/*   Created: 2014/03/16 15:50:30 by lsolofri          #+#    #+#             */
+/*   Updated: 2014/03/17 20:05:37 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/msh.h"
 
-char	**ft_tabdup(char **src)
+void	show_stop(int sig)
 {
-	int		i;
-	char	**result;
-
-	i = ft_tablen(src);
-	result = (char **)malloc(sizeof(char *) * i);
-	i = 0;
-	while (src[i])
-	{
-		result[i] = ft_strdup(src[i]);
-		++i;
-	}
-	result[i] = NULL;
-	return (result);
+	if (sig == 4)
+		ft_putstr("Illegal instruction");
+	else if (sig == 3)
+		ft_putstr("Quit");
+	else if (sig == 6)
+		ft_putstr("Abort.");
+	else if (sig == 8)
+		ft_putstr("Floating point exception");
+	else if (sig == 9 || sig == 15)
+		ft_putstr("Kill");
+	else if (sig == 11)
+		ft_putstr("Segmentation fault");
+	else if (sig == 13)
+		ft_putstr("Broken pipe");
+	else if (sig == 10 || sig == 7)
+		ft_putstr("Bus error");
 }

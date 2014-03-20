@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:52:57 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/02 17:53:32 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/18 21:57:03 by rkharif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,48 +17,42 @@ char	*change_cmd(int i, char *result, char letter)
 	char	*tmp;
 	char	*end;
 	char	*c;
-	int		save;
 	char	*new;
 
 	c = char_to_string(letter);
 	if (!result)
-	{
-		ft_putstr(c);
-		new = ft_strdup(c);
-		free(c);
-		return (new);
-	}
+		return (c);
 	if (i == ft_strlen(result))
 	{
-		new = ft_strjoin(result, c);
+		new = ft_spe_strjoin(result, c);
 		free(result);
 		free(c);
+		result = NULL;
+		c = NULL;
 		return (new);
 	}
 	else if (i == 0)
 	{
-		new = ft_strjoin(c, result);
-		free(result);
+		new = ft_spe_strjoin(c, result);
 		free(c);
+		free(result);
+		result = NULL;
 		return (new);
 	}
 	else
 	{
-		save = ft_strlen(result);
-		tmp = ft_strsub(result, 0, i);
-		tmp[i] = '\0';
-		end = ft_strsub(result, i, save - i);
+		tmp = ft_spe_strsub(result, 0, i);
+		end = ft_spe_strsub(result, i, ft_strlen(result));
 		new = ft_strdup(tmp);
 		free(tmp);
 		tmp = NULL;
-		tmp = ft_strjoin(new, c);
-		free(new);
+		tmp = ft_spe_strjoin(new, c);
 		free(result);
-		result = ft_strjoin(tmp, end);
+		result = NULL;
+		result = ft_spe_strjoin(tmp, end);
 		free(end);
 		free(tmp);
 		free(c);
-		result[save + 1] = '\0';
 	}
 	return (result);
 }
@@ -79,10 +73,10 @@ int		distrib_buttons(int i, char **result, char *buffer, int *v)
 	}
 	else if (buffer[0] == 127)
 		*result = del_c(*result, &i);
-	else if (buffer[0] == 9 && ft_strcmp(*result, ""))
+	else if (buffer[0] == 9 && *result)
 	{
 		tmp = ft_strdup(*result);
-		*result = show_autocomplete(*result);
+		*result = show_autocomplete(*result, 1);
 		if (ft_strcmp(*result, tmp))
 			i = ft_strlen(*result);
 		else
@@ -92,10 +86,39 @@ int		distrib_buttons(int i, char **result, char *buffer, int *v)
 			i = ft_strlen(tmp);
 		}
 	}
+	else if (buffer[0] == 12)
+	{
+		ft_putstr(tgetstr("cl", NULL));
+		prompt();
+	}
+	else if (buffer[0] == 1)
+	{
+		i = 0;
+		replace_cursor(i, ft_strlen(*result));
+	}
+	else if (buffer[0] == 5)
+	{
+		while (i + 1 < ft_strlen(*result))
+		{
+			ft_putstr(" ");
+			++i;
+		}
+		i = ft_strlen(*result);
+	}
+	else if (buffer[0] == 21)
+	{
+		clear_line(i + 1, ft_strlen(*result));
+		*result = NULL;
+		i = 0;
+	}
+	else if (buffer[0] == 11 && *result && i < ft_strlen(*result))
+		*result = ft_strsub(*result, 0, i++);
+	else if (buffer[0] == 4)
+			_exit(0);
 	return (i);
 }
 
-char	*take_cmd(void)
+char	*take_cmd(int choice)
 {
 	char			*result;
 	char			*buffer;
@@ -104,19 +127,17 @@ char	*take_cmd(void)
 	int				v;
 
 	i = 0;
+	(void)choice;
 	init_flag(&term);
 	buffer = (char *)malloc(sizeof(char) * 3);
-	result = (char *)malloc(sizeof(char) * 2058);
+	result = NULL;
 	while (1)
 	{
 		v = 0;
 		buffer = init_buffer(buffer);
 		read(0, buffer, 3);
 		if (ft_isprint(buffer[0]))
-		{
-			result = change_cmd(i, result, buffer[0]);
-			i = i + 1;
-		}	
+			result = change_cmd(i++, result, buffer[0]);
 		else
 			i = distrib_buttons(i, &result, buffer, &v);
 		if (i == -2)
@@ -124,14 +145,18 @@ char	*take_cmd(void)
 		if (v == 0 && result)
 		{
 			clear_line(i, ft_strlen(result));
-//			write_cmd(result, 0, 0);
-			ft_putstr(result);
+			if (choice == 0)
+				write_cmd(result, 0, 0);
+			else
+				ft_putstr(result);
 			replace_cursor(i, ft_strlen(result));
 		}
 	}
 	ft_putstr("\n");
 	free(buffer);
-	history(0, result);
+	show_autocomplete(NULL, 0);
+	if (result)
+		history(0, result);
 	re_flag(&term);
 	return (result);
 }

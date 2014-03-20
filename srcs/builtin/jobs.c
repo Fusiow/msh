@@ -6,32 +6,61 @@
 /*   By: aardjoun <aardjoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 15:18:15 by aardjoun          #+#    #+#             */
-/*   Updated: 2014/02/28 17:47:14 by aardjoun         ###   ########.fr       */
+/*   Updated: 2014/03/21 13:45:24 by aardjoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/msh.h"
 
-void		new_job(char *name, int job, int pid, int status)
+void		fg_bg(t_jobs *jobs, char ** tab, int k)
 {
-	t_jobs	*jobs;
+	int		rt;
+	int		i;
 
-	jobs->name = ft_strdup(name);
-	jobs->job = job;
-	job->pid = pid;
-	job->status = status;
-	job->next = NULL;
-}
-
-t_jobs		*add_job(t_jobs *jobs, char *name, int job, int pid, int status)
-{
-	t_jobs	*tmp;
-
-	tmp = new_job(name, job, pid, status);
+	rt = 0;
+	i = 0;
 	if (jobs == NULL)
-		jobs = tmp;
+	{
+		job_error(k);
+		return ;
+	}
+	if (tab[1])
+	{
+		while (tab[1] && tab[1][++i] != '\0')
+			rt = ((ft_isdigit(tab[1][i])) ? 1 : 0);
+		search_job(jobs, tab[1], rt);
+	}
 	else
+	{
 		while (jobs->next != NULL)
 			jobs = jobs->next;
-	tmp->next = jobs;
-	return (jobs);
+	}
+	ft_putstr("[");
+	ft_putnbr(jobs->job);
+	ft_putstr("]");
+	ft_putstr(" + ");
+	ft_putstr("continued\t\t");
+	ft_putendl(jobs->name);
+	kill(jobs->pid, SIGCONT);
+	g_jobs = remove_jobs(g_jobs, jobs->pid);
+	if (k == 1)
+		wait(&jobs->pid);
+}
+
+int			search_job(t_jobs *jobs, char *tab, int rt)
+{
+	(void)rt;
+	while (jobs->next != NULL)
+	{
+		if (jobs->pid != ft_atoi(tab)) 
+			jobs = jobs->next;
+	}
+//	if (jobs->pid == ft_atoi(tab))
+//	{
+//		kill(jobs->pid, SIGCONT);
+//		wait(&jobs->pid);
+//		g_jobs = remove_jobs(g_jobs, jobs->pid);
+//	}
+	pid_error(tab);
+	return (0);
+}

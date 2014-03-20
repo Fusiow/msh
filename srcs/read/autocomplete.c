@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 14:15:21 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/21 13:58:11 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/13 18:02:16 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,30 +32,6 @@ void	show_options(char c)
 	ft_putstr(DEF);
 }
 
-void	show_rest(char *str, char *cmd)
-{
-	int		i;
-	t_option	*list;
-
-	i = 1;
-	if (!str)
-		return ;
-	if (str[i] == '-')
-	{
-		if (!str[i + 1])
-		{
-			list = return_options(cmd);
-			ft_putstr(str);
-			if (list)
-				show_options(list->option);
-		}
-		else
-			syntax_color_rest(str);
-	}
-	else
-		syntax_color_rest(str);
-}
-
 void	show_options_in_line(char *cmd)
 {
 	char        **path;
@@ -70,7 +46,7 @@ void	show_options_in_line(char *cmd)
 		{
 			man_path = ft_strjoin(*path, ft_strjoin("/", ft_strjoin(man,
 							ft_strjoin(cmd, ft_strjoin(".",
-									char_to_string(man[3]))))));
+									char_to_string2(man[3]))))));
 			if (access(man_path, F_OK) != -1)
 			{
 				if (get_options(open(man_path, O_RDONLY)))

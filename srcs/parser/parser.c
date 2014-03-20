@@ -6,11 +6,12 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 06:57:02 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/02 18:58:31 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/18 21:46:17 by rkharif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/msh.h"
+#include <stdio.h>
 
 t_parse		*add_word(t_parse *list, char *str)
 {
@@ -29,89 +30,12 @@ t_parse		*add_word(t_parse *list, char *str)
 	return (list);
 }
 
-void	parser(char *cmd, int i, t_parse **list)
-{
-	int		v;
-
-	while (cmd[i] == ' ' && cmd[i])
-		++i;
-	if (!cmd[i])
-		return ;
-	else if (cmd[i] == '"')
-	{
-		++i;
-		v = i;
-		while (cmd[i] != '"' && cmd[i])
-			++i;
-		*list = add_word(*list, ft_strsub(cmd, v, (i - v)));
-	}
-	else if (cmd[i] == '\'')
-	{
-		++i;
-		v = i;
-		while (cmd[i] != '\'' && cmd[i])
-			++i;
-		*list = add_word(*list, ft_strsub(cmd, v, (i - v)));
-	}
-	else if (cmd[i] == '>' && cmd[i + 1] != '>')
-	{
-		++i;
-		if (cmd[i] == ' ')
-		{
-			while (cmd[i] == ' ' && cmd[i])
-				++i;
-		}
-		v = i;
-		while (cmd[i] != ' ' && cmd[i] != ';' && cmd[i] != '|' && cmd[i])
-			++i;
-		*list = add_word(*list, ">");
-		*list = add_word(*list, ft_strsub(cmd, v, (i - v)));
-	}
-	else if (cmd[i] == '<')
-	{
-		++i;
-		if (cmd[i] == ' ')
-		{
-			while (cmd[i] == ' ' && cmd[i])
-				++i;
-		}
-		v = i;
-		while (cmd[i] != ' ' && cmd[i] != ';' && cmd[i] != '|' && cmd[i])
-			++i;
-		*list = add_word(*list, "<");
-		*list = add_word(*list, ft_strsub(cmd, v, (i - v)));
-
-	}
-	else if (cmd[i] == '|')
-	{
-		*list = add_word(*list, "|");
-		++i;
-	}
-	else if (cmd[i] == ';')
-	{
-		*list = add_word(*list, ";");
-		++i;
-	}
-	else
-	{
-		v = i;
-		while (cmd[i] != ' ' && cmd[i] != ';' && cmd[i] != '|' && cmd[i])
-			++i;
-		*list = add_word(*list, ft_strsub(cmd, v, (i - v)));
-	}
-	if (!cmd[i])
-		return ;
-	if (cmd[i] != ';' && cmd[i] != '|' && cmd[i - 1] != ';' && cmd[i - 1] != '|')
-		++i;
-	parser(cmd, i, list);
-}
-
 int		list_len_cmd(t_parse *list)
 {
 	int		i;
 
 	i = 0;
-	while (list != NULL && (ft_strcmp(list->str, ";")))
+	while (list && (ft_strcmp(list->str, ";")))
 	{
 		list = list->next;
 		++i;
@@ -126,7 +50,7 @@ t_command	*add_tab(t_command *result, char **tab)
 
 	tmp2 = result;
 	tmp = (t_command *)malloc(sizeof(t_command));
-	tmp->cmd = ft_tabdup(tab);
+	tmp->cmd = tab;
 	tmp->next = NULL;
 	if (result == NULL)
 		return (tmp);
@@ -136,19 +60,26 @@ t_command	*add_tab(t_command *result, char **tab)
 	return (result);
 }
 
+void	show_me_the_truth_bitch_get_outta_my_way(t_parse *list)
+{
+	while (list)
+	{
+		printf("%s\n", list->str);
+		list = list->next;
+	}
+}
+
 t_command	*quick_parse(char *str)
 {
 	t_parse 	*list;
-	t_parse 	*beg;
 	int			i;
 	char		**tab;
 	t_command	*result;
 
 	i = 0;
-	list = NULL;
+	list = tokenize(str);
+//	show_me_the_truth_bitch_get_outta_my_way(list);
 	result = NULL;
-	parser(str, 0, &list);
-	beg = list;
 	while (list)
 	{
 		i = list_len_cmd(list);
@@ -156,17 +87,14 @@ t_command	*quick_parse(char *str)
 		i = 0;
 		while (list != NULL && (ft_strcmp(list->str, ";")))
 		{
-			tab[i] = ft_strdup(list->str);
+			tab[i] = list->str;
 			++i;
 			list = list->next;
 		}
 		tab[i] = NULL;
 		result = add_tab(result, tab);
-		ft_free_tab(tab);
 		if (list)
 			list = list->next;
 	}
-	list = beg;
-	ft_free_parse_list(list);
 	return (result);
 }

@@ -6,18 +6,18 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/21 18:56:49 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/28 13:09:04 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/19 09:42:16 by aardjoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/msh.h"
 
-int		detect_built(int *rt, char **tab, int *bc)
+int		detect_built(char **tab)
 {
 	int		ret;
 
 	if (!(ret = ft_strcmp("exit", tab[0])))
-		*bc = ft_exit(tab, rt);
+		ft_exit(tab);
 	else if (!(ret = ft_strcmp("cd", tab[0])))
 		ft_cd(tab);
 	else if (!(ret = ft_strcmp("env", tab[0])))
@@ -36,5 +36,11 @@ int		detect_built(int *rt, char **tab, int *bc)
 		unset_var(tab[1]);
 	else if (!(ret = ft_strcmp("export", tab[0])))
 		export_var(g_var, tab[1]);
+	else if (!(ret = ft_strcmp("jobs", tab[0])))
+		show_jobs(g_jobs);
+	else if (!(ret = ft_strcmp("fg", tab[0])))
+		fg_bg(g_jobs, tab, 1);
+	else if (!(ret = ft_strcmp("bg", tab[0])))
+		fg_bg(g_jobs, tab, 0);
 	return (ret);
 }

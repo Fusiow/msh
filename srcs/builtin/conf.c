@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 02:38:17 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/28 23:23:22 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/13 12:29:22 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,14 @@ void	load_conf_file(void)
 {
 	int		fd;
 	char	*tmp;
-	int		not;
 
 	tmp = ft_strjoin(find_value_envir(g_env, "HOME"), "/.mshrc");
 	fd = open(tmp, O_RDONLY);
 	if (fd == -1)
 	{
-		ft_putendl("Conf file error");
+		no_conf();
 		return ;
 	}
-	free(tmp);
-	tmp = NULL;
 	while ((tmp = get_next_line(fd)))
-	{
-		pre_exec(tmp, &not, &not);
-		free(tmp);
-		tmp = NULL;
-	}
-	close(fd);
-	free(tmp);
+		pre_exec(tmp);
 }

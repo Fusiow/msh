@@ -16,10 +16,9 @@
 void		change_pwd(int home)
 {
 	char	*tmp;
-	char	*pwd[] = {"/bin/pwd", "-L", NULL};
 
 	if (home == 0)
-		tmp = result_cmd(pwd);
+		tmp = getcwd(NULL, 1064);
 	else
 		tmp = find_value_envir(g_env, "HOME");
 	ft_setenv(g_env, "OLDPWD", find_value_envir(g_env, "PWD"));
