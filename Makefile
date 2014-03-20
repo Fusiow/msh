@@ -15,6 +15,7 @@ NAME	=	MiShell
 SRCS	=	srcs/main/main.c\
 			srcs/main/ft_mishell.c\
 			srcs/main/built.c\
+			srcs/main/options.c\
 			srcs/environ/ft_env.c\
 			srcs/environ/get_man_path.c\
 			srcs/errors/error.c\

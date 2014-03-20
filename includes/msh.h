@@ -303,6 +303,7 @@ int			detect_built(char **tab);
 int			pre_exec(char *str);
 int			pre_exec_nofork(char *str);
 int			pre_exec_nowait(char *str);
+void		main_options(char **av, int *choice);
 
 /*
  ** PROMPT

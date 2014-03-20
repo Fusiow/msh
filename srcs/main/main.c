@@ -15,19 +15,21 @@
 int			main(int ac, char **av, char **environ)
 {
 	char		*str;
+	int			choice;
 
-	(void)ac;
-	(void)av;
+	choice = 0;
 	welcome();
 	new_env(environ);
 	load_conf_file();
+	if (ac != 1)
+		main_options(av, &choice);
 	signal(SIGTSTP, SIG_IGN);
 	signal(SIGQUIT, SIG_IGN);
 	while (1)
 	{
 		prompt();
 		signal(SIGINT, interrupt_cmd);
-		str = take_cmd(1);
+		str = take_cmd(choice);
 		pre_exec(str);
 		free(str);
 		str = NULL;
