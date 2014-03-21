@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/18 21:33:57 by rkharif          ###   ########.fr       */
+/*   Updated: 2014/03/21 12:01:53 by aardjoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,6 +176,8 @@ void		exit_error(char **tab);
 void		unknow_cmd(char *str);
 int			cd_error(char *str);
 void		err_no_file(char *str);
+void		pid_error(char *tab);
+void		job_error(int k);
 
 /*
  ** READ

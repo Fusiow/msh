@@ -6,7 +6,7 @@
 /*   By: aardjoun <aardjoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 16:47:41 by aardjoun          #+#    #+#             */
-/*   Updated: 2014/03/18 17:40:47 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/19 10:25:32 by aardjoun         ###   ########.fr       */
 /*   Updated: 2014/03/17 15:25:11 by aardjoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -37,11 +37,6 @@ void		show_interrupt(int pid)
 	ft_putstr("msh: suspended\t");
 	ft_putendl(find_prog(g_jobs, pid));
 }
-
-/*int			std_signal(__attribute__((unused))int s)
-{
-
-}*/
 
 void	check_return(int ret, int pid)
 {

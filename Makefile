@@ -6,7 +6,7 @@
 #    By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/14 17:00:44 by aardjoun          #+#    #+#              #
-#    Updated: 2014/03/18 21:08:07 by rkharif          ###   ########.fr        #
+#    Updated: 2014/03/21 12:06:35 by aardjoun         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -97,7 +97,7 @@ LIBS	=	-L/usr/lib/ -ltermcap
 
 OBJS	=	$(SRCS:.c=.o)
 
-all		:	msh $(NAME)
+all		:	$(NAME)
 
 msh		:
 	@echo "MMMMMMMM               MMMMMMMM   SSSSSSSSSSSSSSS HHHHHHHHH     HHHHHHHHH"
@@ -117,7 +117,7 @@ msh		:
 	@echo "M::::::M               M::::::MS:::::::::::::::SS H:::::::H     H:::::::H"
 	@echo "MMMMMMMM               MMMMMMMM SSSSSSSSSSSSSSS   HHHHHHHHH     HHHHHHHHH"
 
-$(NAME)	:	$(OBJS)
+$(NAME)	:	 $(OBJS) msh
 	@$(CC) $(CFLAGS) $(LIBS) $(OBJS) -o $(NAME)
 	@echo "done"
 

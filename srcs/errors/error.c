@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 15:02:39 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/16 17:42:06 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/21 12:02:13 by aardjoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,23 @@ void	exit_error(char **tab)
 
 void	unknow_cmd(char *str)
 {
-	ft_putstr("MiShell: Unknown command '");
+	ft_putstr("msh: Unknown command '");
 	ft_putstr(str);
 	ft_putendl("'");
+}
+
+void	pid_error(char *tab)
+{
+	ft_putstr("msh: '");
+	ft_putstr(tab);
+	ft_putendl("' is not a valid pid");
+}
+
+void	job_error(int k)
+{
+	if (k == 1)
+		ft_putstr("fg");
+	else
+		ft_putstr("bg");
+	ft_putendl(": no current job");
 }
