@@ -39,7 +39,7 @@ t_list	*add_type(t_list *list, char *str, char *type)
 int		check_builtins_and_alias(char *str)
 {
 	char	*builtins[] = {"exit", "setenv", "unsetenv", "cd", "env", "set",
-								"unset", "export", "alias", NULL};
+								"unset", "export", "alias", "jobs", NULL};
 	int		result;
 	int		i;
 	t_alias	*list;

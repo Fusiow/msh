@@ -88,7 +88,7 @@ void	write_cmd(char *cmd, int i, int command)
 		write(1, &cmd[v], (i - v));
 		ft_putstr(DEF);
 	}
-	else if (cmd[i] == '|' || cmd[i] == ';' || cmd[i] == '&')
+	else if (cmd[i] == '|' || cmd[i] == ';' || cmd[i] == '&' || cmd[i] == '(' || cmd[i] == ')')
 	{
 		ft_putstr(MAG);
 		ft_putchar(cmd[i++]);
@@ -101,7 +101,7 @@ void	write_cmd(char *cmd, int i, int command)
 		{
 			command = 1;
 			v = i;
-			while (cmd[i] != ' ' && cmd[i] != ';' && cmd[i] != '|' && cmd[i])
+			while (cmd[i] != ' ' && cmd[i] != ';' && cmd[i] != '|' && cmd[i] != '(' && cmd[i] != ')' && cmd[i])
 				++i;
 			tmp = ft_spe_strsub(cmd, v, (i - v));
 			if (check_prog(tmp))
