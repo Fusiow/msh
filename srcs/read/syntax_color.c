@@ -36,6 +36,32 @@ t_list	*add_type(t_list *list, char *str, char *type)
 	return (list);
 }
 
+int		check_builtins_and_alias(char *str)
+{
+	char	*builtins[] = {"exit", "setenv", "unsetenv", "cd", "env", "set",
+								"unset", "export", "alias", NULL};
+	int		result;
+	int		i;
+	t_alias	*list;
+
+	result = 0;
+	list = g_alias;
+	i = 0;
+	while (builtins[i])
+	{
+		if (!ft_strcmp(str, builtins[i]))
+			result = 1;
+		i++;
+	}
+	while (list)
+	{
+		if (!ft_strcmp(str, list->alias))
+			result = 1;
+		list = list->next;
+	}
+	return (result);
+}
+
 int		check_prog(char *str)
 {
 	int		i;
@@ -47,34 +73,26 @@ int		check_prog(char *str)
 	result = 0;
 	tab = ft_spe_strsplit(find_value_envir(g_env, "PATH"), ':');
 	i = 0;
-	if (ft_strcmp(str, "exit") == 0)
+	if (check_builtins_and_alias(str))
 		return (1);
-	else if (ft_strcmp(str, "setenv") == 0)
-		return (1);
-	else if (ft_strcmp(str, "unsetenv") == 0)
-		return (1);
-	else if (ft_strcmp(str, "cd") == 0)
-		return (1);
-	else if (ft_strcmp(str, "env") == 0)
-		return (1);
-	else if (ft_strcmp(str, "set") == 0)
-		return (1);
-	else if (ft_strcmp(str, "unset") == 0)
-		return (1);
-	else if (ft_strcmp(str, "export") == 0)
+	if (!access(str, X_OK))
 		return (1);
 	while (tab[i])
 	{
-		rep = opendir(tab[i++]);
+		rep = opendir(tab[i]);
+		++i;
 		if (rep)
 		{
 			while ((show = readdir(rep)))
 			{
-				if (ft_strcmp(str, show->d_name) == 0)
-					result = 1;
+				if (show)
+				{
+					if (ft_strcmp(str, show->d_name) == 0)
+						result = 1;
+				}
 			}
+			closedir(rep);
 		}
-		closedir(rep);
 	}
 	ft_free_tab(tab);
 	return (result);

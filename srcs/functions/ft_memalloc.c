@@ -17,9 +17,13 @@ void	*ft_memalloc(size_t size)
 {
 	void	*new;
 
+	new = NULL;
 	if ((new = malloc(size)) == NULL)
 		return (NULL);
-	ft_bzero(new, size);
-	ft_gc(new, E_GCADD);
+	else
+	{
+		ft_bzero(new, size);
+		ft_gc(new, E_GCADD);
+	}
 	return (new);
 }

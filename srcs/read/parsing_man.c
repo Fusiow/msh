@@ -33,19 +33,22 @@ char	*get_cmd_description(char *cmd)
 				man_path = ft_strjoin(path[i], ft_strjoin("/", ft_strjoin(man,
 								ft_strjoin(cmd, ft_strjoin(".",
 										char_to_string(man[3]))))));
-				if (access(man_path, F_OK) != -1)
+				if (man_path)
 				{
-					fd = open(man_path, O_RDONLY);
-					while ((str = get_next_line(fd)))
+					if (access(man_path, F_OK) != -1)
 					{
-						if (ft_strncmp(str, ".Nd", 3) == 0)
+						fd = open(man_path, O_RDONLY);
+						while ((str = get_next_line(fd)))
 						{
-							free(path);
-							close(fd);
-							return (ft_strsub(str, 4, ft_strlen(str)));
+							if (ft_strncmp(str, ".Nd", 3) == 0)
+							{
+								free(path);
+								close(fd);
+								return (ft_strsub(str, 4, ft_strlen(str)));
+							}
 						}
+						close(fd);
 					}
-					close(fd);
 				}
 				man[3]++;
 			}
