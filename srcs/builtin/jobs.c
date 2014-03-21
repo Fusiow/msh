@@ -6,7 +6,7 @@
 /*   By: aardjoun <aardjoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 15:18:15 by aardjoun          #+#    #+#             */
-/*   Updated: 2014/03/21 12:55:59 by aardjoun         ###   ########.fr       */
+/*   Updated: 2014/03/21 13:45:24 by aardjoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,17 @@ void		fg_bg(t_jobs *jobs, char ** tab, int k)
 	{
 		while (jobs->next != NULL)
 			jobs = jobs->next;
-		kill(jobs->pid, SIGCONT);
-		g_jobs = remove_jobs(g_jobs, jobs->pid);
-		if (k == 1)
-			wait(&jobs->pid);
 	}
+	ft_putstr("[");
+	ft_putnbr(jobs->job);
+	ft_putstr("]");
+	ft_putstr(" + ");
+	ft_putstr("continued\t\t");
+	ft_putendl(jobs->name);
+	kill(jobs->pid, SIGCONT);
+	g_jobs = remove_jobs(g_jobs, jobs->pid);
+	if (k == 1)
+		wait(&jobs->pid);
 }
 
 int			search_job(t_jobs *jobs, char *tab, int rt)
@@ -49,13 +55,12 @@ int			search_job(t_jobs *jobs, char *tab, int rt)
 		if (jobs->pid != ft_atoi(tab)) 
 			jobs = jobs->next;
 	}
-	if (jobs->pid == ft_atoi(tab))
-	{
-		kill(jobs->pid, SIGCONT);
-		wait(&jobs->pid);
-		g_jobs = remove_jobs(g_jobs, jobs->pid);
-	}
-	else
-		pid_error(tab);
+//	if (jobs->pid == ft_atoi(tab))
+//	{
+//		kill(jobs->pid, SIGCONT);
+//		wait(&jobs->pid);
+//		g_jobs = remove_jobs(g_jobs, jobs->pid);
+//	}
+	pid_error(tab);
 	return (0);
 }

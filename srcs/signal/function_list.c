@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/16 14:18:25 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/21 11:49:58 by aardjoun         ###   ########.fr       */
+/*   Updated: 2014/03/21 13:43:21 by aardjoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_jobs		*add_job(t_jobs *list, char *name, int pid)
 	tmp = (t_jobs *)malloc(sizeof(t_jobs));
 	tmp->name = ft_strdup(name);
 	tmp->pid = pid;
-	tmp->job = 0;
+	tmp->job = 1;
 	tmp->status = 0;
 	tmp->next = NULL;
 	if (list == NULL)
@@ -29,6 +29,7 @@ t_jobs		*add_job(t_jobs *list, char *name, int pid)
 	while (tmp2->next != NULL)
 		tmp2 = tmp2->next;
 	tmp2->next = tmp;
+	tmp->job = tmp2->job + 1;
 	return (list);
 }
 
@@ -40,7 +41,7 @@ void		show_jobs(t_jobs *jobs)
 	while (jobs)
 	{
 		ft_putstr("[");
-		ft_putnbr(i);
+		ft_putnbr(jobs->job);
 		ft_putstr("] ");
 		ft_putstr("[");
 		ft_putnbr(jobs->pid);

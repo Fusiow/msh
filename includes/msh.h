@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/21 12:01:53 by aardjoun         ###   ########.fr       */
+/*   Updated: 2014/03/21 13:24:26 by aardjoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,10 @@ char	*search_var(t_var *list, char *name);
 
 typedef struct		s_jobs
 {
-	char			*name;
-	int				job;
-	int				pid;
-	int				status;
+	char			*name;	/* name */
+	int				job;	/* nb job */ 
+	int				pid;	/* pid */
+	int				status; /* fg 1/ bg 2/ ^Z 0*/
 	struct s_jobs	*next;
 }					t_jobs;
 

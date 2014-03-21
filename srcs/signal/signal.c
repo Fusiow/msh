@@ -6,7 +6,7 @@
 /*   By: aardjoun <aardjoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 16:47:41 by aardjoun          #+#    #+#             */
-/*   Updated: 2014/03/19 10:25:32 by aardjoun         ###   ########.fr       */
+/*   Updated: 2014/03/21 17:11:52 by aardjoun         ###   ########.fr       */
 /*   Updated: 2014/03/17 15:25:11 by aardjoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -21,7 +21,7 @@ void		interrupt_process(__attribute__((unused))int s)
 void		interrupt_cmd(__attribute__((unused))int s)
 {
 	ft_putendl("");
-	prompt();
+//	prompt();
 }
 
 void		show_signal(int pid, int sig)
