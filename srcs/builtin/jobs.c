@@ -6,7 +6,7 @@
 /*   By: aardjoun <aardjoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 15:18:15 by aardjoun          #+#    #+#             */
-/*   Updated: 2014/03/21 12:01:05 by aardjoun         ###   ########.fr       */
+/*   Updated: 2014/03/21 12:55:59 by aardjoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,7 @@ void		fg_bg(t_jobs *jobs, char ** tab, int k)
 	if (tab[1])
 	{
 		while (tab[1] && tab[1][++i] != '\0')
-		{
-			if (ft_isdigit(tab[1][i]))
-				rt = 1;
-			else
-				rt = 0;
-		}
+			rt = ((ft_isdigit(tab[1][i])) ? 1 : 0);
 		search_job(jobs, tab[1], rt);
 	}
 	else
@@ -48,7 +43,6 @@ void		fg_bg(t_jobs *jobs, char ** tab, int k)
 
 int			search_job(t_jobs *jobs, char *tab, int rt)
 {
-	(void)tab;
 	(void)rt;
 	while (jobs->next != NULL)
 	{
