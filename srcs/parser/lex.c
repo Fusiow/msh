@@ -6,7 +6,7 @@
 /*   By: rkharif <rkharif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 13:10:28 by rkharif           #+#    #+#             */
-/*   Updated: 2014/03/22 04:33:53 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/22 05:15:53 by rkharif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,6 +174,8 @@ t_parse		*tokenize(char *str)
 	openflag = 0;
 	i = 0;
 	list = NULL;
+	if (check_line(str))
+		return (list);
 	while (str[i])
 	{
 		len = 0;

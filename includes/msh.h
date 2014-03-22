@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/21 13:24:26 by aardjoun         ###   ########.fr       */
+/*   Updated: 2014/03/22 02:30:20 by rkharif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,6 +169,13 @@ struct	s_gc
 /*
  ** ERRORS
  */
+typedef struct		s_error
+{
+	int				dquote;
+	int				squote;
+	int				pipe;
+	int				bquote;
+}					t_error;
 
 void		show_error(char *str);
 void		show_error_exit(char *str);
