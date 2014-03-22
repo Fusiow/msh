@@ -56,13 +56,14 @@ char	**ft_insert_tab(char **src, char **alias, int i)
 	int		x;
 
 	j = 0;
-	v = 1;
+	v = 0;
 	x = 0;
 	result = (char **)malloc(sizeof(char *) * (ft_tablen(src) + ft_tablen(alias)));
 	while (j < (ft_tablen(src) + ft_tablen(alias)))
 	{
 		if (j == i)
 		{
+			++v;
 			while (alias[x])
 			{
 				result[j] = alias[x];
