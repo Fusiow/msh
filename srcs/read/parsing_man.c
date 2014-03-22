@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 10:43:09 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/28 13:34:38 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/22 13:45:20 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*get_cmd_description(char *cmd)
 	int			i;
 
 	i = 0;
-	path = ft_strsplit(get_man_path(), ':');
+	path = ft_strsplit(find_value_envir(g_env, "MANPATH"), ':');
 	if (path)
 	{
 		while (path[i])
@@ -110,7 +110,7 @@ t_option	*return_options(char *cmd)
 	char		*man_path;
 	char		man[] = "man1/";
 
-	path = ft_strsplit(get_man_path(), ':');
+	path = ft_strsplit(find_value_envir(g_env, "MANPATH"), ':');
 	while (*path)	
 	{
 		man[3] = '1';

@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 03:27:59 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/22 11:25:39 by rkharif          ###   ########.fr       */
+/*   Updated: 2014/03/22 13:53:22 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ char	*result_cmd(char *cmd)
 	int     ret;
 	char	*buffer;
 	int		i;
+	int		pid;
 
 	i = 0;
 	buffer = NULL;
@@ -27,7 +28,7 @@ char	*result_cmd(char *cmd)
 	result = (char *)malloc(sizeof(char) * 1024);
 	if (!result)
 		return (NULL);
-	if (fork() == 0)
+	if (!(pid = fork()))
 	{
 		if (close(fd[0]) == -1)
 			return (NULL);
@@ -41,7 +42,7 @@ char	*result_cmd(char *cmd)
 	}
 	else
 	{
-		wait(0);
+		waitpid(pid, &ret, WUNTRACED);
 		if (close(fd[1]) == -1)
 			return (NULL);
 		while ((ret = read(fd[0], result, 1024)) != 0)

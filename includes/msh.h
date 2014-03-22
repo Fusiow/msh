@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/22 11:52:25 by rkharif          ###   ########.fr       */
+/*   Updated: 2014/03/22 13:41:29 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef struct		s_env
 {
 	char			*name;
 	char			*value;
+	int				protect;
 	struct s_env	*next;
 }					t_env;
 
@@ -280,7 +281,7 @@ void		*ft_memcpy(void *s1, const void *s2, size_t n);
 /*
  ** ENVIRON
  */
-t_env	*add_env(t_env *env, char *name, char *value);
+t_env	*add_env(t_env *env, char *name, char *value, int protect);
 void	new_env(char **env);
 void	print_list(t_env *env);
 char	*find_value_envir(t_env *env, char *str);

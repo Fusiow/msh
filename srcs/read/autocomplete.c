@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 14:15:21 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/13 18:02:16 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/22 13:44:37 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	show_options_in_line(char *cmd)
 	char        *man_path;
 	char        man[] = "man1/";
 
-	path = ft_strsplit(get_man_path(), ':');
+	path = ft_strsplit(find_value_envir(g_env, "MANPATH"), ':');
 	while (*path)
 	{
 		man[3] = '1';

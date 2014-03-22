@@ -6,13 +6,13 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 00:46:22 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/16 17:16:39 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/22 13:47:16 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/msh.h"
 
-t_env	*add_env(t_env *env, char *name, char *value)
+t_env	*add_env(t_env *env, char *name, char *value, int protect)
 {
 	t_env	*tmp;
 	t_env	*tmp2;
@@ -21,6 +21,7 @@ t_env	*add_env(t_env *env, char *name, char *value)
 	tmp = (t_env *)malloc(sizeof(t_env));
 	tmp->name = name;
 	tmp->value = value;
+	tmp->protect = protect;
 	tmp->next = NULL;
 	if (env == NULL)
 		return (tmp);
@@ -33,7 +34,8 @@ t_env	*add_env(t_env *env, char *name, char *value)
 void	new_env(char **env)
 {
 	char	**tmp;
-	int	i;
+	int		i;
+	int		protect;
 
 	i = 0;
 	while (env[i])
@@ -42,9 +44,15 @@ void	new_env(char **env)
 		show_error_exit("Could not set environnement");
 	while (*env)
 	{
+		protect = 0;
 		tmp = ft_strsplit(*env, '=');
 		if (tmp[0] && tmp[1])
-			g_env = add_env(g_env, tmp[0], tmp[1]);
+		{
+			if (!ft_strcmp(tmp[0], "PATH") || !ft_strcmp(tmp[0], "PWD")
+					|| !ft_strcmp(tmp[0], "HOME") || !ft_strcmp(tmp[0], "USER"))
+				protect = 1;
+			g_env = add_env(g_env, tmp[0], tmp[1], protect);
+		}
 		env++;
 	}
 }
@@ -79,7 +87,7 @@ t_env	*ft_unsetenv(t_env *env, char *str)
 
 	if (!env)
 		return (NULL);
-	if (!ft_strcmp(env->name, str))
+	if (!ft_strcmp(env->name, str) && env->protect == 0)
 	{
 		tmp = env->next;
 		free(env);
@@ -96,7 +104,10 @@ t_env	*ft_unsetenv(t_env *env, char *str)
 t_env	*ft_setenv(t_env *env, char *name, char *value)
 {
 	env = ft_unsetenv(env, name);
-	env = add_env(env, name, value);
+	if (!ft_strcmp(name, "MANPATH"))
+		env = add_env(env, name, ft_strdup(value), 1);
+	else
+		env = add_env(env, name, value, 0);
 	return (env);
 }
 
