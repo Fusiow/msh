@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/22 02:30:20 by rkharif          ###   ########.fr       */
+/*   Updated: 2014/03/22 05:29:51 by rkharif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,8 @@ typedef struct			s_command
 t_command	*quick_parse(char *str);
 t_parse		*add_word(t_parse *list, char *str);
 t_parse		*tokenize(char *str);
+int			iswhite(char c);
+char		*escape_char(char *str);
 
 /*
  ** LEAKS

@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:52:57 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/18 21:57:03 by rkharif          ###   ########.fr       */
+/*   Updated: 2014/03/22 05:41:27 by rkharif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ char	*change_cmd(int i, char *result, char letter)
 		free(tmp);
 		tmp = NULL;
 		tmp = ft_spe_strjoin(new, c);
-		free(result);
+		if (result)
+			free(result);
 		result = NULL;
 		result = ft_spe_strjoin(tmp, end);
 		free(end);
