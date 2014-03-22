@@ -35,6 +35,7 @@ setenv PROMPT "myprompt$>"<br />
 %n -> $USER<br />
 %p -> $PWD<br />
 %h -> Home pwd<br />
+%P -> Special PWD<br />
 %g -> $GROUP<br />
 %G -> Branch of Git<br />
 %t -> Current Time<br />
@@ -62,6 +63,7 @@ setenv PROMPT "myprompt$>"<br />
 	</ul>
 <strong>Example:</strong>
 <br />setenv PROMPT "%c{RED}(%n)%c{BLUE}%u[%h]%e%c{DEF}$> "
+<br />setenv PROMPT "%c{BLUE}(%n)%c{GRE}%u{%P}%e\n%c{MAG}[%t]-%G->"
 </p>
 <h1>Alias</h1>
 <strong>synopsis</strong><br />
