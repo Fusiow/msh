@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/22 13:41:29 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/22 14:03:49 by rkharif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,7 @@ t_parse		*add_word(t_parse *list, char *str);
 t_parse		*tokenize(char *str);
 int			iswhite(char c);
 char		*escape_char(char *str);
+int			check_line(char *str);
 
 /*
  ** LEAKS

@@ -6,7 +6,7 @@
 /*   By: rkharif <rkharif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 13:10:28 by rkharif           #+#    #+#             */
-/*   Updated: 2014/03/22 10:47:26 by rkharif          ###   ########.fr       */
+/*   Updated: 2014/03/22 14:05:43 by rkharif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ char	*quote(char *str, int *i, char quote)
 		else if (str[*i] == '$' && str[*i - 1] != '\\')
 		{
 			v = *i;
-			while (str[v] != ' ' && str[v] != quote && str[v])
+			while (str[v] != ' ' && str[v] != '\'' && str[v] != '"' && str[v])
 				++v;
 			tmp = search_var(g_var, ft_strsub(str, *i + 1, (v - *i - 1)));
 			*i = v;
@@ -145,7 +145,7 @@ char	*ope_str(char *str, int start, int *i)
 	if (str[*i] == '$')
 	{
 		++*i;
-		while (!(iswhite(str[*i])) && !(isop(str[*i])) && str[*i])
+		while (!(iswhite(str[*i])) && !(isop(str[*i])) && str[*i] != '\'' && str[*i])
 			++*i;
 		if (str[*i])
 			--*i;

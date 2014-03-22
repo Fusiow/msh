@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 06:57:02 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/22 05:29:52 by rkharif          ###   ########.fr       */
+/*   Updated: 2014/03/22 12:20:44 by rkharif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ t_command	*quick_parse(char *str)
 	{
 		i = list_len_cmd(list);
 		tab = (char **)malloc(sizeof(char *) * i + 1);
+		tab[i] = NULL;
 		i = 0;
 		while (list != NULL && (ft_strcmp(list->str, ";")))
 		{

@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/05 14:18:59 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/05 17:12:49 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/22 12:19:13 by rkharif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,16 @@ char	*join_tab_spe(char **tab, int start, int end)
 	char	*result;
 
 	result = NULL;
-	while (start < end)
+	if (tab[start] && tab[end])
 	{
-		if (!result)
-			result = ft_strjoin(ft_strdup(tab[start]), " ");
-		else
-			result = ft_strjoin(ft_strjoin(" ", result), ft_strjoin(tab[start], " "));
-		start++;
+		while (start < end)
+		{
+			if (!result)
+				result = ft_strjoin(tab[start], " ");
+			else
+				result = ft_strjoin(ft_strjoin(" ", result), ft_strjoin(tab[start], " "));
+			start++;
+		}
 	}
 	return (result);
 }
