@@ -6,7 +6,7 @@
 /*   By: rkharif <rkharif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 13:10:28 by rkharif           #+#    #+#             */
-/*   Updated: 2014/03/18 23:12:12 by rkharif          ###   ########.fr       */
+/*   Updated: 2014/03/22 04:33:53 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		iswhite(char c)
 
 int		isop(char c)
 {
-	char	optab[] = "$;^()=><`\\|&{}~"; 
+	char	optab[] = "$;^()=><`|&{}~"; 
 	int		i;
 
 	i = 0;
@@ -64,40 +64,75 @@ char	*spe_quote(char *str, int *i, char quote, int start)
 
 	while (str[*i] != ' ' && isop(str[*i]) && str[*i])
 		++*i;
-	result = ft_strsub(str, start, (*i - start));
+	result = ft_strsub(str, start, (ft_strlen(str) - start));
+	ft_putendl(result);
 	start = j = 0;
 	spe_result = (char *)malloc(sizeof(char) * ft_strlen(result));
 	while (result[start])
 	{
 		if (result[start] == quote && result[start - 1] != '\\')
 			start++;
-		spe_result[j] = result[start];
+		if (result[start])
+			spe_result[j] = result[start];
 		start++;
 		j++;
 	}
+	result[j] = '\0';
 	return (spe_result);
 }
 
 char	*quote(char *str, int *i, char quote)
 {
-	int		start;
-	int		end;
 	char	*result;
+	int		flag;
+	int		j;
+	char	*tmp;
+	int		v;
 
-	end = 0;
-	(*i)++;
-	start = *i;
-	while (str[*i] != quote && str[*i])
-		(*i)++;
-	if (str[*i + 1] != ' ')
+	flag = j = 0;
+	result = malloc(1024);
+	++*i;
+	while (flag == 0)
 	{
-		(*i)++;
-		result = spe_quote(str, i, quote, start);
+		if (!str[*i])
+			flag = 1;
+		else if (str[*i] == quote && str[*i - 1] != '\\')
+		{
+			if (str[*i + 1] && str[*i + 1] == ' ')
+				flag = 1;
+			else if (!str[*i + 1])
+				flag = 1;
+			else
+				++*i;
+		}
+		else if (str[*i] == '$' && str[*i - 1] != '\\')
+		{
+			v = *i;
+			while (str[v] != ' ' && str[v] != quote && str[v])
+				++v;
+			tmp = search_var(g_var, ft_strsub(str, *i + 1, (v - *i - 1)));
+			*i = v;
+			v = 0;
+			if (tmp)
+			{
+				while (tmp[v])
+				{
+					result[j] = tmp[v];
+					++j;
+					++v;
+				}
+				result[j] = '\0';
+			}
+		}
+		else
+		{
+			result[j] = str[*i];
+			++j;
+			++*i;
+		}
 	}
-	else
-		result = ft_strsub(str, start, (*i - start));
-	if (str[*i])
-		(*i)++;
+	result[j] = 0;
+	++*i;
 	return (result);
 }
 
