@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsub.c                                        :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkharif <rkharif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/03/22 12:05:17 by rkharif           #+#    #+#             */
-/*   Updated: 2014/03/22 12:05:23 by rkharif          ###   ########.fr       */
+/*   Created: 2014/03/22 12:04:20 by rkharif           #+#    #+#             */
+/*   Updated: 2014/03/22 12:04:23 by rkharif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/msh.h"
+#include <string.h>
 
-char	*ft_strsub(char const *s, t_ui start, size_t len)
+void	*ft_memcpy(void *s1, const void *s2, size_t n)
 {
-	char	*sub;
-	t_ui	i;
+	char	*str1;
+	char	*str2;
+	int		i;
 
+	str1 = (char *) s1;
+	str2 = (char *) s2;
 	i = 0;
-	sub = ft_strnew(len + 1);
-	if (sub == NULL)
-		return (NULL);
-	s += start;
-	while (s[i] && len != 0)
+	while (n != 0)
 	{
-		sub[i] = s[i];
+		str1[i] = str2[i];
+		n--;
 		i++;
-		len--;
 	}
-	return (sub);
+	return (str1);
 }

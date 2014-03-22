@@ -5,72 +5,101 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkharif <rkharif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/28 13:17:53 by rkharif           #+#    #+#             */
-/*   Updated: 2014/03/13 09:01:02 by lsolofri         ###   ########.fr       */
+/*   Created: 2014/03/22 11:44:37 by rkharif           #+#    #+#             */
+/*   Updated: 2014/03/22 11:44:46 by rkharif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
+#include <stdlib.h>
 #include "../../includes/msh.h"
 
-static int	countchar(char const *s, char c)
+static t_ui		count_words(char const *s, char c)
 {
-	int		i;
+	t_ui	i;
 
 	i = 0;
-	while (s[i] != c && s[i])
+	while (*s == c)
+		s++;
+	while (*s)
+	{
+		while (*s && (*s != c))
+			s++;
 		i++;
+		while (*s && (*s == c))
+			s++;
+	}
 	return (i);
 }
 
-static int	countword(char const *s, char c)
+static t_ui		*get_word_len(t_ui word_c, char const *s, \
+								char c)
 {
-	unsigned int	nb;
-	unsigned int	len;
-	unsigned int	i;
+	t_ui	i;
+	t_ui	j;
+	t_ui	*word_len;
 
 	i = 0;
-	nb = 0;
-	if (s == 0)
-		return (0);
-	while (s[i])
+	j = 0;
+	word_len = (t_ui *) ft_memalloc(sizeof(t_ui) * word_c);
+	while (*s == c)
+		s++;
+	while (*s)
 	{
-		len = countchar(s + i, c);
-		if (len)
+		while (*s && (*s != c))
 		{
-			nb++;
-			i += len;
+			j++;
+			s++;
 		}
-		else
-			i++;
+		word_len[i] = j;
+		j = 0;
+		i++;
+		while (*s && (*s == c))
+			s++;
 	}
-	return (nb);
+	return (word_len);
 }
 
-char		**ft_strsplit(char const *s, char c)
+static char		**build_array(t_ui w_c, t_ui *word_l)
 {
-	char				**ret;
-	unsigned int		i;
-	unsigned int		nbword;
-	unsigned int		nbchr;
+	char	**split;
+	t_ui	i;
 
 	i = 0;
-	nbword = 0;
-	if (!(ret = (char **)ft_memalloc(sizeof(char *) * (countword(s, c) + 1))))
-	ret[countword(s, c)] = NULL;
-	if (s == 0)
-		return (0);
-	while (s[i])
+	split = (char **) ft_memalloc(sizeof(char *) * w_c + 1);
+	while (i < w_c)
 	{
-		nbchr = countchar(s + i, c);
-			if (nbchr)
-			{
-				ret[nbword] = ft_strsub(s, i, nbchr);
-				nbword++;
-				i += nbchr;
-			}
-			else
-				i++;
+		split[i] = ft_strnew((size_t) word_l[i] + 1);
+		i++;
 	}
-	ret[nbword] = '\0';
-	return (ret);
+	split[i] = NULL;
+	return (split);
+}
+
+char			**ft_strsplit(char const *s, char c)
+{
+	t_ui	word_count;
+	char	**split;
+	t_ui	*word_len;
+	t_ui	i;
+	t_ui	j;
+
+	j = 0;
+	i = 0;
+	word_count = count_words(s, c);
+	word_len = get_word_len(word_count, s, c);
+	split = build_array(word_count, word_len);
+	while (*s == c)
+		s++;
+	while (*s)
+	{
+		while (*s && (*s != c))
+			split[i][j++] = *s++;
+		j = 0;
+		while (*s && (*s == c))
+			s++;
+		i++;
+	}
+	ft_free(word_len);
+	return (split);
 }

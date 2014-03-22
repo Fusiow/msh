@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 03:27:59 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/15 18:25:42 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/22 11:25:39 by rkharif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,13 @@ char	*result_cmd(char *cmd)
 			return (NULL);
 		while ((ret = read(fd[0], result, 1024)) != 0)
 		{
-			result[ret] = '\0';
+			result = ft_strsub(result, 0, ret);
 			if (i++ == 0)
 				buffer = ft_strdup(result);
 			else
 				buffer = ft_strjoin(buffer, result);
 		}
 	}
+	buffer[ft_strlen(buffer) - 1] = '\0';
 	return (buffer);
 }

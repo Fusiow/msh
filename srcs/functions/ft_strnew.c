@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsub.c                                        :+:      :+:    :+:   */
+/*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkharif <rkharif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/03/22 12:05:17 by rkharif           #+#    #+#             */
-/*   Updated: 2014/03/22 12:05:23 by rkharif          ###   ########.fr       */
+/*   Created: 2014/03/22 11:45:02 by rkharif           #+#    #+#             */
+/*   Updated: 2014/03/22 11:45:14 by rkharif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "../../includes/msh.h"
 
-char	*ft_strsub(char const *s, t_ui start, size_t len)
+char	*ft_strnew(size_t size)
 {
-	char	*sub;
-	t_ui	i;
+	char	*new;
 
-	i = 0;
-	sub = ft_strnew(len + 1);
-	if (sub == NULL)
+	if ((new = (char *) ft_memalloc(sizeof(char) * size)) == NULL)
 		return (NULL);
-	s += start;
-	while (s[i] && len != 0)
-	{
-		sub[i] = s[i];
-		i++;
-		len--;
-	}
-	return (sub);
+	return (new);
 }

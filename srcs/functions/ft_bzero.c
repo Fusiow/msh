@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfaye <mfaye@student.42.fr>                +#+  +:+       +#+        */
+/*   By: rkharif <rkharif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/21 11:45:45 by mfaye             #+#    #+#             */
-/*   Updated: 2014/03/13 08:43:12 by lsolofri         ###   ########.fr       */
+/*   Created: 2014/03/22 11:47:46 by rkharif           #+#    #+#             */
+/*   Updated: 2014/03/22 11:47:49 by rkharif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include <string.h>
 
 void	ft_bzero(void *s, size_t n)

@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/22 05:29:51 by rkharif          ###   ########.fr       */
+/*   Updated: 2014/03/22 11:52:25 by rkharif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct		s_env
 
 t_env	*g_env;
 
+typedef unsigned int		t_ui;
 /*
  ** DEFINES
  */
@@ -272,6 +273,9 @@ void		ft_gcrealloc(t_gc **ring, t_gcinfo **info, int init_size);
 void		ft_gcinit(t_gc **ring, int init_size, t_gcinfo **info);
 char		*ft_itoa(int n);
 char		*join_spe_tab(char **tab, int beg, int end);
+char		*ft_strnew(size_t size);
+void		*ft_memcpy(void *s1, const void *s2, size_t n);
+
 
 /*
  ** ENVIRON

@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:52:57 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/22 05:41:27 by rkharif          ###   ########.fr       */
+/*   Updated: 2014/03/22 12:00:31 by rkharif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,22 +41,22 @@ char	*change_cmd(int i, char *result, char letter)
 	}
 	else
 	{
-		tmp = ft_spe_strsub(result, 0, i);
-		end = ft_spe_strsub(result, i, ft_strlen(result));
+		tmp = ft_strsub(result, 0, i);
+		end = ft_strsub(result, i, ft_strlen(result));
 		new = ft_strdup(tmp);
 		free(tmp);
 		tmp = NULL;
-		tmp = ft_spe_strjoin(new, c);
-		if (result)
-			free(result);
+		tmp = ft_strjoin(new, c);
+		free(result);
 		result = NULL;
-		result = ft_spe_strjoin(tmp, end);
+		result = ft_strjoin(tmp, end);
 		free(end);
 		free(tmp);
 		free(c);
 	}
 	return (result);
 }
+
 int		distrib_buttons(int i, char **result, char *buffer, int *v)
 {
 	char	*tmp;

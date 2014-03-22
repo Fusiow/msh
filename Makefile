@@ -6,7 +6,7 @@
 #    By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/14 17:00:44 by aardjoun          #+#    #+#              #
-#    Updated: 2014/03/22 05:15:08 by rkharif          ###   ########.fr        #
+#    Updated: 2014/03/22 11:50:34 by rkharif          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -50,6 +50,9 @@ SRCS	=	srcs/main/main.c\
 			srcs/functions/ft_gc.c\
 			srcs/functions/ft_gchelper.c\
 			srcs/functions/ft_bzero.c\
+			srcs/functions/ft_free.c\
+			srcs/functions/ft_strnew.c\
+			srcs/functions/ft_memcpy.c\
 			srcs/read/actions.c\
 			srcs/read/buttons.c\
 			srcs/read/history.c\

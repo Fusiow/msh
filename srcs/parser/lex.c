@@ -6,7 +6,7 @@
 /*   By: rkharif <rkharif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 13:10:28 by rkharif           #+#    #+#             */
-/*   Updated: 2014/03/22 05:15:53 by rkharif          ###   ########.fr       */
+/*   Updated: 2014/03/22 10:47:26 by rkharif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,7 @@ char	*ope_str(char *str, int start, int *i)
 {
 	char	*result;
 	char	*tmp;
+	int		v;
 
 	if (str[*i] == '$')
 	{
@@ -157,6 +158,15 @@ char	*ope_str(char *str, int start, int *i)
 			++*i;
 		tmp = ft_strsub(str, start + 1, (*i - start));
 		result = ft_strjoin(find_value_envir(g_env, "HOME"), tmp);
+	}
+	else if (str[*i] == '`')
+	{
+		++*i;
+		v = *i;
+		while (str[*i] != '`' && str[*i])
+			++*i;
+		tmp = ft_strsub(str, v, (*i - v));
+		result = result_cmd(tmp);
 	}
 	else
 		result = char_to_string(str[start]);

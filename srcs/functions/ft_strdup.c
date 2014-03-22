@@ -3,29 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rkharif <rkharif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/20 09:49:25 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/13 08:59:57 by lsolofri         ###   ########.fr       */
+/*   Created: 2014/03/22 12:04:47 by rkharif           #+#    #+#             */
+/*   Updated: 2014/03/22 12:04:49 by rkharif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/msh.h"
 
-char	*ft_strdup(const char *s)
+char	*ft_strdup(const char *s1)
 {
-	char	*result;
+	char	*dup;
 	int		i;
+	int		size;
 
+	size = ft_strlen((char *)s1);
+	if ((dup = (char *) ft_memalloc(sizeof(char) * size + 1)) == NULL)
+		return (NULL);
 	i = 0;
-	result = (char *)ft_memalloc(ft_strlen((char *)s) + 1);
-	if (!result)
-		return (0);
-	while (s[i] != '\0')
+	while (i < size)
 	{
-		result[i] = s[i];
-		++i;
+		dup[i] = s1[i];
+		i++;
 	}
-	result[i] = '\0';
-	return (result);
+	dup[i] = '\0';
+	return (dup);
 }
