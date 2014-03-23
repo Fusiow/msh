@@ -61,7 +61,6 @@ SRCS	=	srcs/main/main.c\
 			srcs/read/autocomplete.c\
 			srcs/read/t_options.c\
 			srcs/read/show_autocomplete.c\
-			srcs/read/syntax_color_rest.c\
 			srcs/read/show_option.c\
 			srcs/read/parser_color.c\
 			srcs/read/parsing_man.c\

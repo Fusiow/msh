@@ -12,10 +12,31 @@
 
 #include "../../includes/msh.h"
 
+void	add_history(char *str)
+{
+	int		i;
+	int		res;
+
+	i = 0;
+	res = 0;
+	if (str)
+	{
+		while (str[i])
+		{
+			if (str[i] != ' ')
+				res = 1;
+			++i;
+		}
+		if (res)
+			history(0, str);
+	}
+}
+
 char	*history(int choice, char *str)
 {
 	static char		*s_history[500];
 	static int		i = 0;
+	static char		*result;
 	int				v;
 
 	if (choice == 0)
@@ -27,15 +48,24 @@ char	*history(int choice, char *str)
 	}
 	else if (choice == 1)
 	{
-		if (i > 0)
-			return (s_history[i--]);
+		if (i >= 0)
+		{
+			result = s_history[i];
+			if (i > 0)
+				--i;
+		}
 	}
 	else if (choice == 2)
 	{
 		if (s_history[i + 1])
-			return (s_history[i++]);
+		{
+			if (i == 0)
+				++i;
+			result = s_history[i];
+			++i;
+		}
 		else
-			return (NULL);
+			result = NULL;
 	}
 	else if (choice == 3)
 	{
@@ -49,5 +79,5 @@ char	*history(int choice, char *str)
 			ft_putendl(s_history[v++]);
 		}
 	}
-	return (s_history[i]);
+	return (result);
 }

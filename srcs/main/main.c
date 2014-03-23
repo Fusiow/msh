@@ -33,8 +33,8 @@ int			main(int ac, char **av, char **environ)
 		prompt();
 		signal(SIGINT, interrupt_cmd);
 		str = take_cmd(choice);
+		add_history(str);
 		pre_exec(str);
-		history(0, str);
 		ft_free(str);
 	}
 	return (0);

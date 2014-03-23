@@ -22,8 +22,8 @@ void	print_quote(char *cmd)
 		if (cmd[j] == '\\')
 		{
 			ft_putstr(RED2);
-			ft_putchar(cmd[j]);
-			if (cmd[++j])
+			ft_putchar(cmd[j++]);
+			if (cmd[j])
 				ft_putchar(cmd[j]);
 			ft_putstr(YEL);
 		}
@@ -73,7 +73,8 @@ void	write_cmd(char *cmd, int i, int command)
 		{
 			ft_putstr(RED);
 			ft_putchar('"');
-			write(1, &cmd[v], (i - v));
+			while (v < i)
+				ft_putchar(cmd[v++]);
 		}
 		ft_putstr(DEF);
 	}

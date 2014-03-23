@@ -42,6 +42,8 @@ char	*escape_char(char *str)
 				replace = '\f';
 			else if (str[i + 1] == 'r')
 				replace = '\r';
+			else if (str[i + 1] == 'e')
+				replace = '\e';
 			else
 				replace = str[i + 1];
 			++i;
@@ -65,11 +67,7 @@ int		check_line(char *str)
 	t_error		err;
 	int		i;
 
-	i = 0;
-	err.dquote = 0;
-	err.squote = 0;
-	err.pipe = 0;
-	err.bquote = 0;
+	i = err.dquote = err.squote = err.pipe = err.bquote = 0;
 	while (str[i])
 	{
 		if (str[i] == '"' && str[i - 1] != '\\')
@@ -114,25 +112,8 @@ int		check_line(char *str)
 		}
 		++i;
 	}
-	if (err.dquote == 1)
-	{
-		ft_putendl("Missing double quote.");
+	if (err.dquote == 1 || err.squote == 1 || err.squote == 1 ||
+		err.pipe == 1 || err.bquote == 1)
 		return (1);
-	}
-	if (err.squote == 1)
-	{
-		ft_putendl("Missing single quote.");
-		return (1);
-	}
-	if (err.pipe == 1)
-	{
-		ft_putendl("Invalid null command");
-		return (1);
-	}
-	if (err.bquote == 1)
-	{
-		ft_putendl("Missing back quote.");
-		return (1);
-	}
 	return (0);
 }

@@ -80,8 +80,21 @@ t_command	*quick_parse(char *str)
 
 	i = 0;
 	result = NULL;
-	if (check_line(str))
+	j = 0;
+	while (str[i])
+	{
+		if (str[i] != ' ')
+			j = 1;
+		++i;
+	}
+	if (!j)
 		return (result);
+	i = 0;
+	while (check_line(str) || str[ft_strlen(str) - 1] == '\\')
+	{
+		ft_putstr("> ");
+		str = ft_strjoin(str, take_cmd(1));
+	}
 	str = escape_char(str);
 	list = tokenize(str);
 //	show_me_the_truth_bitch_get_outta_my_way(list);

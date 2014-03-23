@@ -205,6 +205,7 @@ void		init_flag(struct termios *term);
 void		re_flag(struct termios *term);
 char		*init_buffer(char *buffer);
 char		*history(int choice, char *str);
+void		add_history(char *str);
 char		*char_to_string(char c);
 char		*char_to_string2(char c);
 char		*del_c(char *result, int *i);
