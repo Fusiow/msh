@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 06:57:02 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/22 12:20:44 by rkharif          ###   ########.fr       */
+/*   Updated: 2014/03/23 16:32:31 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ t_command	*quick_parse(char *str)
 	t_command	*result;
 
 	i = 0;
+	history(0, str);
 	str = escape_char(str);
 	list = tokenize(str);
 //	show_me_the_truth_bitch_get_outta_my_way(list);

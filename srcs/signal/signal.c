@@ -6,7 +6,7 @@
 /*   By: aardjoun <aardjoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 16:47:41 by aardjoun          #+#    #+#             */
-/*   Updated: 2014/03/23 15:01:16 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/23 16:43:00 by lsolofri         ###   ########.fr       */
 /*   Updated: 2014/03/17 15:25:11 by aardjoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -43,6 +43,7 @@ void	check_return(int ret, int pid)
 	int		sig;
 
 	sig = WTERMSIG(ret);
+	g_var = del_var(g_var, "?");
 	g_var = add_var(g_var, "?", ft_itoa(ret));
 	if (WIFEXITED(ret))
 		g_jobs = remove_jobs(g_jobs, pid);

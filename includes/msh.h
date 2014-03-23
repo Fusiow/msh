@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/23 14:56:44 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/23 16:42:57 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -302,6 +302,7 @@ void		load_conf_file(void);
 char		**is_alias(t_alias *list, char **tab);
 void		ft_alias(char **tab);
 t_var		*add_var(t_var *list, char *name, char *value);
+t_var		*del_var(t_var *list, char *name);
 void		show_var(t_var *list);
 void		set_var(char *name, char *value);
 void		unset_var(char *name);

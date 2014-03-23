@@ -22,6 +22,8 @@ void		change_pwd(int home)
 	else
 		tmp = find_value_envir(g_env, "HOME");
 	ft_setenv(g_env, "OLDPWD", find_value_envir(g_env, "PWD"));
+	if (!tmp)
+		tmp = ft_strdup("/");
 	ft_setenv(g_env, "PWD", tmp);
 }
 

@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:52:57 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/22 12:00:31 by rkharif          ###   ########.fr       */
+/*   Updated: 2014/03/23 16:17:44 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,8 +156,6 @@ char	*take_cmd(int choice)
 	ft_putstr("\n");
 	free(buffer);
 	show_autocomplete(NULL, 0);
-	if (result)
-		history(0, result);
 	re_flag(&term);
 	return (result);
 }

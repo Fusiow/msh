@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 00:46:22 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/22 13:47:16 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/23 15:38:12 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,7 @@ void	new_env(char **env)
 		tmp = ft_strsplit(*env, '=');
 		if (tmp[0] && tmp[1])
 		{
-			if (!ft_strcmp(tmp[0], "PATH") || !ft_strcmp(tmp[0], "PWD")
-					|| !ft_strcmp(tmp[0], "HOME") || !ft_strcmp(tmp[0], "USER"))
+			if (!ft_strcmp(tmp[0], "PATH") || !ft_strcmp(tmp[0], "HOME") || !ft_strcmp(tmp[0], "USER"))
 				protect = 1;
 			g_env = add_env(g_env, tmp[0], tmp[1], protect);
 		}

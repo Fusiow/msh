@@ -6,7 +6,7 @@
 /*   By: rkharif <rkharif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 13:10:28 by rkharif           #+#    #+#             */
-/*   Updated: 2014/03/23 13:54:39 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/23 16:32:20 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,6 +168,13 @@ char	*ope_str(char *str, int start, int *i)
 		tmp = ft_strsub(str, v, (*i - v));
 		result = result_cmd(tmp);
 	}
+	else if (str[*i] == '(')
+	{
+		v = *i + 1;
+		while (str[*i] != ')' && str[*i])
+			++*i;
+		result = ft_strsub(str, v, (*i - v));
+	}
 	else
 		result = char_to_string(str[start]);
 	return (result);
@@ -202,11 +209,15 @@ t_parse		*tokenize(char *str)
 		{
 			len++;
 			openflag = i;
+			if (str[i] == '(')
+				list = add_word(list, "(");
 			if (ope_str(str, start, &i))
 			{
 				i = openflag;
 				list = add_word(list, ope_str(str, start, &i));
 			}
+			if (str[i] == ')')
+				list = add_word(list, ")");
 			++i;
 		}
 		else if (str[i] == '\'' || str[i] == '"')
