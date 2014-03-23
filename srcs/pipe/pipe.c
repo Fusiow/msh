@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 13:54:10 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/22 11:11:50 by rkharif          ###   ########.fr       */
+/*   Updated: 2014/03/23 12:55:57 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	go_pipe(char **tab2)
 	int		fd_pipe[2];
 	int		fd_in;
 	int		i;
-	int		v = 0;
 	char	**tab;
 	t_command	*list;
 
@@ -26,7 +25,6 @@ void	go_pipe(char **tab2)
 	i = 0;
 	while (tab[i])
 	{
-		v = 0;
 		pipe(fd_pipe);
 		if (!fork())
 		{
