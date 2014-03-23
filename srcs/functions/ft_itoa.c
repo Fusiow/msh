@@ -3,43 +3,55 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rgary <rgary@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/22 12:30:25 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/17 17:45:59 by lsolofri         ###   ########.fr       */
+/*   Created: 2013/12/08 09:58:29 by rgary             #+#    #+#             */
+/*   Updated: 2014/03/23 14:36:22 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "../../includes/msh.h"
 
-#include <stdlib.h>
-
-static void		ft_putnbr_in_str(int n, char *str)
+char	*ft_uitoa(unsigned long n)
 {
-	if (n / 10)
-		ft_putnbr_in_str(n / 10, str - 1);
-	n %= 10;
-	if (n < 0)
-		n *= -1;
-	*str = n + '0';
+	char	*p;
+
+	p = (char *)ft_memalloc(sizeof(char) * 22);
+	p = p + 21;
+	if (n == 0)
+		*p = n + 48;
+	while (n != 0)
+	{
+		*--p = (n % 10) + 48;
+		n /= 10;
+	}
+	return (p);
 }
 
-char	*ft_itoa(int n)
+char	*ft_itoa(long n)
 {
-	int		tmp;
-	int		len;
-	char	*str;
+	char	*p;
 
-	len = (n <= 0 ? 1 : 0);
-	tmp = n;
-	while (tmp)
+	p = (char *)ft_memalloc(sizeof(char) * 22);
+	p = p + 21;
+	if (n >= 0)
 	{
-		len++;
-		tmp /= 10;
+		if (n == 0)
+			*p = n + 48;
+		while (n != 0)
+		{
+			*--p = '0' + (n % 10);
+			n /= 10;
+		}
+		return (p);
 	}
-	if ((str = (char *)malloc(len + 1)) == NULL)
-		return (NULL);
-	str[len] = '\0';
-	if (n < 0)
-		str[0] = '-';
-	ft_putnbr_in_str(n, str + len - 1);
-	return (str);
+	else
+	{
+		while (n != 0)
+		{
+			*--p = '0' - (n % 10);
+			n /= 10;
+		}
+		*--p = '-';
+	}
+	return (p);
 }

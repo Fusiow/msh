@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 10:04:42 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/13 15:32:45 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/23 15:03:12 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_list	*add_type(t_list *list, char *str, char *type)
 int		check_builtins_and_alias(char *str)
 {
 	char	*builtins[] = {"exit", "setenv", "unsetenv", "cd", "env", "set",
-								"unset", "export", "alias", "jobs", NULL};
+								"unset", "export", "alias", "jobs", "q", NULL};
 	int		result;
 	int		i;
 	t_alias	*list;
@@ -154,7 +154,7 @@ void	show_cmd(char *str)
 	if (i != 0)
 	{
 		cmd = ft_strsub(str, 0, i);
-		list = recup_prog(cmd, ft_strsplit(getenv("PATH"), ':'), list);
+		list = recup_prog(cmd, ft_strsplit(find_value_envir(g_env, "PATH"), ':'), list);
 		if (list)
 			name = list->name;
 		while (list)

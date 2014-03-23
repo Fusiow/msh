@@ -6,7 +6,7 @@
 #    By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/14 17:00:44 by aardjoun          #+#    #+#              #
-#    Updated: 2014/03/23 13:51:02 by lsolofri         ###   ########.fr        #
+#    Updated: 2014/03/23 15:21:57 by lsolofri         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -41,6 +41,7 @@ SRCS	=	srcs/main/main.c\
 			srcs/functions/ft_spe_strsub.c\
 			srcs/functions/ft_tablen.c\
 			srcs/functions/ft_isalpha.c\
+			srcs/functions/ft_itoa.c\
 			srcs/functions/ft_tabncmp.c\
 			srcs/functions/get_next_line.c\
 			srcs/functions/ft_atoi.c\

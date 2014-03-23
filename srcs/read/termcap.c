@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 15:00:24 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/13 15:44:59 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/23 14:27:50 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	init_flag(struct termios *term)
 {
 	char	*name_term;
 
-	name_term = getenv("TERM");
+	name_term = find_value_envir(g_env, "TERM");
 	if (!name_term)
 		show_error_exit("No Environnement TERM variables");
 	if (!tgetent(NULL, name_term))
@@ -33,7 +33,7 @@ void	re_flag(struct termios *term)
 {
 	char	*name_term;
 
-	name_term = getenv("TERM");
+	name_term = find_value_envir(g_env, "TERM");
 	if (!name_term)
 		show_error_exit("No Environnement TERM variables");
 	if (!tgetent(NULL, name_term))

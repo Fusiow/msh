@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/23 13:51:32 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/23 14:56:44 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -273,7 +273,7 @@ void		ft_gc(void *p, t_gcop op);
 void		ft_bzero(void *s, size_t n);
 void		ft_gcrealloc(t_gc **ring, t_gcinfo **info, int init_size);
 void		ft_gcinit(t_gc **ring, int init_size, t_gcinfo **info);
-char		*ft_itoa(int n);
+char		*ft_itoa(long n);
 char		*join_spe_tab(char **tab, int beg, int end);
 char		*ft_strnew(size_t size);
 void		*ft_memcpy(void *s1, const void *s2, size_t n);
@@ -301,6 +301,7 @@ int			ft_cd(char **tab);
 void		load_conf_file(void);
 char		**is_alias(t_alias *list, char **tab);
 void		ft_alias(char **tab);
+t_var		*add_var(t_var *list, char *name, char *value);
 void		show_var(t_var *list);
 void		set_var(char *name, char *value);
 void		unset_var(char *name);

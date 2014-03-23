@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/21 18:56:49 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/19 09:42:16 by aardjoun         ###   ########.fr       */
+/*   Updated: 2014/03/23 15:01:54 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int		detect_built(char **tab)
 {
 	int		ret;
 
-	if (!(ret = ft_strcmp("exit", tab[0])))
+	if (!(ret = ft_strcmp("exit", tab[0])) || !(ret = ft_strcmp("q", tab[0])))
 		ft_exit(tab);
 	else if (!(ret = ft_strcmp("cd", tab[0])))
 		ft_cd(tab);

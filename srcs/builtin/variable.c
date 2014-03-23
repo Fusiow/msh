@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 12:47:27 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/18 21:31:03 by rkharif          ###   ########.fr       */
+/*   Updated: 2014/03/23 14:54:22 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,15 +66,30 @@ void	ft_set(char **tab)
 
 void	set_var(char *name, char *value)
 {
+	char	*tmp;
+
 	if (find_value_envir(g_env, name))
 	{
 		ft_putstr("set: Tried to change the read-only variable: ");
 		ft_putstr(name);
 		ft_putendl(". (Use setenv for change environnement variable)");
-		return ;
 	}
-	g_var = del_var(g_var, name);
-	g_var = add_var(g_var, name, value);
+	else
+	{
+		tmp = name;
+		while (*name)
+		{
+			if (!ft_isalpha(*name))
+			{
+				show_error("Bad variable name");
+				return ;
+			}
+			name++;
+		}
+		name = tmp;
+		g_var = del_var(g_var, name);
+		g_var = add_var(g_var, name, value);
+	}
 }
 
 void	unset_var(char *name)

@@ -6,7 +6,7 @@
 /*   By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 15:53:46 by aardjoun          #+#    #+#             */
-/*   Updated: 2014/03/22 13:42:53 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/23 14:34:46 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int			main(int ac, char **av, char **environ)
 		main_options(av, &choice);
 	signal(SIGTSTP, SIG_IGN);
 	signal(SIGQUIT, SIG_IGN);
+	signal(SIGUSR1, SIG_IGN);
+	signal(SIGUSR2, SIG_IGN);
 	while (1)
 	{
 		prompt();
