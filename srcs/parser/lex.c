@@ -6,7 +6,7 @@
 /*   By: rkharif <rkharif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 13:10:28 by rkharif           #+#    #+#             */
-/*   Updated: 2014/03/23 16:32:20 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/23 19:15:48 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,12 +144,19 @@ char	*ope_str(char *str, int start, int *i)
 
 	if (str[*i] == '$')
 	{
-		++*i;
-		while (!(iswhite(str[*i])) && !(isop(str[*i])) && str[*i] != '\'' && str[*i])
-			++*i;
-		if (str[*i])
-			--*i;
-		result = search_var(g_var, ft_strsub(str, start + 1, (*i - start)));
+			v = *i + 1;
+			while (ft_isalpha(str[v]) && str[v])
+				++v;
+			result = search_var(g_var, ft_strsub(str, *i + 1, (v - *i - 1)));
+			*i = v - 1;
+			if (str[*i])
+			{
+				while (str[*i] != ' ' && str[*i])
+					++*i;
+				tmp = ft_strsub(str, v, (*i - v));
+				result = ft_strjoin(result, tmp);
+				free(tmp);
+			}
 	}
 	else if (str[*i] == '~')
 	{
@@ -218,7 +225,8 @@ t_parse		*tokenize(char *str)
 			}
 			if (str[i] == ')')
 				list = add_word(list, ")");
-			++i;
+			if (str[i])
+				++i;
 		}
 		else if (str[i] == '\'' || str[i] == '"')
 			list = add_word(list, quote(str, &i, str[i]));
