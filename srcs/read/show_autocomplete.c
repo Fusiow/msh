@@ -72,8 +72,8 @@ char	*show_tab(char *cmd)
 			return (ft_strjoin(cmd, ft_strsub(list->name, i, ft_strlen(list->name))));
 		}
 	}
-	free(list);
-	free(description);
+	ft_free(list);
+	ft_free(description);
 	return (NULL);
 }
 

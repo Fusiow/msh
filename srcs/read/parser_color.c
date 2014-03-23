@@ -140,7 +140,7 @@ void	write_cmd(char *cmd, int i, int command)
 			v = i;
 			while (cmd[i] != ' ' && cmd[i] != ';' && cmd[i] != '|' && cmd[i] != '(' && cmd[i] != ')' && cmd[i])
 				++i;
-			tmp = ft_spe_strsub(cmd, v, (i - v));
+			tmp = ft_strsub(cmd, v, (i - v));
 			if (check_prog(tmp))
 				ft_putstr(BLUE);
 			else
@@ -162,8 +162,7 @@ void	write_cmd(char *cmd, int i, int command)
 		{
 			if (!cmd[i] && check_prog(tmp))
 				show_options_in_line(tmp);
-			free(tmp);
-			tmp = NULL;
+			ft_free(tmp);
 		}
 		if (command == 0)
 			command = 1;

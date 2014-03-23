@@ -65,6 +65,7 @@ int				ft_exit(char **tab)
 		if (!ft_strcmp("y", ret))
 		{
 			kill_jobs(g_jobs);
+			ft_gc(NULL, E_GCFREEGC);
 			ft_putendl("Goodbye!");
 			_exit(rt);
 		}

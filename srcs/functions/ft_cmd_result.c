@@ -25,7 +25,7 @@ char	*result_cmd(char *cmd)
 	buffer = NULL;
 	if (pipe(fd) == -1)
 		return (NULL);
-	result = (char *)malloc(sizeof(char) * 1024);
+	result = (char *)ft_memalloc(sizeof(char) * 1024);
 	if (!result)
 		return (NULL);
 	if (!(pid = fork()))

@@ -90,7 +90,7 @@ char	*quote(char *str, int *i, char quote)
 	int		v;
 
 	flag = j = 0;
-	result = malloc(1024);
+	result = ft_memalloc(1024);
 	++*i;
 	while (flag == 0)
 	{

@@ -19,7 +19,7 @@ t_parse		*add_word(t_parse *list, char *str)
 	t_parse		*tmp2;
 
 	tmp2 = list;
-	tmp = (t_parse *)malloc(sizeof(t_parse));
+	tmp = (t_parse *)ft_memalloc(sizeof(t_parse));
 	tmp->str = str;
 	tmp->next = NULL;
 	if (list == NULL)
@@ -49,7 +49,7 @@ t_command	*add_tab(t_command *result, char **tab)
 	t_command	*tmp2;
 
 	tmp2 = result;
-	tmp = (t_command *)malloc(sizeof(t_command));
+	tmp = (t_command *)ft_memalloc(sizeof(t_command));
 	tmp->cmd = tab;
 	tmp->next = NULL;
 	if (result == NULL)
@@ -90,7 +90,7 @@ t_command	*quick_parse(char *str)
 	while (list)
 	{
 		i = list_len_cmd(list);
-		tab = (char **)malloc(sizeof(char *) * 1024);
+		tab = (char **)ft_memalloc(sizeof(char *) * 1024);
 		tab[i] = NULL;
 		i = 0;
 		while (list != NULL && (ft_strcmp(list->str, ";")) && i < 1024)
@@ -99,10 +99,11 @@ t_command	*quick_parse(char *str)
 			glob(list->str, GLOB_NOCHECK, 0, &globlist);
 			while (globlist.gl_pathv[j])
 			{
-				tab[i] = globlist.gl_pathv[j];
+				tab[i] = ft_strdup(globlist.gl_pathv[j]);
 				++i;
 				++j;
 			}
+			globfree(&globlist);
 			list = list->next;
 		}
 		tab[i] = NULL;

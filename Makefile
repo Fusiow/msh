@@ -32,13 +32,10 @@ SRCS	=	srcs/main/main.c\
 			srcs/functions/ft_strcmp.c\
 			srcs/functions/ft_strdup.c\
 			srcs/functions/ft_strjoin.c\
-			srcs/functions/ft_spe_strjoin.c\
 			srcs/functions/ft_strlen.c\
 			srcs/functions/ft_strncmp.c\
 			srcs/functions/ft_strsplit.c\
-			srcs/functions/ft_spe_strsplit.c\
 			srcs/functions/ft_strsub.c\
-			srcs/functions/ft_spe_strsub.c\
 			srcs/functions/ft_tablen.c\
 			srcs/functions/ft_isalpha.c\
 			srcs/functions/ft_itoa.c\

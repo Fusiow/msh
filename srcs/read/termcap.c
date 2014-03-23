@@ -58,17 +58,7 @@ char	*char_to_string(char c)
 {
 	char	*result;
 
-	result = (char *)malloc(sizeof(char) * 1);
-	result[0] = c;
-	result[1] = '\0';
-	return (result);
-}
-
-char	*char_to_string2(char c)
-{
-	char	*result;
-
-	result = (char *)ft_memalloc(2);
+	result = (char *)ft_memalloc(sizeof(char) * 1);
 	result[0] = c;
 	result[1] = '\0';
 	return (result);

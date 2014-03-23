@@ -24,19 +24,16 @@ char	*change_cmd(int i, char *result, char letter)
 		return (c);
 	if (i == ft_strlen(result))
 	{
-		new = ft_spe_strjoin(result, c);
-		free(result);
-		free(c);
-		result = NULL;
-		c = NULL;
+		new = ft_strjoin(result, c);
+		ft_free(result);
+		ft_free(c);
 		return (new);
 	}
 	else if (i == 0)
 	{
-		new = ft_spe_strjoin(c, result);
-		free(c);
-		free(result);
-		result = NULL;
+		new = ft_strjoin(c, result);
+		ft_free(c);
+		ft_free(result);
 		return (new);
 	}
 	else
@@ -44,15 +41,13 @@ char	*change_cmd(int i, char *result, char letter)
 		tmp = ft_strsub(result, 0, i);
 		end = ft_strsub(result, i, ft_strlen(result));
 		new = ft_strdup(tmp);
-		free(tmp);
-		tmp = NULL;
+		ft_free(tmp);
 		tmp = ft_strjoin(new, c);
-		free(result);
-		result = NULL;
+		ft_free(result);
 		result = ft_strjoin(tmp, end);
-		free(end);
-		free(tmp);
-		free(c);
+		ft_free(end);
+		ft_free(tmp);
+		ft_free(c);
 	}
 	return (result);
 }
@@ -133,7 +128,7 @@ char	*take_cmd(int choice)
 	i = 0;
 	(void)choice;
 	init_flag(&term);
-	buffer = (char *)malloc(sizeof(char) * 3);
+	buffer = (char *)ft_memalloc(sizeof(char) * 3);
 	result = NULL;
 	while (1)
 	{

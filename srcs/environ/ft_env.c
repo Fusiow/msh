@@ -18,7 +18,7 @@ t_env	*add_env(t_env *env, char *name, char *value, int protect)
 	t_env	*tmp2;
 
 	tmp2 = env;
-	tmp = (t_env *)malloc(sizeof(t_env));
+	tmp = (t_env *)ft_memalloc(sizeof(t_env));
 	tmp->name = name;
 	tmp->value = value;
 	tmp->protect = protect;
@@ -89,7 +89,7 @@ t_env	*ft_unsetenv(t_env *env, char *str)
 	if (!ft_strcmp(env->name, str) && env->protect == 0)
 	{
 		tmp = env->next;
-		free(env);
+		ft_free(env);
 		tmp = ft_unsetenv(tmp, str);
 		return (tmp);
 	}

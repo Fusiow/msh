@@ -18,7 +18,7 @@ t_jobs		*add_job(t_jobs *list, char *name, int pid)
 	t_jobs	*tmp2;
 
 	tmp2 = list;
-	tmp = (t_jobs *)malloc(sizeof(t_jobs));
+	tmp = (t_jobs *)ft_memalloc(sizeof(t_jobs));
 	tmp->name = ft_strdup(name);
 	tmp->pid = pid;
 	tmp->job = 1;
@@ -71,7 +71,7 @@ t_jobs		*remove_jobs(t_jobs *jobs, int pid)
 	if (jobs->pid == pid)
 	{
 		tmp = jobs->next;
-		free(jobs);
+		ft_free(jobs);
 		tmp = remove_jobs(tmp, pid);
 	}
 	else

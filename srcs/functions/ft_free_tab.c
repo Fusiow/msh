@@ -19,9 +19,9 @@ void	ft_free_tab(char **tab)
 	i = 0;
 	while (tab[i])
 	{
-		free(tab[i]);
+		ft_free(tab[i]);
 		tab[i] = NULL;
 		i++;
 	}
-	free(tab);
+	ft_free(tab);
 }
