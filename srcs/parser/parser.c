@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 06:57:02 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/23 19:16:07 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/23 21:30:58 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,14 @@ t_command	*quick_parse(char *str)
 	int			i;
 	char		**tab;
 	t_command	*result;
+	glob_t		globlist;
+	int			j;
 
 	i = 0;
+	result = NULL;
 	history(0, str);
+	if (check_line(str))
+		return (result);
 	str = escape_char(str);
 	list = tokenize(str);
 //	show_me_the_truth_bitch_get_outta_my_way(list);
@@ -85,13 +90,19 @@ t_command	*quick_parse(char *str)
 	while (list)
 	{
 		i = list_len_cmd(list);
-		tab = (char **)malloc(sizeof(char *) * i + 1);
+		tab = (char **)malloc(sizeof(char *) * 1024);
 		tab[i] = NULL;
 		i = 0;
-		while (list != NULL && (ft_strcmp(list->str, ";")))
+		while (list != NULL && (ft_strcmp(list->str, ";")) && i < 1024)
 		{
-			tab[i] = list->str;
-			++i;
+			j = 0;
+			glob(list->str, GLOB_NOCHECK, 0, &globlist);
+			while (globlist.gl_pathv[j])
+			{
+				tab[i] = globlist.gl_pathv[j];
+				++i;
+				++j;
+			}
 			list = list->next;
 		}
 		tab[i] = NULL;

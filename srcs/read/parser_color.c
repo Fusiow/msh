@@ -6,11 +6,41 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/27 08:31:33 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/15 16:21:02 by aardjoun         ###   ########.fr       */
+/*   Updated: 2014/03/23 20:51:53 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/msh.h"
+
+void	print_quote(char *cmd)
+{
+	int		j;
+
+	j = 0;
+	while (cmd[j])
+	{
+		if (cmd[j] == '\\')
+		{
+			ft_putstr(RED2);
+			ft_putchar(cmd[j]);
+			if (cmd[++j])
+				ft_putchar(cmd[j]);
+			ft_putstr(YEL);
+		}
+		else if (cmd[j] == '$')
+		{
+			ft_putstr(GRE2);
+			ft_putchar(cmd[j++]);
+			while (ft_isalpha(cmd[j]) && cmd[j])
+				ft_putchar(cmd[j++]);
+			--j;
+			ft_putstr(YEL);
+		}
+		else
+			ft_putchar(cmd[j]);
+		++j;
+	}
+}
 
 void	write_cmd(char *cmd, int i, int command)
 {
@@ -27,16 +57,24 @@ void	write_cmd(char *cmd, int i, int command)
 		++i;
 		v = i;
 		while (cmd[i] != '"' && cmd[i])
+		{
+			if (cmd[i] == '\\')
+				++i;
 			++i;
+		}
 		if (cmd[i])
 		{
 			ft_putstr(YEL);
 			++i;
+			ft_putchar('"');
+			print_quote(ft_strsub(cmd, v, (i - v)));
 		}
 		else
+		{
 			ft_putstr(RED);
-		ft_putchar('"');
-		write(1, &cmd[v], (i - v));
+			ft_putchar('"');
+			write(1, &cmd[v], (i - v));
+		}
 		ft_putstr(DEF);
 	}
 	else if (cmd[i] == '\'')
@@ -99,7 +137,6 @@ void	write_cmd(char *cmd, int i, int command)
 	{
 		if (command == 0)
 		{
-			command = 1;
 			v = i;
 			while (cmd[i] != ' ' && cmd[i] != ';' && cmd[i] != '|' && cmd[i] != '(' && cmd[i] != ')' && cmd[i])
 				++i;
@@ -110,10 +147,17 @@ void	write_cmd(char *cmd, int i, int command)
 				ft_putstr(RED);
 			i = v;
 		}
-		else
+		if (cmd[i] == '-')
+		{
 			ft_putstr(SBLUE);
+			v = -1;
+		}
 		while (cmd[i] != ' ' && cmd[i] != ';' && cmd[i] != '|' && cmd[i])
+		{
+			if (command == 1 && v != -1)
+				ft_putstr(SBLUE2);
 			ft_putchar(cmd[i++]);
+		}
 		if (tmp)
 		{
 			if (!cmd[i] && check_prog(tmp))
@@ -121,6 +165,8 @@ void	write_cmd(char *cmd, int i, int command)
 			free(tmp);
 			tmp = NULL;
 		}
+		if (command == 0)
+			command = 1;
 		ft_putstr(DEF);
 	}
 	if (!cmd[i])

@@ -6,7 +6,7 @@
 /*   By: rkharif <rkharif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 13:10:28 by rkharif           #+#    #+#             */
-/*   Updated: 2014/03/23 19:15:48 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/23 21:24:14 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ char	*spe_quote(char *str, int *i, char quote, int start)
 	char	*spe_result;
 	int		j;
 
-	while (str[*i] != ' ' && isop(str[*i]) && str[*i])
+	while (str[*i] != ' ' && isop(str[*i]) && str[*i] != ';' && str[*i])
 		++*i;
 	result = ft_strsub(str, start, (ft_strlen(str) - start));
 	ft_putendl(result);
@@ -98,7 +98,7 @@ char	*quote(char *str, int *i, char quote)
 			flag = 1;
 		else if (str[*i] == quote && str[*i - 1] != '\\')
 		{
-			if (str[*i + 1] && str[*i + 1] == ' ')
+			if (str[*i + 1] && !ft_isalpha(str[*i + 1]))
 				flag = 1;
 			else if (!str[*i + 1])
 				flag = 1;
@@ -198,8 +198,6 @@ t_parse		*tokenize(char *str)
 	openflag = 0;
 	i = 0;
 	list = NULL;
-	if (check_line(str))
-		return (list);
 	while (str[i])
 	{
 		len = 0;

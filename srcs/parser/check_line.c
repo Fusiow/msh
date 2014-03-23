@@ -6,7 +6,7 @@
 /*   By: rkharif <rkharif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 13:10:28 by rkharif           #+#    #+#             */
-/*   Updated: 2014/03/22 10:47:59 by rkharif          ###   ########.fr       */
+/*   Updated: 2014/03/23 20:15:18 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,11 @@ int		check_line(char *str)
 			err.dquote = 1;
 			++i;
 			while (str[i] != '"' && str[i])
+			{
+				if (str[i] == '\\')
+					++i;
 				++i;
+			}
 			if (str[i] == '"')
 				err.dquote = 0;
 		}

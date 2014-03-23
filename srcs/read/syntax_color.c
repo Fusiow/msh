@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 10:04:42 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/23 15:03:12 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/23 19:21:31 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int		check_prog(char *str)
 	int		result;
 
 	result = 0;
-	tab = ft_spe_strsplit(find_value_envir(g_env, "PATH"), ':');
+	tab = ft_strsplit(find_value_envir(g_env, "PATH"), ':');
 	i = 0;
 	if (check_builtins_and_alias(str))
 		return (1);

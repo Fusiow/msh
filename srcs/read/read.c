@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:52:57 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/23 16:17:44 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/23 20:42:37 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,11 @@ int		distrib_buttons(int i, char **result, char *buffer, int *v)
 	}
 	else if (buffer[0] == 1)
 	{
-		i = 0;
-		replace_cursor(i, ft_strlen(*result));
+		if (i != 0)
+		{
+			i = 0;
+			replace_cursor(i, ft_strlen(*result));
+		}
 	}
 	else if (buffer[0] == 5)
 	{
