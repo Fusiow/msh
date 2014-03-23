@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/23 12:54:50 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/23 13:51:32 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -278,7 +278,7 @@ char		*join_spe_tab(char **tab, int beg, int end);
 char		*ft_strnew(size_t size);
 void		*ft_memcpy(void *s1, const void *s2, size_t n);
 void		ft_free(void *p);
-
+int			ft_isalpha(char c);
 
 /*
  ** ENVIRON

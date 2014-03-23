@@ -6,7 +6,7 @@
 /*   By: rkharif <rkharif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 13:10:28 by rkharif           #+#    #+#             */
-/*   Updated: 2014/03/22 14:05:43 by rkharif          ###   ########.fr       */
+/*   Updated: 2014/03/23 13:54:39 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,8 +107,8 @@ char	*quote(char *str, int *i, char quote)
 		}
 		else if (str[*i] == '$' && str[*i - 1] != '\\')
 		{
-			v = *i;
-			while (str[v] != ' ' && str[v] != '\'' && str[v] != '"' && str[v])
+			v = *i + 1;
+			while (ft_isalpha(str[v]))
 				++v;
 			tmp = search_var(g_var, ft_strsub(str, *i + 1, (v - *i - 1)));
 			*i = v;
