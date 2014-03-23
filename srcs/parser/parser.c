@@ -80,7 +80,6 @@ t_command	*quick_parse(char *str)
 
 	i = 0;
 	result = NULL;
-	history(0, str);
 	if (check_line(str))
 		return (result);
 	str = escape_char(str);

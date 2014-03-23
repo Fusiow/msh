@@ -132,6 +132,8 @@ char	*take_cmd(int choice)
 	result = NULL;
 	while (1)
 	{
+		if (!result)
+			i = 0;
 		v = 0;
 		buffer = init_buffer(buffer);
 		read(0, buffer, 3);
