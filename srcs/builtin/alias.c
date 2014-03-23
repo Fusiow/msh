@@ -21,7 +21,7 @@ t_alias	*del_alias(t_alias *list, char *name)
 	if (!ft_strcmp(list->alias, name))
 	{
 		tmp = list->next;
-		free(list);
+		ft_free(list);
 		tmp = del_alias(tmp, name);
 		return (tmp);
 	}
@@ -38,7 +38,7 @@ t_alias	*add_alias(t_alias *list, char *alias, char *value)
 	t_alias	*tmp2;
 
 	tmp2 = list;
-	tmp = (t_alias *)malloc(sizeof(t_alias));
+	tmp = (t_alias *)ft_memalloc(sizeof(t_alias));
 	tmp->alias = alias;
 	tmp->value = value;
 	tmp->next = NULL;
@@ -52,25 +52,16 @@ t_alias	*add_alias(t_alias *list, char *alias, char *value)
 
 char	**is_alias(t_alias *list, char **tab)
 {
-	int			i;
-	t_alias		*tmp;
 	t_command	*result;
 
-	tmp = list;
-	i = 0;
-	while (tab[i] != NULL)
+	while (list)
 	{
-		while (list)
+		if (ft_strcmp(tab[0], list->alias) == 0)
 		{
-			if (ft_strcmp(tab[i], list->alias) == 0)
-			{
-				result = quick_parse(list->value);
-				tab = ft_insert_tab(tab, result->cmd, i);
-			}
-			list = list->next;
+			result = quick_parse(list->value);
+			tab = ft_insert_tab(tab, result->cmd, 0);
 		}
-		list = tmp;
-		++i;
+		list = list->next;
 	}
 	return (tab);
 }

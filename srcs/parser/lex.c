@@ -163,7 +163,7 @@ char	*ope_str(char *str, int start, int *i)
 		++*i;
 		while (!(iswhite(str[*i])) && !(isop(str[*i])) && str[*i])
 			++*i;
-		tmp = ft_strsub(str, start + 1, (*i - start));
+		tmp = ft_strsub(str, start + 1, (*i - start - 1));
 		result = ft_strjoin(find_value_envir(g_env, "HOME"), tmp);
 	}
 	else if (str[*i] == '`')
