@@ -21,9 +21,13 @@ void	load_conf_file(void)
 	fd = open(tmp, O_RDONLY);
 	if (fd == -1)
 	{
+		close(fd);
 		no_conf();
-		return ;
+		fd = open(tmp, O_RDONLY);
 	}
-	while ((tmp = get_next_line(fd)))
-		pre_exec(tmp);
+	if (fd != -1)
+	{
+		while ((tmp = get_next_line(fd)))
+			pre_exec(tmp);
+	}
 }

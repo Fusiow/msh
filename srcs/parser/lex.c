@@ -155,7 +155,7 @@ char	*ope_str(char *str, int start, int *i)
 					++*i;
 				tmp = ft_strsub(str, v, (*i - v));
 				result = ft_strjoin(result, tmp);
-				free(tmp);
+				ft_free(tmp);
 			}
 	}
 	else if (str[*i] == '~')

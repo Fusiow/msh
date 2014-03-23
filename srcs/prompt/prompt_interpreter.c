@@ -111,7 +111,7 @@ void	prompt_git(void)
 			ft_putstr(")");
 			ft_putstr(DEF);
 		}
-		free(result);
+		ft_free(result);
 	}
 }
 

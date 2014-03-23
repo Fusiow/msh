@@ -154,7 +154,7 @@ char	*take_cmd(int choice)
 		}
 	}
 	ft_putstr("\n");
-	free(buffer);
+	ft_free(buffer);
 	show_autocomplete(NULL, 0);
 	re_flag(&term);
 	return (result);

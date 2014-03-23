@@ -32,6 +32,7 @@ void	no_conf(void)
 	{
 		fd = open(ft_strjoin(find_value_envir(g_env, "HOME"), "/.mshrc"), O_WRONLY | O_CREAT, 0777);
 		write(fd, "alias l \"ls\"\nalias ll \"ls -la\"\n", 32);
+		close(fd);
 	}
 	ft_putstr(tgetstr("cl", NULL));
 	re_flag(&term);
