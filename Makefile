@@ -52,6 +52,7 @@ SRCS	=	srcs/main/main.c\
 			srcs/functions/ft_free.c\
 			srcs/functions/ft_strnew.c\
 			srcs/functions/ft_memcpy.c\
+			srcs/functions/ft_isdirectory.c\
 			srcs/read/actions.c\
 			srcs/read/buttons.c\
 			srcs/read/history.c\

@@ -18,6 +18,8 @@ char	*del_c(char *result, int *i)
 
 	if (*i != 0)
 	{
+		show_autocomplete(NULL, 0);
+		spe_argument_completion(NULL, NULL, 1);
 		if (*i != 1)
 			ft_putstr(tgetstr("le", NULL));
 		ft_putstr(tgetstr("le", NULL));

@@ -237,7 +237,9 @@ void		write_cmd(char *str, int i, int command);
 int			check_prog(char *str);
 int			auto_comp_choice(int i);
 char		*spe_autocomp(char *cmd, int len);
-char		*argument_completion(char *str);
+char		*argument_completion(char *str, char *cmd);
+void		aff_cmd(char *str, char *cmd);
+char		*spe_argument_completion(char *cmd, char *str, int x);
 
 /*
  ** FUNCTIONS
@@ -285,6 +287,7 @@ char		*ft_strnew(size_t size);
 void		*ft_memcpy(void *s1, const void *s2, size_t n);
 void		ft_free(void *p);
 int			ft_isalpha(char c);
+int			isdirectory(char *str);
 
 /*
  ** ENVIRON

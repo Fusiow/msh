@@ -77,70 +77,72 @@ char	*show_tab(char *cmd)
 	return (NULL);
 }
 
+char	*make_cmd(char *str)
+{
+	int		i;
+
+	i = 0;
+	while (ft_isalpha(str[i]) && str[i])
+		++i;
+	return (ft_strsub(str, 0, i));
+}
+
 char	*show_autocomplete(char *str, int v)
 {
 	int				i;
 	char			*tmp;
 	static int		status;
 
-	i = 0;
+	i = ft_strlen(str) - 1;
 	if (v == 0)
-	{
 		status = 0;
-		return (0);
-	}
-	while (str[i] != ' ' && str[i])
-		++i;
-	if (!str[i] && status == 0)
-	{
-		tmp = show_tab(ft_strsub(str, 0, i));
-		if (tmp && ft_strcmp(tmp, "ok"))
-		{
-			i = ft_strlen(tmp) - 1;
-			while (i > ft_strlen(str))
-			{
-				ft_putstr(tgetstr("nd", NULL));
-				--i;
-			}
-			str = tmp;
-		}
-		else if (tmp && ft_strcmp("ok", tmp) == 0)
-		{
-			prompt();
-			ft_putstr(" ");
-			if (i != 1)
-				ft_putstr(tgetstr("nd", NULL));
-			if (i == 3)
-			{
-				ft_putstr(tgetstr("nd", NULL));
-			}
-			else if (i > 3)
-			{
-				ft_putstr(tgetstr("nd", NULL));
-				ft_putstr(tgetstr("nd", NULL));
-			}
-		}
-		status = 1;
-	}
-	else if (status == 1)
-		str = spe_autocomp(str, ft_strlen(str));
-	else if (str[i + 1] == '-' && !str[i + 2])
-	{
-		show_diff_option(ft_strsub(str, 0, i));
-		prompt();
-		ft_putstr("    ");
-		if (i == 1)
-				ft_putstr(tgetstr("le", NULL));
-			else if (i == 3)
-				ft_putstr(tgetstr("nd", NULL));
-			else if (i > 3)
-			{
-				ft_putstr(tgetstr("nd", NULL));
-				ft_putstr(tgetstr("nd", NULL));
-			}
-		status = 2;
-	}
 	else
-		argument_completion(str);
+	{
+		while (str[i] != ' ' && i > 0)
+			--i;
+		if (i > 0)
+			++i;
+		tmp = ft_strsub(str, i, (ft_strlen(str) - i));
+		if (status == 0)
+		{
+			status++;
+			if (i == 0 && tmp[0] != '.' && tmp[0] != '/')
+				tmp = show_tab(tmp);
+			else if (tmp[0] == '-')
+			{
+				if (!tmp[1])
+					show_diff_option(make_cmd(str));
+			}
+			else
+				tmp = argument_completion(tmp, str);
+		}
+		else if (status == 1)
+		{
+			if (i == 0 && tmp[0] != '.' && tmp[0] != '/')
+				tmp = spe_autocomp(str, ft_strlen(str));
+			else if (tmp[0] != '-')
+				tmp = spe_argument_completion(tmp, str, 0);
+		}
+		if (tmp)
+		{
+			if (ft_strcmp(tmp, "ok") && tmp[0] != '-')
+			{
+				i = ft_strlen(tmp) - 1;
+				while (i-- > ft_strlen(str))
+					ft_putstr(tgetstr("nd", NULL));
+				str = tmp;
+			}
+			else
+			{
+				if (tmp[0] != '-')
+				{
+					prompt();
+					i = 0;
+					while (i++ < ft_strlen(str))
+						ft_putstr(" ");
+				}
+			}
+		}
+	}
 	return (str);
 }

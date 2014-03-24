@@ -19,6 +19,8 @@ char	*change_cmd(int i, char *result, char letter)
 	char	*c;
 	char	*new;
 
+	show_autocomplete(NULL, 0);
+	spe_argument_completion(NULL, NULL, 1);
 	c = char_to_string(letter);
 	if (!result)
 		return (c);
@@ -69,7 +71,7 @@ int		distrib_buttons(int i, char **result, char *buffer, int *v)
 	}
 	else if (buffer[0] == 127)
 		*result = del_c(*result, &i);
-	else if (buffer[0] == 9 && *result)
+	else if (buffer[0] == 9 && *result && i == ft_strlen(*result))
 	{
 		tmp = ft_strdup(*result);
 		*result = show_autocomplete(*result, 1);

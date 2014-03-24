@@ -42,5 +42,7 @@ int		detect_built(char **tab)
 		fg_bg(g_jobs, tab, 1);
 	else if (!(ret = ft_strcmp("bg", tab[0])))
 		fg_bg(g_jobs, tab, 0);
+	else if (!(ret = ft_strcmp("matrix", tab[0])))
+		load_conf_file();
 	return (ret);
 }
