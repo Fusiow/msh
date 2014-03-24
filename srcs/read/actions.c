@@ -20,6 +20,7 @@ char	*del_c(char *result, int *i)
 	{
 		show_autocomplete(NULL, 0);
 		spe_argument_completion(NULL, NULL, 1);
+		spe_autocomp(NULL, 0, 1);
 		if (*i != 1)
 			ft_putstr(tgetstr("le", NULL));
 		ft_putstr(tgetstr("le", NULL));
@@ -31,9 +32,9 @@ char	*del_c(char *result, int *i)
 			++*i;
 		}
 		result[*i] = '\0';
-		if (*i == 0)
-			return (NULL);
 		*i = tmp;
+		if (*i == 0)
+			result[0] = 0;
 	}
 	return (result);
 }

@@ -69,7 +69,7 @@ char	*show_tab(char *cmd)
 			i = 0;
 			while (list->name[i] == cmd[i] && list->name[i] && cmd[i])
 				++i;
-			return (ft_strjoin(cmd, ft_strsub(list->name, i, ft_strlen(list->name))));
+			return (ft_strjoin(cmd, ft_strjoin(ft_strsub(list->name, i, ft_strlen(list->name)), " ")));
 		}
 	}
 	ft_free(list);
@@ -119,7 +119,7 @@ char	*show_autocomplete(char *str, int v)
 		else if (status == 1)
 		{
 			if (i == 0 && tmp[0] != '.' && tmp[0] != '/')
-				tmp = spe_autocomp(str, ft_strlen(str));
+				tmp = spe_autocomp(str, ft_strlen(str), 0);
 			else if (tmp[0] != '-')
 				tmp = spe_argument_completion(tmp, str, 0);
 		}

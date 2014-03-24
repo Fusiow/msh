@@ -21,6 +21,7 @@ char	*change_cmd(int i, char *result, char letter)
 
 	show_autocomplete(NULL, 0);
 	spe_argument_completion(NULL, NULL, 1);
+	spe_autocomp(NULL, 0, 1);
 	c = char_to_string(letter);
 	if (!result)
 		return (c);
@@ -153,6 +154,8 @@ char	*take_cmd(int choice)
 			else
 				ft_putstr(result);
 			replace_cursor(i, ft_strlen(result));
+			if (!result[0])
+				result = NULL;
 		}
 	}
 	ft_putstr("\n");

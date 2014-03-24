@@ -236,7 +236,7 @@ void		syntax_color_rest(char *str);
 void		write_cmd(char *str, int i, int command);
 int			check_prog(char *str);
 int			auto_comp_choice(int i);
-char		*spe_autocomp(char *cmd, int len);
+char		*spe_autocomp(char *cmd, int len, int x);
 char		*argument_completion(char *str, char *cmd);
 void		aff_cmd(char *str, char *cmd);
 char		*spe_argument_completion(char *cmd, char *str, int x);

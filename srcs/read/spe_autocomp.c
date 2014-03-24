@@ -12,19 +12,20 @@
 
 #include "../../includes/msh.h"
 
-char	*spe_autocomp(char *cmd, int len)
+char	*spe_autocomp(char *cmd, int len, int x)
 {
 	static t_list	*list; 
 	static t_list	*beg; 
 	static int		v;
-	static char		*str;
-	int				i;
 	char			*result;
 
-	i = 0;
+	if (x == 1)
+	{
+		v = 0;
+		return (NULL);
+	}
 	if (v == 0)
 	{
-		str = ft_strdup(cmd);
 		list = recup_prog(cmd, ft_strsplit(find_value_envir(g_env, "PATH"), ':'), list);
 		beg = list;
 	}
@@ -32,9 +33,7 @@ char	*spe_autocomp(char *cmd, int len)
 		list = beg;
 	if (list)
 	{
-		while (list->name[i] == cmd[i] && list->name[i] && cmd[i])
-			++i;
-		result = ft_strjoin(str, ft_strsub(list->name, i, ft_strlen(list->name)));
+		result = list->name;
 		list = list->next;
 		v++;
 		if (len > ft_strlen(result) - 1)
@@ -43,15 +42,6 @@ char	*spe_autocomp(char *cmd, int len)
 			while (len >= 0)
 			{
 				ft_putstr(tgetstr("le", NULL));
-				len--;
-			}
-		}
-		else
-		{
-			len = ft_strlen(result) - len;
-			while (len > 1)
-			{
-				ft_putstr(" ");
 				len--;
 			}
 		}

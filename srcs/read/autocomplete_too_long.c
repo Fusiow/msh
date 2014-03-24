@@ -20,11 +20,12 @@ int		auto_comp_choice(int i)
 	ft_putnbr(i);
 	ft_putstr(" lines)? (y/n)");
 	read(0, buffer, 1);
-	if (buffer[0] == 'y')
+	if (buffer[0] == 'y' || buffer[0] == 9)
 		return (2);
 	else
 	{
 		ft_putstr("\n");
+		show_autocomplete(NULL, 0);
 		prompt();
 		ft_putstr(" ");
 		return (0);

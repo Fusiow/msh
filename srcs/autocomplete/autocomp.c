@@ -45,6 +45,7 @@ char	*argument_completion(char *str, char *cmd)
 				result = ft_strjoin(result, "/");
 			else
 				result = ft_strjoin(result, " ");
+			globfree(&list);
 			return (ft_strjoin(ft_strsub(cmd, 0, (ft_strlen(cmd) - ft_strlen(str))), result));
 		}
 		i = 0;
@@ -58,6 +59,7 @@ char	*argument_completion(char *str, char *cmd)
 			}
 			++i;
 		}
+		globfree(&list);
 	}
 	return (ft_strdup("ok"));
 }
@@ -76,6 +78,7 @@ char	*spe_argument_completion(char *cmd, char *str, int x)
 	if (x == 1)
 	{
 		v = 0;
+		globfree(&list);
 		return (NULL);
 	}
 	if (v == 0)
