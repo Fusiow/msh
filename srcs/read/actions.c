@@ -31,6 +31,8 @@ char	*del_c(char *result, int *i)
 			++*i;
 		}
 		result[*i] = '\0';
+		if (*i == 0)
+			return (NULL);
 		*i = tmp;
 	}
 	return (result);

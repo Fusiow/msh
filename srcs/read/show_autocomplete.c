@@ -134,13 +134,12 @@ char	*show_autocomplete(char *str, int v)
 			}
 			else
 			{
-				if (tmp[0] != '-')
-				{
+				if (tmp[0] == '-' && tmp[1])
+					return (str);
 					prompt();
 					i = 0;
 					while (i++ < ft_strlen(str))
 						ft_putstr(" ");
-				}
 			}
 		}
 	}
