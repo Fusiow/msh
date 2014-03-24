@@ -86,8 +86,10 @@ char	*spe_argument_completion(char *cmd, char *str, int x)
 	}
 	if (!list.gl_pathv[i])
 		i = 0;
-	if (list.gl_pathc > 1)
+	if (list.gl_pathc)
 	{
+		if (!ft_strcmp(list.gl_pathv[i], ft_strjoin(cmd, "*")))
+			return (str);
 		j = ft_strlen(command);
 		while (command[j] != ' ' && j > 0)
 			--j;
@@ -116,6 +118,11 @@ char	*spe_argument_completion(char *cmd, char *str, int x)
 		{
 			ft_putstr(tgetstr("le", NULL));
 			ft_putstr(" ");
+		}
+		if (list.gl_pathc == 1)
+		{
+			result = ft_strjoin(result, " ");
+			list.gl_pathc = 0;
 		}
 	}
 	return (result);
