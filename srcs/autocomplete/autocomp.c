@@ -78,7 +78,7 @@ char	*spe_argument_completion(char *cmd, char *str, int x)
 	if (x == 1)
 	{
 		v = 0;
-		globfree(&list);
+//		globfree(&list);
 		return (NULL);
 	}
 	if (v == 0)
@@ -89,7 +89,7 @@ char	*spe_argument_completion(char *cmd, char *str, int x)
 	}
 	if (!list.gl_pathv[i])
 		i = 0;
-	if (list.gl_pathc)
+	if (list.gl_pathc && list.gl_pathv[i])
 	{
 		if (!ft_strcmp(list.gl_pathv[i], ft_strjoin(cmd, "*")))
 			return (str);
