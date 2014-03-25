@@ -6,11 +6,11 @@
 #    By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/14 17:00:44 by aardjoun          #+#    #+#              #
-#    Updated: 2014/03/23 18:30:37 by lsolofri         ###   ########.fr        #
+#    Updated: 2014/03/25 11:59:25 by lsolofri         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
-NAME	=	MiShell
+NAME	=	msh
 
 SRCS	=	srcs/main/main.c\
 			srcs/main/ft_mishell.c\
@@ -103,25 +103,7 @@ OBJS	=	$(SRCS:.c=.o)
 
 all		:	$(NAME)
 
-msh		:
-	@echo "MMMMMMMM               MMMMMMMM   SSSSSSSSSSSSSSS HHHHHHHHH     HHHHHHHHH"
-	@echo "M:::::::M             M:::::::M SS:::::::::::::::SH:::::::H     H:::::::H"
-	@echo "M::::::::M           M::::::::MS:::::SSSSSS::::::SH:::::::H     H:::::::H"
-	@echo "M:::::::::M         M:::::::::MS:::::S     SSSSSSSHH::::::H     H::::::HH"
-	@echo "M::::::::::M       M::::::::::MS:::::S              H:::::H     H:::::H"
-	@echo "M:::::::::::M     M:::::::::::MS:::::S              H:::::H     H:::::H"
-	@echo "M:::::::M::::M   M::::M:::::::M S::::SSSS           H::::::HHHHH::::::H"
-	@echo "M::::::M M::::M M::::M M::::::M  SS::::::SSSSS      H:::::::::::::::::H"
-	@echo "M::::::M  M::::M::::M  M::::::M   SSS::::::::SS     H:::::::::::::::::H"
-	@echo "M::::::M   M:::::::M   M::::::M      SSSSSS::::S    H::::::HHHHH::::::H"
-	@echo "M::::::M    M:::::M    M::::::M            S:::::S  H:::::H     H:::::H"
-	@echo "M::::::M     MMMMM     M::::::M            S:::::S  H:::::H     H:::::H"
-	@echo "M::::::M               M::::::MSSSSSSS     S:::::SHH::::::H     H::::::HH"
-	@echo "M::::::M               M::::::MS::::::SSSSSS:::::SH:::::::H     H:::::::H"
-	@echo "M::::::M               M::::::MS:::::::::::::::SS H:::::::H     H:::::::H"
-	@echo "MMMMMMMM               MMMMMMMM SSSSSSSSSSSSSSS   HHHHHHHHH     HHHHHHHHH"
-
-$(NAME)	:	 $(OBJS) msh
+$(NAME)	:	 $(OBJS)
 	@$(CC) $(CFLAGS) $(LIBS) $(OBJS) -o $(NAME)
 	@echo "done"
 
@@ -132,6 +114,12 @@ clean	:
 fclean	:	clean
 	@rm -rf $(NAME)
 	@echo "fclean done"
+
+install42: all
+	cp msh ~/.brew/bin/
+
+install: all
+	cp msh /usr/bin/
 
 re		:	fclean all
 

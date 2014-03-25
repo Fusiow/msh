@@ -48,3 +48,9 @@ For more information see the documentation (docs /).
 #### Installation: 
 ##### -Compilation: 
 git clone https://github.com/Ne02ptzero/msh.git && cd msh && make
+##### -Installation:
+make install;
+
+(For 42 students)
+
+make install42;  *(Copy the binary to ~/.brew/bin)*
