@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/25 22:46:04 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/25 23:51:45 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -358,6 +358,7 @@ int			pre_exec(char *str);
 int			pre_exec_nofork(char *str);
 int			pre_exec_nowait(char *str);
 void		main_options(char **av, int *choice);
+void		child(char **tab);
 
 /*
  ** PROMPT

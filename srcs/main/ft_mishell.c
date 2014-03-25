@@ -6,7 +6,7 @@
 /*   By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 15:59:27 by aardjoun          #+#    #+#             */
-/*   Updated: 2014/03/25 18:53:16 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/25 23:54:05 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,24 @@ void	exec_cmd(char **tab)
 	_exit(1);
 }
 
+int		father(int pid, char *cmd)
+{
+	int		ret;
+
+	signal(SIGINT, interrupt_process);
+	g_jobs = add_job(g_jobs, cmd, pid);
+	waitpid(pid, &ret, WUNTRACED);
+	check_return(ret, pid);
+	return (ret);
+}
+
 int		pre_exec(char *str)
 {
-	t_command	*tmp = NULL;
-	pid_t		pid = 0;
-	int			ret = 0;
+	t_command	*tmp;
+	pid_t		pid;
+	int			ret;
 
+	tmp = NULL;
 	if (str)
 		tmp = quick_parse(str);
 	while (tmp)
@@ -49,20 +61,9 @@ int		pre_exec(char *str)
 			if (detect_built(tmp->cmd))
 			{
 				if (!(pid = fork()))
-				{
-					signal(SIGTSTP, SIG_DFL);
-					signal(SIGQUIT, SIG_DFL);
-					check_operators(tmp->cmd, -1);
-					check_redirection(tmp->cmd);
-					exec_cmd(tmp->cmd);
-				}
+					child(tmp->cmd);
 				else
-				{
-					signal(SIGINT, interrupt_process);
-					g_jobs = add_job(g_jobs, tmp->cmd[0], pid);
-					waitpid(pid, &ret, WUNTRACED);
-					check_return(ret, pid);
-				}
+					ret = father(pid, tmp->cmd[0]);
 			}
 		}
 		tmp = tmp->next;
@@ -72,9 +73,9 @@ int		pre_exec(char *str)
 
 int		pre_exec_nofork(char *str)
 {
-	t_command	*tmp = NULL;
-	pid_t		pid = 0;
+	t_command	*tmp;
 
+	tmp = NULL;
 	tmp = quick_parse(str);
 	while (tmp)
 	{
@@ -90,14 +91,15 @@ int		pre_exec_nofork(char *str)
 		}
 		tmp = tmp->next;
 	}
-	return (pid);
+	return (0);
 }
+
 int		pre_exec_nowait(char *str)
 {
-	t_command	*tmp = NULL;
-	pid_t		pid = 0;
-	int			ret = 0;
+	t_command	*tmp;
+	pid_t		pid;
 
+	tmp = NULL;
 	if (str)
 		tmp = quick_parse(str);
 	while (tmp)
@@ -117,5 +119,5 @@ int		pre_exec_nowait(char *str)
 		}
 		tmp = tmp->next;
 	}
-	return (ret);
+	return (0);
 }
