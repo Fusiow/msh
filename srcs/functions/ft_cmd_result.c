@@ -6,27 +6,41 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 03:27:59 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/22 13:53:22 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/25 13:35:42 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/msh.h"
 
-char	*result_cmd(char *cmd)
+static char		*result_char_cmd(int fd)
 {
-	char    *result;
-	int     fd[2];
-	int     ret;
-	char	*buffer;
 	int		i;
-	int		pid;
+	char	*result;
+	int		ret;
+	char	*buffer;
 
 	i = 0;
 	buffer = NULL;
-	if (pipe(fd) == -1)
-		return (NULL);
 	result = (char *)ft_memalloc(sizeof(char) * 1024);
-	if (!result)
+	while ((ret = read(fd, result, 1024)) != 0)
+	{
+		result = ft_strsub(result, 0, ret);
+		if (i++ == 0)
+			buffer = ft_strdup(result);
+		else
+			buffer = ft_strjoin(buffer, result);
+	}
+	buffer[ft_strlen(buffer) - 1] = '\0';
+	return (buffer);
+}
+
+char	*result_cmd(char *cmd)
+{
+	int     fd[2];
+	int		pid;
+	int		ret;
+
+	if (pipe(fd) == -1)
 		return (NULL);
 	if (!(pid = fork()))
 	{
@@ -45,15 +59,6 @@ char	*result_cmd(char *cmd)
 		waitpid(pid, &ret, WUNTRACED);
 		if (close(fd[1]) == -1)
 			return (NULL);
-		while ((ret = read(fd[0], result, 1024)) != 0)
-		{
-			result = ft_strsub(result, 0, ret);
-			if (i++ == 0)
-				buffer = ft_strdup(result);
-			else
-				buffer = ft_strjoin(buffer, result);
-		}
 	}
-	buffer[ft_strlen(buffer) - 1] = '\0';
-	return (buffer);
+	return (result_char_cmd(fd[0]));
 }

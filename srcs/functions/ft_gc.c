@@ -6,7 +6,7 @@
 /*   By: rkharif <rkharif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/22 11:46:10 by rkharif           #+#    #+#             */
-/*   Updated: 2014/03/22 11:46:14 by rkharif          ###   ########.fr       */
+/*   Updated: 2014/03/25 13:30:23 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 static void	ft_gcadd(void *p, t_gc **ring, t_gcinfo **info)
 {
 	t_gc	*avail;
-//	t_gc	*start;
 
 	if (*ring == NULL)
 		ft_gcinit(ring, GC_NBSTART, info);
@@ -23,7 +22,6 @@ static void	ft_gcadd(void *p, t_gc **ring, t_gcinfo **info)
 		ft_gcrealloc(ring, info, GC_NBSTART);
 	avail = (*info)->first_avail;
 	avail->p = p;
-//	start = avail;
 	(*info)->nb++;
 	while (avail)
 	{

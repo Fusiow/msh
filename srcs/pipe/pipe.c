@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 13:54:10 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/23 12:55:57 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/25 15:40:00 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	go_pipe(char **tab2)
 	int		i;
 	char	**tab;
 	t_command	*list;
+	int			pid;
 
 	tab = join_tab(tab2);
 	ft_free_tab(tab2);
@@ -26,7 +27,7 @@ void	go_pipe(char **tab2)
 	while (tab[i])
 	{
 		pipe(fd_pipe);
-		if (!fork())
+		if (!(pid = fork()))
 		{
 			dup2(fd_in, 0);
 			if (tab[i + 1])
@@ -37,12 +38,13 @@ void	go_pipe(char **tab2)
 		}
 		else
 		{
-			wait(0);
 			close(fd_pipe[1]);
 			fd_in = fd_pipe[0];
 			++i;
 		}
 	}
+	waitpid(pid, &i, WUNTRACED);
+	check_return(i, pid);
 	ft_free_tab(tab);
 	_exit(0);
 }

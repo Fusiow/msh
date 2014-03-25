@@ -6,7 +6,7 @@
 #    By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/14 17:00:44 by aardjoun          #+#    #+#              #
-#    Updated: 2014/03/25 11:59:25 by lsolofri         ###   ########.fr        #
+#    Updated: 2014/03/25 14:40:33 by lsolofri         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -17,7 +17,7 @@ SRCS	=	srcs/main/main.c\
 			srcs/main/built.c\
 			srcs/main/options.c\
 			srcs/environ/ft_env.c\
-			srcs/environ/get_man_path.c\
+			srcs/environ/function_env.c\
 			srcs/errors/error.c\
 			srcs/errors/cd_error.c\
 			srcs/functions/ft_isdigit.c\
@@ -88,7 +88,8 @@ SRCS	=	srcs/main/main.c\
 			srcs/signal/show_stop.c\
 			srcs/signal/function_list.c\
 			srcs/operators/operator.c \
-			srcs/autocomplete/autocomp.c
+			srcs/autocomplete/autocomp.c \
+			srcs/autocomplete/spe_autocomp.c
 
 
 HDRS	=	includes/msh.h

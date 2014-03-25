@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/05 14:18:59 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/23 21:46:22 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/25 13:28:50 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ char	**ft_insert_tab(char **src, char **alias, int i)
 	int		x;
 
 	x = v = j = 0;
-	res = (char **)ft_memalloc(sizeof(char *) * (ft_tablen(src) + ft_tablen(alias)));
+	res = (char **)ft_memalloc(sizeof(char *) * (ft_tablen(src) +
+				ft_tablen(alias)));
 	while (j < (ft_tablen(src) + ft_tablen(alias)))
 	{
 		if (j == i)

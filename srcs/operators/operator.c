@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/13 11:59:40 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/23 16:32:18 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/25 15:46:03 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,24 +39,30 @@ char	*split_tab(char **tab, int i)
 	return (beg);
 }
 
+static int		sub_shell(char **tab, int i)
+{
+	int		v;
+
+	v = i;
+	while (tab[i] && ft_strcmp(tab[i], ")"))
+		++i;
+	if (!fork())
+		pre_exec(join_spe_tab(tab, v + 1, i));
+	wait(0);
+	_exit(0);
+	return (i);
+}
+
 void	check_operators(char **tab)
 {
 		int		i;
 		int		v;
 
-		i = 0;
-		while (tab[i])
+		i = -1;
+		while (tab[++i])
 		{
 			if (!ft_strcmp(tab[i], "("))
-			{
-				v = i;
-				while (ft_strcmp(tab[i], ")") && tab[i])
-					++i;
-				if (!fork())
-					pre_exec(join_spe_tab(tab, v + 1, i));
-				wait(0);
-				_exit(0);
-			}
+				i = sub_shell(tab, i);
 			if (!(ft_strcmp(tab[i], "&&")))
 			{
 				if (pre_exec(split_tab(tab, i)))
@@ -73,6 +79,5 @@ void	check_operators(char **tab)
 				if (v == 0 || v == 2)
 					_exit(0);
 			}
-			++i;
 		}
 }

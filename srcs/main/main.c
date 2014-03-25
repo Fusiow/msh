@@ -6,7 +6,7 @@
 /*   By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 15:53:46 by aardjoun          #+#    #+#             */
-/*   Updated: 2014/03/23 14:34:46 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/25 14:25:41 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int			main(int ac, char **av, char **environ)
 	welcome();
 	new_env(environ);
 	load_conf_file();
-	g_env = ft_setenv(g_env, "MANPATH", get_man_path());
+	g_env = ft_setenv(g_env, "MANPATH", result_cmd("man --path"));
 	if (ac != 1)
 		main_options(av, &choice);
 	signal(SIGTSTP, SIG_IGN);
