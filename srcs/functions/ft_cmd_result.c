@@ -6,10 +6,9 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 03:27:59 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/25 13:35:42 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/25 18:22:05 by rkharif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "../../includes/msh.h"
 
 static char		*result_char_cmd(int fd)
@@ -34,9 +33,9 @@ static char		*result_char_cmd(int fd)
 	return (buffer);
 }
 
-char	*result_cmd(char *cmd)
+char			*result_cmd(char *cmd)
 {
-	int     fd[2];
+	int		fd[2];
 	int		pid;
 	int		ret;
 

@@ -6,7 +6,7 @@
 /*   By: aardjoun <aardjoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/22 20:40:50 by aardjoun          #+#    #+#             */
-/*   Updated: 2014/02/11 16:34:45 by aardjoun         ###   ########.fr       */
+/*   Updated: 2014/03/25 18:58:11 by rkharif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n)
 
 	i = 0;
 	if (s1 == NULL)
-		return ((int) s2[i]);
+		return ((int)s2[i]);
 	if (s2 == NULL)
-		return ((int) s1[i]);
+		return ((int)s1[i]);
 	if (s1 != NULL && s2 != NULL)
 	{
 		while (i < n)
@@ -32,4 +32,3 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n)
 	}
 	return (0);
 }
-

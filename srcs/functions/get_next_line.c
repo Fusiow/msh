@@ -6,7 +6,7 @@
 /*   By: mfaye <mfaye@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/04 18:47:54 by mfaye             #+#    #+#             */
-/*   Updated: 2014/03/25 12:27:15 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/25 18:24:10 by rkharif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int		get_part(char **buf, char **line)
 	return (1);
 }
 
-int				get_next_line(int const fd, char** line)
+int				get_next_line(int const fd, char **line)
 {
 	static char		*buf = NULL;
 	int				ret;

@@ -6,7 +6,7 @@
 /*   By: aardjoun <aardjoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/23 12:27:34 by aardjoun          #+#    #+#             */
-/*   Updated: 2014/02/18 13:57:01 by aardjoun         ###   ########.fr       */
+/*   Updated: 2014/03/25 18:39:57 by rkharif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,3 @@ int		ft_atoi(const char *str)
 	}
 	return (sign * res);
 }
-

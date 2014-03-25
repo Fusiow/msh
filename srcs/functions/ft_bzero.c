@@ -6,7 +6,7 @@
 /*   By: rkharif <rkharif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/22 11:47:46 by rkharif           #+#    #+#             */
-/*   Updated: 2014/03/22 11:47:49 by rkharif          ###   ########.fr       */
+/*   Updated: 2014/03/25 18:42:08 by rkharif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_bzero(void *s, size_t n)
 	char	*dest;
 	int		i;
 
-	dest = (char *) s;
+	dest = (char *)s;
 	i = 0;
 	while (n != 0)
 	{

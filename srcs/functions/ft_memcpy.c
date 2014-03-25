@@ -6,7 +6,7 @@
 /*   By: rkharif <rkharif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/22 12:04:20 by rkharif           #+#    #+#             */
-/*   Updated: 2014/03/22 12:04:23 by rkharif          ###   ########.fr       */
+/*   Updated: 2014/03/25 18:42:25 by rkharif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	*ft_memcpy(void *s1, const void *s2, size_t n)
 	char	*str2;
 	int		i;
 
-	str1 = (char *) s1;
-	str2 = (char *) s2;
+	str1 = (char *)s1;
+	str2 = (char *)s2;
 	i = 0;
 	while (n != 0)
 	{

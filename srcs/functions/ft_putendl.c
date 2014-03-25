@@ -6,14 +6,13 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/21 11:28:05 by lsolofri          #+#    #+#             */
-/*   Updated: 2013/12/27 11:39:12 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/25 18:52:43 by rkharif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 #include <unistd.h>
-
-size_t	ft_strlen(const char *s);
+#include "../../includes/msh.h"
 
 void	ft_putendl(char const *s)
 {

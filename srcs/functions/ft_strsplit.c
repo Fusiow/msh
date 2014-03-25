@@ -6,11 +6,9 @@
 /*   By: rkharif <rkharif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/22 11:44:37 by rkharif           #+#    #+#             */
-/*   Updated: 2014/03/22 11:44:46 by rkharif          ###   ########.fr       */
+/*   Updated: 2014/03/25 18:59:45 by rkharif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
 #include <stdlib.h>
 #include "../../includes/msh.h"
 
@@ -41,7 +39,7 @@ static t_ui		*get_word_len(t_ui word_c, char const *s, \
 
 	i = 0;
 	j = 0;
-	word_len = (t_ui *) ft_memalloc(sizeof(t_ui) * word_c);
+	word_len = (t_ui *)ft_memalloc(sizeof(t_ui) * word_c);
 	while (*s == c)
 		s++;
 	while (*s)
@@ -66,10 +64,10 @@ static char		**build_array(t_ui w_c, t_ui *word_l)
 	t_ui	i;
 
 	i = 0;
-	split = (char **) ft_memalloc(sizeof(char *) * w_c + 1);
+	split = (char **)ft_memalloc(sizeof(char *) * w_c + 1);
 	while (i < w_c)
 	{
-		split[i] = ft_strnew((size_t) word_l[i] + 1);
+		split[i] = ft_strnew((size_t)word_l[i] + 1);
 		i++;
 	}
 	split[i] = NULL;
