@@ -2,7 +2,7 @@
 ## Beta Version
 
 
-### Created by Ne02ptzero (Louis Solofrizzo), Fusiow (Ryad Kharif) and Aurelien Ardjoune
+### Created by Ne02ptzero (Louis Solofrizzo), Fusiow (Ryad Kharif) and Ivory9334 (Aurelien Ardjoune)
 
 Stable version for **MacOSX**
 Work on **Linux**, but no manual completion (options & description of command)
