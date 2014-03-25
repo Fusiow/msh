@@ -6,11 +6,36 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 11:34:13 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/13 09:06:46 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/25 23:06:01 by rkharif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/msh.h"
+
+void	ft_redirloop(char *buffer, char *str, char *result, int *fd_pipe)
+{
+	int		i;
+
+	i = 0;
+	while (1)
+	{
+		ft_putstr("manual_entry>");
+		buffer = take_cmd(1);
+		if (ft_strcmp(buffer, str))
+		{
+			if (i == 0)
+				result = ft_strdup(buffer);
+			else
+				result = ft_strjoin(ft_strjoin(result, "\n"), buffer);
+			write(fd_pipe[1], buffer, ft_strlen(buffer));
+			write(fd_pipe[1], "\n", 1);
+		}
+		else
+			break ;
+		buffer = NULL;
+		++i;
+	}
+}
 
 void	infile(char *str)
 {
@@ -32,30 +57,12 @@ void	spe_infile(char *str)
 	char	*buffer;
 	int		fd_pipe[2];
 	char	*result;
-	int		i;
 
-	i = 0;
+	buffer = NULL;
+	result = NULL;
 	if (pipe(fd_pipe))
 		return ;
-	buffer = NULL;
-	while (1)
-	{
-		ft_putstr("manual_entry>");
-		buffer = take_cmd(1);
-		if (ft_strcmp(buffer, str))
-		{
-			if (i == 0)
-				result = ft_strdup(buffer);
-			else
-				result = ft_strjoin(ft_strjoin(result, "\n"), buffer);
-			write(fd_pipe[1], buffer, ft_strlen(buffer));
-			write(fd_pipe[1], "\n", 1);
-		}
-		else
-			break ;
-		buffer = NULL;
-		++i;
-	}
+	ft_redirloop(buffer, str, result, fd_pipe);
 	close(fd_pipe[1]);
 	dup2(fd_pipe[0], 0);
 	close(fd_pipe[0]);

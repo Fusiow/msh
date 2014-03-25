@@ -6,7 +6,7 @@
 /*   By: rkharif <rkharif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 13:10:28 by rkharif           #+#    #+#             */
-/*   Updated: 2014/03/23 21:24:14 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/25 19:40:40 by rkharif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int		iswhite(char c)
 
 int		isop(char c)
 {
-	char	optab[] = "$;^()=><`|&{}~"; 
-	int		i;
+	static char	optab[] = "$;^()=><`|&{}~"; 
+	int			i;
 
 	i = 0;
 	while (optab[i])
@@ -39,20 +39,6 @@ int		isop(char c)
 			return (1);
 		++i;
 	}
-	return (0);
-}
-
-int		iskey(char *str)
-{
-	char	*keyword[] = {"if", "do", "while", "in", "case", "done", "elif",
-		"else", "esac", "fi", "for", "then", "until"};
-	int		i;
-
-	i = 0;
-	while (ft_strcmp(keyword[i], str) != 0 && keyword[i])
-		++i;
-	if (keyword[i])
-		return (1);
 	return (0);
 }
 
@@ -144,19 +130,19 @@ char	*ope_str(char *str, int start, int *i)
 
 	if (str[*i] == '$')
 	{
-			v = *i + 1;
-			while (ft_isalpha(str[v]) && str[v])
-				++v;
-			result = search_var(g_var, ft_strsub(str, *i + 1, (v - *i - 1)));
-			*i = v - 1;
-			if (str[*i])
-			{
-				while (str[*i] != ' ' && str[*i])
-					++*i;
-				tmp = ft_strsub(str, v, (*i - v));
-				result = ft_strjoin(result, tmp);
-				ft_free(tmp);
-			}
+		v = *i + 1;
+		while (ft_isalpha(str[v]) && str[v])
+			++v;
+		result = search_var(g_var, ft_strsub(str, *i + 1, (v - *i - 1)));
+		*i = v - 1;
+		if (str[*i])
+		{
+			while (str[*i] != ' ' && str[*i])
+				++*i;
+			tmp = ft_strsub(str, v, (*i - v));
+			result = ft_strjoin(result, tmp);
+			ft_free(tmp);
+		}
 	}
 	else if (str[*i] == '~')
 	{
