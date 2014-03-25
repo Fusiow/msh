@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/02 19:54:06 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/25 16:39:42 by aardjoun         ###   ########.fr       */
+/*   Updated: 2014/03/25 18:22:43 by aardjoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	no_conf(void)
 	else if (buffer[0] == '1')
 	{
 		fd = open(ft_strjoin(find_value_envir(g_env, "HOME"),
-							 "/.mshrc"), O_WRONLY | O_CREAT, 0777);
+							"/.mshrc"), O_WRONLY | O_CREAT, 0777);
 		write(fd, "alias l \"ls\"\nalias ll \"ls -la\"\n", 32);
 		close(fd);
 	}

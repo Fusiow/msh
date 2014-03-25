@@ -6,7 +6,7 @@
 /*   By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/17 12:02:30 by aardjoun          #+#    #+#             */
-/*   Updated: 2014/03/05 10:31:33 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/25 18:17:53 by aardjoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void		ft_print_tab(char **tab, int i, int nb, int k)
 {
 	while (i < nb && tab[i] && ft_strcmp(tab[i], "|"))
 	{
-			ft_putstr(tab[i]);
+		ft_putstr(tab[i]);
 		if ((k == 0 || k == 2) && i < (nb - 1))
 			ft_putchar(' ');
 		i++;

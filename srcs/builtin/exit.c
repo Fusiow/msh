@@ -6,13 +6,13 @@
 /*   By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/18 12:24:55 by aardjoun          #+#    #+#             */
-/*   Updated: 2014/03/25 17:44:56 by aardjoun         ###   ########.fr       */
+/*   Updated: 2014/03/25 18:19:29 by aardjoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/msh.h"
 
-int		search_for_jobs(t_jobs *list)
+int			search_for_jobs(t_jobs *list)
 {
 	int		i;
 
@@ -25,7 +25,7 @@ int		search_for_jobs(t_jobs *list)
 	return (i);
 }
 
-void	kill_jobs(t_jobs *list)
+void		kill_jobs(t_jobs *list)
 {
 	while (list)
 	{
@@ -34,11 +34,11 @@ void	kill_jobs(t_jobs *list)
 	}
 }
 
-int				ft_exit(char **tab)
+int			ft_exit(char **tab)
 {
-	int			i;
-	int			rt;
-	int			result;
+	int		i;
+	int		rt;
+	int		result;
 
 	i = -1;
 	rt = 0;
@@ -57,11 +57,11 @@ int				ft_exit(char **tab)
 		}
 	}
 	if (!result && check_exit_status())
-			_exit(rt);
+		_exit(rt);
 	return (0);
 }
 
-int		check_exit_status(void)
+int			check_exit_status(void)
 {
 	char	*ret;
 

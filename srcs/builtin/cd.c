@@ -6,7 +6,7 @@
 /*   By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/24 16:19:25 by aardjoun          #+#    #+#             */
-/*   Updated: 2014/03/25 15:57:31 by aardjoun         ###   ########.fr       */
+/*   Updated: 2014/03/25 18:17:32 by aardjoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int			ft_cd(char **tab)
 		change_pwd(0);
 	}
 	else if (chdir(tab[1]) == -1)
-			return (cd_error(tab[1]));
+		return (cd_error(tab[1]));
 	else
 		change_pwd(0);
 	return (0);

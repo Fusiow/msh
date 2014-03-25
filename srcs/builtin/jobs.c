@@ -6,21 +6,21 @@
 /*   By: aardjoun <aardjoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 15:18:15 by aardjoun          #+#    #+#             */
-/*   Updated: 2014/03/25 16:20:32 by aardjoun         ###   ########.fr       */
+/*   Updated: 2014/03/25 18:20:38 by aardjoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/msh.h"
 
-int		search_jobs(t_jobs *list, int pid)
+int			search_jobs(t_jobs *list, int pid)
 {
-	t_jobs		*tmp;
+	t_jobs	*tmp;
 
 	tmp = g_jobs;
 	if (list)
 	{
-			while (tmp && tmp->pid != pid)
-				tmp = tmp->next;
+		while (tmp && tmp->pid != pid)
+			tmp = tmp->next;
 		if (tmp)
 			return (tmp->pid);
 		else
@@ -54,7 +54,7 @@ void		fg_bg(t_jobs *jobs, char **tab, int k)
 	job_continued(jobs->job, jobs->name);
 	kill(pid, SIGCONT);
 	waitpid(pid, &ret, WUNTRACED);
-    check_return(ret, pid);
+	check_return(ret, pid);
 }
 
 void		job_continued(int job, char *name)
