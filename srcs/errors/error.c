@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 15:02:39 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/21 12:02:13 by aardjoun         ###   ########.fr       */
+/*   Updated: 2014/03/25 17:41:38 by aardjoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,13 @@ void	err_no_file(char *str)
 	write(2, "\n", 1);
 }
 
-void	exit_error(char **tab)
+int		exit_error(char **tab)
 {
 	ft_putstr(tab[0]);
 	ft_putstr(": Argument '");
 	ft_putstr(tab[1]);
 	ft_putendl("' must be an integer");
+	return (1);
 }
 
 void	unknow_cmd(char *str)

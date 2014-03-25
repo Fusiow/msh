@@ -6,7 +6,7 @@
 /*   By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/18 12:24:55 by aardjoun          #+#    #+#             */
-/*   Updated: 2014/03/25 16:36:29 by aardjoun         ###   ########.fr       */
+/*   Updated: 2014/03/25 17:44:56 by aardjoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,31 +51,40 @@ int				ft_exit(char **tab)
 				rt = ft_atoi(tab[1]);
 			else
 			{
-				exit_error(tab);
-				result = 1;
+				result = exit_error(tab);
 				break ;
 			}
 		}
 	}
-	if (!result)
-		check_exit_status(rt);
+	if (!result && check_exit_status())
+			_exit(rt);
 	return (0);
 }
 
-void		check_exit_status(int rt)
+int		check_exit_status(void)
 {
 	char	*ret;
 
+	ret = NULL;
 	if (search_for_jobs(g_jobs))
 	{
 		ft_putstr("You have unfinished jobs. Exit anyway? (y/n)");
 		ret = take_cmd(1);
 	}
-	if (!ft_strcmp("y", ret))
+	if (ret)
 	{
-		kill_jobs(g_jobs);
-		ft_gc(NULL, E_GCFREEGC);
-		ft_putendl("Goodbye!");
-		_exit(rt);
+		if (!ft_strcmp("y", ret))
+		{
+			ft_putendl("Goodbye!");
+			kill_jobs(g_jobs);
+			ft_gc(NULL, E_GCFREEGC);
+			return (1);
+		}
 	}
+	else
+	{
+		ft_putendl("Goodbye!");
+		return (1);
+	}
+	return (0);
 }

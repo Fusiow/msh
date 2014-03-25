@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/25 16:39:50 by aardjoun         ###   ########.fr       */
+/*   Updated: 2014/03/25 17:42:05 by aardjoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,7 +189,7 @@ typedef struct		s_error
 
 void		show_error(char *str);
 void		show_error_exit(char *str);
-void		exit_error(char **tab);
+int			exit_error(char **tab);
 void		unknow_cmd(char *str);
 int			cd_error(char *str);
 void		err_no_file(char *str);
@@ -318,7 +318,7 @@ void		unset_var(char *name);
 void		ft_set(char **tab);
 void		export_var(t_var *list, char *name);
 void		no_conf(void);
-void		check_exit_status(int rt);
+int			check_exit_status(void);
 void		no_conf_msg(void);
 
 /*
