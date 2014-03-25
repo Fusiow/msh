@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/15 20:20:16 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/18 18:36:24 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/25 22:17:27 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	show_diff_option(char *str)
 			else
 				ft_putstr("No Description");
 			ft_putstr(")");
-				ft_putendl(DEF);
+			ft_putendl(DEF);
 			list = list->next;
 		}
 	}

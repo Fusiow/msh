@@ -6,7 +6,7 @@
 #    By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/14 17:00:44 by aardjoun          #+#    #+#              #
-#    Updated: 2014/03/25 18:28:50 by aardjoun         ###   ########.fr        #
+#    Updated: 2014/03/25 22:10:18 by lsolofri         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -56,11 +56,14 @@ SRCS	=	srcs/main/main.c\
 			srcs/functions/ft_isdirectory.c\
 			srcs/read/actions.c\
 			srcs/read/buttons.c\
+			srcs/read/buttons_functions.c\
 			srcs/read/history.c\
 			srcs/read/read.c\
+			srcs/read/read_function.c\
 			srcs/read/syntax_color.c\
 			srcs/read/termcap.c\
 			srcs/read/autocomplete.c\
+			srcs/read/autocomplete_function.c \
 			srcs/read/t_options.c\
 			srcs/read/show_autocomplete.c\
 			srcs/read/show_option.c\
@@ -68,6 +71,7 @@ SRCS	=	srcs/main/main.c\
 			srcs/read/parser_color_function.c\
 			srcs/read/parser_color_command.c\
 			srcs/read/parsing_man.c\
+			srcs/read/parsing_man_function.c\
 			srcs/read/spe_autocomp.c\
 			srcs/read/autocomplete_too_long.c\
 			srcs/builtin/exit.c\

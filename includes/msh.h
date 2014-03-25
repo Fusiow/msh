@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/25 18:51:55 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/25 22:46:04 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 # define MSH_H
 
 /*
- ** GLOBAL LIST
- */
+** GLOBAL LIST
+*/
+
 
 typedef struct			s_env
 {
@@ -67,6 +68,7 @@ typedef unsigned int	t_ui;
 /*
  ** LIST FOR VARIABLES
  */
+
 
 typedef struct			s_var
 {
@@ -240,14 +242,30 @@ char		*spe_autocomp(char *cmd, int len, int x);
 char		*argument_completion(char *str, char *cmd);
 void		aff_cmd(char *str, char *cmd);
 char		*spe_argument_completion(char *cmd, char *str, int x);
-int         up_arrow(char **result, int i);
-void        print_quote(char *str, int j);
-int         quote_it(char *cmd, int i);
-int         quote_it2(char *cmd, int i);
-int         redirection_left(char *cmd, int i);
-int         redirection_right(char *cmd, int i);
-int         new_command(int i, char *cmd);
-int         print_command(char *cmd, int *i, int command);
+int			up_arrow(char **result, int i);
+void		print_quote(char *str, int j);
+int			quote_it(char *cmd, int i);
+int			quote_it2(char *cmd, int i);
+int			redirection_left(char *cmd, int i);
+int			redirection_right(char *cmd, int i);
+int			new_command(int i, char *cmd);
+int			print_command(char *cmd, int *i, int command);
+char		*make_man_path(char *path, char *man, char *cmd);
+char		*read_description_fd(char *man_path);
+char		*i_equal_len(char *c, char *result);
+char		*i_equal_zero(char *c, char *result);
+char		*insert_a_char(char *result, char *c, int i);
+int			distrib_arrow(int i, char **result, char *buffer, int *v);
+int			distrib_tab(int i, char **result);
+void		clear_and_prompt(void);
+int			ctrl_a(int i, char **result);
+int			ctrl_k(int i, char **result);
+char		*make_cmd(char *str);
+int			list_prog_len(t_list *list);
+char		*status_equal_zero(char *tmp, char *str, int i, int status);
+char		*status_equal_one(char *tmp, char *str, int i);
+char		*show_command_complete(char *tmp, int i, char *str);
+char		*show_tab(char *cmd);
 
 /*
  ** FUNCTIONS
@@ -258,7 +276,6 @@ char		*ft_strjoin(char const *s1, char const *s2);
 char		*ft_spe_strjoin(char const *s1, char const *s2);
 char		*ft_strsub(char const *s, unsigned int start, size_t len);
 char		*ft_spe_strsub(char const *s, unsigned int start, size_t len);
-int			ft_strlen(char *s);
 char		**ft_new_tab(int i);
 void		ft_free_tab(char **tab);
 int			ft_tablen(char **tab);
@@ -273,7 +290,7 @@ void		ft_putstr(char const *s);
 int			ft_strcmp(const char *s1, const char *s2);
 char		*ft_strdup(const char *s);
 char		*ft_strjoin(char const *s1, char const *s2);
-int			ft_strlen(char *s);
+int			ft_strlen(char const *s);
 char		**ft_strsplit(char const *s, char c);
 char		**ft_spe_strsplit(char const *s, char c);
 char		*ft_strsub(char const *s, unsigned int start, size_t len);

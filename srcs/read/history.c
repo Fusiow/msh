@@ -6,16 +6,16 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/12 15:18:32 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/25 17:00:45 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/25 18:59:23 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/msh.h"
 
-void	add_history(char *str)
+void				add_history(char *str)
 {
-	int		i;
-	int		res;
+	int				i;
+	int				res;
 
 	i = 0;
 	res = 0;
@@ -32,7 +32,7 @@ void	add_history(char *str)
 	}
 }
 
-static char		*choice_one(char *s_history, int *i, char *result)
+static char			*choice_one(char *s_history, int *i, char *result)
 {
 	if (*i >= 0)
 	{
@@ -43,7 +43,8 @@ static char		*choice_one(char *s_history, int *i, char *result)
 	return (result);
 }
 
-static char		*choice_two(char *s_history, int *i, char *result, char *next)
+static char			*choice_two(char *s_history, int *i, char *result,
+		char *next)
 {
 	if (next)
 	{
@@ -61,7 +62,7 @@ static char		*choice_two(char *s_history, int *i, char *result, char *next)
 	return (result);
 }
 
-char	*history(int choice, char *str)
+char				*history(int choice, char *str)
 {
 	static char		*s_history[500];
 	static int		i = 0;

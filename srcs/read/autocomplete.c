@@ -6,14 +6,13 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 14:15:21 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/25 16:27:26 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/25 18:58:07 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/msh.h"
 
-
-void	show_complete(char *str, char *cmd)
+void			show_complete(char *str, char *cmd)
 {
 	ft_putstr(GRAY);
 	ft_putstr(tgetstr("sc", NULL));
@@ -23,7 +22,7 @@ void	show_complete(char *str, char *cmd)
 	ft_putstr(DEF);
 }
 
-void	show_options(char c)
+void			show_options(char c)
 {
 	ft_putstr(GRAY);
 	ft_putstr(tgetstr("sc", NULL));
@@ -34,7 +33,7 @@ void	show_options(char c)
 
 static void		show_the_options(char *man_path)
 {
-	char	*options;
+	char		*options;
 
 	ft_putstr(tgetstr("sc", NULL));
 	ft_putstr(GRAY);
@@ -46,12 +45,13 @@ static void		show_the_options(char *man_path)
 	ft_putstr(tgetstr("rc", NULL));
 }
 
-void	show_options_in_line(char *cmd)
+void			show_options_in_line(char *cmd)
 {
-	char        **path;
-	char        *man_path;
-	char        man[] = "man1/";
+	char		**path;
+	char		*man_path;
+	char		*man;
 
+	man = ft_strdup("man1/");
 	path = ft_strsplit(find_value_envir(g_env, "MANPATH"), ':');
 	while (*path)
 	{

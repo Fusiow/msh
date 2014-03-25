@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/15 14:47:45 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/25 12:14:31 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/25 22:16:07 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,66 +25,54 @@ void	aff_cmd(char *str, char *cmd)
 		ft_putchar(str[i++]);
 }
 
+char	*aff_prog_list(t_list *list, char *cmd)
+{
+	char	*description;
+
+	ft_putstr("\n");
+	while (list)
+	{
+		aff_cmd(list->name, cmd);
+		ft_putstr(GRAY);
+		ft_putstr("\t\t\t\t\t(");
+		description = get_cmd_description(list->name);
+		if (description)
+			ft_putstr(description);
+		else
+			ft_putstr("No Description");
+		ft_putstr(")\n");
+		ft_putstr(DEF);
+		list = list->next;
+	}
+	return ("ok");
+}
+
 char	*show_tab(char *cmd)
 {
-	t_list	*list;
+	t_list	*li;
 	int		i;
-	char	*description = NULL;
 
 	i = 0;
-	list = NULL;
-	list = recup_prog(cmd, ft_strsplit(find_value_envir(g_env, "PATH"), ':'), list);
-	if (list)
+	li = NULL;
+	li = recup_prog(cmd, ft_strsplit(find_value_envir(g_env, "PATH"), ':'), li);
+	if (li)
 	{
-		while (list)
-		{
-			++i;
-			list = list->next;
-		}
+		i = list_prog_len(li);
 		if (i > 15)
 			i = auto_comp_choice(i);
-		list = NULL;
-		list = recup_prog(cmd, ft_strsplit(find_value_envir(g_env, "PATH"), ':'), list);
 		if (i != 1 && i != 0)
-		{
-			ft_putstr("\n");
-			while (list)
-			{
-				aff_cmd(list->name, cmd);
-				ft_putstr(GRAY);
-				ft_putstr("\t\t\t\t\t(");
-				description = get_cmd_description(list->name);
-				if (description)
-					ft_putstr(description);
-				else
-					ft_putstr("No Description");
-				ft_putstr(")\n");
-				ft_putstr(DEF);
-				list = list->next;
-			}
-			return ("ok");
-		}
+			return (aff_prog_list(li, cmd));
 		else if (i != 0)
 		{
 			i = 0;
-			while (list->name[i] == cmd[i] && list->name[i] && cmd[i])
+			while (li->name[i] == cmd[i] && li->name[i] && cmd[i])
 				++i;
-			return (ft_strjoin(cmd, ft_strjoin(ft_strsub(list->name, i, ft_strlen(list->name)), " ")));
+			return (ft_strjoin(cmd, ft_strjoin(ft_strsub(li->name, i,
+			ft_strlen(li->name)), " ")));
 		}
 	}
-	ft_free(list);
-	ft_free(description);
+	ft_free(li);
 	return (NULL);
-}
-
-char	*make_cmd(char *str)
-{
-	int		i;
-
-	i = 0;
-	while (ft_isalpha(str[i]) && str[i])
-		++i;
-	return (ft_strsub(str, 0, i));
 }
 
 char	*show_autocomplete(char *str, int v)
@@ -104,44 +92,11 @@ char	*show_autocomplete(char *str, int v)
 			++i;
 		tmp = ft_strsub(str, i, (ft_strlen(str) - i));
 		if (status == 0)
-		{
-			status++;
-			if (i == 0 && tmp[0] != '.' && tmp[0] != '/')
-				tmp = show_tab(tmp);
-			else if (tmp[0] == '-')
-			{
-				if (!tmp[1])
-					show_diff_option(make_cmd(str));
-			}
-			else
-				tmp = argument_completion(tmp, str);
-		}
+			tmp = status_equal_zero(tmp, str, i, status++);
 		else if (status == 1)
-		{
-			if (i == 0 && tmp[0] != '.' && tmp[0] != '/')
-				tmp = spe_autocomp(str, ft_strlen(str), 0);
-			else if (tmp[0] != '-')
-				tmp = spe_argument_completion(tmp, str, 0);
-		}
+			tmp = status_equal_one(tmp, str, i);
 		if (tmp)
-		{
-			if (ft_strcmp(tmp, "ok") && tmp[0] != '-')
-			{
-				i = ft_strlen(tmp) - 1;
-				while (i-- > ft_strlen(str))
-					ft_putstr(tgetstr("nd", NULL));
-				str = tmp;
-			}
-			else
-			{
-				if (tmp[0] == '-' && tmp[1])
-					return (str);
-					prompt();
-					i = 0;
-					while (i++ < ft_strlen(str))
-						ft_putstr(" ");
-			}
-		}
+			str = show_command_complete(tmp, i, str);
 	}
 	return (str);
 }
