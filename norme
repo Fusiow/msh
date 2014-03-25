@@ -1,171 +1,104 @@
-[36;1mRubynette[37;1m version [32;1m1.1.4 Lemon[0m
-No parser found for file 'LICENSE'.
-[37;1m[ [35;1m ----------         PARSING FILE MAIN.C           ---------- [37;1m][0m
-[37;1m[ [35;1m ----------         PARSING FILE FT_MISHELL.C     ---------- [37;1m][0m
 [[31;1m  ERROR  [0m] In ./srcs/main/ft_mishell.c at line 71 : Function have 33 lines.
-[37;1m[ [35;1m ----------         PARSING FILE BUILT.C          ---------- [37;1m][0m
+
 [[31;1m  ERROR  [0m] In ./srcs/main/built.c at line 48 : Function have 31 lines.
-[37;1m[ [35;1m ----------         PARSING FILE OPTIONS.C        ---------- [37;1m][0m
+
 [[31;1m  ERROR  [0m] In ./srcs/main/options.c : Missing header.
-[37;1m[ [35;1m ----------         PARSING FILE FT_ENV.C         ---------- [37;1m][0m
+
 [[33;1m WARNING [0m] In ./srcs/environ/ft_env.c Filename does not match header.
 [[31;1m  ERROR  [0m] In ./srcs/environ/ft_env.c  : More than 5 functions.
-[37;1m[ [35;1m ----------         PARSING FILE GET_MAN_PATH.C   ---------- [37;1m][0m
+
 [[31;1m  ERROR  [0m] In ./srcs/environ/get_man_path.c at line 49 : Function have 32 lines.
-[37;1m[ [35;1m ----------         PARSING FILE ERROR.C          ---------- [37;1m][0m
+
 [[31;1m  ERROR  [0m] In ./srcs/errors/error.c  : More than 5 functions.
-[37;1m[ [35;1m ----------         PARSING FILE CD_ERROR.C       ---------- [37;1m][0m
-[37;1m[ [35;1m ----------         PARSING FILE FT_ISDIGIT.C     ---------- [37;1m][0m
-[37;1m[ [35;1m ----------         PARSING FILE FT_FREE_TAB.C    ---------- [37;1m][0m
-[37;1m[ [35;1m ----------         PARSING FILE FT_GET_PATH.C    ---------- [37;1m][0m
-[37;1m[ [35;1m ----------         PARSING FILE FT_ISPRINT.C     ---------- [37;1m][0m
-[37;1m[ [35;1m ----------         PARSING FILE FT_NEW_TAB.C     ---------- [37;1m][0m
-[37;1m[ [35;1m ----------         PARSING FILE FT_PUTCHAR.C     ---------- [37;1m][0m
-[37;1m[ [35;1m ----------         PARSING FILE FT_PUTENDL.C     ---------- [37;1m][0m
-[37;1m[ [35;1m ----------         PARSING FILE FT_PUTNBR.C      ---------- [37;1m][0m
-[37;1m[ [35;1m ----------         PARSING FILE FT_PUTSTR.C      ---------- [37;1m][0m
-[37;1m[ [35;1m ----------         PARSING FILE FT_STRCMP.C      ---------- [37;1m][0m
-[37;1m[ [35;1m ----------         PARSING FILE FT_STRDUP.C      ---------- [37;1m][0m
-[37;1m[ [35;1m ----------         PARSING FILE FT_STRJOIN.C     ---------- [37;1m][0m
-[37;1m[ [35;1m ----------         PARSING FILE FT_STRLEN.C      ---------- [37;1m][0m
-[37;1m[ [35;1m ----------         PARSING FILE FT_STRNCMP.C     ---------- [37;1m][0m
-[37;1m[ [35;1m ----------         PARSING FILE FT_STRSPLIT.C    ---------- [37;1m][0m
-[37;1m[ [35;1m ----------         PARSING FILE FT_STRSUB.C      ---------- [37;1m][0m
-[37;1m[ [35;1m ----------         PARSING FILE FT_TABLEN.C      ---------- [37;1m][0m
-[37;1m[ [35;1m ----------         PARSING FILE FT_ISALPHA.C     ---------- [37;1m][0m
-[37;1m[ [35;1m ----------         PARSING FILE FT_ITOA.C        ---------- [37;1m][0m
-[37;1m[ [35;1m ----------         PARSING FILE FT_TABNCMP.C     ---------- [37;1m][0m
-[37;1m[ [35;1m ----------         PARSING FILE GET_NEXT_LINE.C  ---------- [37;1m][0m
-[37;1m[ [35;1m ----------         PARSING FILE FT_ATOI.C        ---------- [37;1m][0m
-[37;1m[ [35;1m ----------         PARSING FILE FT_CMD_RESULT.C  ---------- [37;1m][0m
+
 [[31;1m  ERROR  [0m] In ./srcs/functions/ft_cmd_result.c at line 59 : Function have 42 lines.
-[37;1m[ [35;1m ----------         PARSING FILE WELCOME.C        ---------- [37;1m][0m
-[37;1m[ [35;1m ----------         PARSING FILE FT_INSERT_TAB.C  ---------- [37;1m][0m
+
 [[31;1m  ERROR  [0m] In ./srcs/functions/ft_insert_tab.c at line 23 : Row have more than 80 characters.
-[37;1m[ [35;1m ----------         PARSING FILE FT_MEMALLOC.C    ---------- [37;1m][0m
-[37;1m[ [35;1m ----------         PARSING FILE FT_GC.C          ---------- [37;1m][0m
+
 [[31;1m  ERROR  [0m] In ./srcs/functions/ft_gc.c at line 18 : C++ style comments are not allowed.
 [[31;1m  ERROR  [0m] In ./srcs/functions/ft_gc.c at line 26 : C++ style comments are not allowed.
-[37;1m[ [35;1m ----------         PARSING FILE FT_GCHELPER.C    ---------- [37;1m][0m
-[37;1m[ [35;1m ----------         PARSING FILE FT_BZERO.C       ---------- [37;1m][0m
-[37;1m[ [35;1m ----------         PARSING FILE FT_FREE.C        ---------- [37;1m][0m
-[37;1m[ [35;1m ----------         PARSING FILE FT_STRNEW.C      ---------- [37;1m][0m
-[37;1m[ [35;1m ----------         PARSING FILE FT_MEMCPY.C      ---------- [37;1m][0m
-[37;1m[ [35;1m ----------         PARSING FILE FT_ISDIRECTORY.C  ---------- [37;1m][0m
+
 [[31;1m  ERROR  [0m] In ./srcs/functions/ft_isdirectory.c : Missing header.
-[37;1m[ [35;1m ----------         PARSING FILE ACTIONS.C        ---------- [37;1m][0m
-[37;1m[ [35;1m ----------         PARSING FILE BUTTONS.C        ---------- [37;1m][0m
+
 [[31;1m  ERROR  [0m] In ./srcs/read/buttons.c at line 74 : Trailing whitespace.
 [[31;1m  ERROR  [0m] In ./srcs/read/buttons.c at line 78 : Trailing whitespace.
 [[31;1m  ERROR  [0m] In ./srcs/read/buttons.c at line 87 : Function have 29 lines.
-[37;1m[ [35;1m ----------         PARSING FILE HISTORY.C        ---------- [37;1m][0m
+
 [[31;1m  ERROR  [0m] In ./srcs/read/history.c at line 83 : Function have 46 lines.
-[37;1m[ [35;1m ----------         PARSING FILE READ.C           ---------- [37;1m][0m
+
 [[31;1m  ERROR  [0m] In ./srcs/read/read.c at line 56 : Function have 39 lines.
 [[31;1m  ERROR  [0m] In ./srcs/read/read.c at line 121 : Function have 61 lines.
 [[31;1m  ERROR  [0m] In ./srcs/read/read.c at line 148 : Keyword 'break' not followed by whitespace.
 [[31;1m  ERROR  [0m] In ./srcs/read/read.c at line 166 : Function have 41 lines.
-[37;1m[ [35;1m ----------         PARSING FILE SYNTAX_COLOR.C   ---------- [37;1m][0m
+
 [[31;1m  ERROR  [0m] In ./srcs/read/syntax_color.c at line 42 : Row have more than 80 characters.
 [[31;1m  ERROR  [0m] In ./srcs/read/syntax_color.c at line 99 : Function have 32 lines.
 [[31;1m  ERROR  [0m] In ./srcs/read/syntax_color.c at line 138 : Function have 35 lines.
-[37;1m[ [35;1m ----------         PARSING FILE TERMCAP.C        ---------- [37;1m][0m
-[37;1m[ [35;1m ----------         PARSING FILE AUTOCOMPLETE.C   ---------- [37;1m][0m
+
 [[31;1m  ERROR  [0m] In ./srcs/read/autocomplete.c at line 63 : Trailing whitespace.
 [[31;1m  ERROR  [0m] In ./srcs/read/autocomplete.c at line 70 : Function have 33 lines.
-[37;1m[ [35;1m ----------         PARSING FILE T_OPTIONS.C      ---------- [37;1m][0m
-[37;1m[ [35;1m ----------         PARSING FILE SHOW_AUTOCOMPLETE.C  ---------- [37;1m][0m
+
 [[31;1m  ERROR  [0m] In ./srcs/read/show_autocomplete.c at line 36 : Row have more than 80 characters.
 [[31;1m  ERROR  [0m] In ./srcs/read/show_autocomplete.c at line 47 : Row have more than 80 characters.
 [[31;1m  ERROR  [0m] In ./srcs/read/show_autocomplete.c at line 72 : Row have more than 80 characters.
 [[31;1m  ERROR  [0m] In ./srcs/read/show_autocomplete.c at line 78 : Function have 48 lines.
 [[31;1m  ERROR  [0m] In ./srcs/read/show_autocomplete.c at line 147 : Function have 55 lines.
-[37;1m[ [35;1m ----------         PARSING FILE SHOW_OPTION.C    ---------- [37;1m][0m
-[37;1m[ [35;1m ----------         PARSING FILE PARSER_COLOR.C   ---------- [37;1m][0m
+
 [[31;1m  ERROR  [0m] In ./srcs/read/parser_color.c at line 43 : Function have 26 lines.
 [[31;1m  ERROR  [0m] In ./srcs/read/parser_color.c at line 130 : Row have more than 80 characters.
 [[31;1m  ERROR  [0m] In ./srcs/read/parser_color.c at line 142 : Row have more than 80 characters.
 [[31;1m  ERROR  [0m] In ./srcs/read/parser_color.c at line 175 : Function have 128 lines.
-[37;1m[ [35;1m ----------         PARSING FILE PARSING_MAN.C    ---------- [37;1m][0m
+
 [[31;1m  ERROR  [0m] In ./srcs/read/parsing_man.c at line 59 : Function have 42 lines.
 [[31;1m  ERROR  [0m] In ./srcs/read/parsing_man.c at line 98 : Row have more than 80 characters.
 [[31;1m  ERROR  [0m] In ./srcs/read/parsing_man.c at line 114 : Trailing whitespace.
-[37;1m[ [35;1m ----------         PARSING FILE SPE_AUTOCOMP.C   ---------- [37;1m][0m
+
 [[31;1m  ERROR  [0m] In ./srcs/read/spe_autocomp.c at line 17 : Trailing whitespace.
 [[31;1m  ERROR  [0m] In ./srcs/read/spe_autocomp.c at line 18 : Trailing whitespace.
 [[31;1m  ERROR  [0m] In ./srcs/read/spe_autocomp.c at line 29 : Row have more than 80 characters.
 [[31;1m  ERROR  [0m] In ./srcs/read/spe_autocomp.c at line 51 : Function have 34 lines.
-[37;1m[ [35;1m ----------         PARSING FILE AUTOCOMPLETE_TOO_LONG.C  ---------- [37;1m][0m
-[37;1m[ [35;1m ----------         PARSING FILE EXIT.C           ---------- [37;1m][0m
-[[31;1m  ERROR  [0m] In ./srcs/builtin/exit.c at line 74 : Function have 35 lines.
-[37;1m[ [35;1m ----------         PARSING FILE ECHO.C           ---------- [37;1m][0m
-[37;1m[ [35;1m ----------         PARSING FILE CD.C             ---------- [37;1m][0m
-[[31;1m  ERROR  [0m] In ./srcs/builtin/cd.c : Missing header.
-[37;1m[ [35;1m ----------         PARSING FILE VARIABLE.C       ---------- [37;1m][0m
-[[31;1m  ERROR  [0m] In ./srcs/builtin/variable.c  : More than 5 functions.
-[37;1m[ [35;1m ----------         PARSING FILE CONF.C           ---------- [37;1m][0m
-[37;1m[ [35;1m ----------         PARSING FILE NO_CONF.C        ---------- [37;1m][0m
-[[31;1m  ERROR  [0m] In ./srcs/builtin/no_conf.c at line 24 : Row have more than 80 characters.
-[[31;1m  ERROR  [0m] In ./srcs/builtin/no_conf.c at line 30 : Row have more than 80 characters.
-[[31;1m  ERROR  [0m] In ./srcs/builtin/no_conf.c at line 33 : Row have more than 80 characters.
-[37;1m[ [35;1m ----------         PARSING FILE ALIAS.C          ---------- [37;1m][0m
-[37;1m[ [35;1m ----------         PARSING FILE JOBS.C           ---------- [37;1m][0m
-[[31;1m  ERROR  [0m] In ./srcs/builtin/jobs.c at line 82 : Function have 48 lines.
-[37;1m[ [35;1m ----------         PARSING FILE PROMPT_INTERPRETER.C  ---------- [37;1m][0m
+
 [[31;1m  ERROR  [0m] In ./srcs/prompt/prompt_interpreter.c at line 195 : Function have 38 lines.
 [[31;1m  ERROR  [0m] In ./srcs/prompt/prompt_interpreter.c  : More than 5 functions.
-[37;1m[ [35;1m ----------         PARSING FILE PROMPT.C         ---------- [37;1m][0m
+
 [[33;1m WARNING [0m] In ./srcs/prompt/prompt.c Filename does not match header.
-[37;1m[ [35;1m ----------         PARSING FILE PARSER.C         ---------- [37;1m][0m
+
 [[31;1m  ERROR  [0m] In ./srcs/parser/parser.c at line 100 : C++ style comments are not allowed.
 [[31;1m  ERROR  [0m] In ./srcs/parser/parser.c at line 127 : Function have 52 lines.
-[37;1m[ [35;1m ----------         PARSING FILE LEX.C            ---------- [37;1m][0m
+
 [[31;1m  ERROR  [0m] In ./srcs/parser/lex.c at line 32 : Trailing whitespace.
 [[31;1m  ERROR  [0m] In ./srcs/parser/lex.c at line 137 : Function have 51 lines.
 [[31;1m  ERROR  [0m] In ./srcs/parser/lex.c at line 188 : Function have 47 lines.
 [[31;1m  ERROR  [0m] In ./srcs/parser/lex.c at line 245 : Function have 53 lines.
 [[31;1m  ERROR  [0m] In ./srcs/parser/lex.c  : More than 5 functions.
-[37;1m[ [35;1m ----------         PARSING FILE CHECK_LINE.C     ---------- [37;1m][0m
+
 [[33;1m WARNING [0m] In ./srcs/parser/check_line.c Filename does not match header.
 [[31;1m  ERROR  [0m] In ./srcs/parser/check_line.c at line 63 : Function have 46 lines.
 [[31;1m  ERROR  [0m] In ./srcs/parser/check_line.c at line 119 : Function have 52 lines.
-[37;1m[ [35;1m ----------         PARSING FILE CHECK_REDIRECTION.C  ---------- [37;1m][0m
+
 [[31;1m  ERROR  [0m] In ./srcs/pipe/check_redirection.c at line 87 : Function have 70 lines.
-[37;1m[ [35;1m ----------         PARSING FILE PIPE.C           ---------- [37;1m][0m
+
 [[31;1m  ERROR  [0m] In ./srcs/pipe/pipe.c at line 48 : Function have 31 lines.
-[37;1m[ [35;1m ----------         PARSING FILE PIPE_FUNCTION.C  ---------- [37;1m][0m
-[37;1m[ [35;1m ----------         PARSING FILE REDIRECTION.C    ---------- [37;1m][0m
+
 [[31;1m  ERROR  [0m] In ./srcs/pipe/redirection.c at line 62 : Function have 30 lines.
-[37;1m[ [35;1m ----------         PARSING FILE SIGNAL.C         ---------- [37;1m][0m
+
 [[31;1m  ERROR  [0m] In ./srcs/signal/signal.c at line 24 : C++ style comments are not allowed.
 [[31;1m  ERROR  [0m] In ./srcs/signal/signal.c at line 52 : Trailing whitespace.
-[37;1m[ [35;1m ----------         PARSING FILE SHOW_STOP.C      ---------- [37;1m][0m
-[37;1m[ [35;1m ----------         PARSING FILE FUNCTION_LIST.C  ---------- [37;1m][0m
-[37;1m[ [35;1m ----------         PARSING FILE OPERATOR.C       ---------- [37;1m][0m
+
 [[31;1m  ERROR  [0m] In ./srcs/operators/operator.c at line 78 : Function have 34 lines.
-[37;1m[ [35;1m ----------         PARSING FILE AUTOCOMP.C       ---------- [37;1m][0m
+
 [[31;1m  ERROR  [0m] In ./srcs/autocomplete/autocomp.c at line 54 : Row have more than 80 characters.
 [[31;1m  ERROR  [0m] In ./srcs/autocomplete/autocomp.c at line 70 : Function have 53 lines.
 [[31;1m  ERROR  [0m] In ./srcs/autocomplete/autocomp.c at line 107 : Row have more than 80 characters.
 [[31;1m  ERROR  [0m] In ./srcs/autocomplete/autocomp.c at line 114 : Row have more than 80 characters.
 [[31;1m  ERROR  [0m] In ./srcs/autocomplete/autocomp.c at line 137 : Function have 63 lines.
-No parser found for file 'README.md'.
-No parser found for file 'docs/html/builtins.html'.
-No parser found for file 'docs/html/index.html'.
-No parser found for file 'docs/text/builtins'.
-No parser found for file 'docs/text/index'.
-[37;1m[ [35;1m ----------         PARSING FILE MSH.H            ---------- [37;1m][0m
+
 [[31;1m  ERROR  [0m] In includes/msh.h at line 87 : Missing spaces around operator '/'.
 [[31;1m  ERROR  [0m] In includes/msh.h at line 88 : Trailing whitespace.
 [[31;1m  ERROR  [0m] In includes/msh.h at line 88 : Missing spaces around operator '/'.
 [[31;1m  ERROR  [0m] In includes/msh.h at line 89 : Missing spaces around operator '/'.
 [[31;1m  ERROR  [0m] In includes/msh.h at line 90 : Missing spaces around operator '/'.
-No parser found for file 'screens/screen1.png'.
-No parser found for file 'screens/screen2.png'.
-No parser found for file 'screens/screen3.png'.
-No parser found for file 'screens/screen4.png'.
-No parser found for file 'screens/screen5.png'.
-[37;1m[ [35;1m ----------         PARSING FILE FT_INSERT_STR.C  ---------- [37;1m][0m
+
 [[31;1m  ERROR  [0m] In srcs/functions/ft_insert_str.c : Missing header.
 [[31;1m  ERROR  [0m] In srcs/functions/ft_insert_str.c at line 5 : No newline at end of control structure.
 [[31;1m  ERROR  [0m] In srcs/functions/ft_insert_str.c at line 6 : No newline at end of control structure.

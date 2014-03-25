@@ -6,7 +6,7 @@
 #    By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/14 17:00:44 by aardjoun          #+#    #+#              #
-#    Updated: 2014/03/25 14:40:33 by lsolofri         ###   ########.fr        #
+#    Updated: 2014/03/25 16:45:16 by aardjoun         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -71,6 +71,7 @@ SRCS	=	srcs/main/main.c\
 			srcs/builtin/echo.c\
 			srcs/builtin/cd.c\
 			srcs/builtin/variable.c\
+			srcs/builtin/variable_2.c\
 			srcs/builtin/conf.c\
 			srcs/builtin/no_conf.c\
 			srcs/builtin/alias.c\
