@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/12 11:34:17 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/23 12:55:26 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/25 16:44:05 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,18 @@ char	*del_c(char *result, int *i)
 			result[0] = 0;
 	}
 	return (result);
+}
+
+int		up_arrow(char **result, int i)
+{
+	if (result)
+		clear_line(i + 1, ft_strlen(*result));
+	*result = history(1, NULL);
+	if (*result)
+	{
+		i = ft_strlen(*result);
+		ft_putstr(*result);
+		ft_putstr(tgetstr("le", NULL));
+	}
+	return (i);
 }

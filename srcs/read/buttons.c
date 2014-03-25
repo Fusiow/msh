@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 17:24:20 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/05 13:46:12 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/25 16:45:20 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,26 +56,16 @@ void	replace_cursor(int i, int v)
 int		arrow(int i, char key, int len, char **result)
 {
 	if (key == 65)
-	{
-		if (result)
-			clear_line(i + 1, ft_strlen(*result));
-		*result = history(1, NULL);
-		if (*result)
-		{
-			i = ft_strlen(*result);
-			ft_putstr(*result);
-			ft_putstr(tgetstr("le", NULL));
-		}
-	}
+		i = up_arrow(result, i);
 	else if (key == 66)
 	{
 		if (result)
 			clear_line(i + 1, ft_strlen(*result));
-		*result = history(2, NULL);	
+		*result = history(2, NULL);
 		if (*result)
 		{
 			i = ft_strlen(*result);
-			ft_putstr(*result);	
+			ft_putstr(*result);
 			ft_putstr(tgetstr("le", NULL));
 		}
 	}

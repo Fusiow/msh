@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/12 15:18:32 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/26 22:11:50 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/25 17:00:45 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,40 @@ void	add_history(char *str)
 	}
 }
 
+static char		*choice_one(char *s_history, int *i, char *result)
+{
+	if (*i >= 0)
+	{
+		result = s_history;
+		if (*i > 0)
+			--*i;
+	}
+	return (result);
+}
+
+static char		*choice_two(char *s_history, int *i, char *result, char *next)
+{
+	if (next)
+	{
+		if (*i == 0)
+		{
+			++*i;
+			result = next;
+		}
+		else
+			result = s_history;
+		++*i;
+	}
+	else
+		result = NULL;
+	return (result);
+}
+
 char	*history(int choice, char *str)
 {
 	static char		*s_history[500];
 	static int		i = 0;
 	static char		*result;
-	int				v;
 
 	if (choice == 0)
 	{
@@ -47,37 +75,8 @@ char	*history(int choice, char *str)
 		s_history[i + 1] = NULL;
 	}
 	else if (choice == 1)
-	{
-		if (i >= 0)
-		{
-			result = s_history[i];
-			if (i > 0)
-				--i;
-		}
-	}
+		result = choice_one(s_history[i], &i, result);
 	else if (choice == 2)
-	{
-		if (s_history[i + 1])
-		{
-			if (i == 0)
-				++i;
-			result = s_history[i];
-			++i;
-		}
-		else
-			result = NULL;
-	}
-	else if (choice == 3)
-	{
-		v = 0;
-		while (s_history[v + 5])
-			++v;
-		while (s_history[v])
-		{
-			ft_putnbr(v);
-			ft_putchar('\t');
-			ft_putendl(s_history[v++]);
-		}
-	}
+		result = choice_two(s_history[i], &i, result, s_history[i + 1]);
 	return (result);
 }

@@ -6,7 +6,7 @@
 /*   By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 15:59:27 by aardjoun          #+#    #+#             */
-/*   Updated: 2014/03/23 14:34:36 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/25 16:00:06 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,5 @@ int		pre_exec_nowait(char *str)
 		}
 		tmp = tmp->next;
 	}
-	wait(0);
 	return (ret);
 }

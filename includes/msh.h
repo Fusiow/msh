@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/25 17:52:04 by aardjoun         ###   ########.fr       */
+/*   Updated: 2014/03/25 18:08:38 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -240,6 +240,14 @@ char		*spe_autocomp(char *cmd, int len, int x);
 char		*argument_completion(char *str, char *cmd);
 void		aff_cmd(char *str, char *cmd);
 char		*spe_argument_completion(char *cmd, char *str, int x);
+int         up_arrow(char **result, int i);
+void        print_quote(char *str);
+int         quote_it(char *cmd, int i);
+int         quote_it2(char *cmd, int i);
+int         redirection_left(char *cmd, int i);
+int         redirection_right(char *cmd, int i);
+int         new_command(int i, char *cmd);
+int         print_command(char *cmd, int *i, int command);
 
 /*
  ** FUNCTIONS
