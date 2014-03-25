@@ -3,59 +3,69 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfaye <mfaye@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/02/14 11:05:41 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/22 02:36:19 by rkharif          ###   ########.fr       */
+/*   Created: 2013/12/04 18:47:54 by mfaye             #+#    #+#             */
+/*   Updated: 2014/03/25 12:27:15 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/msh.h"
 
-int		read_get_next_line(int fd, int *i, int *nbread, char *buff)
+static void		malloc_more(char **buf, int size)
 {
-	if (*i == *nbread)
-	{
-		*i = 0;
-		if (!(*nbread = read(fd, buff, GNL_LEN)))
-			return (1);
-	}
-	return (0);
+	int		i;
+	char	*tmp;
+
+	tmp = *buf;
+	*buf = ft_memalloc(sizeof(char) * (ft_strlen(tmp) + size + 1));
+	i = -1;
+	while (tmp[++i] != '\0')
+		(*buf)[i] = tmp[i];
+	(*buf)[i] = '\0';
+	ft_free(tmp);
 }
 
-int		eol_get_next_line(int fd, int *i, int *nbread, char *buff)
+static int		get_part(char **buf, char **line)
 {
-	while (buff[*i] && buff[*i] != '\n')
-	{
-		(*i)++;
-		if (read_get_next_line(fd, i, nbread, buff))
-			return (1);
-	}
-	return (0);
-}
+	char	*tmp;
+	int		i;
 
-char	*get_next_line(int fd)
-{
-	static char		buff[GNL_LEN];
-	static int		i = 0;
-	static int		nbread = 0;
-	int				n;
-	char			*str;
-
-	n = 0;
-	str = NULL;
-	if (read_get_next_line(fd, &i, &nbread, buff))
+	i = 0;
+	tmp = *buf;
+	while (tmp[i] != '\0' && tmp[i] != '\n')
+		i++;
+	if (tmp[i] != '\n')
 		return (0);
-	str = (char *)ft_memalloc(sizeof(char) * GNL_LEN);
-	while (buff[i] && buff[i] != '\n' && n < GNL_LEN)
-	{
-		str[n++] = buff[i++];
-		if (read_get_next_line(fd, &i, &nbread, buff))
-			return (str);
-	}
-	if (n == GNL_LEN)
-		if (eol_get_next_line(fd, &i, &nbread, buff))
-			return (str);
-	i++;
-	return (str);
+	tmp[i] = '\0';
+	*line = ft_strdup(*buf);
+	*buf = ft_strdup(*buf + i + 1);
+	ft_free(tmp);
+	return (1);
+}
+
+int				get_next_line(int const fd, char** line)
+{
+	static char		*buf = NULL;
+	int				ret;
+	int				i;
+
+	i = 0;
+	if (buf == NULL)
+		buf = ft_strdup("");
+	if (get_part(&buf, line))
+		return (1);
+	i = ft_strlen(buf);
+	malloc_more(&buf, BUF_SIZE);
+	ret = read(fd, buf + i, BUF_SIZE);
+	if (ret == -1)
+		return (-1);
+	buf[i + ret] = '\0';
+	if (ret != 0)
+		return (get_next_line(fd, line));
+	if (*buf == '\0')
+		return (0);
+	*line = ft_strdup(buf);
+	buf = ft_strdup(buf + i + ret);
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 10:43:09 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/22 13:45:20 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/25 12:35:58 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,13 @@ char	*get_cmd_description(char *cmd)
 					if (access(man_path, F_OK) != -1)
 					{
 						fd = open(man_path, O_RDONLY);
-						while ((str = get_next_line(fd)))
+						while (get_next_line(fd, &str))
 						{
-							if (ft_strncmp(str, ".Nd", 3) == 0)
+							if (ft_strcmp(ft_strsub(str, 0, 3), ".Nd") == 0)
 							{
-								free(path);
 								close(fd);
-								return (ft_strsub(str, 4, ft_strlen(str)));
+								ft_free(path);
+								return (ft_strsub(str, 4, ft_strlen(str) - 4));
 							}
 						}
 						close(fd);
@@ -55,14 +55,14 @@ char	*get_cmd_description(char *cmd)
 			i++;
 		}
 	}
-	return (NULL);
+	return (cmd);
 }
 
 char	*get_options(int fd)
 {
 	char	*str;
 
-	while ((str = get_next_line(fd)))
+	while (get_next_line(fd, &str))
 	{
 		if (ft_strncmp(str, ".Op Fl", 6) == 0)
 			return (ft_strsub(str, 7, ft_strlen(str)));
@@ -74,13 +74,13 @@ char	*get_options(int fd)
 char	*read_description(int fd, char *c)
 {
 	char	*str;
-	while ((str = get_next_line(fd)))
+	while (get_next_line(fd, &str))
 	{
 		if (ft_strcmp(str, ft_strjoin(".It Fl ", c)) == 0)
 		{
-			str = get_next_line(fd);
+			get_next_line(fd, &str);
 			close(fd);
-			return (str);
+			return (ft_strdup(str));
 		}
 	}
 	return (NULL);

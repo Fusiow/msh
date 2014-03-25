@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 10:04:42 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/23 19:21:31 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/25 12:10:49 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_list	*add_type(t_list *list, char *str, char *type)
 	t_list	*temp;
 
 	temp = list;
-	tmp = ft_memalloc(sizeof(t_list));
+	tmp = (t_list *)ft_memalloc(sizeof(t_list));
 	tmp->name = ft_strdup(str);
 	if (type)
 		tmp->type = ft_strdup(type);
@@ -135,48 +135,4 @@ t_list	*recup_prog(char *str, char **tab, t_list *list)
 		}
 	}
 	return (list);
-}
-
-void	show_cmd(char *str)
-{
-	int		i;
-	char	*cmd;
-	t_list	*list;
-	char	*name;
-	char	*rest = NULL;
-
-	i = 0;
-	list = NULL;
-//	while (str[i] == ' ' && str[i])
-//		++i;
-	while (str[i] != ' ' && str[i])
-		++i;
-	if (i != 0)
-	{
-		cmd = ft_strsub(str, 0, i);
-		list = recup_prog(cmd, ft_strsplit(find_value_envir(g_env, "PATH"), ':'), list);
-		if (list)
-			name = list->name;
-		while (list)
-		{
-			if (ft_strcmp(cmd, list->name) == 0)
-			{
-				ft_putstr(BLUE);
-				break ;
-			}
-			list = list->next;
-		}
-		if (!list)
-			ft_putstr(RED);
-		ft_putstr(cmd);
-		ft_putstr(DEF);
-		if ((ft_strlen(str) - i) != 0)
-			rest = ft_strsub(str, i, ft_strlen(str) - 1);
-		if (list && !rest)
-			show_options_in_line(cmd);
-		if (!list && name && !rest)
-			show_complete(name, cmd);
-		if (rest)
-			ft_putstr(rest);
-	}
 }

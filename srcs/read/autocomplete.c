@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 14:15:21 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/22 13:44:37 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/25 12:38:17 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,9 @@ void	show_options_in_line(char *cmd)
 	char        **path;
 	char        *man_path;
 	char        man[] = "man1/";
+	char		*options;
 
+	options = NULL;
 	path = ft_strsplit(find_value_envir(g_env, "MANPATH"), ':');
 	while (*path)
 	{
@@ -54,7 +56,9 @@ void	show_options_in_line(char *cmd)
 					ft_putstr(tgetstr("sc", NULL));
 					ft_putstr(GRAY);
 					ft_putstr(" -");
-					ft_putstr(get_options(open(man_path, O_RDONLY)));
+					options = get_options(open(man_path, O_RDONLY));
+					ft_putstr(options);
+					ft_free(options);
 					ft_putstr(DEF);
 					ft_putstr(tgetstr("rc", NULL));	
 				}

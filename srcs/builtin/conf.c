@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 02:38:17 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/13 12:29:22 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/25 12:29:10 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	load_conf_file(void)
 	}
 	if (fd != -1)
 	{
-		while ((tmp = get_next_line(fd)))
+		while (get_next_line(fd, &tmp))
 			pre_exec(tmp);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/23 20:40:01 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/25 12:27:11 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef unsigned int		t_ui;
 # define SBLUE2 "\e[4;36m"
 # define DEF "\033[0m"
 
-# define GNL_LEN 1024
+# define BUF_SIZE 1024
 
 /*
  ** INCLUDE OF LIBS
@@ -269,7 +269,7 @@ int			ft_strlen(char *s);
 char		**ft_strsplit(char const *s, char c);
 char		**ft_spe_strsplit(char const *s, char c);
 char		*ft_strsub(char const *s, unsigned int start, size_t len);
-char		*get_next_line(int fd);
+int			get_next_line(int const fd, char **line);
 char		*get_man_path(void);
 int			ft_isdigit(char c);
 int			ft_atoi(const char *str);
