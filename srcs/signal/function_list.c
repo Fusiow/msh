@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/16 14:18:25 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/21 13:43:21 by aardjoun         ###   ########.fr       */
+/*   Updated: 2014/03/25 18:32:37 by aardjoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void		show_jobs(t_jobs *jobs)
 	}
 }
 
-char	*find_prog(t_jobs *jobs, int pid)
+char		*find_prog(t_jobs *jobs, int pid)
 {
 	while (jobs && jobs->pid != pid)
 		jobs = jobs->next;
