@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/25 12:27:11 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/25 16:21:04 by aardjoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -371,6 +371,9 @@ void		show_stop(int sig);
 char		*find_prog(t_jobs *jobs, int pid);
 void		fg_bg(t_jobs *jobs, char **tab, int k);
 int			search_job(t_jobs *jobs, char *tab, int rt);
+void		job_continued(int job, char *name);
+int			is_digit(char *tab);
+int			find_pid(t_jobs *jobs);
 
 /*
 ** OPERATORS
