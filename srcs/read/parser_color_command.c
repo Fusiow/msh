@@ -32,10 +32,10 @@ char		*print_command2(char *cmd, int *i)
 	char	*tmp;
 
 	v = *i;
-	while (ft_isalpha(cmd[*i]) && cmd[*i])
+	while (cmd[*i] != ' ' && cmd[*i])
 		++*i;
 	tmp = ft_strsub(cmd, v, (*i - v));
-	if (check_prog(tmp))
+	if (check_prog(tmp) || !access(tmp, X_OK))
 		ft_putstr(BLUE);
 	else
 		ft_putstr(RED);

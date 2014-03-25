@@ -54,3 +54,7 @@ make install;
 (For 42 students)
 
 make install42;  *(Copy the binary to ~/.brew/bin)*
+
+Launch with "msh"
+
+You don't want the amazing colored read ? Launch with -no-color options.

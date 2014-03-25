@@ -12,7 +12,7 @@
 
 #include "../../includes/msh.h"
 
-char *g_builtin[] = {"set", "unset", "export", "alias", "jobs", "q", "exit",
+char *g_builtin[] = {"set", "unset", "export", "alias", "jobs", "exit",
 	"matrix", "setenv", "unsetenv", "alias", "fg", "cd", "env", "echo", NULL};
 
 int		check_builtins_and_alias(char *str)

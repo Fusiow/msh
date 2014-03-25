@@ -100,6 +100,11 @@ t_command	*quick_parse(char *str)
 		ft_putstr("> ");
 		str = ft_strjoin(str, take_cmd(1));
 	}
+	if (check_line(str) == 2)
+	{
+		ft_putendl("msh: Parse error.");
+		return (result);
+	}
 	str = escape_char(str);
 	list = tokenize(str);
 //	show_me_the_truth_bitch_get_outta_my_way(list);
