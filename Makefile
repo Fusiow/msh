@@ -6,7 +6,7 @@
 #    By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/14 17:00:44 by aardjoun          #+#    #+#              #
-#    Updated: 2014/03/25 18:10:31 by lsolofri         ###   ########.fr        #
+#    Updated: 2014/03/25 18:28:50 by aardjoun         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -19,6 +19,7 @@ SRCS	=	srcs/main/main.c\
 			srcs/environ/ft_env.c\
 			srcs/environ/function_env.c\
 			srcs/errors/error.c\
+			srcs/errors/error_2.c\
 			srcs/errors/cd_error.c\
 			srcs/functions/ft_isdigit.c\
 			srcs/functions/ft_free_tab.c\
