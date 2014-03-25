@@ -6,7 +6,7 @@
 /*   By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 15:59:27 by aardjoun          #+#    #+#             */
-/*   Updated: 2014/03/25 16:00:06 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/25 18:53:16 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int		pre_exec(char *str)
 				{
 					signal(SIGTSTP, SIG_DFL);
 					signal(SIGQUIT, SIG_DFL);
-					check_operators(tmp->cmd);
+					check_operators(tmp->cmd, -1);
 					check_redirection(tmp->cmd);
 					exec_cmd(tmp->cmd);
 				}
@@ -83,7 +83,7 @@ int		pre_exec_nofork(char *str)
 			tmp->cmd = is_alias(g_alias, tmp->cmd);
 			if (detect_built(tmp->cmd))
 			{
-				check_operators(tmp->cmd);
+				check_operators(tmp->cmd, -1);
 				check_redirection(tmp->cmd);
 				exec_cmd(tmp->cmd);
 			}
@@ -109,7 +109,7 @@ int		pre_exec_nowait(char *str)
 			{
 				if (!(pid = fork()))
 				{
-					check_operators(tmp->cmd);
+					check_operators(tmp->cmd, -1);
 					check_redirection(tmp->cmd);
 					exec_cmd(tmp->cmd);
 				}

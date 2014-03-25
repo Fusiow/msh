@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/25 18:08:38 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/25 18:51:55 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -241,7 +241,7 @@ char		*argument_completion(char *str, char *cmd);
 void		aff_cmd(char *str, char *cmd);
 char		*spe_argument_completion(char *cmd, char *str, int x);
 int         up_arrow(char **result, int i);
-void        print_quote(char *str);
+void        print_quote(char *str, int j);
 int         quote_it(char *cmd, int i);
 int         quote_it2(char *cmd, int i);
 int         redirection_left(char *cmd, int i);
@@ -389,6 +389,6 @@ int			find_pid(t_jobs *jobs);
 ** OPERATORS
 */
 
-void		check_operators(char **tab);
+void		check_operators(char **tab, int i);
 
 #endif /* MSH_H */

@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/25 17:24:15 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/25 17:47:10 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/25 18:23:54 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		quote_it(char *cmd, int i)
 		ft_putstr(YEL);
 		++i;
 		ft_putchar('"');
-		print_quote(ft_strsub(cmd, v, (i - v)));
+		print_quote(ft_strsub(cmd, v, (i - v)), 0);
 	}
 	else
 	{
@@ -56,7 +56,7 @@ int		quote_it2(char *cmd, int i)
 		ft_putstr(YEL);
 		++i;
 		ft_putchar('\'');
-		print_quote(ft_strsub(cmd, v, (i - v)));
+		print_quote(ft_strsub(cmd, v, (i - v)), 0);
 	}
 	else
 	{

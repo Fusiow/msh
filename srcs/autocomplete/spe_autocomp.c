@@ -6,16 +6,15 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/25 14:22:24 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/25 14:22:34 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/25 18:46:57 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../../includes/msh.h"
 
-static void		do_left(char *str, char *result)
+static void			do_left(char *str, char *result)
 {
-	int		j;
+	int				j;
 
 	if (ft_strlen(str) > ft_strlen(result) - 1)
 	{
@@ -33,33 +32,35 @@ static void		do_left(char *str, char *result)
 	}
 }
 
-static char		*return_spe_arguments(char *p, char *cmd, char *coma, char *str)
+static char			*return_spe_arguments(char *p, char *cmd, char *coma,
+		char *str)
 {
-	int		k;
-	int		j;
-	char	*result;
+	int				k;
+	int				j;
+	char			*result;
 
-	if (!ft_strcmp(p, ft_strjoin(cmd, "*")))
-		return (str);
-	j = ft_strlen(coma);
-	while (coma[j] != ' ' && j > 0)
-		--j;
-	if (j > 0)
-		++j;
-	k = 0;
-	while (coma[j] == p[k] && coma[j] && p[k])
+	result = NULL;
+	if (p)
 	{
-		++j;
-		++k;
+		if (!ft_strcmp(p, ft_strjoin(cmd, "*")))
+			return (str);
+		j = ft_strlen(coma);
+		while (coma[j] != ' ' && j > 0)
+			--j;
+		if (j > 0)
+			++j;
+		k = -1;
+		while (coma[j] == p[++k] && coma[j] && p[k])
+			++j;
+		if (ft_strcmp(p, ft_strjoin(cmd, "*")) == 0)
+			return (str);
+		result = ft_strjoin(coma, ft_strsub(p, k, ft_strlen(p)));
+		do_left(str, result);
 	}
-	if (ft_strcmp(p, ft_strjoin(cmd, "*")) == 0)
-		return (str);
-	result = ft_strjoin(coma, ft_strsub(p, k, ft_strlen(p)));
-	do_left(str, result);
 	return (result);
 }
 
-static char		*v_equal_zero(glob_t *list, int *v)
+static char			*v_equal_zero(glob_t *list, int *v)
 {
 	*v = 0;
 	if (list)
@@ -70,13 +71,13 @@ static char		*v_equal_zero(glob_t *list, int *v)
 	return (NULL);
 }
 
-static int		make_glob_list(char *cmd, glob_t *list)
+static int			make_glob_list(char *cmd, glob_t *list)
 {
 	glob(ft_strjoin(cmd, "*"), GLOB_NOCHECK, 0, list);
 	return (1);
 }
 
-char	*spe_argument_completion(char *cmd, char *str, int x)
+char				*spe_argument_completion(char *cmd, char *str, int x)
 {
 	static glob_t	list;
 	static int		i;
@@ -84,6 +85,7 @@ char	*spe_argument_completion(char *cmd, char *str, int x)
 	static char		*command;
 	char			*result;
 
+	result = NULL;
 	if (x == 1)
 		return (v_equal_zero(&list, &v));
 	if (v == 0)
@@ -91,8 +93,7 @@ char	*spe_argument_completion(char *cmd, char *str, int x)
 		command = ft_strdup(str);
 		v = make_glob_list(cmd, &list);
 	}
-	if (!list.gl_pathv[i])
-		i = 0;
+	i = (list.gl_pathv[i] ? i : 0);
 	if (list.gl_pathc && list.gl_pathv[i])
 	{
 		result = return_spe_arguments(list.gl_pathv[i++], cmd, command, str);

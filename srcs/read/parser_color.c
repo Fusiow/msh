@@ -6,17 +6,14 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/27 08:31:33 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/25 18:08:54 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/25 18:27:09 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/msh.h"
 
-void	print_quote(char *cmd)
+void	print_quote(char *cmd, int j)
 {
-	int		j;
-
-	j = 0;
 	while (cmd[j])
 	{
 		if (cmd[j] == '\\')
@@ -56,7 +53,8 @@ void	write_cmd(char *cmd, int i, int command)
 		i = redirection_right(cmd, i);
 	else if (cmd[i] == '<')
 		i = redirection_left(cmd, i);
-	else if (cmd[i] == '|' || cmd[i] == ';' || cmd[i] == '&' || cmd[i] == '(' || cmd[i] == ')')
+	else if (cmd[i] == '|' || cmd[i] == ';' || cmd[i] == '&'
+			|| cmd[i] == '(' || cmd[i] == ')')
 		command = new_command(i++, cmd);
 	else
 		command = print_command(cmd, &i, command);

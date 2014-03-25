@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/25 17:49:53 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/25 18:12:36 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/25 18:43:14 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,9 @@ int		print_command(char *cmd, int *i, int command)
 	if (cmd[*i] == '-')
 	{
 		ft_putstr(SBLUE);
-		ft_putchar(cmd[*i]);
-		++*i;
 		v = -1;
 	}
-	while (ft_isalpha(cmd[*i])&& cmd[*i])
+	while (cmd[*i] != ';' && cmd[*i] != '|' && cmd[*i] != ' ' && cmd[*i])
 	{
 		if (command == 1 && v != -1)
 			ft_putstr(SBLUE2);

@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/16 18:13:32 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/25 14:50:11 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/25 18:45:22 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void		show_argument_completion(char **tab, char *str)
 {
-	int		i;
+	int			i;
 
 	i = 0;
 	ft_putstr("\n");
@@ -31,8 +31,8 @@ static void		show_argument_completion(char **tab, char *str)
 
 static char		*search_argument(char **tab, char *str, int *v)
 {
-	int		i;
-	char	*result;
+	int			i;
+	char		*result;
 
 	result = NULL;
 	i = 0;
@@ -48,9 +48,8 @@ static char		*search_argument(char **tab, char *str, int *v)
 	return (result);
 }
 
-static char		*return_arguments(char *res, char *str, glob_t list, char *cmd)
+static char		*return_arguments(char *res, char *str, glob_t list, char *c)
 {
-
 	if (ft_strcmp(res, ft_strjoin(str, "*")) == 0)
 		return (NULL);
 	if (isdirectory(res))
@@ -58,17 +57,16 @@ static char		*return_arguments(char *res, char *str, glob_t list, char *cmd)
 	else
 		res = ft_strjoin(res, " ");
 	globfree(&list);
-	return (ft_strjoin(ft_strsub(cmd, 0, (ft_strlen(cmd) - ft_strlen(str))),
-				res));
+	return (ft_strjoin(ft_strsub(c, 0, (ft_strlen(c) - ft_strlen(str))), res));
 }
 
-char	*argument_completion(char *str, char *cmd)
+char			*argument_completion(char *str, char *cmd)
 {
-	int		i;
-	char	*result;
-	int		v;
-	char	*name;
-	glob_t	list;
+	int			i;
+	char		*result;
+	int			v;
+	char		*name;
+	glob_t		list;
 
 	i = ft_strlen(str);
 	while (str[i] != ' ' && i > 0)
