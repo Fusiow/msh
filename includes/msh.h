@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/25 17:42:05 by aardjoun         ###   ########.fr       */
+/*   Updated: 2014/03/25 17:52:04 by aardjoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,17 @@
  ** GLOBAL LIST
  */
 
-typedef struct		s_env
+typedef struct			s_env
 {
 	char			*name;
 	char			*value;
 	int				protect;
 	struct s_env	*next;
-}					t_env;
+}						t_env;
 
 t_env	*g_env;
 
-typedef unsigned int		t_ui;
+typedef unsigned int	t_ui;
 /*
  ** DEFINES
  */
@@ -68,12 +68,12 @@ typedef unsigned int		t_ui;
  ** LIST FOR VARIABLES
  */
 
-typedef struct		s_var
+typedef struct			s_var
 {
 	char			*name;
 	char			*value;
 	struct s_var	*next;
-}					t_var;
+}						t_var;
 
 t_var	*g_var;
 char	*search_var(t_var *list, char *name);
@@ -82,14 +82,14 @@ char	*search_var(t_var *list, char *name);
  ** LIST FOR JOBS CONTROL
  */
 
-typedef struct		s_jobs
+typedef struct			s_jobs
 {
-	char			*name;	/* name */
-	int				job;	/* nb job */ 
-	int				pid;	/* pid */
-	int				status; /* fg 1/ bg 2/ ^Z 0*/
+	char			*name;
+	int				job;
+	int				pid;
+	int				status;
 	struct s_jobs	*next;
-}					t_jobs;
+}						t_jobs;
 
 t_jobs	*g_jobs;
 
@@ -97,30 +97,30 @@ t_jobs	*g_jobs;
  ** LIST FOR AUTOCOMP
  */
 
-typedef struct		s_struct
+typedef struct			s_struct
 {
 	char			*name;
 	char			*type;
 	struct s_struct	*next;
-}					t_list;
+}						t_list;
 
-typedef struct		s_option
+typedef struct			s_option
 {
 	char			option;
 	char			*description;
 	struct s_option	*next;
-}					t_option;
+}						t_option;
 
 /*
  ** ALIASES
  */
 
-typedef struct		s_alias
+typedef struct			s_alias
 {
 	char			*alias;
 	char			*value;
 	struct s_alias	*next;
-}					t_alias;
+}						t_alias;
 
 t_alias	*g_alias;
 
@@ -128,11 +128,11 @@ t_alias	*g_alias;
  ** PARSER
  */
 
-typedef struct		s_parse
+typedef struct			s_parse
 {
 	char			*str;
 	struct s_parse	*next;
-}					t_parse;
+}						t_parse;
 
 typedef struct			s_command
 {
@@ -154,38 +154,38 @@ int			check_line(char *str);
 typedef struct s_gc		t_gc;
 typedef struct s_gcinfo	t_gcinfo;
 
-struct  s_gcinfo
+struct					s_gcinfo
 {
-	int     nb;
-	int     size;
-	t_gc    *first_avail;
-	t_gc    *first;
+	int				nb;
+	int				size;
+	t_gc			*first_avail;
+	t_gc			*first;
 };
 
-typedef enum	e_gcop
+typedef enum			e_gcop
 {
 	E_GCADD,
 	E_GCFREE,
 	E_GCFREEALL,
 	E_GCFREEGC
-}				t_gcop;
+}						t_gcop;
 
-struct	s_gc
+struct					s_gc
 {
-	void	*p;
-	t_gc	*next;
+	void			*p;
+	t_gc			*next;
 };
 
 /*
  ** ERRORS
  */
-typedef struct		s_error
+typedef struct			s_error
 {
 	int				dquote;
 	int				squote;
 	int				pipe;
 	int				bquote;
-}					t_error;
+}						t_error;
 
 void		show_error(char *str);
 void		show_error_exit(char *str);
@@ -292,13 +292,13 @@ int			isdirectory(char *str);
 /*
  ** ENVIRON
  */
-t_env	*add_env(t_env *env, char *name, char *value, int protect);
-void	new_env(char **env);
-void	print_list(t_env *env);
-char	*find_value_envir(t_env *env, char *str);
-t_env	*ft_unsetenv(t_env *env, char *str);
-t_env	*ft_setenv(t_env *env, char *name, char *value);
-char	**make_env_tab(t_env *env);
+t_env		*add_env(t_env *env, char *name, char *value, int protect);
+void		new_env(char **env);
+void		print_list(t_env *env);
+char		*find_value_envir(t_env *env, char *str);
+t_env		*ft_unsetenv(t_env *env, char *str);
+t_env		*ft_setenv(t_env *env, char *name, char *value);
+char		**make_env_tab(t_env *env);
 
 /*
  ** BUILTIN
@@ -337,29 +337,29 @@ void		main_options(char **av, int *choice);
 /*
  ** PROMPT
  */
-void	basic_prompt(void);
-void	prompt(void);
-void	prompt_interpreter(char *str);
+void		basic_prompt(void);
+void		prompt(void);
+void		prompt_interpreter(char *str);
 
 /*
  ** PIPE
  */
-int	check_redirection(char **tab);
-void	infile(char *str);
-char	**re_tab(char **tab, int i);
-void	outfile(char *str);
-void	spe_outfile(char *str);
-void	go_pipe(char	**tab);
-t_command *split_pipe(t_command *list);
-char	**join_tab(char **tab);
-void	spe_infile(char *str);
+int			check_redirection(char **tab);
+void		infile(char *str);
+char		**re_tab(char **tab, int i);
+void		outfile(char *str);
+void		spe_outfile(char *str);
+void		go_pipe(char **tab);
+t_command	*split_pipe(t_command *list);
+char		**join_tab(char **tab);
+void		spe_infile(char *str);
 
 /*
  ** SIGNALS
  */
 
-void	interrupt_process(int s);
-void	interrupt_cmd(int s);
+void		interrupt_process(int s);
+void		interrupt_cmd(int s);
 
 /*
 ** JOBS
@@ -381,6 +381,6 @@ int			find_pid(t_jobs *jobs);
 ** OPERATORS
 */
 
-void	check_operators(char **tab);
+void		check_operators(char **tab);
 
 #endif /* MSH_H */
