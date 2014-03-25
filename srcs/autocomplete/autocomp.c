@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/16 18:13:32 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/18 16:41:01 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/25 11:27:33 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ char	*argument_completion(char *str, char *cmd)
 	int		i;
 	char	*result;
 	int		v;
+	char	*name;
 	glob_t	list;
 
 	if (str)
@@ -24,10 +25,14 @@ char	*argument_completion(char *str, char *cmd)
 		i = ft_strlen(str);
 		while (str[i] != ' ' && i > 0)
 			--i;
-		glob(ft_strjoin(str, "*"), GLOB_NOCHECK, 0, &list);
+		name = ft_strjoin(str, "*");
+		glob(name, GLOB_NOCHECK, 0, &list);
 		i = v = 0;
 		if (list.gl_pathc == 0)
+		{
+			globfree(&list);
 			return (NULL);
+		}
 		while (list.gl_pathv[i])
 		{
 			if (!ft_strncmp(list.gl_pathv[i], str, ft_strlen(str)))
@@ -78,7 +83,7 @@ char	*spe_argument_completion(char *cmd, char *str, int x)
 	if (x == 1)
 	{
 		v = 0;
-//		globfree(&list);
+		globfree(&list);
 		return (NULL);
 	}
 	if (v == 0)

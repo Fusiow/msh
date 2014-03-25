@@ -10,6 +10,21 @@ Work on **Linux**, but no manual completion (options & description of command)
 ## What's MSH ?
 Msh is a colorful shell to help beginners in learning Linux, but also to confirm that users desire to enjoy a visual comfort. 
 
+![alt text](screens/screen1.png)
+____
+
+![alt text](screens/screen2.png)
+
+____
+
+![alt text](screens/screen3.png)
+
+____
+
+![alt text](screens/screen5.png)
+
+____
+
 #### Why? 
 - The command is colored in blue if it exists, otherwise red. 
 - When the command is good, all options for this command are posters suggestions. 
@@ -24,7 +39,11 @@ Msh is a colorful shell to help beginners in learning Linux, but also to confirm
 - Configuration file 
 - Advanced prompt
 
-For more information see the documentation (docs /). 
+____
+
+![alt text](screens/screen4.png)
+
+For more information see the documentation (docs /).
 
 #### Installation: 
 ##### -Compilation: 

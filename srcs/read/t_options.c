@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 12:59:04 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/02/14 17:00:13 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/25 11:30:52 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_option	*add_option(t_option *list, char option, char *description)
 	t_option	*temp;
 
 	temp = list;
-	tmp = malloc(sizeof(t_option));
+	tmp = (t_option *)ft_memalloc(sizeof(t_option));
 	tmp->option = option;
 	if (description)
 		tmp->description = ft_strdup(description);
