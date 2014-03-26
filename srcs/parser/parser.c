@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 06:57:02 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/25 16:21:27 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/26 05:44:37 by rkharif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,12 @@ t_command	*quick_parse(char *str)
 	if (!j)
 		return (result);
 	i = 0;
-	while (check_line(str) || str[ft_strlen(str) - 1] == '\\')
+	if (check_line(str) == 2 || check_redir(str) == 1)
+	{
+		ft_putendl("msh: Parse error.");
+		return (result);
+	}
+	while (check_line(str) == 1 || str[ft_strlen(str) - 1] == '\\')
 	{
 		ft_putstr("> ");
 		str = ft_strjoin(str, take_cmd(1));

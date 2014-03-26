@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/26 02:18:57 by rkharif          ###   ########.fr       */
+/*   Updated: 2014/03/26 05:44:42 by rkharif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,6 +148,11 @@ t_parse		*tokenize(char *str);
 int			iswhite(char c);
 char		*escape_char(char *str);
 int			check_line(char *str);
+int			dquote_check(char *str, int *i);
+int			squote_check(char *str, int *i);
+int			bquote_check(char *str, int *i);
+int			p_check(char *str, int *i);
+int			check_redir(char *str);
 
 /*
  ** LEAKS
@@ -187,6 +192,8 @@ typedef struct			s_error
 	int				squote;
 	int				pipe;
 	int				bquote;
+	int				par;
+	int				redir;
 }						t_error;
 
 void		show_error(char *str);

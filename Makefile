@@ -6,11 +6,10 @@
 #    By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/14 17:00:44 by aardjoun          #+#    #+#              #
-#    Updated: 2014/03/26 02:13:17 by rkharif          ###   ########.fr        #
+#    Updated: 2014/03/26 05:47:57 by rkharif          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
-
-NAME	=	msh
+NAME	=	42sh
 
 SRCS	=	srcs/main/main.c\
 			srcs/main/ft_mishell.c\
@@ -89,6 +88,8 @@ SRCS	=	srcs/main/main.c\
 			srcs/parser/parser.c\
 			srcs/parser/lex.c\
 			srcs/parser/check_line.c\
+			srcs/parser/check_func.c\
+			srcs/parser/check_redir.c\
 			srcs/pipe/check_redirection.c\
 			srcs/pipe/pipe.c\
 			srcs/pipe/pipe_function.c\
