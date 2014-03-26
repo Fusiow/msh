@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 13:46:37 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/23 16:32:53 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/26 02:44:56 by rkharif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,15 @@ char	*join_spe_tab(char **tab, int beg, int end)
 		beg++;
 	}
 	return (result);
+}
+
+char	**re_tab(char **tab, int i)
+{
+	while (tab[i + 2])
+	{
+		tab[i] = tab[i + 2];
+		++i;
+	}
+	tab[i] = NULL;
+	return (tab);
 }

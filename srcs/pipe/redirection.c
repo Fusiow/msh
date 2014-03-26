@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 11:34:13 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/25 23:06:01 by rkharif          ###   ########.fr       */
+/*   Updated: 2014/03/26 02:40:23 by rkharif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,15 +84,4 @@ void	spe_outfile(char *str)
 	fd = open(str, O_APPEND | O_WRONLY | O_CREAT, 0777);
 	dup2(fd, 1);
 	close(fd);
-}
-
-char	**re_tab(char **tab, int i)
-{
-	while (tab[i + 2])
-	{
-		tab[i] = tab[i + 2];
-		++i;
-	}
-	tab[i] = NULL;
-	return (tab);
 }
