@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/25 23:51:45 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/26 02:18:57 by rkharif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -366,6 +366,10 @@ void		child(char **tab);
 void		basic_prompt(void);
 void		prompt(void);
 void		prompt_interpreter(char *str);
+void		show_time(void);
+void		prompt_termcaps(char *str);
+void		show_value_envir(char *str);
+int			show_color(char *str, int i);
 
 /*
  ** PIPE

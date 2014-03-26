@@ -6,7 +6,7 @@
 #    By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/14 17:00:44 by aardjoun          #+#    #+#              #
-#    Updated: 2014/03/25 22:10:18 by lsolofri         ###   ########.fr        #
+#    Updated: 2014/03/26 02:13:17 by rkharif          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -85,6 +85,7 @@ SRCS	=	srcs/main/main.c\
 			srcs/builtin/jobs.c\
 			srcs/prompt/prompt_interpreter.c\
 			srcs/prompt/prompt.c\
+			srcs/prompt/prompt_func.c\
 			srcs/parser/parser.c\
 			srcs/parser/lex.c\
 			srcs/parser/check_line.c\
