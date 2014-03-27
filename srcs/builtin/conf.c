@@ -29,6 +29,9 @@ void	load_conf_file(void)
 	if (fd != -1)
 	{
 		while (get_next_line(fd, &tmp))
-			pre_exec(tmp);
+		{
+			if (tmp[0] != '#')
+				pre_exec(tmp);
+		}
 	}
 }

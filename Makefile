@@ -9,7 +9,7 @@
 #    Updated: 2014/03/27 15:25:04 by lsolofri         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
-NAME	=	42sh
+NAME	=	msh
 
 SRCS	=	srcs/main/main.c\
 			srcs/main/ft_mishell.c\
