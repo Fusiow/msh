@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 10:43:09 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/25 19:50:39 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/27 11:52:49 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,17 @@ char			*get_options(int fd)
 {
 	char		*str;
 
+	str = NULL;
 	while (get_next_line(fd, &str))
 	{
 		if (ft_strncmp(str, ".Op Fl", 6) == 0)
-			return (ft_strsub(str, 7, ft_strlen(str)));
+		{
+			str = ft_strsub(str, 7, ft_strlen(str) - 7);
+			break ;
+		}
 	}
 	close(fd);
-	return (NULL);
+	return (str);
 }
 
 char			*read_description(int fd, char *c)

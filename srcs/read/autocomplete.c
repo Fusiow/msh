@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 14:15:21 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/25 18:58:07 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/27 11:52:16 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,17 @@ static void		show_the_options(char *man_path)
 {
 	char		*options;
 
-	ft_putstr(tgetstr("sc", NULL));
-	ft_putstr(GRAY);
-	ft_putstr(" -");
 	options = get_options(open(man_path, O_RDONLY));
-	ft_putstr(options);
-	ft_free(options);
-	ft_putstr(DEF);
-	ft_putstr(tgetstr("rc", NULL));
+	if (options)
+	{
+		ft_putstr(tgetstr("sc", NULL));
+		ft_putstr(GRAY);
+		ft_putstr(" -");
+		ft_putstr(options);
+		ft_putstr(DEF);
+		ft_putstr(tgetstr("rc", NULL));
+		ft_free(options);
+	}
 }
 
 void			show_options_in_line(char *cmd)
