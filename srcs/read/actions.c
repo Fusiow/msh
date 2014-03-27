@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/12 11:34:17 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/25 16:44:05 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/27 13:12:44 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*del_c(char *result, int *i)
 		}
 		result[*i] = '\0';
 		*i = tmp;
-		if (*i == 0)
+		if (*i == 0 && !result[1])
 			result[0] = 0;
 	}
 	return (result);

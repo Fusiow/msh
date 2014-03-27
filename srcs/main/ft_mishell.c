@@ -6,7 +6,7 @@
 /*   By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 15:59:27 by aardjoun          #+#    #+#             */
-/*   Updated: 2014/03/25 23:54:05 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/27 13:40:35 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,15 @@ int		pre_exec(char *str)
 		if (tmp->cmd[0])
 		{
 			tmp->cmd = is_alias(g_alias, tmp->cmd);
-			if (detect_built(tmp->cmd))
+			if (is_operator(tmp->cmd))
 			{
-				if (!(pid = fork()))
-					child(tmp->cmd);
-				else
-					ret = father(pid, tmp->cmd[0]);
+				if (!detect_built(tmp->cmd))
+					break ;
 			}
+			if (!(pid = fork()))
+				child(tmp->cmd);
+			else
+				ret = father(pid, tmp->cmd[0]);
 		}
 		tmp = tmp->next;
 	}

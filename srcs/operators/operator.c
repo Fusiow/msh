@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/13 11:59:40 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/25 18:51:38 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/27 13:35:30 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,27 @@ void			check_operators(char **tab, int i)
 				_exit(0);
 		}
 	}
+}
+
+int				is_operator(char **tab)
+{
+	int		i;
+	int		result;
+
+	result = 1;
+	i = 0;
+	while (tab[i])
+	{
+		if (!ft_strcmp(")", tab[i]) || !ft_strcmp(")", tab[i]))
+			result = 0;
+		else if (!ft_strcmp("&&", tab[i]) || !ft_strcmp("&", tab[i]))
+			result = 0;
+		else if (!ft_strcmp("|", tab[i]) || !ft_strcmp("||", tab[i]))
+			result = 0;
+		else if (!ft_strcmp(">", tab[i]) || !ft_strcmp(">>", tab[i]) ||
+		!ft_strcmp("<", tab[i]) || !ft_strcmp("<<", tab[i]))
+			result = 0;
+		++i;
+	}
+	return (result);
 }

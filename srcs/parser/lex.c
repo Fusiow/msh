@@ -6,7 +6,7 @@
 /*   By: rkharif <rkharif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 13:10:28 by rkharif           #+#    #+#             */
-/*   Updated: 2014/03/25 19:40:40 by rkharif          ###   ########.fr       */
+/*   Updated: 2014/03/27 13:22:27 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ char	*spe_quote(char *str, int *i, char quote, int start)
 	result = ft_strsub(str, start, (ft_strlen(str) - start));
 	ft_putendl(result);
 	start = j = 0;
-	spe_result = (char *)malloc(sizeof(char) * ft_strlen(result));
+	spe_result = (char *)ft_memalloc(sizeof(char) * ft_strlen(result));
 	while (result[start])
 	{
 		if (result[start] == quote && result[start - 1] != '\\')

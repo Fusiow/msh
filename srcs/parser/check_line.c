@@ -6,7 +6,7 @@
 /*   By: rkharif <rkharif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 13:10:28 by rkharif           #+#    #+#             */
-/*   Updated: 2014/03/26 05:35:16 by rkharif          ###   ########.fr       */
+/*   Updated: 2014/03/27 13:15:26 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 char	*replace_esc_char(char *str, char replace, int flag, int *i)
 {
+	replace = 0;
 	if (str[*i + 1] == 'a')
 		replace = '\a';
 	else if (str[*i + 1] == 'b')
@@ -28,12 +29,10 @@ char	*replace_esc_char(char *str, char replace, int flag, int *i)
 		replace = '\f';
 	else if (str[*i + 1] == 'r')
 		replace = '\r';
-	else
-		replace = str[*i + 1];
-	++*i;
-	str = del_c(str, i);
-	if (replace != str[*i] && flag)
+	if (replace && flag)
 	{
+		++*i;
+		str = del_c(str, i);
 		++*i;
 		str = del_c(str, i);
 		str = change_cmd(*i, ft_strdup(str), replace);
