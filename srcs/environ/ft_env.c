@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 00:46:22 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/25 14:37:53 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/27 14:35:41 by dmellado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,13 @@ t_env	*ft_unsetenv(t_env *env, char *str)
 
 t_env	*ft_setenv(t_env *env, char *name, char *value)
 {
-	env = ft_unsetenv(env, name);
-	if (!ft_strcmp(name, "MANPATH"))
-		env = add_env(env, name, ft_strdup(value), 1);
-	else
-		env = add_env(env, name, value, 0);
+	if (name && value)
+	{
+		env = ft_unsetenv(env, name);
+		if (!ft_strcmp(name, "MANPATH"))
+			env = add_env(env, name, ft_strdup(value), 1);
+		else
+			env = add_env(env, name, value, 0);
+	}
 	return (env);
 }

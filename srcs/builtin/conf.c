@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 02:38:17 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/25 12:29:10 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/27 14:19:54 by dmellado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	load_conf_file(void)
 	fd = open(tmp, O_RDONLY);
 	if (fd == -1)
 	{
+		ft_putstr("Je passe ici");
 		close(fd);
 		no_conf();
 		fd = open(tmp, O_RDONLY);

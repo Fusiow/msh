@@ -6,7 +6,7 @@
 /*   By: rkharif <rkharif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 13:10:28 by rkharif           #+#    #+#             */
-/*   Updated: 2014/03/27 13:15:26 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/27 14:39:52 by dmellado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ char	*replace_esc_char(char *str, char replace, int flag, int *i)
 		replace = '\f';
 	else if (str[*i + 1] == 'r')
 		replace = '\r';
+	else if (str[*i + 1] == 'e')
+		replace = '\e';
 	if (replace && flag)
 	{
 		++*i;
