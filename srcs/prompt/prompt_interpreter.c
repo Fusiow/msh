@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/21 16:30:44 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/26 02:18:59 by rkharif          ###   ########.fr       */
+/*   Updated: 2014/03/27 15:14:04 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,25 +66,28 @@ void	spe_pwd(char *str)
 	int		v;
 
 	i = 0;
-	while (str[i])
+	if (str)
 	{
-		if (str[i] == '/')
+		while (str[i])
 		{
-			ft_putchar(str[i]);
-			ft_putchar(str[++i]);
-			v = i;
-			while (str[i] != '/' && str[i])
-				++i;
-			if (!str[i])
+			if (str[i] == '/')
 			{
-				v++;
-				while (str[v])
-					ft_putchar(str[v++]);
+				ft_putchar(str[i]);
+				ft_putchar(str[++i]);
+				v = i;
+				while (str[i] != '/' && str[i])
+					++i;
+				if (!str[i])
+				{
+					v++;
+					while (str[v])
+						ft_putchar(str[v++]);
+				}
+				else
+					i = v;
 			}
-			else
-				i = v;
+			++i;
 		}
-		++i;
 	}
 }
 
