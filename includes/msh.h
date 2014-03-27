@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 14:54:36 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/27 13:35:59 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/27 15:33:57 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,6 +152,9 @@ int						squote_check(char *str, int *i);
 int						bquote_check(char *str, int *i);
 int						p_check(char *str, int *i);
 int						check_redir(char *str);
+int						isop(char c);
+char					*ope_str(char *str, int start, int *i);
+char					*quote(char *str, int *i, char quote);
 
 /*
 ** LEAKS

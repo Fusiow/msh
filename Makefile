@@ -6,7 +6,7 @@
 #    By: aardjoun <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/14 17:00:44 by aardjoun          #+#    #+#              #
-#    Updated: 2014/03/26 05:47:57 by rkharif          ###   ########.fr        #
+#    Updated: 2014/03/27 15:25:04 by lsolofri         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 NAME	=	42sh
@@ -87,6 +87,9 @@ SRCS	=	srcs/main/main.c\
 			srcs/prompt/prompt_func.c\
 			srcs/parser/parser.c\
 			srcs/parser/lex.c\
+			srcs/parser/lex_3.c\
+			srcs/parser/lex_2.c\
+			srcs/parser/lex_4.c\
 			srcs/parser/check_line.c\
 			srcs/parser/check_func.c\
 			srcs/parser/check_redir.c\
