@@ -6,14 +6,13 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 06:57:02 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/26 05:44:37 by rkharif          ###   ########.fr       */
+/*   Updated: 2014/03/27 16:41:57 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/msh.h"
-#include <stdio.h>
 
-t_parse		*add_word(t_parse *list, char *str)
+t_parse				*add_word(t_parse *list, char *str)
 {
 	t_parse		*tmp;
 	t_parse		*tmp2;
@@ -30,20 +29,7 @@ t_parse		*add_word(t_parse *list, char *str)
 	return (list);
 }
 
-int		list_len_cmd(t_parse *list)
-{
-	int		i;
-
-	i = 0;
-	while (list && (ft_strcmp(list->str, ";")))
-	{
-		list = list->next;
-		++i;
-	}
-	return (i);
-}
-
-t_command	*add_tab(t_command *result, char **tab)
+t_command			*add_tab(t_command *result, char **tab)
 {
 	t_command	*tmp;
 	t_command	*tmp2;
@@ -60,71 +46,52 @@ t_command	*add_tab(t_command *result, char **tab)
 	return (result);
 }
 
-void	show_me_the_truth_bitch_get_outta_my_way(t_parse *list)
+char				*check_line_cmd(char *str)
 {
-	while (list)
-	{
-		printf("%s\n", list->str);
-		list = list->next;
-	}
-}
-
-t_command	*quick_parse(char *str)
-{
-	t_parse 	*list;
-	int			i;
-	char		**tab;
-	t_command	*result;
-	glob_t		globlist;
-	int			j;
+	int		i;
 
 	i = 0;
-	result = NULL;
-	j = 0;
-	while (str[i])
-	{
-		if (str[i] != ' ')
-			j = 1;
+	while (str[i] == ' ' && str[i])
 		++i;
-	}
-	if (!j)
-		return (result);
+	if (!str[i])
+		return (NULL);
 	i = 0;
 	if (check_line(str) == 2 || check_redir(str) == 1)
 	{
-		ft_putendl("msh: Parse error.");
-		return (result);
+		ft_putendl("msh: Parse error");
+		return (NULL);
 	}
 	while (check_line(str) == 1 || str[ft_strlen(str) - 1] == '\\')
 	{
-		ft_putstr("> ");
+		ft_putstr("parse> ");
 		str = ft_strjoin(str, take_cmd(1));
 	}
-	if (check_line(str) == 2)
+	if (check_line(str) == 2 || check_redir(str) == 1)
 	{
-		ft_putendl("msh: Parse error.");
-		return (result);
+		ft_putendl("msh: Parse error");
+		return (NULL);
 	}
-	str = escape_char(str);
-	list = tokenize(str);
-//	show_me_the_truth_bitch_get_outta_my_way(list);
+	return (str);
+}
+
+t_command			*tab_contain(t_parse *list, int i)
+{
+	char		**tab;
+	glob_t		globlist;
+	t_command	*result;
+	int			j;
+
 	result = NULL;
 	while (list)
 	{
-		i = list_len_cmd(list);
-		tab = (char **)ft_memalloc(sizeof(char *) * 1024);
-		tab[i] = NULL;
 		i = 0;
+		tab = (char **)ft_memalloc(sizeof(char *) * 1024);
 		while (list != NULL && (ft_strcmp(list->str, ";")) && i < 1024)
 		{
-			j = 0;
+			j = -1;
 			glob(list->str, GLOB_NOCHECK, 0, &globlist);
-			while (globlist.gl_pathv[j])
-			{
-				tab[i] = ft_strdup(globlist.gl_pathv[j]);
-				++i;
-				++j;
-			}
+			while (globlist.gl_pathv[++j])
+				tab[i++] = ft_strdup(globlist.gl_pathv[j]);
 			globfree(&globlist);
 			list = list->next;
 		}
@@ -134,4 +101,15 @@ t_command	*quick_parse(char *str)
 			list = list->next;
 	}
 	return (result);
+}
+
+t_command			*quick_parse(char *str)
+{
+	t_parse		*list;
+
+	if (!(str = check_line_cmd(str)))
+		return (NULL);
+	str = escape_char(str);
+	list = tokenize(str);
+	return (tab_contain(list, 0));
 }
