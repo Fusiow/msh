@@ -6,7 +6,7 @@
 /*   By: lsolofri <lsolofri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/21 16:30:44 by lsolofri          #+#    #+#             */
-/*   Updated: 2014/03/27 15:14:04 by lsolofri         ###   ########.fr       */
+/*   Updated: 2014/03/27 16:58:10 by lsolofri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,10 @@ void	prompt_git(void)
 	}
 }
 
-void	spe_pwd(char *str)
+void	spe_pwd(char *str, int i)
 {
-	int		i;
 	int		v;
 
-	i = 0;
 	if (str)
 	{
 		while (str[i])
@@ -114,7 +112,7 @@ void	check_string(char *str, int *i)
 	else if (str[*i] == 't')
 		show_time();
 	else if (str[*i] == 'P')
-		spe_pwd(find_value_envir(g_env, "PWD"));
+		spe_pwd(find_value_envir(g_env, "PWD"), 0);
 }
 
 void	prompt_interpreter(char *str)
