@@ -40,13 +40,16 @@ char	*search_var(t_var *list, char *name)
 
 void	export_var(t_var *list, char *name)
 {
-	while (list && ft_strcmp(list->name, name))
-		list = list->next;
-	if (list)
-		g_env = ft_setenv(g_env, name, list->value);
-	else
+	if (name)
 	{
-		ft_putstr("Cannot find variable ");
-		ft_putendl(name);
+		while (list && ft_strcmp(list->name, name))
+			list = list->next;
+		if (list)
+			g_env = ft_setenv(g_env, name, list->value);
+		else
+		{
+			ft_putstr("Cannot find variable ");
+			ft_putendl(name);
+		}
 	}
 }

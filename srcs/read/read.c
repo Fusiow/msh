@@ -78,19 +78,21 @@ char	*in_while(char *buffer, int choice)
 	char	*result;
 	int		i;
 	int		v;
+	int		j;
 
 	i = 0;
 	result = NULL;
 	while (1)
 	{
+		j = 0;
 		if (!result)
 			i = 0;
 		v = 0;
 		buffer = init_buffer(buffer);
 		read(0, buffer, 3);
-		if (ft_isprint(buffer[0]))
-			result = change_cmd(i++, result, buffer[0]);
-		else
+		while (ft_isprint(buffer[j]))
+			result = change_cmd(i++, result, buffer[j++]);
+		if (j == 0)
 			i = distrib_buttons(i, &result, buffer, &v);
 		if (i == -2)
 			break ;

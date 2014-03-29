@@ -29,7 +29,7 @@ int				iswhite(char c)
 
 int				isop(char c)
 {
-	static char	optab[] = "$;^()=><`|&{}~";
+	static char	optab[] = "$;^()><`|&{}~";
 	int			i;
 
 	i = 0;
