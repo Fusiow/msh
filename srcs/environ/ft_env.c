@@ -72,6 +72,8 @@ t_env	*ft_unsetenv(t_env *env, char *str)
 
 	if (!env)
 		return (NULL);
+	if (!str)
+		return (env);
 	if (!ft_strcmp(env->name, str) && env->protect == 0)
 	{
 		tmp = env->next;
